@@ -14,7 +14,7 @@ from data.cifar100_unknowns import get_cifar100_unknowns
 from models.resnet_cifar import SplitResNet
 
 @torch.no_grad()
-def extract_features(model, loader, device, num_known=10):
+def extract_features(model, loader, device):
     model.eval()
     all_logits = []
     all_feats = []
@@ -65,7 +65,7 @@ def main(args):
     for name, loader in loaders.items():
         print(f"  -> Extracting {name}...")
         sys.stdout.flush()
-        outputs[name] = extract_features(model, loader, device, num_known=10)
+        outputs[name] = extract_features(model, loader, device)
         
     save_path = os.path.join(args.cache_dir, f"{args.method}_outputs.pt")
     torch.save(outputs, save_path)

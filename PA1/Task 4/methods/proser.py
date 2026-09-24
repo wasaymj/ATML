@@ -59,7 +59,7 @@ class PROSERMethod:
         loss_ce = F.cross_entropy(logits_known, y_cp)
         
         max_dummy, _ = logits_dummy.max(dim=1, keepdim=True)
-        cp_logits_11 = torch.cat([logits_known.clone(), max_dummy], dim=1)
+        cp_logits_11 = torch.cat([logits_known, max_dummy], dim=1)
         
         one_hot_mask = torch.zeros(len(cp_logits_11), 11, dtype=torch.bool, device=self.device)
         one_hot_mask.scatter_(1, y_cp.unsqueeze(1), True)
@@ -70,16 +70,9 @@ class PROSERMethod:
         
         # --- 2. DP Loss ---
         if len(x_dp) > 0:
-            beta = torch.distributions.beta.Beta(2.0, 2.0).sample().item()
+            from methods.manifold_mixup import manifold_mixup
             feats2 = self.model.forward_layer2(x_dp)
-            
-            idx = torch.arange(len(y_dp), device=self.device)
-            for i in range(len(y_dp)):
-                candidates = (y_dp != y_dp[i]).nonzero(as_tuple=True)[0]
-                if len(candidates) > 0:
-                    idx[i] = candidates[torch.randint(0, len(candidates), (1,)).item()]
-                    
-            mixed_feats2 = beta * feats2 + (1 - beta) * feats2[idx]
+            mixed_feats2, _ = manifold_mixup(feats2, y_dp, alpha=2.0, device=self.device)
             dp_logits, _ = self.model.forward_from_layer3(mixed_feats2)
             
             dp_logits_known = dp_logits[:, :self.num_known]

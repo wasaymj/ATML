@@ -19,46 +19,17 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import torch
-from sklearn.metrics import roc_auc_score, roc_curve
+from sklearn.metrics import roc_curve
 
-from scores.definitions import (
-    get_msp_score, get_mls_score, get_energy_score,
-    compute_mahalanobis_params, get_mahalanobis_score, get_proser_score
-)
+from scores.msp import get_msp_score
+from scores.mls import get_mls_score
+from scores.energy import get_energy_score
+from scores.mahalanobis import compute_mahalanobis_params, get_mahalanobis_score
+from scores.proser_score import get_proser_score
+from evaluation.metrics import compute_metrics
+from evaluation.thresholds import get_threshold
+from evaluation.failure_analysis import save_failures
 from data.cifar100_unknowns import get_cifar100_unknowns
-
-# ── Class name mappings for human-readable failure analysis ──────────────────
-
-CIFAR10_CLASSES = [
-    "airplane", "automobile", "bird", "cat", "deer",
-    "dog", "frog", "horse", "ship", "truck"
-]
-
-CIFAR100_CLASSES = [
-    "apple", "aquarium_fish", "baby", "bear", "beaver",
-    "bed", "bee", "beetle", "bicycle", "bottle",
-    "bowl", "boy", "bridge", "bus", "butterfly",
-    "camel", "can", "castle", "caterpillar", "cattle",
-    "chair", "chimpanzee", "clock", "cloud", "cockroach",
-    "couch", "crab", "crocodile", "cup", "dinosaur",
-    "dolphin", "elephant", "flatfish", "forest", "fox",
-    "girl", "hamster", "house", "kangaroo", "keyboard",
-    "lamp", "lawn_mower", "leopard", "lion", "lizard",
-    "lobster", "man", "maple_tree", "motorcycle", "mountain",
-    "mouse", "mushroom", "oak_tree", "orange", "orchid",
-    "otter", "palm_tree", "pear", "pickup_truck", "pine_tree",
-    "plain", "plate", "poppy", "porcupine", "possum",
-    "rabbit", "raccoon", "ray", "road", "rocket",
-    "rose", "sea", "seal", "shark", "shrew",
-    "skunk", "skyscraper", "snail", "snake", "spider",
-    "squirrel", "streetcar", "sunflower", "sweet_pepper", "table",
-    "tank", "telephone", "television", "tiger", "tractor",
-    "train", "trout", "tulip", "turtle", "wardrobe",
-    "whale", "willow_tree", "wolf", "woman", "worm",
-]
-
-
-# ── Score extraction helper ──────────────────────────────────────────────────
 
 def get_scores(method: str, score_type: str, outputs: dict, means=None, var=None):
     if score_type == "msp":
@@ -73,82 +44,6 @@ def get_scores(method: str, score_type: str, outputs: dict, means=None, var=None
         return get_proser_score(outputs["logits"])
     else:
         raise ValueError(f"Unknown score type: {score_type}")
-
-
-# ── Metric computation ───────────────────────────────────────────────────────
-
-def compute_metrics(known_scores, unknown_scores, threshold):
-    y_true = np.concatenate([np.zeros(len(known_scores)), np.ones(len(unknown_scores))])
-    y_scores = np.concatenate([known_scores.numpy(), unknown_scores.numpy()])
-    auroc = roc_auc_score(y_true, y_scores)
-    fpr95 = (unknown_scores <= threshold).float().mean().item()
-    return {"auroc": auroc, "fpr95": fpr95}
-
-
-# ── Failure analysis with human-readable class names and image grid ──────────
-
-def save_failures(data, scores, threshold, group_name, out_dir, dataset):
-    """Save the first 3 incorrectly accepted unknowns as a JSON and an Image Grid."""
-    accepted_mask = (scores <= threshold)
-    accepted_indices = accepted_mask.nonzero(as_tuple=True)[0]
-
-    failures = []
-    failed_imgs = []
-    
-    # Normalization parameters used in cifar10.py
-    mean = torch.tensor([0.4914, 0.4822, 0.4465]).view(3, 1, 1)
-    std = torch.tensor([0.2023, 0.1994, 0.2010]).view(3, 1, 1)
-
-    for idx in accepted_indices[:3]:
-        pred_class_id = data["logits"][idx, :10].argmax().item()
-        true_class_id = data["labels"][idx].item()
-        score = scores[idx].item()
-
-        # Un-normalize image for plotting
-        img_tensor = dataset[idx.item()][0]
-        img = img_tensor * std + mean
-        img = torch.clamp(img, 0, 1)
-        failed_imgs.append(img)
-
-        predicted_known_class = CIFAR10_CLASSES[pred_class_id]
-        unknown_class = (CIFAR100_CLASSES[true_class_id]
-                         if true_class_id < len(CIFAR100_CLASSES)
-                         else f"cifar100_class_{true_class_id}")
-
-        failures.append({
-            "unknown_class": unknown_class,
-            "predicted_known_class": predicted_known_class,
-            "score": score,
-            "threshold": threshold,
-        })
-
-    # Save JSON
-    path_json = os.path.join(out_dir, f"failures_vanilla_mls_{group_name}.json")
-    with open(path_json, "w") as f:
-        json.dump(failures, f, indent=2)
-
-    # Save Image Grid
-    if len(failed_imgs) > 0:
-        fig, axes = plt.subplots(1, len(failed_imgs), figsize=(3.5 * len(failed_imgs), 3.5))
-        if len(failed_imgs) == 1: axes = [axes]
-        
-        for i, ax in enumerate(axes):
-            ax.imshow(failed_imgs[i].permute(1, 2, 0).numpy())
-            f = failures[i]
-            title = f"True: {f['unknown_class']}\nPred: {f['predicted_known_class']}\nScore: {f['score']:.2f}"
-            ax.set_title(title, fontsize=10)
-            ax.axis('off')
-            
-        plt.tight_layout()
-        path_img = os.path.join(out_dir, f"failures_vanilla_mls_{group_name}.png")
-        plt.savefig(path_img, dpi=150)
-        plt.close()
-
-    print(f"  [failures] Saved {len(failures)} {group_name} failures (JSON & PNG)")
-    sys.stdout.flush()
-
-
-# ── Main evaluation ──────────────────────────────────────────────────────────
 
 def main(args):
     os.makedirs(args.results_dir, exist_ok=True)
@@ -174,7 +69,6 @@ def main(args):
         test_preds = test_logits.argmax(dim=1)
         csa = (test_preds == outputs["test"]["labels"]).float().mean().item()
 
-        # Compute Mahalanobis params from unaugmented training features
         means, var = None, None
         if method == "vanilla":
             means, var = compute_mahalanobis_params(
@@ -196,8 +90,7 @@ def main(args):
             far_s  = get_scores(method, st, outputs["far"], means, var)
             all_s  = torch.cat([near_s, far_s])
 
-            # Threshold = 95th percentile of unknownness on CIFAR-10 validation
-            threshold = torch.quantile(val_s, 0.95).item()
+            threshold = get_threshold(val_s, 0.95)
 
             near_metrics = compute_metrics(test_s, near_s, threshold)
             far_metrics  = compute_metrics(test_s, far_s, threshold)
@@ -212,12 +105,10 @@ def main(args):
                 "test_acceptance_rate": test_accept,
             }
 
-            # Failure analysis: vanilla MLS only (per manual)
             if method == "vanilla" and st == "mls":
                 save_failures(outputs["near"], near_s, threshold, "near", args.results_dir, cifar100["near"])
                 save_failures(outputs["far"], far_s, threshold, "far", args.results_dir, cifar100["far"])
 
-    # ── TABLE 1: Post-hoc scores on frozen Vanilla model ─────────────────
     if "vanilla" in results:
         print("\n" + "=" * 100)
         print("TABLE 1: Post-hoc Novelty Scores on Frozen Vanilla Model")
@@ -239,7 +130,6 @@ def main(args):
             )
         sys.stdout.flush()
 
-    # ── TABLE 2: Model comparison ────────────────────────────────────────
     print("\n" + "=" * 100)
     print("TABLE 2: Model Comparison — Vanilla vs GCSC vs PROSER")
     print("=" * 100)
@@ -265,16 +155,13 @@ def main(args):
             )
     sys.stdout.flush()
 
-    # ── Plots (Distributions & ROC) ───────────────────────────────────────
     if "vanilla" in results:
         cache_path = os.path.join(args.cache_dir, "vanilla_outputs.pt")
         outputs = torch.load(cache_path)
         means, var = vanilla_means, vanilla_var
 
-        # 1. Score Distributions
         fig, axes = plt.subplots(1, 3, figsize=(15, 4))
         scores_to_plot = ["msp", "mls", "mahalanobis"]
-
         for i, st in enumerate(scores_to_plot):
             ax = axes[i]
             test_s = get_scores("vanilla", st, outputs["test"], means, var).numpy()
@@ -296,7 +183,6 @@ def main(args):
         print(f"\n[eval] Score distributions saved → {plot_path}")
         sys.stdout.flush()
 
-        # 2. ROC Curves
         fig, axes = plt.subplots(1, 2, figsize=(12, 5))
         for st in ["msp", "mls", "energy", "mahalanobis"]:
             test_s = get_scores("vanilla", st, outputs["test"], means, var).numpy()
@@ -328,13 +214,11 @@ def main(args):
         print(f"[eval] ROC curves saved → {roc_path}")
         sys.stdout.flush()
 
-    # ── Save all results to JSON ─────────────────────────────────────────
     json_path = os.path.join(args.results_dir, "osr_results.json")
     with open(json_path, "w") as f:
         json.dump(results, f, indent=2)
     print(f"[eval] Results saved → {json_path}")
     sys.stdout.flush()
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Task 4 — OSR Evaluation")

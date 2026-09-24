@@ -113,11 +113,13 @@ def train(args):
     train_set, val_set, _ = get_cifar10_datasets(
         args.data_root, seed=6304, gcsc_aug=(args.method == "gcsc")
     )
+    g = torch.Generator()
+    g.manual_seed(6304)
     train_loader = torch.utils.data.DataLoader(
-        train_set, batch_size=128, shuffle=True, num_workers=2
+        train_set, batch_size=128, shuffle=True, num_workers=8, generator=g, pin_memory=True, drop_last=True
     )
     val_loader = torch.utils.data.DataLoader(
-        val_set, batch_size=128, shuffle=False, num_workers=2
+        val_set, batch_size=128, shuffle=False, num_workers=8, pin_memory=True
     )
 
     # ── Method ────────────────────────────────────────────────────────────
