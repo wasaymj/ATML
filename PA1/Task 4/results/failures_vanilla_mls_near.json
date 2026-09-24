@@ -1,0 +1,20 @@
+[
+  {
+    "unknown_class": "bus",
+    "predicted_known_class": "truck",
+    "score": -10.273508071899414,
+    "threshold": -5.846068859100342
+  },
+  {
+    "unknown_class": "bus",
+    "predicted_known_class": "truck",
+    "score": -10.986459732055664,
+    "threshold": -5.846068859100342
+  },
+  {
+    "unknown_class": "bus",
+    "predicted_known_class": "automobile",
+    "score": -8.98282527923584,
+    "threshold": -5.846068859100342
+  }
+]
