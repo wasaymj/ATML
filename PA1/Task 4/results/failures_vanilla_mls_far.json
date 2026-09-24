@@ -1,0 +1,20 @@
+[
+  {
+    "unknown_class": "bottle",
+    "predicted_known_class": "bird",
+    "score": -7.097274303436279,
+    "threshold": -5.846068859100342
+  },
+  {
+    "unknown_class": "bottle",
+    "predicted_known_class": "ship",
+    "score": -7.461644172668457,
+    "threshold": -5.846068859100342
+  },
+  {
+    "unknown_class": "bottle",
+    "predicted_known_class": "cat",
+    "score": -8.080941200256348,
+    "threshold": -5.846068859100342
+  }
+]

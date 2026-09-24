@@ -7,3 +7,6 @@ Readings/*
 data/*
 task3/*
 task4/*
+cifar_data/
+__pycache__/
+*.pt
