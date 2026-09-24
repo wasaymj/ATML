@@ -1,0 +1,24 @@
+# GCSC: Strong Closed-Set Classifier via augmentation
+# Identical to Vanilla except for RandAugment(num_ops=2, magnitude=9)
+method: gcsc
+
+# Architecture
+num_classes: 10
+
+# Optimizer (identical to vanilla)
+lr: 0.1
+momentum: 0.9
+weight_decay: 5.0e-4
+
+# Schedule
+epochs: 100
+scheduler: cosine
+
+# Data
+batch_size: 128
+seed: 6304
+
+# Augmentation (the ONLY difference from vanilla)
+augmentation: randaugment
+randaugment_num_ops: 2
+randaugment_magnitude: 9

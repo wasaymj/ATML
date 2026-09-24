@@ -1,0 +1,16 @@
+# CDAN: Class-conditional adversarial domain adaptation
+method: cdan
+
+# Domain loss weight
+lambda_domain: 1.0
+
+# Maximum GRL alpha
+grl_max_alpha: 1.0
+
+# Domain discriminator architecture
+# Input dim = feat_dim * num_classes = 512 * 7 = 3584
+disc_hidden: 256
+disc_dropout: 0.5
+
+# No entropy conditioning (as per assignment requirements)
+entropy_conditioning: false

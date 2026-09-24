@@ -1,0 +1,12 @@
+# DANN: Adversarial domain adaptation via gradient reversal
+method: dann
+
+# Domain loss weight (unit weight as per the assignment)
+lambda_domain: 1.0
+
+# Maximum GRL alpha (follows annealed schedule alpha(p) = 2/(1+exp(-10p))-1)
+grl_max_alpha: 1.0
+
+# Domain discriminator architecture
+disc_hidden: 256
+disc_dropout: 0.5

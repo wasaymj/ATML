@@ -1,0 +1,54 @@
+{
+  "grayscale": {
+    "resnet_linear": {
+      "accuracy": 0.944,
+      "macro_f1": 0.9441032207383774,
+      "mean_max_conf": 0.9198605418205261,
+      "consistency": 0.952
+    },
+    "vit_linear": {
+      "accuracy": 0.938,
+      "macro_f1": 0.9381598436712416,
+      "mean_max_conf": 0.9416829943656921,
+      "consistency": 0.95
+    },
+    "clip_linear": {
+      "accuracy": 0.92,
+      "macro_f1": 0.9192760029475492,
+      "mean_max_conf": 0.16920700669288635,
+      "consistency": 0.926
+    },
+    "clip_zeroshot": {
+      "accuracy": 0.896,
+      "macro_f1": 0.8943882768812443,
+      "mean_max_conf": 0.9058818817138672,
+      "consistency": 0.914
+    }
+  },
+  "hue_rotate": {
+    "resnet_linear": {
+      "accuracy": 0.932,
+      "macro_f1": 0.9321057215025738,
+      "mean_max_conf": 0.9074715375900269,
+      "consistency": 0.944
+    },
+    "vit_linear": {
+      "accuracy": 0.936,
+      "macro_f1": 0.9359101443111346,
+      "mean_max_conf": 0.9209917187690735,
+      "consistency": 0.944
+    },
+    "clip_linear": {
+      "accuracy": 0.928,
+      "macro_f1": 0.927761345373409,
+      "mean_max_conf": 0.1638079434633255,
+      "consistency": 0.944
+    },
+    "clip_zeroshot": {
+      "accuracy": 0.9,
+      "macro_f1": 0.8979866289340297,
+      "mean_max_conf": 0.888866126537323,
+      "consistency": 0.924
+    }
+  }
+}

@@ -1,0 +1,4 @@
+# Task 3 ERM Config
+method: erm
+# Will load from Task 2's output path.
+# Assumes the notebook sets TASK2_CKPT_DIR correctly and we pass it.

@@ -1,0 +1,53 @@
+# ─── Base configuration for Task 2: Unsupervised Domain Adaptation ───────────
+# All method-specific YAMLs are merged on top of this file at runtime.
+# See train.py: load_config()
+
+seed: 6304
+num_classes: 7
+feat_dim: 512          # ResNet-18 penultimate feature dimension
+
+# ─── Image preprocessing ─────────────────────────────────────────────────────
+img_size: 224
+resize_size: 256
+
+# ─── Architecture ────────────────────────────────────────────────────────────
+backbone: resnet18
+backbone_weights: IMAGENET1K_V1
+
+# ─── Optimizer ───────────────────────────────────────────────────────────────
+lr: 1.0e-4
+weight_decay: 1.0e-4
+
+# ─── Training budget ─────────────────────────────────────────────────────────
+epochs: 30
+patience: 5            # early stopping: epochs without source-val macro-F1 improvement
+
+# ─── Batch composition ───────────────────────────────────────────────────────
+# Each adaptation step: 8 examples per source domain (×3) + 24 target examples
+# Total source = 24, total target = 24  →  equal source/target batch sizes
+batch_size_per_source: 8
+batch_size_target: 24
+num_workers: 4
+
+# ─── PACS domain split ───────────────────────────────────────────────────────
+source_domains:
+  - photo
+  - art_painting
+  - cartoon
+target_domain: sketch
+
+# Class index mapping (alphabetical by class name)
+class_names:
+  - dog        # 0
+  - elephant   # 1
+  - giraffe    # 2
+  - guitar     # 3
+  - horse      # 4
+  - house      # 5
+  - person     # 6
+
+# ─── Paths ───────────────────────────────────────────────────────────────────
+data_root: ./data
+results_dir: ./results
+checkpoints_dir: ./checkpoints
+splits_path: ./shared/splits/pacs_sketch_seed6304.json

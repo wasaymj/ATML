@@ -1,0 +1,61 @@
+{
+  "results": {
+    "resnet_linear": {
+      "n_shape": 127,
+      "n_texture": 44,
+      "n_other": 75,
+      "n_total": 246,
+      "shape_bias": 74.26900584795321,
+      "coverage": 69.51219512195122
+    },
+    "vit_linear": {
+      "n_shape": 175,
+      "n_texture": 23,
+      "n_other": 48,
+      "n_total": 246,
+      "shape_bias": 88.38383838383838,
+      "coverage": 80.48780487804878
+    },
+    "clip_linear": {
+      "n_shape": 173,
+      "n_texture": 24,
+      "n_other": 49,
+      "n_total": 246,
+      "shape_bias": 87.81725888324873,
+      "coverage": 80.08130081300813
+    },
+    "clip_zeroshot": {
+      "n_shape": 154,
+      "n_texture": 32,
+      "n_other": 60,
+      "n_total": 246,
+      "shape_bias": 82.79569892473118,
+      "coverage": 75.60975609756098
+    }
+  },
+  "accepted": 246,
+  "rejected": 54,
+  "n_total": 246,
+  "class_pairs": [
+    [
+      3,
+      5
+    ],
+    [
+      0,
+      8
+    ],
+    [
+      2,
+      9
+    ],
+    [
+      1,
+      6
+    ],
+    [
+      4,
+      7
+    ]
+  ]
+}

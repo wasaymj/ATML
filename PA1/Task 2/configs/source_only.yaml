@@ -1,0 +1,3 @@
+# Source-Only ERM — method-specific overrides (see base.yaml for all defaults)
+method: source_only
+lambda_align: 0.0

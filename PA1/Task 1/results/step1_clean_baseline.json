@@ -1,0 +1,22 @@
+{
+  "resnet_linear": {
+    "accuracy": 0.96,
+    "macro_f1": 0.9604417379333668,
+    "mean_max_conf": 0.9259200096130371
+  },
+  "vit_linear": {
+    "accuracy": 0.972,
+    "macro_f1": 0.9720054255926751,
+    "mean_max_conf": 0.9573303461074829
+  },
+  "clip_linear": {
+    "accuracy": 0.962,
+    "macro_f1": 0.9618483184582883,
+    "mean_max_conf": 0.1778804212808609
+  },
+  "clip_zeroshot": {
+    "accuracy": 0.934,
+    "macro_f1": 0.9326622790589649,
+    "mean_max_conf": 0.9208755493164062
+  }
+}

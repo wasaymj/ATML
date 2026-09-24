@@ -1,0 +1,11 @@
+# DAN: MMD-based domain alignment — method-specific overrides
+method: dan
+
+# Alignment loss weight
+lambda_mmd: 1.0
+
+# Three RBF kernels at 0.5x, 1x, 2x the median pairwise squared distance
+mmd_kernel_muls:
+  - 0.5
+  - 1.0
+  - 2.0

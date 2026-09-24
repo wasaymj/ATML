@@ -1,0 +1,18 @@
+# Vanilla: Standard closed-set baseline
+method: vanilla
+
+# Architecture
+num_classes: 10
+
+# Optimizer
+lr: 0.1
+momentum: 0.9
+weight_decay: 5.0e-4
+
+# Schedule
+epochs: 100
+scheduler: cosine
+
+# Data
+batch_size: 128
+seed: 6304

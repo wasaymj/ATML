@@ -1,0 +1,34 @@
+# PROSER: Classifier + Data Placeholders for Open-Set Recognition
+method: proser
+
+# Architecture
+num_known_classes: 10
+num_dummy_classes: 5     # 5 randomly initialized dummy classifiers
+
+# Optimizer (lower LR for fine-tuning from Vanilla checkpoint)
+lr: 1.0e-3
+momentum: 0.9
+weight_decay: 5.0e-4
+
+# Schedule
+epochs: 50
+scheduler: cosine
+
+# Data
+batch_size: 128
+seed: 6304
+
+# PROSER-specific
+# Classifier-placeholder loss weight (beta in paper)
+beta_cp: 1.0
+
+# Data-placeholder loss weight (gamma in paper)
+gamma_dp: 0.1
+
+# Manifold mixup: Beta(2,2) distribution, applied after layer2
+mixup_alpha: 2.0
+mixup_beta: 2.0
+mixup_location: layer2
+
+# Note: beta_cp and gamma_dp are for documentation purposes.
+# The PROSER script currently uses hardcoded values matching the paper.
