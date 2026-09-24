@@ -1,7 +1,0 @@
-# Task 3 DAN-DG Config
-method: dan_dg
-lambda_dg: 1.0
-mmd_kernel_muls:
-  - 0.5
-  - 1.0
-  - 2.0
