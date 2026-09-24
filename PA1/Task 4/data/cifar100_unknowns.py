@@ -5,6 +5,9 @@ from torch.utils.data import DataLoader, Subset
 import numpy as np
 from typing import Dict
 
+# Use high-speed verified CDN mirror to bypass slow Toronto server throttling
+datasets.CIFAR100.url = "https://data.brainchip.com/dataset-mirror/cifar100/cifar-100-python.tar.gz"
+
 NEAR_CLASSES = ["bus", "pickup_truck", "motorcycle", "tractor", "wolf", "fox", "leopard", "camel"]
 FAR_CLASSES = ["bottle", "bowl", "chair", "clock", "keyboard", "mushroom", "sunflower", "wardrobe"]
 

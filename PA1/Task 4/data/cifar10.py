@@ -5,6 +5,9 @@ from torch.utils.data import DataLoader, Subset
 from typing import Tuple, Dict
 import numpy as np
 
+# Use high-speed verified CDN mirror to bypass slow Toronto server throttling
+datasets.CIFAR10.url = "https://data.brainchip.com/dataset-mirror/cifar10/cifar-10-python.tar.gz"
+
 def get_cifar10_datasets(data_root: str, seed: int = 6304, gcsc_aug: bool = False):
     """
     Returns (train_set, val_set, test_set) for CIFAR-10.
