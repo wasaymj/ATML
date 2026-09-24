@@ -1,0 +1,7 @@
+extracted_pdf.txt
+manual_full.txt
+*.pdf
+PACs.zip
+pdf_text.txt
+Readings/*
+data/*
