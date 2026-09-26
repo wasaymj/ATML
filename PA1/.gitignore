@@ -10,3 +10,5 @@ task4/*
 cifar_data/
 __pycache__/
 *.pt
+temp_cells.txt
+task1_dump.py
