@@ -1,0 +1,9 @@
+{
+  "preference_accuracy": 0.6366666666666667,
+  "mean_kl_sequence": -0.0663790595298633,
+  "mean_reward": 1.1516745376586914,
+  "reward_std": 1.5397995720785818,
+  "reward_above_zero_frac": 0.8166666666666667,
+  "mean_length": 154.39333333333335,
+  "length_stddev": 104.81535489718205
+}
