@@ -1,0 +1,8 @@
+# Ignore heavy model weights and logs
+outputs/
+ATML\ PA2.pdf
+Readings/
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
