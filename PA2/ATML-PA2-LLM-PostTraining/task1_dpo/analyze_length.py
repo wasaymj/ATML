@@ -17,7 +17,7 @@ def main():
     import torch
     import numpy as np
     from common.models import reference_mode, load_policy, load_tokenizer
-    from common.data import prompt_messages_from_preference, encode_prompt_response, pad_batch, preference_responses, read_jsonl, prompt_messages
+    from common.data import prompt_messages_from_preference, encode_prompt_response, pad_batch, preference_responses, prompt_messages
     from common.generation import response_sequence_logprobs, batch_generate
     from common.metrics import word_limit_compliance
     from tqdm import tqdm
