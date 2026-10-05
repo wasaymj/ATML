@@ -172,7 +172,7 @@ def validate_against_cache(policy, cfg, rebuilt_rows, device):
     """
     Compare recomputed old_logp against cached old_logp. Drops rows with max|Δlogp| > 0.1.
     Also compares midpoint value model output against cached values to ensure proper slicing alignment.
-    Returns validation stats (which acts as our fp16 noise floor), the filtered valid rows, and aborts if <50% survive.
+    Returns validation stats (which acts as our recompute-vs-cache discrepancy), the filtered valid rows, and aborts if <50% survive.
     """
     valid_rows = [r for r in rebuilt_rows if r is not None]
     if not valid_rows:
@@ -226,7 +226,7 @@ def validate_against_cache(policy, cfg, rebuilt_rows, device):
     ratio_fp16 = torch.exp(all_lp_diffs)
     frac_outside = (ratio_fp16 > 1.05).float().mean().item()
 
-    print(f"  fp16 noise floor (recomputed vs cached):")
+    print(f"  recompute-vs-cache discrepancy:")
     print(f"    mean|Δlogp|={mean_noise:.5f}  p99|Δlogp|={p99_noise:.5f}  max|Δlogp|={max_noise:.5f}")
     print(f"    frac |ρ| > 1.05 due to rounding: {frac_outside:.4f}")
     print(f"  Validation: values max_diff max={np.max(all_v_diffs_list):.5f}")
@@ -572,7 +572,7 @@ def main():
         clip_eval_data = {k.replace("held_out_", ""): v for k, v in fork_results["clipping_0.2"].items() if k.startswith("held_out_")}
         
         noise_floor_comparison = {
-            "note": "clipping_0.2 and kl_beta_0.1 share an identical config. The difference is purely noise.",
+            "note": "clipping_0.2 and kl_beta_0.1 share an identical config. The difference is a determinism check.",
             "abs_diffs": {}
         }
         for k in clip_eval_data:
@@ -585,7 +585,7 @@ def main():
         "empirical_noise_floor": noise_floor_comparison,
         "note": (
             "clipping_0.2 and kl_beta_0.1 share an identical config. "
-            "Comparing their held-out metrics gives an empirical noise floor."
+            "Comparing their held-out metrics gives a determinism check."
         ),
     })
     summary_path = results_dir / "clipping_study_summary.json"

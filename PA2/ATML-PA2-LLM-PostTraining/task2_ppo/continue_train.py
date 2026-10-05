@@ -103,9 +103,13 @@ def run_ppo(
     clip_epsilon: float | None = None,
     kl_beta: float | None = None,
     run_name: str = "standard",
+    seed: int | None = None,
 ):
     bundle = prepare_ppo_continuation(config_path)
     cfg = bundle["cfg"]
+    if seed is not None:
+        cfg["seed"] = int(seed)
+        set_seed(int(seed))
     if updates is not None:
         cfg["updates"] = int(updates)
     if clip_epsilon is not None:
@@ -402,16 +406,6 @@ def main():
     ap.add_argument("--seed", type=int, default=None)
     args = ap.parse_args()
     
-    if args.seed is not None:
-        import torch
-        import random
-        import numpy as np
-        torch.manual_seed(args.seed)
-        random.seed(args.seed)
-        np.random.seed(args.seed)
-        if torch.cuda.is_available():
-            torch.cuda.manual_seed_all(args.seed)
-            
     run_ppo(
         args.config,
         args.output,
@@ -419,6 +413,7 @@ def main():
         args.clip_epsilon,
         args.kl_beta,
         args.run_name,
+        seed=args.seed,
     )
 
 
