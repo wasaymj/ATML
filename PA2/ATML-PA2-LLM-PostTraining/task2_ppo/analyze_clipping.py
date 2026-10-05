@@ -335,7 +335,7 @@ def run_phase1_probe(cfg, rows, results_dir, tokenizer, prompt_pool):
 
         mask_gpu = mask_batch.to(device)
         norm_adv_gpu = norm_adv.to(device)
-        opt = AdamW(trainable_parameters(policy), lr=PROBE_LR)
+        opt = AdamW(trainable_parameters(policy), lr=PROBE_LR, eps=1e-5)
         step_log = []
 
         # Compute π_old once from the freshly loaded policy (real forward pass)

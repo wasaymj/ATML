@@ -73,6 +73,7 @@ def prepare_ppo_continuation(config_path: str):
     policy_optimizer = AdamW(
         trainable_parameters(policy),
         lr=float(cfg["policy_learning_rate"]),
+        eps=1e-5,
     )
     value_optimizer = AdamW(
         value_parameter_groups(
@@ -81,6 +82,7 @@ def prepare_ppo_continuation(config_path: str):
             head_lr=float(cfg["value_head_learning_rate"]),
         ),
         weight_decay=0.0,
+        eps=1e-5,
     )
 
     return {
