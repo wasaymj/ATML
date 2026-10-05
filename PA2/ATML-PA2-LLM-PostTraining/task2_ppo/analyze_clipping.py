@@ -275,34 +275,25 @@ def run_phase1_probe(cfg, rows, results_dir, tokenizer, prompt_pool):
     if not valid_rows:
         raise RuntimeError("All cached rows skipped — cannot run Phase 1 probe.")
 
-    # ── bf16 noise floor (use first valid row) ─────────────────────────────
-    print("\n-- bf16 noise floor measurement --")
-    probe_policy = load_policy(cfg, adapter_path=cfg["paths"]["ppo_midpoint_policy"],
-                               trainable=False)
-    disable_dropout(probe_policy)
-    device = next(probe_policy.parameters()).device
-    r0 = valid_rows[0]
-    noise_stats = measure_bf16_noise_floor(
-        probe_policy, r0["sequences"], r0["attention_mask"],
-        r0["prompt_width"], r0["response_ids"], device
-    )
-
     # ── Validation gate ────────────────────────────────────────────────────
     print("\n-- Validation gate: recomputed vs cached old_logprobs --")
+    probe_policy = load_policy(cfg, adapter_path=cfg["paths"]["ppo_midpoint_policy"], trainable=False)
+    disable_dropout(probe_policy)
+    device = next(probe_policy.parameters()).device
     val_stats, valid_rows = validate_against_cache(probe_policy, cfg, rebuilt_rows, device)
     del probe_policy
     if torch.cuda.is_available():
         torch.cuda.empty_cache()
 
     # Re-extract ref_logprobs and rewards using the indices of valid rows
-    valid_indices = [i for i, r in enumerate(rebuilt_rows) if r is not None and r in valid_rows]
+    valid_indices = [r["row_idx"] for r in valid_rows]
     old_logps = [r["cached_old_logp"] for r in valid_rows]
     ref_logps = [rows[i]["ref_logprobs"].float() for i in valid_indices]
     vals_list = [r["cached_values"] for r in valid_rows]
-    rewards_list = [
-        float(rows[i].get("effective_terminal_reward", rows[i].get("raw_terminal_reward", 0.0)))
-        for i in valid_indices
-    ]
+    rewards_list = []
+    for i in valid_indices:
+        assert "effective_terminal_reward" in rows[i] or "raw_terminal_reward" in rows[i], f"Terminal reward key missing in row {i}"
+        rewards_list.append(float(rows[i].get("effective_terminal_reward", rows[i].get("raw_terminal_reward", 0.0))))
 
     max_len = max(lp.shape[0] for lp in old_logps)
     B = len(valid_rows)
@@ -405,7 +396,7 @@ def run_phase1_probe(cfg, rows, results_dir, tokenizer, prompt_pool):
             new_lp_gpu = torch.zeros(B, max_len, device=device)
             for i, lp in enumerate(all_new_lp):
                 T = lp.shape[0]
-                new_lp_gpu[i, :T] = lp
+                new_lp_gpu[i, :T] = lp.detach()
 
             with torch.no_grad():
                 _, ratio, cond_frac = ppo_policy_loss(
@@ -461,7 +452,7 @@ def run_phase1_probe(cfg, rows, results_dir, tokenizer, prompt_pool):
     return {
         "n_rows_used": B,
         "n_rows_skipped": n_skipped,
-        "noise_floor": noise_stats,
+        "noise_floor": val_stats,
         "validation_gate": val_stats,
         "validation_used_recomputed": True, # Hardcoded now
         "note_advantage_normalisation": (

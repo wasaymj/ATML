@@ -257,7 +257,7 @@ def run_ppo(
                     p99_rho_dev = torch.quantile(valid_dev, 0.99).item() if valid_dev.numel() > 1 else max_rho_dev
                     if max_rho_dev >= 1e-2:
                         print(f"[WARN] Epoch-0 rho dev (max) = {max_rho_dev:.5f} (expected < 0.01). "
-                              "Dropout might be active or it's bf16 noise.")
+                              "Dropout might be active.")
                     else:
                         print(f"[OK] Epoch-0 rho dev (max) = {max_rho_dev:.6f}")
                     print(f"       Epoch-0 rho dev (mean) = {mean_rho_dev:.6f}, (p99) = {p99_rho_dev:.6f}")
@@ -399,7 +399,19 @@ def main():
     ap.add_argument("--clip-epsilon", type=float)
     ap.add_argument("--kl-beta", type=float)
     ap.add_argument("--run-name", default="standard")
+    ap.add_argument("--seed", type=int, default=None)
     args = ap.parse_args()
+    
+    if args.seed is not None:
+        import torch
+        import random
+        import numpy as np
+        torch.manual_seed(args.seed)
+        random.seed(args.seed)
+        np.random.seed(args.seed)
+        if torch.cuda.is_available():
+            torch.cuda.manual_seed_all(args.seed)
+            
     run_ppo(
         args.config,
         args.output,
