@@ -1,0 +1,299 @@
+{
+  "phase1_clipping_probe": {
+    "n_rows_used": 31,
+    "n_rows_skipped": 0,
+    "noise_floor": {
+      "mean_noise_delta_logp": 0.025757573544979095,
+      "max_noise_delta_logp": 3.662292718887329,
+      "p99_noise_delta_logp": 0.1562231481075287,
+      "noise_rho_frac_outside_eps005": 0.1108463779091835,
+      "mean_max_value_diff": 0.4668780565261841,
+      "max_max_value_diff": 8.95703125,
+      "rows_dropped": 1
+    },
+    "validation_gate": {
+      "mean_noise_delta_logp": 0.025757573544979095,
+      "max_noise_delta_logp": 3.662292718887329,
+      "p99_noise_delta_logp": 0.1562231481075287,
+      "noise_rho_frac_outside_eps005": 0.1108463779091835,
+      "mean_max_value_diff": 0.4668780565261841,
+      "max_max_value_diff": 8.95703125,
+      "rows_dropped": 1
+    },
+    "validation_used_recomputed": true,
+    "note_advantage_normalisation": "normalize_advantages whitens across all B cached responses here, unlike single-response whitening in the training loop. Stated explicitly in the report.",
+    "per_epsilon": {
+      "eps_0.05": {
+        "epsilon": 0.05,
+        "probe_lr": 0.0001,
+        "probe_steps_K": 5,
+        "used_recomputed_pi_old": true,
+        "steps": [
+          {
+            "step": 0,
+            "condition_frac": 0.0,
+            "true_affected_frac": 0.0,
+            "rho_max": 1.0,
+            "rho_min": 1.0,
+            "surrogate": 0.15807999294972225
+          },
+          {
+            "step": 1,
+            "condition_frac": 0.0008431703317910433,
+            "true_affected_frac": 0.0008431703317910433,
+            "rho_max": 1.5626260042190552,
+            "rho_min": 0.8517731428146362,
+            "surrogate": 0.1603066243471638
+          },
+          {
+            "step": 2,
+            "condition_frac": 0.0021681522484868765,
+            "true_affected_frac": 0.0021681522484868765,
+            "rho_max": 2.110323905944824,
+            "rho_min": 0.7503340244293213,
+            "surrogate": 0.1619905954106681
+          },
+          {
+            "step": 3,
+            "condition_frac": 0.004577210173010826,
+            "true_affected_frac": 0.004577210173010826,
+            "rho_max": 2.6551594734191895,
+            "rho_min": 0.6838569045066833,
+            "surrogate": 0.1632149154019933
+          },
+          {
+            "step": 4,
+            "condition_frac": 0.007829438894987106,
+            "true_affected_frac": 0.0072271740064024925,
+            "rho_max": 3.054007053375244,
+            "rho_min": 0.6507353186607361,
+            "surrogate": 0.1641639353887689
+          },
+          {
+            "step": 5,
+            "condition_frac": 0.009877137839794159,
+            "true_affected_frac": 0.008913515135645866,
+            "rho_max": 3.382223606109619,
+            "rho_min": 0.6200131773948669,
+            "surrogate": 0.16489827590844322
+          }
+        ],
+        "step0_cond_frac": 0.0,
+        "step0_true_affected": 0.0,
+        "final_cond_frac": 0.009877137839794159,
+        "final_true_affected": 0.008913515135645866,
+        "final_rho_max": 3.382223606109619,
+        "final_rho_min": 0.6200131773948669
+      },
+      "eps_0.2": {
+        "epsilon": 0.2,
+        "probe_lr": 0.0001,
+        "probe_steps_K": 5,
+        "used_recomputed_pi_old": true,
+        "steps": [
+          {
+            "step": 0,
+            "condition_frac": 0.0,
+            "true_affected_frac": 0.0,
+            "rho_max": 1.0,
+            "rho_min": 1.0,
+            "surrogate": 0.15807999294972225
+          },
+          {
+            "step": 1,
+            "condition_frac": 0.0002409058070043102,
+            "true_affected_frac": 0.0002409058070043102,
+            "rho_max": 1.5626260042190552,
+            "rho_min": 0.8517731428146362,
+            "surrogate": 0.16190021749465702
+          },
+          {
+            "step": 2,
+            "condition_frac": 0.0003613587177824229,
+            "true_affected_frac": 0.0003613587177824229,
+            "rho_max": 2.086261034011841,
+            "rho_min": 0.6582629084587097,
+            "surrogate": 0.16464500465700702
+          },
+          {
+            "step": 3,
+            "condition_frac": 0.0008431703317910433,
+            "true_affected_frac": 0.0008431703317910433,
+            "rho_max": 2.4923508167266846,
+            "rho_min": 0.5284054279327393,
+            "surrogate": 0.16684520148461857
+          },
+          {
+            "step": 4,
+            "condition_frac": 0.0012045290786772966,
+            "true_affected_frac": 0.0012045290786772966,
+            "rho_max": 2.9667093753814697,
+            "rho_min": 0.45251497626304626,
+            "surrogate": 0.16867226260083332
+          },
+          {
+            "step": 5,
+            "condition_frac": 0.0014454348711296916,
+            "true_affected_frac": 0.0014454348711296916,
+            "rho_max": 3.321901798248291,
+            "rho_min": 0.3910379409790039,
+            "surrogate": 0.170329817120106
+          }
+        ],
+        "step0_cond_frac": 0.0,
+        "step0_true_affected": 0.0,
+        "final_cond_frac": 0.0014454348711296916,
+        "final_true_affected": 0.0014454348711296916,
+        "final_rho_max": 3.321901798248291,
+        "final_rho_min": 0.3910379409790039
+      },
+      "eps_0.5": {
+        "epsilon": 0.5,
+        "probe_lr": 0.0001,
+        "probe_steps_K": 5,
+        "used_recomputed_pi_old": true,
+        "steps": [
+          {
+            "step": 0,
+            "condition_frac": 0.0,
+            "true_affected_frac": 0.0,
+            "rho_max": 1.0,
+            "rho_min": 1.0,
+            "surrogate": 0.15807999294972225
+          },
+          {
+            "step": 1,
+            "condition_frac": 0.0001204529035021551,
+            "true_affected_frac": 0.0001204529035021551,
+            "rho_max": 1.5626260042190552,
+            "rho_min": 0.8517731428146362,
+            "surrogate": 0.16337286849175736
+          },
+          {
+            "step": 2,
+            "condition_frac": 0.0002409058070043102,
+            "true_affected_frac": 0.0002409058070043102,
+            "rho_max": 2.0862112045288086,
+            "rho_min": 0.6048809885978699,
+            "surrogate": 0.167211716483918
+          },
+          {
+            "step": 3,
+            "condition_frac": 0.0003613587177824229,
+            "true_affected_frac": 0.0003613587177824229,
+            "rho_max": 2.492321491241455,
+            "rho_min": 0.3236076235771179,
+            "surrogate": 0.1699725974411253
+          },
+          {
+            "step": 4,
+            "condition_frac": 0.0003613587177824229,
+            "true_affected_frac": 0.0003613587177824229,
+            "rho_max": 2.9088542461395264,
+            "rho_min": 0.16500872373580933,
+            "surrogate": 0.17261206683131952
+          },
+          {
+            "step": 5,
+            "condition_frac": 0.0007227174355648458,
+            "true_affected_frac": 0.0007227174355648458,
+            "rho_max": 3.231896162033081,
+            "rho_min": 0.08648502826690674,
+            "surrogate": 0.17534891347731313
+          }
+        ],
+        "step0_cond_frac": 0.0,
+        "step0_true_affected": 0.0,
+        "final_cond_frac": 0.0007227174355648458,
+        "final_true_affected": 0.0007227174355648458,
+        "final_rho_max": 3.231896162033081,
+        "final_rho_min": 0.08648502826690674
+      }
+    }
+  },
+  "phase2_fork_comparisons": {
+    "clipping_0.05": {
+      "epsilon": 0.05,
+      "reward_mean": 0.9953155517578125,
+      "reward_std": 1.2749489110428645,
+      "policy_grad_norm_max": 1.7267555594444275,
+      "policy_grad_norm_std": 0.48839877979079743,
+      "mean_clip_condition_frac": 0.0,
+      "mean_affected_frac": 0.0,
+      "mean_epoch1_clip_fraction": 0.0,
+      "mean_epoch1_affected_fraction": 0.0,
+      "mean_approx_kl": 8.465636085475126e-06,
+      "rho_max_over_run": 1.0274823904037476,
+      "rho_min_over_run": 0.9670379161834717,
+      "mean_explained_variance": -27.1060231360711,
+      "held_out_token_mean_kl": -5.136504372785567e-05,
+      "held_out_token_mean_entropy": 1.0181400367990137,
+      "held_out_mean_reward": 1.5160122680664063,
+      "held_out_reward_std": 1.449377629081324,
+      "held_out_reward_above_zero_frac": 0.86,
+      "held_out_mean_length": 308.405,
+      "held_out_length_stddev": 246.45237060129895,
+      "held_out_termination_rate": 0.925
+    },
+    "clipping_0.2": {
+      "epsilon": 0.2,
+      "reward_mean": 1.04217529296875,
+      "reward_std": 1.2262457648208034,
+      "policy_grad_norm_max": 1.7264354228973389,
+      "policy_grad_norm_std": 0.4868449330468711,
+      "mean_clip_condition_frac": 0.0,
+      "mean_affected_frac": 0.0,
+      "mean_epoch1_clip_fraction": 0.0,
+      "mean_epoch1_affected_fraction": 0.0,
+      "mean_approx_kl": 6.294426327713154e-06,
+      "rho_max_over_run": 1.0270968675613403,
+      "rho_min_over_run": 0.9716339111328125,
+      "mean_explained_variance": -30.272133617531793,
+      "held_out_token_mean_kl": 5.8436242961761306e-05,
+      "held_out_token_mean_entropy": 1.020968421138823,
+      "held_out_mean_reward": 1.5055239868164063,
+      "held_out_reward_std": 1.4321226942570804,
+      "held_out_reward_above_zero_frac": 0.875,
+      "held_out_mean_length": 308.205,
+      "held_out_length_stddev": 248.12854123417563,
+      "held_out_termination_rate": 0.925
+    },
+    "clipping_0.5": {
+      "epsilon": 0.5,
+      "reward_mean": 0.647216796875,
+      "reward_std": 1.6890488157326737,
+      "policy_grad_norm_max": 1.7241577506065369,
+      "policy_grad_norm_std": 0.4838237229392537,
+      "mean_clip_condition_frac": 0.0,
+      "mean_affected_frac": 0.0,
+      "mean_epoch1_clip_fraction": 0.0,
+      "mean_epoch1_affected_fraction": 0.0,
+      "mean_approx_kl": 6.535896091008908e-06,
+      "rho_max_over_run": 1.0292165279388428,
+      "rho_min_over_run": 0.9777299165725708,
+      "mean_explained_variance": -32.81609124205589,
+      "held_out_token_mean_kl": -2.1429328478461683e-05,
+      "held_out_token_mean_entropy": 1.0146752020344139,
+      "held_out_mean_reward": 1.5703981018066406,
+      "held_out_reward_std": 1.426114873182204,
+      "held_out_reward_above_zero_frac": 0.87,
+      "held_out_mean_length": 311.495,
+      "held_out_length_stddev": 250.05419407600425,
+      "held_out_termination_rate": 0.93
+    }
+  },
+  "empirical_noise_floor": {
+    "note": "clipping_0.2 and kl_beta_0.1 share an identical config. The difference is a determinism check.",
+    "abs_diffs": {
+      "token_mean_kl": 1.731399333507966e-05,
+      "token_mean_entropy": 0.0010468737222253388,
+      "mean_reward": 0.0030617523193359197,
+      "reward_std": 0.0005532268551025066,
+      "reward_above_zero_frac": 0.010000000000000009,
+      "mean_length": 1.6999999999999886,
+      "length_stddev": 0.0004292133890828609,
+      "termination_rate": 0.010000000000000009
+    }
+  },
+  "note": "clipping_0.2 and kl_beta_0.1 share an identical config. Comparing their held-out metrics gives a determinism check."
+}

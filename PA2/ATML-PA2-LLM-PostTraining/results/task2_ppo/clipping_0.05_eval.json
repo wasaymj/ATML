@@ -1,0 +1,10 @@
+{
+  "token_mean_kl": -5.136504372785567e-05,
+  "token_mean_entropy": 1.0181400367990137,
+  "mean_reward": 1.5160122680664063,
+  "reward_std": 1.449377629081324,
+  "reward_above_zero_frac": 0.86,
+  "mean_length": 308.405,
+  "length_stddev": 246.45237060129895,
+  "termination_rate": 0.925
+}
