@@ -93,10 +93,10 @@ def load_cached_rollouts(path):
     return normalized
 
 
-def rebuild_token_ids(rows, cfg, tokenizer, prompt_pool):
+def rebuild_token_ids(rows, cfg, tokenizer, prompt_dict):
     """
     Reconstruct (sequences, attention_mask, prompt_width, response_ids)
-    from the cached response text and prompt pool index.
+    from the cached response text and prompt dictionary.
 
     Returns a list of per-row dicts with the rebuilt tensors, or None for
     rows where lengths could not be reconciled (counted and reported).
@@ -108,9 +108,9 @@ def rebuild_token_ids(rows, cfg, tokenizer, prompt_pool):
     truncated_prompts = 0
 
     for i, row in enumerate(rows):
-        src_idx = int(row.get("source_index", i))
-        assert src_idx < len(prompt_pool), f"Source index {src_idx} out of bounds for prompt pool"
-        prompt_row = prompt_pool[src_idx]
+        pid = row["prompt_id"]
+        assert pid in prompt_dict, f"Prompt ID {pid} not found in prompt dict"
+        prompt_row = prompt_dict[pid]
         msgs = prompt_messages(prompt_row)
 
         # Encode prompt with right-truncation (same as batch_generate)
@@ -253,7 +253,7 @@ def validate_against_cache(policy, cfg, rebuilt_rows, device):
 
 # ── Phase 1 ───────────────────────────────────────────────────────────────────
 
-def run_phase1_probe(cfg, rows, results_dir, tokenizer, prompt_pool):
+def run_phase1_probe(cfg, rows, results_dir, tokenizer, prompt_dict):
     """
     Real clipping geometry probe.
 
@@ -270,7 +270,7 @@ def run_phase1_probe(cfg, rows, results_dir, tokenizer, prompt_pool):
 
     # ── Rebuild token IDs ──────────────────────────────────────────────────
     print("\n-- Rebuilding token IDs from cached text --")
-    rebuilt_rows, n_skipped, truncated_prompts = rebuild_token_ids(rows, cfg, tokenizer, prompt_pool)
+    rebuilt_rows, n_skipped, truncated_prompts = rebuild_token_ids(rows, cfg, tokenizer, prompt_dict)
     valid_rows = [r for r in rebuilt_rows if r is not None]
     if not valid_rows:
         raise RuntimeError("All cached rows skipped — cannot run Phase 1 probe.")
@@ -489,12 +489,12 @@ def main():
     results_dir.mkdir(parents=True, exist_ok=True)
 
     tokenizer = load_tokenizer(cfg["base_model"])
-    prompt_pool = read_jsonl(cfg["paths"]["rl_prompt_train"])
+    train_prompts = read_jsonl(cfg["paths"]["rl_prompt_train"]); eval_prompts = read_jsonl(cfg["paths"]["rl_prompt_eval"]); prompt_dict = {p["prompt_id"]: p for p in train_prompts + eval_prompts}
 
     # ── Phase 1 ───────────────────────────────────────────────────────────
     rows = load_cached_rollouts(cfg["cached_rollouts"])
     print(f"Loaded {len(rows)} cached rollouts")
-    phase1_results = run_phase1_probe(cfg, rows, results_dir, tokenizer, prompt_pool)
+    phase1_results = run_phase1_probe(cfg, rows, results_dir, tokenizer, prompt_dict)
 
     # ── Phase 2: Short fork continuations ────────────────────────────────
     clip_values = cfg["clip_values"]
