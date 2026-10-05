@@ -123,22 +123,21 @@ def run_ppo(
     max_grad_norm = float(cfg["max_grad_norm"])
     missing_eos_penalty = float(cfg.get("missing_eos_penalty", 1.0))
 
-    if prompts_per_update <= 1:
-        print("[NOTE] prompts_per_update=1: advantage normalization is effectively "
-              "disabled (single-element batch).")
-
     logs = []
     start_time = time.time()
+    torch.cuda.reset_peak_memory_stats()
 
     for u in range(num_updates):
         # ---------- 1. Build prompt batch using config ----------
         start_idx = (u * prompts_per_update) % len(prompts)
-        batch_prompts = [
-            prompt_messages(prompts[(start_idx + j) % len(prompts)])
-            for j in range(prompts_per_update)
-        ]
+        prompt_indices = [(start_idx + j) % len(prompts) for j in range(prompts_per_update)]
+        batch_prompts = [prompt_messages(prompts[idx]) for idx in prompt_indices]
 
         # ---------- 2. Rollout (generate responses) ----------
+        # Crucial: set to eval mode so dropout doesn't cause rho != 1
+        policy.eval()
+        value_model.eval()
+
         gen_out = batch_generate(
             policy,
             tokenizer,
@@ -156,17 +155,19 @@ def run_ppo(
         responses_texts = gen_out["responses"]
 
         # ---------- 3. Score rewards ----------
-        task_reward = score_reward_pairs(
+        raw_reward = score_reward_pairs(
             reward_model,
             reward_tokenizer,
             batch_prompts,
             responses_texts,
             max_length=int(cfg["reward_max_length"]),
         )
-        # Apply missing-EOS penalty for truncated responses
+        task_reward = raw_reward.clone()
+        truncated_count = 0
         for b, has_eos in enumerate(gen_out["terminated_with_eos"]):
             if not has_eos:
                 task_reward[b] -= missing_eos_penalty
+                truncated_count += 1
 
         # ---------- 4. Compute old/ref logprobs and values (frozen) ----------
         with torch.no_grad():
@@ -177,7 +178,7 @@ def run_ppo(
                 ref_logp, _ = response_token_logprobs(
                     policy, sequences, attention_mask, prompt_width, response_ids
                 )
-            v = token_values(value_model, sequences, attention_mask)
+            v = token_values(value_model, sequences, attention_mask).float()
             values = v[:, prompt_width - 1 : -1][:, : response_ids.shape[1]]
 
         # ---------- 5. Shape rewards and compute GAE ----------
@@ -187,84 +188,84 @@ def run_ppo(
         adv, returns = compute_gae(
             shaped, values, response_mask, gamma=gamma, lam=gae_lambda
         )
+        norm_adv = normalize_advantages(adv, response_mask)
 
         # ---------- 6. PPO optimization epochs ----------
+        policy.train()
+        value_model.train()
+
         pol_loss_acc = 0.0
         val_loss_acc = 0.0
         clip_frac_acc = 0.0
         entropy_acc = 0.0
         kl_acc = 0.0
-        grad_norm_acc = 0.0
+        grad_norm_policy_acc = 0.0
+        grad_norm_value_acc = 0.0
+        explained_var_acc = 0.0
 
         for epoch in range(ppo_epochs):
-            # Forward pass through policy and value model
             new_logp, logits = response_token_logprobs(
                 policy, sequences, attention_mask, prompt_width, response_ids
             )
-            new_v = token_values(value_model, sequences, attention_mask)[
+            new_v = token_values(value_model, sequences, attention_mask).float()[
                 :, prompt_width - 1 : -1
             ][:, : response_ids.shape[1]]
 
-            # Policy loss with clipping
-            norm_adv = normalize_advantages(adv, response_mask)
             pol_loss, ratio, clip_frac = ppo_policy_loss(
                 new_logp, old_logp, norm_adv, response_mask, eps=clip_eps
             )
-
-            # Value loss
             val_loss = value_mse_loss(new_v, returns, response_mask)
-
-            # Combined loss
             loss = pol_loss + value_coef * val_loss
 
-            # Backward pass and gradient clipping
             policy_optimizer.zero_grad()
             value_optimizer.zero_grad()
             loss.backward()
-            gn_policy = torch.nn.utils.clip_grad_norm_(
-                policy.parameters(), max_grad_norm
-            )
-            gn_value = torch.nn.utils.clip_grad_norm_(
-                value_model.parameters(), max_grad_norm
-            )
+            
+            gn_policy = torch.nn.utils.clip_grad_norm_(policy.parameters(), max_grad_norm)
+            gn_value = torch.nn.utils.clip_grad_norm_(value_model.parameters(), max_grad_norm)
+            
             policy_optimizer.step()
             value_optimizer.step()
 
-            # Accumulate diagnostics
             pol_loss_acc += pol_loss.item()
             val_loss_acc += val_loss.item()
             clip_frac_acc += clip_frac.item()
-            grad_norm_acc += (gn_policy.item() + gn_value.item()) / 2.0
+            grad_norm_policy_acc += gn_policy.item()
+            grad_norm_value_acc += gn_value.item()
 
-            # Entropy (detached, no grad — avoids holding the full graph)
             with torch.no_grad():
+                # Explained Variance
+                valid_mask = response_mask.bool()
+                if valid_mask.any():
+                    ret_var = returns[valid_mask].var()
+                    val_var = (returns - new_v)[valid_mask].var()
+                    if ret_var > 1e-6:
+                        explained_var_acc += (1.0 - (val_var / ret_var)).item()
+
                 logits_d = logits.detach().float()
                 probs = F.softmax(logits_d, dim=-1)
                 log_probs = F.log_softmax(logits_d, dim=-1)
                 token_ent = -torch.sum(probs * log_probs, dim=-1)
                 entropy_acc += masked_mean(token_ent, response_mask).item()
+                kl_acc += masked_mean(new_logp.detach() - ref_logp, response_mask).item()
 
-                # KL from reference (sampled-action approximation)
-                kl_acc += masked_mean(
-                    new_logp.detach() - ref_logp, response_mask
-                ).item()
-
-        # ---------- 7. Log this update ----------
         n_epochs = float(ppo_epochs)
         log_entry = {
             "update": u + 1,
+            "prompt_indices": prompt_indices,
+            "raw_reward": raw_reward.mean().item(),
             "reward": task_reward.mean().item(),
+            "truncated_fraction": truncated_count / len(prompts_per_update) if isinstance(prompts_per_update, list) else truncated_count / prompts_per_update,
             "kl": kl_acc / n_epochs,
             "policy_loss": pol_loss_acc / n_epochs,
             "value_loss": val_loss_acc / n_epochs,
+            "explained_variance": explained_var_acc / n_epochs,
             "entropy": entropy_acc / n_epochs,
             "clip_fraction": clip_frac_acc / n_epochs,
-            "grad_norm": grad_norm_acc / n_epochs,
-            "response_length": sum(gen_out["response_lengths"])
-            / len(gen_out["response_lengths"]),
-            "vram_gb": torch.cuda.max_memory_allocated() / (1024**3)
-            if torch.cuda.is_available()
-            else 0,
+            "grad_norm_policy": grad_norm_policy_acc / n_epochs,
+            "grad_norm_value": grad_norm_value_acc / n_epochs,
+            "response_length": sum(gen_out["response_lengths"]) / len(gen_out["response_lengths"]),
+            "vram_gb": torch.cuda.max_memory_allocated() / (1024**3) if torch.cuda.is_available() else 0,
             "wall_clock_s": time.time() - start_time,
         }
         logs.append(log_entry)
@@ -279,24 +280,16 @@ def run_ppo(
             f"Len {log_entry['response_length']:.0f}"
         )
 
-    # ---------- 8. Save model and logs ----------
     total_time = time.time() - start_time
-    peak_vram = (
-        torch.cuda.max_memory_allocated() / (1024**3)
-        if torch.cuda.is_available()
-        else 0
-    )
+    peak_vram = torch.cuda.max_memory_allocated() / (1024**3) if torch.cuda.is_available() else 0
     print(f"\nDone. Wall-clock: {total_time:.1f}s | Peak VRAM: {peak_vram:.2f} GB")
 
     policy.save_pretrained(out_dir)
-    # Save logs alongside the model weights
     with open(out_dir / "logs.json", "w", encoding="utf-8") as f:
         json.dump(logs, f, indent=2)
-    # Also save a copy into results/ so it survives .gitignore
     results_log_path = results_dir / f"{run_name}_training_log.json"
     with open(results_log_path, "w", encoding="utf-8") as f:
         json.dump(logs, f, indent=2)
-    print(f"Training log saved to {results_log_path}")
 
 
 def main():

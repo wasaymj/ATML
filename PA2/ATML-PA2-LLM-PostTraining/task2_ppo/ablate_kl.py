@@ -4,6 +4,7 @@ import argparse
 import json
 import subprocess
 import numpy as np
+import sys
 
 from common.data import load_yaml, repo_path
 
@@ -26,7 +27,7 @@ def main():
         run_name = f"kl_beta_{kl}"
         print(f"\n--- Running fork: kl_beta = {kl} ({fork_updates} updates) ---")
         train_cmd = [
-            "python", "-m", "task2_ppo.continue_train",
+            sys.executable, "-m", "task2_ppo.continue_train",
             "--config", args.config,
             "--updates", str(fork_updates),
             "--kl-beta", str(kl),
@@ -37,14 +38,13 @@ def main():
 
         print(f"\n--- Evaluating fork: kl_beta = {kl} ---")
         eval_cmd = [
-            "python", "-m", "task2_ppo.evaluate",
+            sys.executable, "-m", "task2_ppo.evaluate",
             "--config", args.config,
             "--adapter", f"outputs/task2_ppo/{run_name}",
             "--name", run_name,
         ]
         subprocess.run(eval_cmd, check=True)
 
-        # Load training trajectory for comparison
         log_path = repo_path(f"outputs/task2_ppo/{run_name}/logs.json")
         if log_path.exists():
             with open(log_path, "r") as f:
@@ -63,10 +63,9 @@ def main():
                 "final_kl": kls[-1],
                 "final_entropy": entropies[-1],
                 "final_length": lengths[-1],
-                "reward_trend": float(np.mean(rewards[-3:])) - float(np.mean(rewards[:3])),
+                "reward_trend": float(np.mean(rewards[-3:])) - float(np.mean(rewards[:3])) if len(rewards) >= 3 else 0.0,
             }
 
-        # Load held-out eval results
         eval_path = results_dir / f"{run_name}_eval.json"
         if eval_path.exists():
             with open(eval_path, "r") as f:
@@ -75,13 +74,10 @@ def main():
                 {"held_out_" + k: v for k, v in eval_data.items()}
             )
 
-    # Consolidated summary
     summary_path = results_dir / "kl_study_summary.json"
     with open(summary_path, "w", encoding="utf-8") as f:
         json.dump(fork_results, f, indent=2)
-    print(f"\nKL ablation summary saved to {summary_path}")
 
-    # Print comparison table
     print("\n=== KL Ablation Comparison ===")
     print(f"{'beta_KL':>10} | {'Reward':>8} | {'KL':>8} | {'Entropy':>8} | {'Length':>8}")
     print("-" * 55)
