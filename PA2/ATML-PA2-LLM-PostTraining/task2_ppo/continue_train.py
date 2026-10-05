@@ -142,6 +142,13 @@ def run_ppo(
     logs = []
     start_time = time.time()
     torch.cuda.reset_peak_memory_stats()
+    cumulative_tokens = 0
+    
+    # Print parameter dtypes to verify precision
+    policy_dtypes = set(p.dtype for p in policy.parameters())
+    value_dtypes = set(p.dtype for p in value_model.parameters())
+    print(f"Policy parameters dtypes: {policy_dtypes}")
+    print(f"Value model parameters dtypes: {value_dtypes}")
 
     for u in range(num_updates):
         # ---------- 1. Build prompt batch ----------
@@ -242,12 +249,18 @@ def run_ppo(
 
             # Sanity check at epoch 0 of update 1: with dropout off, rho must be ~1.
             if u == 0 and epoch == 0:
-                max_rho_dev = ((new_logp.detach() - old_logp).abs() * response_mask).max().item()
-                if max_rho_dev >= 1e-2:
-                    print(f"[WARN] Epoch-0 rho deviation = {max_rho_dev:.5f} (expected < 0.01). "
-                          "Dropout may still be active.")
-                else:
-                    print(f"[OK] Epoch-0 rho deviation = {max_rho_dev:.6f} (dropout confirmed off)")
+                dev = (new_logp.detach() - old_logp).abs() * response_mask
+                valid_dev = dev[response_mask.bool()]
+                if valid_dev.numel() > 0:
+                    max_rho_dev = valid_dev.max().item()
+                    mean_rho_dev = valid_dev.mean().item()
+                    p99_rho_dev = torch.quantile(valid_dev, 0.99).item() if valid_dev.numel() > 1 else max_rho_dev
+                    if max_rho_dev >= 1e-2:
+                        print(f"[WARN] Epoch-0 rho dev (max) = {max_rho_dev:.5f} (expected < 0.01). "
+                              "Dropout might be active or it's bf16 noise.")
+                    else:
+                        print(f"[OK] Epoch-0 rho dev (max) = {max_rho_dev:.6f}")
+                    print(f"       Epoch-0 rho dev (mean) = {mean_rho_dev:.6f}, (p99) = {p99_rho_dev:.6f}")
 
             pol_loss, ratio, clip_frac = ppo_policy_loss(
                 new_logp, old_logp, norm_adv, response_mask, eps=clip_eps
@@ -314,6 +327,9 @@ def run_ppo(
         n = float(ppo_epochs)
         # NaN → None so strict JSON parsers don't choke (Issue 3.5)
         ev = (explained_var_acc / explained_var_epochs) if explained_var_epochs > 0 else None
+        
+        batch_gen_tokens = sum(gen_out["response_lengths"])
+        cumulative_tokens += batch_gen_tokens
 
         log_entry = {
             "update": u + 1,
@@ -337,7 +353,8 @@ def run_ppo(
             "ratio_min": ratio_min_acc,
             "grad_norm_policy": grad_norm_policy_acc / n,
             "grad_norm_value": grad_norm_value_acc / n,
-            "response_length": sum(gen_out["response_lengths"]) / len(gen_out["response_lengths"]),
+            "response_length": batch_gen_tokens / len(gen_out["response_lengths"]),
+            "cumulative_generated_tokens": cumulative_tokens,
             "vram_gb": torch.cuda.max_memory_allocated() / (1024 ** 3) if torch.cuda.is_available() else 0,
             "wall_clock_s": time.time() - start_time,
         }
@@ -360,9 +377,8 @@ def run_ppo(
     policy.save_pretrained(out_dir)
 
     # Save config snapshot alongside logs for reproducibility (Issue 3.5)
-    cfg_snapshot = {k: v for k, v in cfg.items() if isinstance(v, (str, int, float, bool, list))}
     with open(out_dir / "config_snapshot.json", "w", encoding="utf-8") as f:
-        json.dump(cfg_snapshot, f, indent=2)
+        json.dump(cfg, f, indent=2, default=str)
 
     with open(out_dir / "logs.json", "w", encoding="utf-8") as f:
         json.dump(logs, f, indent=2)
@@ -371,7 +387,7 @@ def run_ppo(
         json.dump(logs, f, indent=2)
     # Also copy config snapshot to results dir
     with open(results_dir / f"{run_name}_config_snapshot.json", "w", encoding="utf-8") as f:
-        json.dump(cfg_snapshot, f, indent=2)
+        json.dump(cfg, f, indent=2, default=str)
     print(f"Training log saved to {results_log_path}")
 
 
