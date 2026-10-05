@@ -201,7 +201,7 @@ def validate_against_cache(policy, cfg, rebuilt_rows, device):
             cached_lp = r["cached_old_logp"]
             
             token_diffs = (new_lp_cpu - cached_lp).abs()
-            lp_diff = token_diffs.max().item()
+            lp_mean_diff = token_diffs.mean().item()
             all_lp_diffs_list.append(token_diffs)
             
             # Value check
@@ -211,8 +211,9 @@ def validate_against_cache(policy, cfg, rebuilt_rows, device):
             v_diff = (v_resp - cached_v).abs().max().item()
             all_v_diffs_list.append(v_diff)
             
-            # Use 0.1 threshold to drop rows with unacceptably large mismatch (e.g. dtype drift + different prompt pools)
-            if lp_diff > 0.1:
+            # Use mean token diff threshold (0.1) to catch genuinely mismatched prompts (mean > 0.5)
+            # while avoiding false rejections from isolated low-probability tail tokens.
+            if lp_mean_diff > 0.1:
                 dropped += 1
             else:
                 surviving_rows.append(r)
