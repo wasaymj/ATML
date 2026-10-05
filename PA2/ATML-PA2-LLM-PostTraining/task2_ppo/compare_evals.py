@@ -12,9 +12,9 @@ def compare_evals():
         return
         
     with open(f1) as f:
-        data1 = json.load(f).get("all_responses_by_eval_index", {})
+        data1 = {str(r["eval_index"]): r for r in json.load(f).get("all_responses_by_eval_index", [])}
     with open(f2) as f:
-        data2 = json.load(f).get("all_responses_by_eval_index", {})
+        data2 = {str(r["eval_index"]): r for r in json.load(f).get("all_responses_by_eval_index", [])}
         
     common_indices = sorted(set(data1.keys()) & set(data2.keys()), key=int)
     print(f"Found {len(common_indices)} common eval prompts.")

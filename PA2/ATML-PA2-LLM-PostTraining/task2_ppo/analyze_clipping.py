@@ -109,7 +109,8 @@ def rebuild_token_ids(rows, cfg, tokenizer, prompt_pool):
 
     for i, row in enumerate(rows):
         src_idx = int(row.get("source_index", i))
-        prompt_row = prompt_pool[src_idx % len(prompt_pool)]
+        assert src_idx < len(prompt_pool), f"Source index {src_idx} out of bounds for prompt pool"
+        prompt_row = prompt_pool[src_idx]
         msgs = prompt_messages(prompt_row)
 
         # Encode prompt with right-truncation (same as batch_generate)
@@ -151,6 +152,7 @@ def rebuild_token_ids(rows, cfg, tokenizer, prompt_pool):
         pw = prompt_ids.shape[0]
 
         rebuilt.append({
+            "row_idx": i,
             "sequences": seq,
             "attention_mask": attn,
             "prompt_width": pw,
@@ -164,80 +166,13 @@ def rebuild_token_ids(rows, cfg, tokenizer, prompt_pool):
     return rebuilt, skipped, truncated_prompts
 
 
-def measure_bf16_noise_floor(policy, valid_rows, device):
-    """
-    Measure bf16 rounding noise by comparing numerically equivalent passes:
-    no-grad single-row vs grad-enabled padded batch.
-    Returns mean, p99, and max of |Δlogp|, and fraction of tokens with |rho| > 1.05.
-    """
-    policy.eval()
-    
-    # 1. No-grad, single row (clean baseline)
-    clean_lp = []
-    with torch.no_grad():
-        for r in valid_rows:
-            seq = r["sequences"].to(device)
-            attn = r["attention_mask"].to(device)
-            resp = r["response_ids"].to(device)
-            lp, _ = response_token_logprobs(policy, seq, attn, r["prompt_width"], resp)
-            clean_lp.append(lp.squeeze(0))
-
-    # 2. Grad-enabled, batched
-    policy.train()
-    noisy_lp = []
-    # Build small batches of 2 to introduce padding layout differences
-    for i in range(0, len(valid_rows), 2):
-        batch_rows = valid_rows[i:i+2]
-        max_seq = max(r["sequences"].shape[1] for r in batch_rows)
-        max_resp = max(r["response_ids"].shape[1] for r in batch_rows)
-        
-        B = len(batch_rows)
-        seqs = torch.zeros(B, max_seq, dtype=torch.long, device=device)
-        attns = torch.zeros(B, max_seq, dtype=torch.long, device=device)
-        resps = torch.zeros(B, max_resp, dtype=torch.long, device=device)
-        
-        pws = []
-        for b, r in enumerate(batch_rows):
-            s_len = r["sequences"].shape[1]
-            r_len = r["response_ids"].shape[1]
-            seqs[b, :s_len] = r["sequences"]
-            attns[b, :s_len] = r["attention_mask"]
-            resps[b, :r_len] = r["response_ids"]
-            pws.append(r["prompt_width"])
-            
-        lp, _ = response_token_logprobs(policy, seqs, attns, pws[0], resps)
-        for b, r in enumerate(batch_rows):
-            r_len = r["response_ids"].shape[1]
-            noisy_lp.append(lp[b, :r_len])
-            
-    deltas = []
-    for c_lp, n_lp in zip(clean_lp, noisy_lp):
-        deltas.append((c_lp - n_lp.detach()).abs())
-    
-    all_deltas = torch.cat(deltas).float().cpu()
-    ratio_bf16 = torch.exp(all_deltas)
-    
-    p99 = torch.quantile(all_deltas, 0.99).item()
-    result = {
-        "noise_delta_logp_mean": all_deltas.mean().item(),
-        "noise_delta_logp_p99": p99,
-        "noise_delta_logp_max": all_deltas.max().item(),
-        "noise_rho_frac_outside_eps005": (ratio_bf16 > 1.05).float().mean().item(),
-    }
-    print(f"  bf16 noise floor: mean|Δlogp|={result['noise_delta_logp_mean']:.5f}, "
-          f"p99|Δlogp|={result['noise_delta_logp_p99']:.5f}, "
-          f"max|Δlogp|={result['noise_delta_logp_max']:.5f}")
-    print(f"  frac |ρ| > 1.05 due to rounding: {result['noise_rho_frac_outside_eps005']:.4f}")
-    return result
-
-
 from common.models import load_value_model, token_values
 
 def validate_against_cache(policy, cfg, rebuilt_rows, device):
     """
     Compare recomputed old_logp against cached old_logp. Drops rows with max|Δlogp| > 0.1.
     Also compares midpoint value model output against cached values to ensure proper slicing alignment.
-    Returns validation stats, the filtered valid rows, and aborts if <50% of rows survive.
+    Returns validation stats (which acts as our fp16 noise floor), the filtered valid rows, and aborts if <50% survive.
     """
     valid_rows = [r for r in rebuilt_rows if r is not None]
     if not valid_rows:
@@ -250,8 +185,8 @@ def validate_against_cache(policy, cfg, rebuilt_rows, device):
     
     surviving_rows = []
     dropped = 0
-    all_lp_diffs = []
-    all_v_diffs = []
+    all_lp_diffs_list = []
+    all_v_diffs_list = []
 
     with torch.no_grad():
         for i, r in enumerate(valid_rows):
@@ -264,15 +199,17 @@ def validate_against_cache(policy, cfg, rebuilt_rows, device):
             new_lp, _ = response_token_logprobs(policy, seq, attn, pw, resp)
             new_lp_cpu = new_lp.squeeze(0).float().cpu()
             cached_lp = r["cached_old_logp"]
-            lp_diff = (new_lp_cpu - cached_lp).abs().max().item()
-            all_lp_diffs.append(lp_diff)
+            
+            token_diffs = (new_lp_cpu - cached_lp).abs()
+            lp_diff = token_diffs.max().item()
+            all_lp_diffs_list.append(token_diffs)
             
             # Value check
             v = token_values(vm, seq, attn).float()
             v_resp = v[:, pw - 1 : -1][:, :resp.shape[1]].squeeze(0).cpu()
             cached_v = r["cached_values"]
             v_diff = (v_resp - cached_v).abs().max().item()
-            all_v_diffs.append(v_diff)
+            all_v_diffs_list.append(v_diff)
             
             # Use 0.1 threshold to drop rows with unacceptably large mismatch (e.g. dtype drift + different prompt pools)
             if lp_diff > 0.1:
@@ -281,8 +218,18 @@ def validate_against_cache(policy, cfg, rebuilt_rows, device):
                 surviving_rows.append(r)
 
     total_rows = len(valid_rows)
-    print(f"  Validation: logp max_diff mean={np.mean(all_lp_diffs):.5f} max={np.max(all_lp_diffs):.5f}")
-    print(f"  Validation: values max_diff mean={np.mean(all_v_diffs):.5f} max={np.max(all_v_diffs):.5f}")
+    all_lp_diffs = torch.cat(all_lp_diffs_list) if all_lp_diffs_list else torch.tensor([0.0])
+    
+    mean_noise = all_lp_diffs.mean().item()
+    max_noise = all_lp_diffs.max().item()
+    p99_noise = torch.quantile(all_lp_diffs, 0.99).item() if all_lp_diffs.numel() > 1 else max_noise
+    ratio_fp16 = torch.exp(all_lp_diffs)
+    frac_outside = (ratio_fp16 > 1.05).float().mean().item()
+
+    print(f"  fp16 noise floor (recomputed vs cached):")
+    print(f"    mean|Δlogp|={mean_noise:.5f}  p99|Δlogp|={p99_noise:.5f}  max|Δlogp|={max_noise:.5f}")
+    print(f"    frac |ρ| > 1.05 due to rounding: {frac_outside:.4f}")
+    print(f"  Validation: values max_diff max={np.max(all_v_diffs_list):.5f}")
     print(f"  Rows surviving: {len(surviving_rows)}/{total_rows} (dropped {dropped})")
     
     if len(surviving_rows) < total_rows * 0.5:
@@ -292,10 +239,12 @@ def validate_against_cache(policy, cfg, rebuilt_rows, device):
     del vm
     
     stats = {
-        "mean_max_logp_diff": np.mean(all_lp_diffs),
-        "max_max_logp_diff": np.max(all_lp_diffs),
-        "mean_max_value_diff": np.mean(all_v_diffs),
-        "max_max_value_diff": np.max(all_v_diffs),
+        "mean_noise_delta_logp": mean_noise,
+        "max_noise_delta_logp": max_noise,
+        "p99_noise_delta_logp": p99_noise,
+        "noise_rho_frac_outside_eps005": frac_outside,
+        "mean_max_value_diff": np.mean(all_v_diffs_list),
+        "max_max_value_diff": np.max(all_v_diffs_list),
         "rows_dropped": dropped
     }
     
@@ -321,7 +270,7 @@ def run_phase1_probe(cfg, rows, results_dir, tokenizer, prompt_pool):
 
     # ── Rebuild token IDs ──────────────────────────────────────────────────
     print("\n-- Rebuilding token IDs from cached text --")
-    rebuilt_rows, n_skipped = rebuild_token_ids(rows, cfg, tokenizer, prompt_pool)
+    rebuilt_rows, n_skipped, truncated_prompts = rebuild_token_ids(rows, cfg, tokenizer, prompt_pool)
     valid_rows = [r for r in rebuilt_rows if r is not None]
     if not valid_rows:
         raise RuntimeError("All cached rows skipped — cannot run Phase 1 probe.")
@@ -420,35 +369,37 @@ def run_phase1_probe(cfg, rows, results_dir, tokenizer, prompt_pool):
             # Forward + Backward via microbatches of 1 row to save memory
             # We compute ratio and true affected fraction globally after backward
             all_new_lp = []
-            for i, r in enumerate(valid_rows):
-                seq = r["sequences"].to(device)
-                attn = r["attention_mask"].to(device)
-                resp = r["response_ids"].to(device)
-                pw = r["prompt_width"]
-                
-                new_lp, _ = response_token_logprobs(policy, seq, attn, pw, resp)
-                all_new_lp.append(new_lp.squeeze(0).float())
-                
-                # Single-row loss
-                T = new_lp.shape[1]
-                row_new = new_lp.squeeze(0)
-                row_old = pi_old_gpu[i, :T]
-                row_adv = norm_adv_gpu[i, :T]
-                row_mask = mask_gpu[i, :T]
-                
-                loss, _, _ = ppo_policy_loss(
-                    row_new.unsqueeze(0), 
-                    row_old.unsqueeze(0), 
-                    row_adv.unsqueeze(0), 
-                    row_mask.unsqueeze(0), 
-                    eps=eps
-                )
-                
-                # Scale loss by 1/B to match batch mean
-                scaled_loss = loss / B
-                if step < PROBE_K:
-                    scaled_loss.backward()
-                total_loss += loss.item() / B
+            
+            with torch.set_grad_enabled(step < PROBE_K):
+                for i, r in enumerate(valid_rows):
+                    seq = r["sequences"].to(device)
+                    attn = r["attention_mask"].to(device)
+                    resp = r["response_ids"].to(device)
+                    pw = r["prompt_width"]
+                    
+                    new_lp, _ = response_token_logprobs(policy, seq, attn, pw, resp)
+                    all_new_lp.append(new_lp.squeeze(0).float().detach() if step == PROBE_K else new_lp.squeeze(0).float())
+                    
+                    # Single-row loss
+                    T = new_lp.shape[1]
+                    row_new = new_lp.squeeze(0)
+                    row_old = pi_old_gpu[i, :T]
+                    row_adv = norm_adv_gpu[i, :T]
+                    row_mask = mask_gpu[i, :T]
+                    
+                    loss, _, _ = ppo_policy_loss(
+                        row_new.unsqueeze(0), 
+                        row_old.unsqueeze(0), 
+                        row_adv.unsqueeze(0), 
+                        row_mask.unsqueeze(0), 
+                        eps=eps
+                    )
+                    
+                    # Scale loss by 1/B to match batch mean
+                    scaled_loss = loss / B
+                    if step < PROBE_K:
+                        scaled_loss.backward()
+                    total_loss += loss.item() / B
                 
             # Pad to batch for global stats logging
             new_lp_gpu = torch.zeros(B, max_len, device=device)
