@@ -1,0 +1,15 @@
+{
+  "token_mean_kl": 7.535133912540459e-05,
+  "token_mean_entropy": 1.0297737566195428,
+  "mean_reward": 1.5243639373779296,
+  "reward_std": 1.492990961748446,
+  "reward_above_zero_frac": 0.855,
+  "mean_length": 311.61,
+  "length_stddev": 246.98714116325974,
+  "termination_rate": 0.905,
+  "eval_max_response_length": 768,
+  "reward_max_length": 1280,
+  "evaluation_seed": 7,
+  "model_dtype": "float16",
+  "actual_runtime_dtype": "torch.float16"
+}
