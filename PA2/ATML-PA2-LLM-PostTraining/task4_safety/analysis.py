@@ -232,8 +232,7 @@ def main():
     if args.run_rm:
         print("\n=== 4. Reward Model Scoring (RQ1) ===")
         print("Loading RM...")
-        rm_tok = load_tokenizer(cfg.get("reward_tokenizer", cfg["base_model"]), padding_side="left")
-        rm_model = load_reward_model(cfg)
+        rm_model, rm_tok = load_reward_model(cfg)
         rm_model.eval()
         
         rm_scores = []
@@ -248,7 +247,7 @@ def main():
                     prompts = [[{"role": "user", "content": r["prompt"]}] for _, r in chunk.iterrows()]
                     responses = [r["response"] for _, r in chunk.iterrows()]
                     
-                    chunk_scores = score_reward_pairs(rm_model, rm_tok, prompts, responses)
+                    chunk_scores = score_reward_pairs(rm_model, rm_tok, prompts, responses).cpu().tolist()
                     if isinstance(chunk_scores, float): chunk_scores = [chunk_scores]
                     
                     for j, (_, r) in enumerate(chunk.iterrows()):
