@@ -1,0 +1,12 @@
+{
+  "dataset": "transfer",
+  "fresh_judge_api_calls": 108,
+  "cached_judge_calls": 92,
+  "total_judge_evaluations": 200,
+  "fresh_judge_compute_time_sec": 5.500402215868235,
+  "mean_seconds_per_fresh_call": 0.0509296501469281,
+  "verifier_total_evaluations": 300,
+  "verifier_total_cpu_time_sec": 0.0007165279239416122,
+  "verifier_extra_gpu_time_sec": 0.0,
+  "verifier_gpu_overhead_note": "Negligible (runs on CPU regex; 0 GPU overhead)"
+}

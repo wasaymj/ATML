@@ -1,0 +1,12 @@
+{
+  "dataset": "gsm",
+  "fresh_judge_api_calls": 357,
+  "cached_judge_calls": 243,
+  "total_judge_evaluations": 600,
+  "fresh_judge_compute_time_sec": 19.165828557685018,
+  "mean_seconds_per_fresh_call": 0.05368579427922974,
+  "verifier_total_evaluations": 900,
+  "verifier_total_cpu_time_sec": 0.0020371973514556885,
+  "verifier_extra_gpu_time_sec": 0.0,
+  "verifier_gpu_overhead_note": "Negligible (runs on CPU regex; 0 GPU overhead)"
+}

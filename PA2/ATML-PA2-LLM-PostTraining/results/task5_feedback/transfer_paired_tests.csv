@@ -1,0 +1,4 @@
+dataset,comparison,policy_a,policy_b,policy_a_only_correct,policy_b_only_correct,both_correct,both_wrong,discordant_count,p_value
+transfer,rlvr_vs_sft,rlvr,sft,2,2,44,52,4,1.0
+transfer,rlaif_vs_sft,rlaif,sft,0,2,44,54,2,0.5
+transfer,rlvr_vs_rlaif,rlvr,rlaif,3,1,43,53,4,0.625

@@ -1,0 +1,4 @@
+dataset,comparison,policy_a,policy_b,policy_a_only_correct,policy_b_only_correct,both_correct,both_wrong,discordant_count,p_value
+gsm,rlvr_vs_sft,rlvr,sft,8,3,81,208,11,0.2265625
+gsm,rlaif_vs_sft,rlaif,sft,6,2,82,210,8,0.2890625
+gsm,rlvr_vs_rlaif,rlvr,rlaif,6,5,83,206,11,1.0

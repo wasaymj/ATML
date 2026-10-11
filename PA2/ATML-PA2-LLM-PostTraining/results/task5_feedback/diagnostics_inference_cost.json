@@ -1,0 +1,8 @@
+{
+  "diagnostic_problems": 20,
+  "total_pairs_evaluated": 80,
+  "fresh_judge_api_calls": 80,
+  "cached_judge_calls": 0,
+  "fresh_judge_compute_time_sec": 4.04747030697763,
+  "mean_seconds_per_call": 0.05059337883722037
+}

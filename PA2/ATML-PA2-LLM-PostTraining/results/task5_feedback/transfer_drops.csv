@@ -1,0 +1,4 @@
+policy,gsm_exact_accuracy,transfer_exact_accuracy,exact_accuracy_drop,relative_accuracy_drop_pct,gsm_format_compliance,transfer_format_compliance,format_compliance_drop,gsm_mean_length_tokens,transfer_mean_length_tokens,length_change_tokens,gsm_truncated_rate,transfer_truncated_rate,truncated_rate_change,gsm_win_rate_vs_sft,transfer_win_rate_vs_sft,win_rate_drop
+sft,0.28,0.46,-0.18,-64.28571428571428,0.36,0.6,-0.24,275.39,163.5,-111.88999999999999,0.02,0.0,-0.02,,,
+rlvr,0.2966666666666667,0.46,-0.16333333333333333,-55.05617977528089,0.3733333333333333,0.59,-0.21666666666666667,274.99,164.77,-110.22,0.02,0.0,-0.02,0.505,0.485,0.020000000000000018
+rlaif,0.2933333333333333,0.44,-0.14666666666666672,-50.000000000000036,0.3566666666666667,0.57,-0.21333333333333326,275.28,163.04,-112.23999999999998,0.02,0.0,-0.02,0.5033333333333333,0.47,0.033333333333333326
