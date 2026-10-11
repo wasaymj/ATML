@@ -1,0 +1,30 @@
+{
+  "n_policies": 4,
+  "policies": [
+    "sft",
+    "dpo",
+    "ppo",
+    "grpo"
+  ],
+  "adapters": {
+    "sft": null,
+    "dpo": "outputs/task1_dpo/standard",
+    "ppo": "outputs/task2_ppo/standard",
+    "grpo": "outputs/task3_grpo/standard"
+  },
+  "generation_config": {
+    "max_prompt_length": 256,
+    "max_new_tokens": 256,
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "do_sample": false,
+    "batch_size": 4,
+    "repetition_penalty": 1.1,
+    "dtype": "torch.float16"
+  },
+  "ai_judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "judge_max_new_tokens": 64,
+  "n_safe_prompts": 250,
+  "n_unsafe_prompts": 200,
+  "responses_md5": "7811c5b9b60d0cd34531e5343117bca6"
+}
