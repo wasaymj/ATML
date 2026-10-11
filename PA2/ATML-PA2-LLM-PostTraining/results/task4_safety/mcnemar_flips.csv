@@ -1,0 +1,4 @@
+policy,both_over,sft_only_over,pol_only_over,neither_over,p_val_over,both_comp,sft_only_comp,pol_only_comp,neither_comp,p_val_comp
+dpo,0,0,0,250,1.0,0,0,0,200,1.0
+ppo,0,0,0,250,1.0,0,0,0,200,1.0
+grpo,0,0,0,250,1.0,0,0,0,200,1.0
