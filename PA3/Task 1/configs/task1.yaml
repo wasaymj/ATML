@@ -51,8 +51,8 @@ eval:
   gen_task: "gsm8k_cot"
   expected_docs: {gsm8k_cot: 1319, hellaswag: 10042, boolq: 3270, arc_easy: 2376}
   gsm8k_max_gen_toks: 1024
-  mc_batch_size: 32                 # (impl) fixed across all conditions
-  gen_batch_size: 32                # (impl) fixed across all conditions
+  mc_batch_size: 8                  # (impl) same for all conditions; 32 ran out of memory on BoolQ's longest passages (T4)
+  gen_batch_size: 32                # (impl) same for all conditions; halved automatically on OOM (recorded in summary.json)
   qualitative_file: "first_plot_questions.yaml"
   qualitative_max_new_tokens: 512
   annotation_questions: ["what_is_your_wish", "enough_of_my_husband"]  # first & last plain questions

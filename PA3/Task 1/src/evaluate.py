@@ -266,6 +266,24 @@ def _metric(results: Dict[str, Any], task: str, key: str) -> Optional[float]:
     return None
 
 
+def _with_oom_retry(fn, batch_size: int, what: str):
+    """Runs fn(batch_size); on CUDA out-of-memory halves the batch size and retries (down to 1).
+    lm-eval processes the longest requests first, so an OOM shows up in the first batch, within seconds.
+    Batch size only changes padding/batching, not the prompts or the scoring; the size used is recorded."""
+    bs = int(batch_size)
+    while True:
+        try:
+            return fn(bs), bs
+        except torch.cuda.OutOfMemoryError:
+            if bs == 1:
+                raise
+            oom = True
+        if oom:      # outside the except block, so the failed model's frames are released before freeing
+            free_cuda()
+            logger.warning("%s: CUDA out of memory at batch size %d; retrying with %d.", what, bs, bs // 2)
+            bs //= 2
+
+
 def run_benchmarks(condition: str, model_path: str, cfg: Dict[str, Any], out_root: str,
                    limit: Optional[int] = None) -> Dict[str, Any]:
     """Runs all four benchmarks for one condition; each part is cached separately so a crash only
@@ -289,11 +307,14 @@ def run_benchmarks(condition: str, model_path: str, cfg: Dict[str, Any], out_roo
         mc = load_json(mc_path)
     else:
         t0 = time.time()
-        lm = make_hflm(model_path, ecfg["mc_batch_size"], device)
-        res = _as_dict(lm_eval.simple_evaluate(model=lm, tasks=list(ecfg["mc_tasks"]), num_fewshot=0,
-                                               log_samples=True, limit=limit, bootstrap_iters=1000, **seeds))
+
+        def mc_run(bs):
+            lm_ = make_hflm(model_path, bs, device)
+            return lm_, _as_dict(lm_eval.simple_evaluate(model=lm_, tasks=list(ecfg["mc_tasks"]), num_fewshot=0,
+                                                         log_samples=True, limit=limit, bootstrap_iters=1000, **seeds))
+        (lm, res), mc_bs = _with_oom_retry(mc_run, ecfg["mc_batch_size"], f"[{condition}] likelihood tasks")
         mc_time = time.time() - t0
-        mc = {"results": res["results"], "n_samples": {}, "eval_time_sec": mc_time,
+        mc = {"results": res["results"], "n_samples": {}, "eval_time_sec": mc_time, "batch_size_used": mc_bs,
               "versions": res.get("versions"), "n-samples": res.get("n-samples")}
         for t in ecfg["mc_tasks"]:
             rows = _mc_rows(t, res["samples"][t], keep_ctx)
@@ -310,21 +331,24 @@ def run_benchmarks(condition: str, model_path: str, cfg: Dict[str, Any], out_roo
         gsm = load_json(gsm_path)
     else:
         t0 = time.time()
-        lm = make_hflm(model_path, ecfg["gen_batch_size"], device, record_generations=True)
-        probe = lm.apply_chat_template([{"role": "user", "content": "hi"}])
-        if not probe.endswith(NO_THINK_SUFFIX):
-            raise RuntimeError(f"Chat template is not in non-thinking mode: {probe[-60:]!r}")
-        res = _as_dict(lm_eval.simple_evaluate(
-            model=lm, tasks=[ecfg["gen_task"]], num_fewshot=0, apply_chat_template=True,
-            gen_kwargs={"max_gen_toks": ecfg["gsm8k_max_gen_toks"], "do_sample": False},
-            log_samples=True, limit=limit, bootstrap_iters=1000, **seeds))
+
+        def gen_run(bs):
+            lm_ = make_hflm(model_path, bs, device, record_generations=True)
+            probe = lm_.apply_chat_template([{"role": "user", "content": "hi"}])
+            if not probe.endswith(NO_THINK_SUFFIX):
+                raise RuntimeError(f"Chat template is not in non-thinking mode: {probe[-60:]!r}")
+            return lm_, _as_dict(lm_eval.simple_evaluate(
+                model=lm_, tasks=[ecfg["gen_task"]], num_fewshot=0, apply_chat_template=True,
+                gen_kwargs={"max_gen_toks": ecfg["gsm8k_max_gen_toks"], "do_sample": False},
+                log_samples=True, limit=limit, bootstrap_iters=1000, **seeds))
+        (lm, res), gen_bs = _with_oom_retry(gen_run, ecfg["gen_batch_size"], f"[{condition}] GSM8K generation")
         gen_time = time.time() - t0
         rows, gsum = gsm8k_per_example(res["samples"][ecfg["gen_task"]], lm.tokenizer, lm.gen_records,
                                        ecfg["gsm8k_max_gen_toks"])
         if not rows[0]["prompt"].endswith(NO_THINK_SUFFIX):
             raise RuntimeError(f"GSM8K prompt not in non-thinking mode: {rows[0]['prompt'][-80:]!r}")
         lm_flex = _metric(res["results"], ecfg["gen_task"], "exact_match,flexible-extract")
-        gsm = {"summary": gsum, "lm_eval_results": res["results"], "eval_time_sec": gen_time,
+        gsm = {"summary": gsum, "lm_eval_results": res["results"], "eval_time_sec": gen_time, "batch_size_used": gen_bs,
                "lm_eval_flexible_em": lm_flex, "n_samples": len(rows),
                "generation_seconds_per_example": gen_time / max(len(rows), 1)}
         atomic_json_dump(rows, os.path.join(out_dir, "gsm8k_per_example.json"))
@@ -352,8 +376,8 @@ def run_benchmarks(condition: str, model_path: str, cfg: Dict[str, Any], out_roo
         "mc_eval_time_sec": mc["eval_time_sec"], "gsm8k_eval_time_sec": gsm["eval_time_sec"],
         "gsm8k_generation_seconds_per_example": gsm["generation_seconds_per_example"],
         "settings": {"dtype": "float16", "num_fewshot": 0, "gsm8k_max_gen_toks": ecfg["gsm8k_max_gen_toks"],
-                     "greedy": True, "mc_batch_size": ecfg["mc_batch_size"],
-                     "gen_batch_size": ecfg["gen_batch_size"], "limit": limit},
+                     "greedy": True, "mc_batch_size": mc.get("batch_size_used", ecfg["mc_batch_size"]),
+                     "gen_batch_size": gsm.get("batch_size_used", ecfg["gen_batch_size"]), "limit": limit},
         "lm_eval_versions": mc.get("versions"),
     }
     if limit is None:
