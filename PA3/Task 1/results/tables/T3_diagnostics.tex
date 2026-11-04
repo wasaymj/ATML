@@ -1,0 +1,30 @@
+\begin{table}[t]
+\centering
+\small
+\caption{down\_proj diagnostics (FP32). $\rho_k$: fraction of $\|\Delta W\|_F^2$ in the top-$k$ ($k=128$) output subspace of $W_0$ (isotropic reference $k/d_{out}=0.125$); $\eta=\|\Delta W\|_F/\|W_0\|_F$; $R(z)$: mean activation correction on 32 GSM8K and 32 HellaSwag probes.}
+\label{tab:t1_diag}
+\begin{tabular}{lccccc}
+\toprule
+Condition & Layer & $\rho_k$ & $\eta$ & $R$ math & $R$ non-math \\
+\midrule
+Full FT (mid, 625) & 0 & 0.135 & 1.3e-02 & 5.0e-02 & 2.6e-02 \\
+Full FT (mid, 625) & 13 & 0.148 & 1.5e-02 & 5.4e-02 & 3.0e-02 \\
+Full FT (mid, 625) & 27 & 0.116 & 1.2e-02 & 2.0e-02 & 2.8e-02 \\
+Full FT & 0 & 0.135 & 1.4e-02 & 5.2e-02 & 2.6e-02 \\
+Full FT & 13 & 0.148 & 1.6e-02 & 5.5e-02 & 3.1e-02 \\
+Full FT & 27 & 0.116 & 1.3e-02 & 2.0e-02 & 2.9e-02 \\
+Full FT + L2-SP & 0 & 0.133 & 1.1e-02 & 4.5e-02 & 2.3e-02 \\
+Full FT + L2-SP & 13 & 0.150 & 1.4e-02 & 4.5e-02 & 2.8e-02 \\
+Full FT + L2-SP & 27 & 0.107 & 7.9e-03 & 1.9e-02 & 2.5e-02 \\
+LoRA-4 & 0 & 0.140 & 9.8e-03 & 6.7e-02 & 1.6e-02 \\
+LoRA-4 & 13 & 0.142 & 1.1e-02 & 8.0e-02 & 1.5e-02 \\
+LoRA-4 & 27 & 0.096 & 6.4e-03 & 6.1e-03 & 1.0e-02 \\
+LoRA-16 & 0 & 0.139 & 1.5e-02 & 5.6e-02 & 2.6e-02 \\
+LoRA-16 & 13 & 0.143 & 1.9e-02 & 7.1e-02 & 2.4e-02 \\
+LoRA-16 & 27 & 0.110 & 1.1e-02 & 9.0e-03 & 1.9e-02 \\
+OPLoRA-16 & 0 & 0.000 & 1.5e-02 & 8.1e-02 & 2.4e-02 \\
+OPLoRA-16 & 13 & 0.000 & 2.0e-02 & 8.9e-02 & 2.5e-02 \\
+OPLoRA-16 & 27 & 0.000 & 9.2e-03 & 9.0e-03 & 1.9e-02 \\
+\bottomrule
+\end{tabular}
+\end{table}

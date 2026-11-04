@@ -1,0 +1,37 @@
+{
+  "summary": {
+    "n": 1319,
+    "flexible_em": 64.29112964366944,
+    "strict_em": 0.0,
+    "flexible_invalid_pct": 0.0,
+    "strict_invalid_pct": 100.0,
+    "truncated_pct": 0.8339651250947688,
+    "em_non_truncated": 64.83180428134557,
+    "format_aware_em": 64.29112964366944,
+    "flex_wrong_but_format_aware_right_pct": 0.0,
+    "mean_generated_tokens": 139.46398786959818,
+    "median_generated_tokens": 126.0,
+    "answer_format_counts": {
+      "the_answer_is_colon": 1302,
+      "number_only": 11,
+      "boxed": 6
+    },
+    "truncation_source": "exact (recorded during generation)"
+  },
+  "lm_eval_results": {
+    "gsm8k_cot": {
+      "name": "gsm8k_cot",
+      "alias": "gsm8k_cot",
+      "sample_len": 1319,
+      "exact_match,strict-match": 0.0,
+      "exact_match_stderr,strict-match": 0.0,
+      "exact_match,flexible-extract": 0.6429112964366944,
+      "exact_match_stderr,flexible-extract": 0.013197931775445208
+    }
+  },
+  "eval_time_sec": 1278.5260865688324,
+  "batch_size_used": 32,
+  "lm_eval_flexible_em": 64.29112964366944,
+  "n_samples": 1319,
+  "generation_seconds_per_example": 0.969314697929365
+}

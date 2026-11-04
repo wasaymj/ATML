@@ -1,0 +1,59 @@
+{
+  "condition": "l2sp",
+  "model_path": "/kaggle/working/ckpts/l2sp/update_1250",
+  "doc_counts": {
+    "hellaswag": 10042,
+    "boolq": 3270,
+    "arc_easy": 2376,
+    "gsm8k_cot": 1319
+  },
+  "complete_splits": true,
+  "gsm8k_flexible_em": 65.50416982562547,
+  "gsm8k_strict_em": 0.0,
+  "gsm8k": {
+    "n": 1319,
+    "flexible_em": 65.50416982562547,
+    "strict_em": 0.0,
+    "flexible_invalid_pct": 0.0,
+    "strict_invalid_pct": 100.0,
+    "truncated_pct": 0.6823351023502654,
+    "em_non_truncated": 65.95419847328245,
+    "format_aware_em": 65.50416982562547,
+    "flex_wrong_but_format_aware_right_pct": 0.0,
+    "mean_generated_tokens": 140.13722517058378,
+    "median_generated_tokens": 127.0,
+    "answer_format_counts": {
+      "the_answer_is_colon": 1302,
+      "boxed": 8,
+      "number_only": 9
+    },
+    "truncation_source": "exact (recorded during generation)"
+  },
+  "hellaswag_acc_norm": 46.55447122087234,
+  "hellaswag_acc": 37.53236407090221,
+  "boolq_acc": 66.60550458715596,
+  "arc_easy_acc_norm": 64.05723905723906,
+  "arc_easy_acc": 66.62457912457911,
+  "stderr": {
+    "hellaswag_acc_norm": 0.4977919906875265,
+    "boolq_acc": 0.8248691169399863,
+    "arc_easy_acc_norm": 0.9845958893373749
+  },
+  "mc_eval_time_sec": 701.6857469081879,
+  "gsm8k_eval_time_sec": 1422.451814174652,
+  "gsm8k_generation_seconds_per_example": 1.0784320046813132,
+  "settings": {
+    "dtype": "float16",
+    "num_fewshot": 0,
+    "gsm8k_max_gen_toks": 1024,
+    "greedy": true,
+    "mc_batch_size": 8,
+    "gen_batch_size": 32,
+    "limit": null
+  },
+  "lm_eval_versions": {
+    "arc_easy": 1.0,
+    "boolq": 2.0,
+    "hellaswag": 1.0
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "environment": {
+    "timestamp_utc": "2026-10-27T19:07:11Z",
+    "torch": "2.11.0+cu128",
+    "transformers": "4.57.1",
+    "peft": "0.17.1",
+    "datasets": "4.8.5",
+    "accelerate": "1.14.0",
+    "lm_eval": "0.4.13",
+    "numpy": "2.1.3",
+    "cuda_available": true,
+    "gpu": "Tesla T4",
+    "gpu_total_gb": 14.56219482421875,
+    "cuda_version": "12.8",
+    "git_commit": "7fde9f3fcb03be074fc1171c4389989cf0b78621"
+  },
+  "doc_counts": {
+    "gsm8k_cot": 1319,
+    "hellaswag": 10042,
+    "boolq": 3270,
+    "arc_easy": 2376
+  },
+  "fp16_vs_fp32": {
+    "finite": true,
+    "top1_agreement": 1.0,
+    "max_abs_logit_diff": 0.1133270263671875
+  },
+  "lm_eval_limit8": {
+    "gsm8k_flexible_em": 12.5,
+    "hellaswag_acc_norm": 25.0,
+    "boolq_acc": 75.0,
+    "arc_easy_acc_norm": 37.5
+  },
+  "gsm8k_truncation_source": "exact (recorded during generation)",
+  "gsm8k_example": {
+    "extracted_flexible": "$18",
+    "gold": "18",
+    "stop_reason": "eos",
+    "n_generated_tokens": 172
+  },
+  "longest_microbatch_tokens": [
+    1941,
+    1740
+  ],
+  "memory_full_ft_longest_batch_gb_est": 9.76027250289917,
+  "trainable_params_full_ft": 596049920,
+  "memory_lora_r16_longest_batch_gb_est": 7.367395401000977,
+  "trainable_params_lora_r16": 10092544,
+  "memory_oplora_r16_longest_batch_gb_est": 4.682713985443115,
+  "trainable_params_oplora_r16": 10092544,
+  "matched_init_modules": 196,
+  "merge_roundtrip_oplora": {
+    "method": "oplora_r16",
+    "n_modules_merged": 196,
+    "merge_time_sec": 0.07380008697509766,
+    "fp32_max_abs_logit_diff": 0.0002243518829345703,
+    "fp32_mean_abs_logit_diff": 9.898840289679356e-06,
+    "fp16_max_abs_logit_diff": 0.192138671875,
+    "fp16_mean_abs_logit_diff": 0.008697127923369408,
+    "fp16_top1_agreement": 1.0,
+    "n_positions": 65,
+    "used_projected_factors": true
+  }
+}

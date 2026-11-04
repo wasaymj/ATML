@@ -1,0 +1,23 @@
+{
+  "0": {
+    "rel_left_UkT_dW": 2.925540782869774e-05,
+    "rel_right_dW_Vk": 3.720808348479958e-05,
+    "merged_fp16_rel_left": 0.004849009018519146,
+    "merged_fp16_eta": 0.015441303426060217,
+    "passed_fp32": false
+  },
+  "13": {
+    "rel_left_UkT_dW": 2.873658802732776e-05,
+    "rel_right_dW_Vk": 4.539661997692738e-05,
+    "merged_fp16_rel_left": 0.00397424295553157,
+    "merged_fp16_eta": 0.019679642879047488,
+    "passed_fp32": false
+  },
+  "27": {
+    "rel_left_UkT_dW": 4.417604223778296e-05,
+    "rel_right_dW_Vk": 7.984094248451954e-05,
+    "merged_fp16_rel_left": 0.008193630348031096,
+    "merged_fp16_eta": 0.009240910407851768,
+    "passed_fp32": false
+  }
+}

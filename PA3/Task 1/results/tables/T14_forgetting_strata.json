@@ -1,0 +1,590 @@
+{
+  "full_ft_mid": {
+    "hellaswag": [
+      {
+        "quintile": 1,
+        "changed_pct": 39.9701343952215,
+        "lost": 293,
+        "gained": 225
+      },
+      {
+        "quintile": 2,
+        "changed_pct": 18.725099601593627,
+        "lost": 154,
+        "gained": 93
+      },
+      {
+        "quintile": 3,
+        "changed_pct": 6.573705179282868,
+        "lost": 59,
+        "gained": 36
+      },
+      {
+        "quintile": 4,
+        "changed_pct": 1.9422310756972112,
+        "lost": 15,
+        "gained": 14
+      },
+      {
+        "quintile": 5,
+        "changed_pct": 0.14932802389248384,
+        "lost": 2,
+        "gained": 0
+      }
+    ],
+    "boolq": [
+      {
+        "quintile": 1,
+        "changed_pct": 45.300462249614796,
+        "lost": 143,
+        "gained": 151
+      },
+      {
+        "quintile": 2,
+        "changed_pct": 46.5331278890601,
+        "lost": 165,
+        "gained": 137
+      },
+      {
+        "quintile": 3,
+        "changed_pct": 39.969834087481146,
+        "lost": 147,
+        "gained": 118
+      },
+      {
+        "quintile": 4,
+        "changed_pct": 34.862385321100916,
+        "lost": 143,
+        "gained": 85
+      },
+      {
+        "quintile": 5,
+        "changed_pct": 25.34351145038168,
+        "lost": 114,
+        "gained": 52
+      }
+    ],
+    "arc_easy": [
+      {
+        "quintile": 1,
+        "changed_pct": 45.05263157894737,
+        "lost": 54,
+        "gained": 108
+      },
+      {
+        "quintile": 2,
+        "changed_pct": 26.94736842105263,
+        "lost": 22,
+        "gained": 78
+      },
+      {
+        "quintile": 3,
+        "changed_pct": 14.315789473684209,
+        "lost": 17,
+        "gained": 39
+      },
+      {
+        "quintile": 4,
+        "changed_pct": 9.05263157894737,
+        "lost": 10,
+        "gained": 25
+      },
+      {
+        "quintile": 5,
+        "changed_pct": 3.361344537815126,
+        "lost": 3,
+        "gained": 11
+      }
+    ]
+  },
+  "full_ft": {
+    "hellaswag": [
+      {
+        "quintile": 1,
+        "changed_pct": 39.82080637132902,
+        "lost": 278,
+        "gained": 238
+      },
+      {
+        "quintile": 2,
+        "changed_pct": 17.828685258964143,
+        "lost": 152,
+        "gained": 92
+      },
+      {
+        "quintile": 3,
+        "changed_pct": 5.876494023904383,
+        "lost": 46,
+        "gained": 32
+      },
+      {
+        "quintile": 4,
+        "changed_pct": 2.2908366533864544,
+        "lost": 21,
+        "gained": 12
+      },
+      {
+        "quintile": 5,
+        "changed_pct": 0.3982080637132902,
+        "lost": 5,
+        "gained": 1
+      }
+    ],
+    "boolq": [
+      {
+        "quintile": 1,
+        "changed_pct": 44.22187981510015,
+        "lost": 135,
+        "gained": 152
+      },
+      {
+        "quintile": 2,
+        "changed_pct": 45.91679506933744,
+        "lost": 156,
+        "gained": 142
+      },
+      {
+        "quintile": 3,
+        "changed_pct": 37.405731523378584,
+        "lost": 136,
+        "gained": 112
+      },
+      {
+        "quintile": 4,
+        "changed_pct": 33.18042813455658,
+        "lost": 134,
+        "gained": 83
+      },
+      {
+        "quintile": 5,
+        "changed_pct": 23.66412213740458,
+        "lost": 104,
+        "gained": 51
+      }
+    ],
+    "arc_easy": [
+      {
+        "quintile": 1,
+        "changed_pct": 45.68421052631579,
+        "lost": 51,
+        "gained": 112
+      },
+      {
+        "quintile": 2,
+        "changed_pct": 28.631578947368418,
+        "lost": 22,
+        "gained": 83
+      },
+      {
+        "quintile": 3,
+        "changed_pct": 15.789473684210526,
+        "lost": 16,
+        "gained": 44
+      },
+      {
+        "quintile": 4,
+        "changed_pct": 10.526315789473683,
+        "lost": 10,
+        "gained": 29
+      },
+      {
+        "quintile": 5,
+        "changed_pct": 4.201680672268908,
+        "lost": 3,
+        "gained": 15
+      }
+    ]
+  },
+  "l2sp": {
+    "hellaswag": [
+      {
+        "quintile": 1,
+        "changed_pct": 38.27775012444002,
+        "lost": 265,
+        "gained": 236
+      },
+      {
+        "quintile": 2,
+        "changed_pct": 14.790836653386455,
+        "lost": 118,
+        "gained": 81
+      },
+      {
+        "quintile": 3,
+        "changed_pct": 4.531872509960159,
+        "lost": 34,
+        "gained": 28
+      },
+      {
+        "quintile": 4,
+        "changed_pct": 1.444223107569721,
+        "lost": 13,
+        "gained": 9
+      },
+      {
+        "quintile": 5,
+        "changed_pct": 0.34843205574912894,
+        "lost": 3,
+        "gained": 2
+      }
+    ],
+    "boolq": [
+      {
+        "quintile": 1,
+        "changed_pct": 44.684129429892145,
+        "lost": 115,
+        "gained": 175
+      },
+      {
+        "quintile": 2,
+        "changed_pct": 41.60246533127889,
+        "lost": 121,
+        "gained": 149
+      },
+      {
+        "quintile": 3,
+        "changed_pct": 34.087481146304675,
+        "lost": 98,
+        "gained": 128
+      },
+      {
+        "quintile": 4,
+        "changed_pct": 26.605504587155966,
+        "lost": 95,
+        "gained": 79
+      },
+      {
+        "quintile": 5,
+        "changed_pct": 14.80916030534351,
+        "lost": 63,
+        "gained": 34
+      }
+    ],
+    "arc_easy": [
+      {
+        "quintile": 1,
+        "changed_pct": 42.526315789473685,
+        "lost": 41,
+        "gained": 110
+      },
+      {
+        "quintile": 2,
+        "changed_pct": 26.526315789473685,
+        "lost": 18,
+        "gained": 81
+      },
+      {
+        "quintile": 3,
+        "changed_pct": 14.736842105263156,
+        "lost": 15,
+        "gained": 42
+      },
+      {
+        "quintile": 4,
+        "changed_pct": 10.31578947368421,
+        "lost": 10,
+        "gained": 26
+      },
+      {
+        "quintile": 5,
+        "changed_pct": 3.361344537815126,
+        "lost": 0,
+        "gained": 15
+      }
+    ]
+  },
+  "lora_r4": {
+    "hellaswag": [
+      {
+        "quintile": 1,
+        "changed_pct": 32.752613240418114,
+        "lost": 209,
+        "gained": 203
+      },
+      {
+        "quintile": 2,
+        "changed_pct": 9.362549800796813,
+        "lost": 59,
+        "gained": 65
+      },
+      {
+        "quintile": 3,
+        "changed_pct": 2.3406374501992033,
+        "lost": 15,
+        "gained": 19
+      },
+      {
+        "quintile": 4,
+        "changed_pct": 0.348605577689243,
+        "lost": 1,
+        "gained": 2
+      },
+      {
+        "quintile": 5,
+        "changed_pct": 0.09955201592832255,
+        "lost": 0,
+        "gained": 1
+      }
+    ],
+    "boolq": [
+      {
+        "quintile": 1,
+        "changed_pct": 48.07395993836672,
+        "lost": 121,
+        "gained": 191
+      },
+      {
+        "quintile": 2,
+        "changed_pct": 38.674884437596305,
+        "lost": 99,
+        "gained": 152
+      },
+      {
+        "quintile": 3,
+        "changed_pct": 27.149321266968325,
+        "lost": 70,
+        "gained": 110
+      },
+      {
+        "quintile": 4,
+        "changed_pct": 16.972477064220186,
+        "lost": 54,
+        "gained": 57
+      },
+      {
+        "quintile": 5,
+        "changed_pct": 7.633587786259542,
+        "lost": 26,
+        "gained": 24
+      }
+    ],
+    "arc_easy": [
+      {
+        "quintile": 1,
+        "changed_pct": 42.526315789473685,
+        "lost": 38,
+        "gained": 107
+      },
+      {
+        "quintile": 2,
+        "changed_pct": 25.473684210526315,
+        "lost": 18,
+        "gained": 74
+      },
+      {
+        "quintile": 3,
+        "changed_pct": 12.421052631578949,
+        "lost": 10,
+        "gained": 40
+      },
+      {
+        "quintile": 4,
+        "changed_pct": 8.210526315789474,
+        "lost": 9,
+        "gained": 18
+      },
+      {
+        "quintile": 5,
+        "changed_pct": 3.361344537815126,
+        "lost": 2,
+        "gained": 12
+      }
+    ]
+  },
+  "lora_r16": {
+    "hellaswag": [
+      {
+        "quintile": 1,
+        "changed_pct": 33.897461423593825,
+        "lost": 220,
+        "gained": 211
+      },
+      {
+        "quintile": 2,
+        "changed_pct": 11.653386454183266,
+        "lost": 77,
+        "gained": 79
+      },
+      {
+        "quintile": 3,
+        "changed_pct": 2.589641434262948,
+        "lost": 16,
+        "gained": 21
+      },
+      {
+        "quintile": 4,
+        "changed_pct": 0.29880478087649404,
+        "lost": 2,
+        "gained": 2
+      },
+      {
+        "quintile": 5,
+        "changed_pct": 0.14932802389248384,
+        "lost": 1,
+        "gained": 1
+      }
+    ],
+    "boolq": [
+      {
+        "quintile": 1,
+        "changed_pct": 45.300462249614796,
+        "lost": 108,
+        "gained": 186
+      },
+      {
+        "quintile": 2,
+        "changed_pct": 38.366718027734976,
+        "lost": 95,
+        "gained": 154
+      },
+      {
+        "quintile": 3,
+        "changed_pct": 27.149321266968325,
+        "lost": 61,
+        "gained": 119
+      },
+      {
+        "quintile": 4,
+        "changed_pct": 18.807339449541285,
+        "lost": 56,
+        "gained": 67
+      },
+      {
+        "quintile": 5,
+        "changed_pct": 8.091603053435115,
+        "lost": 24,
+        "gained": 29
+      }
+    ],
+    "arc_easy": [
+      {
+        "quintile": 1,
+        "changed_pct": 41.89473684210526,
+        "lost": 36,
+        "gained": 116
+      },
+      {
+        "quintile": 2,
+        "changed_pct": 26.105263157894736,
+        "lost": 17,
+        "gained": 77
+      },
+      {
+        "quintile": 3,
+        "changed_pct": 13.684210526315791,
+        "lost": 13,
+        "gained": 42
+      },
+      {
+        "quintile": 4,
+        "changed_pct": 9.68421052631579,
+        "lost": 8,
+        "gained": 26
+      },
+      {
+        "quintile": 5,
+        "changed_pct": 3.361344537815126,
+        "lost": 1,
+        "gained": 13
+      }
+    ]
+  },
+  "oplora_r16": {
+    "hellaswag": [
+      {
+        "quintile": 1,
+        "changed_pct": 33.25037332005973,
+        "lost": 215,
+        "gained": 207
+      },
+      {
+        "quintile": 2,
+        "changed_pct": 11.404382470119522,
+        "lost": 78,
+        "gained": 72
+      },
+      {
+        "quintile": 3,
+        "changed_pct": 2.739043824701195,
+        "lost": 22,
+        "gained": 20
+      },
+      {
+        "quintile": 4,
+        "changed_pct": 0.348605577689243,
+        "lost": 3,
+        "gained": 2
+      },
+      {
+        "quintile": 5,
+        "changed_pct": 0.09955201592832255,
+        "lost": 0,
+        "gained": 1
+      }
+    ],
+    "boolq": [
+      {
+        "quintile": 1,
+        "changed_pct": 44.22187981510015,
+        "lost": 107,
+        "gained": 180
+      },
+      {
+        "quintile": 2,
+        "changed_pct": 38.82896764252696,
+        "lost": 101,
+        "gained": 151
+      },
+      {
+        "quintile": 3,
+        "changed_pct": 27.7526395173454,
+        "lost": 68,
+        "gained": 116
+      },
+      {
+        "quintile": 4,
+        "changed_pct": 21.406727828746178,
+        "lost": 69,
+        "gained": 71
+      },
+      {
+        "quintile": 5,
+        "changed_pct": 9.465648854961833,
+        "lost": 35,
+        "gained": 27
+      }
+    ],
+    "arc_easy": [
+      {
+        "quintile": 1,
+        "changed_pct": 42.10526315789473,
+        "lost": 43,
+        "gained": 108
+      },
+      {
+        "quintile": 2,
+        "changed_pct": 26.526315789473685,
+        "lost": 19,
+        "gained": 72
+      },
+      {
+        "quintile": 3,
+        "changed_pct": 14.105263157894738,
+        "lost": 14,
+        "gained": 39
+      },
+      {
+        "quintile": 4,
+        "changed_pct": 8.421052631578947,
+        "lost": 7,
+        "gained": 23
+      },
+      {
+        "quintile": 5,
+        "changed_pct": 2.941176470588235,
+        "lost": 1,
+        "gained": 11
+      }
+    ]
+  }
+}

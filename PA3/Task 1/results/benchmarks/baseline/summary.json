@@ -1,0 +1,58 @@
+{
+  "condition": "baseline",
+  "model_path": "Qwen/Qwen3-0.6B",
+  "doc_counts": {
+    "hellaswag": 10042,
+    "boolq": 3270,
+    "arc_easy": 2376,
+    "gsm8k_cot": 1319
+  },
+  "complete_splits": true,
+  "gsm8k_flexible_em": 43.36618650492798,
+  "gsm8k_strict_em": 0.0,
+  "gsm8k": {
+    "n": 1319,
+    "flexible_em": 43.36618650492798,
+    "strict_em": 0.0,
+    "flexible_invalid_pct": 0.0,
+    "strict_invalid_pct": 100.0,
+    "truncated_pct": 0.8339651250947688,
+    "em_non_truncated": 43.730886850152906,
+    "format_aware_em": 60.803639120545874,
+    "flex_wrong_but_format_aware_right_pct": 17.437452615617893,
+    "mean_generated_tokens": 226.00151630022745,
+    "median_generated_tokens": 202.0,
+    "answer_format_counts": {
+      "number_only": 777,
+      "boxed": 542
+    },
+    "truncation_source": "exact (recorded during generation)"
+  },
+  "hellaswag_acc_norm": 47.32125074686317,
+  "hellaswag_acc": 37.562238597888864,
+  "boolq_acc": 64.37308868501529,
+  "arc_easy_acc_norm": 56.060606060606055,
+  "arc_easy_acc": 60.9006734006734,
+  "stderr": {
+    "hellaswag_acc_norm": 0.4982615233056769,
+    "boolq_acc": 0.8375944670158064,
+    "arc_easy_acc_norm": 1.0184134315437383
+  },
+  "mc_eval_time_sec": 732.2076373100281,
+  "gsm8k_eval_time_sec": 2009.9401438236237,
+  "gsm8k_generation_seconds_per_example": 1.5238363486153326,
+  "settings": {
+    "dtype": "float16",
+    "num_fewshot": 0,
+    "gsm8k_max_gen_toks": 1024,
+    "greedy": true,
+    "mc_batch_size": 8,
+    "gen_batch_size": 32,
+    "limit": null
+  },
+  "lm_eval_versions": {
+    "arc_easy": 1.0,
+    "boolq": 2.0,
+    "hellaswag": 1.0
+  }
+}

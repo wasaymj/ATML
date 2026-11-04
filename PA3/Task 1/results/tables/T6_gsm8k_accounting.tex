@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\small
+\caption{GSM8K answer accounting. Strict-match expects ``The answer is N.''; flexible-extract takes the last number. Format-aware EM is a diagnostic re-extraction only.}
+\label{tab:t1_gsm}
+\begin{tabular}{lcccccc}
+\toprule
+Condition & Flex EM & Strict EM & Invalid \% & Trunc. \% & Format-aware & Tokens \\
+\midrule
+Baseline & 43.37 & 0.00 & 0.00 & 0.83 & 60.80 & 226 \\
+Full FT (mid, 625) & 58.38 & 0.00 & 0.00 & 1.14 & 58.38 & 143 \\
+Full FT & 64.29 & 0.00 & 0.00 & 0.83 & 64.29 & 139 \\
+Full FT + L2-SP & 65.50 & 0.00 & 0.00 & 0.68 & 65.50 & 140 \\
+LoRA-4 & 58.23 & 0.00 & 0.00 & 1.14 & 58.23 & 144 \\
+LoRA-16 & 63.08 & 0.00 & 0.00 & 0.53 & 63.08 & 139 \\
+OPLoRA-16 & 62.02 & 0.00 & 0.00 & 0.83 & 62.02 & 142 \\
+\bottomrule
+\end{tabular}
+\end{table}

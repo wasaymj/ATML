@@ -1,0 +1,170 @@
+[
+  {
+    "doc_id": 0,
+    "gold": 0,
+    "loglik": [
+      -26.671875,
+      -40.46875,
+      -31.375,
+      -25.359375
+    ],
+    "pred": 3,
+    "choice_chars": [
+      59,
+      54,
+      50,
+      43
+    ],
+    "pred_norm": 0,
+    "acc": 0.0,
+    "acc_norm": 1.0,
+    "context": "Question: Which statement best explains why photosynthesis is the foundation of most food webs?\nAnswer:"
+  },
+  {
+    "doc_id": 1,
+    "gold": 1,
+    "loglik": [
+      -13.4140625,
+      -9.78125,
+      -13.453125,
+      -16.53125
+    ],
+    "pred": 1,
+    "choice_chars": [
+      14,
+      14,
+      13,
+      10
+    ],
+    "pred_norm": 1,
+    "acc": 1.0,
+    "acc_norm": 1.0,
+    "context": "Question: Which piece of safety equipment is used to keep mold spores from entering the respiratory system?\nAnswer:"
+  },
+  {
+    "doc_id": 2,
+    "gold": 3,
+    "loglik": [
+      -19.09375,
+      -19.3125,
+      -14.0234375,
+      -16.875
+    ],
+    "pred": 2,
+    "choice_chars": [
+      11,
+      10,
+      12,
+      11
+    ],
+    "pred_norm": 2,
+    "acc": 0.0,
+    "acc_norm": 0.0,
+    "context": "Question: Meiosis is a type of cell division in which germ cells divide to produce haploid cells. Where does meiosis occur?\nAnswer:"
+  },
+  {
+    "doc_id": 3,
+    "gold": 3,
+    "loglik": [
+      -11.59375,
+      -11.7578125,
+      -11.6796875,
+      -10.109375
+    ],
+    "pred": 3,
+    "choice_chars": [
+      4,
+      4,
+      4,
+      4
+    ],
+    "pred_norm": 3,
+    "acc": 1.0,
+    "acc_norm": 1.0,
+    "context": "Question: Which characteristic describes the texture of a kitten's fur?\nAnswer:"
+  },
+  {
+    "doc_id": 4,
+    "gold": 1,
+    "loglik": [
+      -31.96875,
+      -39.75,
+      -30.59375,
+      -40.5
+    ],
+    "pred": 2,
+    "choice_chars": [
+      50,
+      57,
+      56,
+      63
+    ],
+    "pred_norm": 2,
+    "acc": 0.0,
+    "acc_norm": 0.0,
+    "context": "Question: Which best describes the structure of an atom?\nAnswer:"
+  },
+  {
+    "doc_id": 5,
+    "gold": 2,
+    "loglik": [
+      -13.609375,
+      -16.734375,
+      -11.2578125,
+      -10.5703125
+    ],
+    "pred": 3,
+    "choice_chars": [
+      6,
+      10,
+      11,
+      18
+    ],
+    "pred_norm": 3,
+    "acc": 0.0,
+    "acc_norm": 0.0,
+    "context": "Question: To express the distance between the Milky Way galaxy and other galaxies, the most appropriate unit of measurement is the\nAnswer:"
+  },
+  {
+    "doc_id": 6,
+    "gold": 0,
+    "loglik": [
+      -11.671875,
+      -12.65625,
+      -18.84375,
+      -34.28125
+    ],
+    "pred": 0,
+    "choice_chars": [
+      10,
+      22,
+      22,
+      31
+    ],
+    "pred_norm": 1,
+    "acc": 1.0,
+    "acc_norm": 0.0,
+    "context": "Question: A student has just completed a laboratory activity. What is the last action that the student should perform before leaving the lab area?\nAnswer:"
+  },
+  {
+    "doc_id": 7,
+    "gold": 2,
+    "loglik": [
+      -7.5546875,
+      -13.9375,
+      -5.5546875,
+      -7.625
+    ],
+    "pred": 2,
+    "choice_chars": [
+      6,
+      11,
+      5,
+      10
+    ],
+    "pred_norm": 3,
+    "acc": 1.0,
+    "acc_norm": 0.0,
+    "context": "Question: Students are investigating the effects of different fertilizers on plant growth. Which units would be best to measure the mass of the fertilizer used?\nAnswer:"
+  }
+]

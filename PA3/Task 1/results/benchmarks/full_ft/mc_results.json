@@ -1,0 +1,55 @@
+{
+  "results": {
+    "hellaswag": {
+      "name": "hellaswag",
+      "alias": "hellaswag",
+      "sample_len": 10042,
+      "acc,none": 0.37353116908982276,
+      "acc_stderr,none": 0.0048275265848897455,
+      "acc_norm,none": 0.460565624377614,
+      "acc_norm_stderr,none": 0.004974238284524698
+    },
+    "boolq": {
+      "name": "boolq",
+      "alias": "boolq",
+      "sample_len": 3270,
+      "acc,none": 0.6055045871559633,
+      "acc_stderr,none": 0.008548152025770818
+    },
+    "arc_easy": {
+      "name": "arc_easy",
+      "alias": "arc_easy",
+      "sample_len": 2376,
+      "acc,none": 0.6658249158249159,
+      "acc_stderr,none": 0.00967910603291896,
+      "acc_norm,none": 0.6367845117845118,
+      "acc_norm_stderr,none": 0.009868397136118761
+    }
+  },
+  "n_samples": {
+    "hellaswag": 10042,
+    "boolq": 3270,
+    "arc_easy": 2376
+  },
+  "eval_time_sec": 698.2700984477997,
+  "batch_size_used": 8,
+  "versions": {
+    "arc_easy": 1.0,
+    "boolq": 2.0,
+    "hellaswag": 1.0
+  },
+  "n-samples": {
+    "hellaswag": {
+      "original": 10042,
+      "effective": 10042
+    },
+    "boolq": {
+      "original": 3270,
+      "effective": 3270
+    },
+    "arc_easy": {
+      "original": 2376,
+      "effective": 2376
+    }
+  }
+}

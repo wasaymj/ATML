@@ -1,0 +1,311 @@
+condition,doc_id,gold,response_tail,human_final_answer,human_correct_yes_no,notes
+baseline,902,8,"William bought:
+
+- 5 notebooks at $1.50 each:  
+  $5 \times 1.50 = 7.50
+
+- 1 ballpen at $0.50:  
+  $0.50
+
+Total cost:  
+$7.50 + $0.50 = **$8.00**
+
+**Answer: $8.00**",8,yes,
+baseline,463,18," denote the amount she ordered as $ x $.
+
+Then, the tip is:
+
+$$
+\frac{1}{5}x
+$$
+
+Since the delivery cost is $15, the total amount Ashley should pay is:
+
+$$
+15 + \frac{1}{5}x
+$$
+
+But we don’t know the value of $ x $, the amount she ordered. Therefore, we cannot determine the exact total amount Ashley should give the delivery man unless we know the value of $ x $.
+
+However, if we assume that the amount she ordered is **$15**, then:
+
+$$
+\text{Tip} = \frac{1}{5} \times 15 = 3
+$$
+
+$$
+\text{Total amount} = 15 + 3 = 18
+$$
+
+So, the total amount Ashley should give the delivery man is:
+
+$$
+\boxed{18}
+$$",18,yes,
+baseline,1257,14,"Bob wants to build a recreation of the Washington Monument, which requires **56 popsicle sticks**. Each box contains **8 popsicle sticks**, and each box costs **$2.00**.
+
+### Step 1: Calculate how many boxes Bob needs
+$$
+\frac{56 \text{ popsicle sticks}}{8 \text{ sticks per box}} = 7 \text{ boxes}
+$$
+
+### Step 2: Calculate the total cost
+$$
+7 \text{ boxes} \times \$2.00 \text{ per box} = \$14.00
+$$
+
+### ✅ Final Answer:
+$$
+\boxed{\$14.00}
+$$",14,yes,
+baseline,618,36,"\times 18 \text{ seats/row} = 72 \text{ seats}
+$$
+
+---
+
+### Step 2: Occupied by administrators
+
+$$
+\frac{1}{4} \text{ of } 72 = 18 \text{ seats}
+$$
+
+So, **18 seats are occupied by administrators**.
+
+---
+
+### Step 3: Remaining seats after administrators
+
+$$
+72 - 18 = 54 \text{ seats}
+$$
+
+---
+
+### Step 4: Occupied by parents
+
+$$
+\frac{1}{3} \text{ of } 54 = 18 \text{ seats}
+$$
+
+So, **18 seats are occupied by parents**.
+
+---
+
+### Step 5: Remaining seats after parents
+
+$$
+54 - 18 = 36 \text{ seats}
+$$
+
+These are occupied by **students**.
+
+---
+
+### ✅ Final Answer:
+
+$$
+\boxed{36} \text{ students}
+$$",36,yes,
+baseline,578,48," half the number** is divided by **5**.
+- The **resulting value** is then **multiplied by the starting value minus 12**.
+
+Let's break this down step by step.
+
+---
+
+### Step 1: Start with the starting value
+
+$$
+\text{Starting value} = 20
+$$
+
+---
+
+### Step 2: Add half the number
+
+We are told:  
+$$
+\text{Starting value} + \frac{1}{2} \times \text{number} = 20 + \frac{1}{2} \times 20 = 20 + 10 = 30
+$$
+
+---
+
+### Step 3: Divide by 5
+
+$$
+\frac{30}{5} = 6
+$$
+
+---
+
+### Step 4: Multiply by the starting value minus 12
+
+$$
+6 \times (20 - 12) = 6 \times 8 = 48
+$$
+
+---
+
+### ✅ Final Answer:
+
+$$
+\boxed{48}
+$$",48,yes,
+baseline,1262,12," has **450 words**.
+- We need to find how long it would take him to **speak 10 pages**.
+
+---
+
+### Step 1: Find his new speed
+
+His new speed is:
+
+$$
+2.5 \times 150 = 375 \text{ WPM}
+$$
+
+---
+
+### Step 2: Find the total number of words he needs to speak
+
+Each page has 450 words, and he wants to speak **10 pages**:
+
+$$
+10 \times 450 = 4500 \text{ words}
+$$
+
+---
+
+### Step 3: Convert total words to minutes
+
+We know that 1 WPM = 1 word per minute.
+
+So, time in minutes is:
+
+$$
+\frac{4500 \text{ words}}{375 \text{ WPM}} = 12 \text{ minutes}
+$$
+
+---
+
+### ✅ Final Answer:
+
+$$
+\boxed{12 \text{ minutes}}
+$$",12,yes,
+baseline,270,762,"Let's break down the problem step by step:
+
+- **First bag**: 300 M&Ms  
+- **Second bag**: 12 more than the first → $ 300 + 12 = 312 $ M&Ms  
+- **Third bag**: Half the number of M&Ms in the first bag → $ \frac{300}{2} = 150 $ M&Ms  
+
+Now, add them all together:
+
+$$
+300 + 312 + 150 = 762
+$$
+
+### ✅ Final Answer: **762 M&Ms**.",762,yes,
+baseline,819,6250,"We are told:
+
+- There are **20 students**.
+- Each student earns the **same amount**.
+- The charity raises a total of **$175,000**.
+- $50,000 comes from **organizations**, and the rest comes from the students.
+
+---
+
+### Step 1: Find the amount raised by the students
+
+$$
+\text{Amount from students} = \text{Total} - \text{Amount from organizations} = 175,000 - 50,000 = 125,000
+$$
+
+---
+
+### Step 2: Divide by the number of students
+
+$$
+\text{Amount per student} = \frac{125,000}{20} = 6,250
+$$
+
+---
+
+### ✅ Final Answer:
+
+$$
+\boxed{6250}
+$$
+
+Each student raised **$6,250**.",6250,yes,
+full_ft_mid,1020,22,"On Wednesday, John picks 4 bananas.
+On Thursday, he picks 6 bananas.
+On Friday, he picks triple the number of bananas he did on Wednesday, so he picks 4 x 3 = 12 bananas.
+In total, John has 4 + 6 + 12 = 22 bananas.
+#### 22
+The answer is: 22",22,yes,
+full_ft_mid,376,15,"Half of the class likes blue, so there are 40/2 = 20 pupils who like blue.
+The remaining pupils are 40 - 20 = 20 pupils.
+One-fourth of the remaining pupils like green, so there are 20/4 = 5 pupils who like green.
+The rest of the pupils, which is 20 - 5 = 15 pupils, like yellow.
+Therefore, there are 15 pupils who like the color yellow.
+#### 15
+The answer is: 15",15,yes,
+full_ft,405,50,"Each sandwich requires 1 pound of meat and 1 pound of cheese, so for 20 people, Tyson would need 20/4 = 5 pounds of meat and cheese.
+The meat costs $7.00 per pound, so for 5 pounds, Tyson would spend 5 * $7.00 = $35.00 on meat.
+The cheese costs $3.00 per pound, so for 5 pounds, Tyson would spend 5 * $3.00 = $15.00 on cheese.
+Therefore, Tyson would spend a total of $35.00 + $15.00 = $50.00 on meat and cheese to make enough sandwiches to serve 20 people.
+#### 50
+The answer is: 50",50,yes,
+full_ft,207,2600,"Each chocolate bar weighs twice as much as each candied apple, so each candied apple weighs 40/2 = 20g.
+Joe's bag of candy has 25 chocolate bars, so the weight of the chocolate bars is 25 * 40 = 1000g.
+Joe's bag of candy also has 80 candied apples, so the weight of the candied apples is 80 * 20 = 1600g.
+Therefore, Joe's bag of candy weighs 1000 + 1600 = 2600g.
+#### 2600
+The answer is: 2600",2600,yes,
+l2sp,823,14,"In the first game, Sasha scored 14 points.
+Julie scored 4 fewer points than Sasha, so she scored 14 - 4 = 10 points.
+In the second game, Sasha scored 6 fewer points than Julie's score in the first game, so she scored 10 - 6 = 4 points.
+Therefore, Sasha scored a total of 14 + 4 = 18 points during both games.
+#### 18
+The answer is: 18",18,no,
+l2sp,243,250,"Jason has a phone plan of 1000 minutes per month.
+He has had 300 extra minutes of calls, so he has a total of 1000 + 300 = 1300 minutes.
+He has had 15 minutes of calls with his boss every day, so he has had a total of 15 * 30 = 450 minutes of calls with his boss.
+Therefore, Jason has 1300 - 450 = 850 minutes left.
+#### 850
+The answer is: 850",850,no,
+lora_r4,720,4,"This week, Castle bought 3 boxes of Coco Crunch and 5 boxes of Fruit Loops, so she bought a total of 3 + 5 = 8 boxes of snacks.
+Last week, Castle bought 4 boxes of cereal.
+To find out how many more boxes of cereal she bought this week than last week, we subtract the number of boxes of cereal from the number of boxes of snacks: 8 - 4 = 4.
+Therefore, Castle bought 4 more boxes of cereal this week than last week.
+#### 4
+The answer is: 4",4,yes,
+lora_r4,1268,20,"The tower has 4 blue blocks.
+The tower has twice as many yellow blocks, so there are 4 x 2 = 8 yellow blocks.
+The total number of blue and yellow blocks is 4 + 8 = 12 blocks.
+If there are 32 blocks in total, then there are 32 - 12 = 20 red blocks.
+#### 20
+The answer is: 20",20,yes,
+lora_r16,415,350,"Joanne gathers 30 apples from the tallest trees.
+Her sister gathers twice as many apples from the tallest trees, so she gathers 30 x 2 = 60 apples from the tallest trees.
+Her sister also gathers 3 times as many apples from the shortest trees, so she gathers 30 x 3 = 90 apples from the shortest trees.
+The total number of apples gathered by the sisters is 30 + 60 + 90 = 180 apples.
+If the sisters have gathered a combined total of 500 apples, then Joanne must have gathered 500 - 180 = 320 apples from the average trees.
+#### 320
+The answer is: 320",320,no,
+lora_r16,832,42,"Anthony has saved $10.00 more than Eva, so Anthony has saved $10.00 + $20.00 = $30.00
+Roy has saved 40% more than Anthony, so Roy has saved $30.00 + ($30.00 * 40%) = $30.00 + $12.00 = $42.00
+Therefore, Roy has $42.00.
+#### 42
+The answer is: 42",42,yes,
+oplora_r16,796,2880000,"The company hires 20 new employees every month, so after three months, they will have hired 20 x 3 = 60 new employees.
+The initial employee number is 200, so the total number of employees after three months is 200 + 60 = 260.
+Each employee is paid a $4000 salary per month, so after three months, the total amount of money paid to employees is 260 x $4000 = $1,040,000.
+#### 1040000
+The answer is: 1040000",1040000,no,
+oplora_r16,195,12,"The total cost of a pencil and eraser is $1.20 + $0.30 = $1.50
+Since a pen costs as much as a pencil and eraser combined, the cost of one pen is $1.50
+Therefore, the cost of 8 pens is 8 * $1.50 = $12
+#### 12
+The answer is: 12",12,yes,

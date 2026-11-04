@@ -21,13 +21,23 @@ results/_preflight/
 *.bin
 *.pt
 
-# Exclude readings & pdfs
+# Exclude readings, zips & pdfs
 Readings/
 readings/
 *.pdf
 !**/results/figures/*.pdf
 ATML_PA3_extracted.txt
 Implementation_Notes/
+Task 1/task1_data_ids.zip
+Task 1/task1_results.zip
+
+# Task 2: raw COCO/VQAv2 annotations, downloaded images, materialized text, feature cache, audit contact sheets
+# (data/ids/ and results/ stay tracked)
+Task 2/data/raw/
+Task 2/data/images/
+Task 2/data/build/
+Task 2/features/
+Task 2/label_audit/
 
 # OS files
 .DS_Store

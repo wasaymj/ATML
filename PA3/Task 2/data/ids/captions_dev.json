@@ -1,0 +1,482 @@
+[
+  {
+    "ex_id": "capdev_383203",
+    "image": "val2014/16961",
+    "coco_caption_id": 383203
+  },
+  {
+    "ex_id": "capdev_735925",
+    "image": "val2014/488693",
+    "coco_caption_id": 735925
+  },
+  {
+    "ex_id": "capdev_530301",
+    "image": "val2014/544246",
+    "coco_caption_id": 530301
+  },
+  {
+    "ex_id": "capdev_515945",
+    "image": "val2014/27617",
+    "coco_caption_id": 515945
+  },
+  {
+    "ex_id": "capdev_641240",
+    "image": "val2014/317683",
+    "coco_caption_id": 641240
+  },
+  {
+    "ex_id": "capdev_816885",
+    "image": "val2014/92749",
+    "coco_caption_id": 816885
+  },
+  {
+    "ex_id": "capdev_535667",
+    "image": "val2014/235644",
+    "coco_caption_id": 535667
+  },
+  {
+    "ex_id": "capdev_241850",
+    "image": "val2014/382089",
+    "coco_caption_id": 241850
+  },
+  {
+    "ex_id": "capdev_169290",
+    "image": "val2014/493799",
+    "coco_caption_id": 169290
+  },
+  {
+    "ex_id": "capdev_157153",
+    "image": "val2014/13892",
+    "coco_caption_id": 157153
+  },
+  {
+    "ex_id": "capdev_422565",
+    "image": "val2014/464283",
+    "coco_caption_id": 422565
+  },
+  {
+    "ex_id": "capdev_819152",
+    "image": "val2014/379376",
+    "coco_caption_id": 819152
+  },
+  {
+    "ex_id": "capdev_368806",
+    "image": "val2014/388487",
+    "coco_caption_id": 368806
+  },
+  {
+    "ex_id": "capdev_539975",
+    "image": "val2014/228418",
+    "coco_caption_id": 539975
+  },
+  {
+    "ex_id": "capdev_249105",
+    "image": "val2014/26026",
+    "coco_caption_id": 249105
+  },
+  {
+    "ex_id": "capdev_507664",
+    "image": "val2014/247216",
+    "coco_caption_id": 507664
+  },
+  {
+    "ex_id": "capdev_148647",
+    "image": "val2014/553698",
+    "coco_caption_id": 148647
+  },
+  {
+    "ex_id": "capdev_306283",
+    "image": "val2014/14773",
+    "coco_caption_id": 306283
+  },
+  {
+    "ex_id": "capdev_825134",
+    "image": "val2014/247587",
+    "coco_caption_id": 825134
+  },
+  {
+    "ex_id": "capdev_41928",
+    "image": "val2014/544713",
+    "coco_caption_id": 41928
+  },
+  {
+    "ex_id": "capdev_608991",
+    "image": "val2014/152946",
+    "coco_caption_id": 608991
+  },
+  {
+    "ex_id": "capdev_420379",
+    "image": "val2014/329932",
+    "coco_caption_id": 420379
+  },
+  {
+    "ex_id": "capdev_197035",
+    "image": "val2014/292415",
+    "coco_caption_id": 197035
+  },
+  {
+    "ex_id": "capdev_617613",
+    "image": "val2014/510449",
+    "coco_caption_id": 617613
+  },
+  {
+    "ex_id": "capdev_251625",
+    "image": "val2014/118507",
+    "coco_caption_id": 251625
+  },
+  {
+    "ex_id": "capdev_750380",
+    "image": "val2014/346589",
+    "coco_caption_id": 750380
+  },
+  {
+    "ex_id": "capdev_418082",
+    "image": "val2014/415530",
+    "coco_caption_id": 418082
+  },
+  {
+    "ex_id": "capdev_343004",
+    "image": "val2014/163929",
+    "coco_caption_id": 343004
+  },
+  {
+    "ex_id": "capdev_596015",
+    "image": "val2014/345941",
+    "coco_caption_id": 596015
+  },
+  {
+    "ex_id": "capdev_351808",
+    "image": "val2014/502168",
+    "coco_caption_id": 351808
+  },
+  {
+    "ex_id": "capdev_653671",
+    "image": "val2014/160057",
+    "coco_caption_id": 653671
+  },
+  {
+    "ex_id": "capdev_338635",
+    "image": "val2014/442614",
+    "coco_caption_id": 338635
+  },
+  {
+    "ex_id": "capdev_787905",
+    "image": "val2014/81812",
+    "coco_caption_id": 787905
+  },
+  {
+    "ex_id": "capdev_364215",
+    "image": "val2014/133142",
+    "coco_caption_id": 364215
+  },
+  {
+    "ex_id": "capdev_62189",
+    "image": "val2014/327383",
+    "coco_caption_id": 62189
+  },
+  {
+    "ex_id": "capdev_573232",
+    "image": "val2014/28646",
+    "coco_caption_id": 573232
+  },
+  {
+    "ex_id": "capdev_179536",
+    "image": "val2014/46919",
+    "coco_caption_id": 179536
+  },
+  {
+    "ex_id": "capdev_598621",
+    "image": "val2014/471625",
+    "coco_caption_id": 598621
+  },
+  {
+    "ex_id": "capdev_599419",
+    "image": "val2014/575293",
+    "coco_caption_id": 599419
+  },
+  {
+    "ex_id": "capdev_176733",
+    "image": "val2014/422464",
+    "coco_caption_id": 176733
+  },
+  {
+    "ex_id": "capdev_763179",
+    "image": "val2014/425933",
+    "coco_caption_id": 763179
+  },
+  {
+    "ex_id": "capdev_786305",
+    "image": "val2014/106411",
+    "coco_caption_id": 786305
+  },
+  {
+    "ex_id": "capdev_612176",
+    "image": "val2014/492552",
+    "coco_caption_id": 612176
+  },
+  {
+    "ex_id": "capdev_54293",
+    "image": "val2014/499391",
+    "coco_caption_id": 54293
+  },
+  {
+    "ex_id": "capdev_267832",
+    "image": "val2014/75857",
+    "coco_caption_id": 267832
+  },
+  {
+    "ex_id": "capdev_188571",
+    "image": "val2014/210030",
+    "coco_caption_id": 188571
+  },
+  {
+    "ex_id": "capdev_138910",
+    "image": "val2014/10678",
+    "coco_caption_id": 138910
+  },
+  {
+    "ex_id": "capdev_373872",
+    "image": "val2014/131273",
+    "coco_caption_id": 373872
+  },
+  {
+    "ex_id": "capdev_539836",
+    "image": "val2014/509014",
+    "coco_caption_id": 539836
+  },
+  {
+    "ex_id": "capdev_101041",
+    "image": "val2014/348243",
+    "coco_caption_id": 101041
+  },
+  {
+    "ex_id": "capdev_150547",
+    "image": "val2014/428612",
+    "coco_caption_id": 150547
+  },
+  {
+    "ex_id": "capdev_198504",
+    "image": "val2014/183657",
+    "coco_caption_id": 198504
+  },
+  {
+    "ex_id": "capdev_618238",
+    "image": "val2014/572850",
+    "coco_caption_id": 618238
+  },
+  {
+    "ex_id": "capdev_422840",
+    "image": "val2014/46323",
+    "coco_caption_id": 422840
+  },
+  {
+    "ex_id": "capdev_136996",
+    "image": "val2014/290234",
+    "coco_caption_id": 136996
+  },
+  {
+    "ex_id": "capdev_570827",
+    "image": "val2014/246876",
+    "coco_caption_id": 570827
+  },
+  {
+    "ex_id": "capdev_96734",
+    "image": "val2014/212342",
+    "coco_caption_id": 96734
+  },
+  {
+    "ex_id": "capdev_623384",
+    "image": "val2014/451693",
+    "coco_caption_id": 623384
+  },
+  {
+    "ex_id": "capdev_440504",
+    "image": "val2014/188067",
+    "coco_caption_id": 440504
+  },
+  {
+    "ex_id": "capdev_89971",
+    "image": "val2014/34257",
+    "coco_caption_id": 89971
+  },
+  {
+    "ex_id": "capdev_315752",
+    "image": "val2014/575219",
+    "coco_caption_id": 315752
+  },
+  {
+    "ex_id": "capdev_789119",
+    "image": "val2014/504690",
+    "coco_caption_id": 789119
+  },
+  {
+    "ex_id": "capdev_222879",
+    "image": "val2014/343692",
+    "coco_caption_id": 222879
+  },
+  {
+    "ex_id": "capdev_821388",
+    "image": "val2014/454161",
+    "coco_caption_id": 821388
+  },
+  {
+    "ex_id": "capdev_315710",
+    "image": "val2014/39081",
+    "coco_caption_id": 315710
+  },
+  {
+    "ex_id": "capdev_761664",
+    "image": "val2014/260199",
+    "coco_caption_id": 761664
+  },
+  {
+    "ex_id": "capdev_192762",
+    "image": "val2014/451571",
+    "coco_caption_id": 192762
+  },
+  {
+    "ex_id": "capdev_585544",
+    "image": "val2014/6818",
+    "coco_caption_id": 585544
+  },
+  {
+    "ex_id": "capdev_353048",
+    "image": "val2014/459634",
+    "coco_caption_id": 353048
+  },
+  {
+    "ex_id": "capdev_530437",
+    "image": "val2014/178807",
+    "coco_caption_id": 530437
+  },
+  {
+    "ex_id": "capdev_686028",
+    "image": "val2014/89071",
+    "coco_caption_id": 686028
+  },
+  {
+    "ex_id": "capdev_88917",
+    "image": "val2014/381551",
+    "coco_caption_id": 88917
+  },
+  {
+    "ex_id": "capdev_65128",
+    "image": "val2014/496486",
+    "coco_caption_id": 65128
+  },
+  {
+    "ex_id": "capdev_326237",
+    "image": "val2014/359126",
+    "coco_caption_id": 326237
+  },
+  {
+    "ex_id": "capdev_656818",
+    "image": "val2014/180779",
+    "coco_caption_id": 656818
+  },
+  {
+    "ex_id": "capdev_145033",
+    "image": "val2014/26802",
+    "coco_caption_id": 145033
+  },
+  {
+    "ex_id": "capdev_693968",
+    "image": "val2014/385320",
+    "coco_caption_id": 693968
+  },
+  {
+    "ex_id": "capdev_418757",
+    "image": "val2014/262092",
+    "coco_caption_id": 418757
+  },
+  {
+    "ex_id": "capdev_733599",
+    "image": "val2014/318461",
+    "coco_caption_id": 733599
+  },
+  {
+    "ex_id": "capdev_354274",
+    "image": "val2014/562160",
+    "coco_caption_id": 354274
+  },
+  {
+    "ex_id": "capdev_88653",
+    "image": "val2014/359864",
+    "coco_caption_id": 88653
+  },
+  {
+    "ex_id": "capdev_821354",
+    "image": "val2014/142971",
+    "coco_caption_id": 821354
+  },
+  {
+    "ex_id": "capdev_490521",
+    "image": "val2014/495993",
+    "coco_caption_id": 490521
+  },
+  {
+    "ex_id": "capdev_254584",
+    "image": "val2014/118715",
+    "coco_caption_id": 254584
+  },
+  {
+    "ex_id": "capdev_354023",
+    "image": "val2014/345535",
+    "coco_caption_id": 354023
+  },
+  {
+    "ex_id": "capdev_138196",
+    "image": "val2014/529159",
+    "coco_caption_id": 138196
+  },
+  {
+    "ex_id": "capdev_676925",
+    "image": "val2014/563849",
+    "coco_caption_id": 676925
+  },
+  {
+    "ex_id": "capdev_276666",
+    "image": "val2014/303704",
+    "coco_caption_id": 276666
+  },
+  {
+    "ex_id": "capdev_387275",
+    "image": "val2014/13605",
+    "coco_caption_id": 387275
+  },
+  {
+    "ex_id": "capdev_493495",
+    "image": "val2014/344513",
+    "coco_caption_id": 493495
+  },
+  {
+    "ex_id": "capdev_568168",
+    "image": "val2014/575006",
+    "coco_caption_id": 568168
+  },
+  {
+    "ex_id": "capdev_772154",
+    "image": "val2014/275933",
+    "coco_caption_id": 772154
+  },
+  {
+    "ex_id": "capdev_548141",
+    "image": "val2014/17482",
+    "coco_caption_id": 548141
+  },
+  {
+    "ex_id": "capdev_506924",
+    "image": "val2014/6266",
+    "coco_caption_id": 506924
+  },
+  {
+    "ex_id": "capdev_321086",
+    "image": "val2014/234518",
+    "coco_caption_id": 321086
+  },
+  {
+    "ex_id": "capdev_318634",
+    "image": "val2014/192191",
+    "coco_caption_id": 318634
+  }
+]

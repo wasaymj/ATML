@@ -1,0 +1,186 @@
+[
+  {
+    "doc_id": 0,
+    "gold": 3,
+    "loglik": [
+      -47.28125,
+      -35.3125,
+      -21.140625,
+      -32.125
+    ],
+    "pred": 2,
+    "choice_chars": [
+      37,
+      27,
+      26,
+      36
+    ],
+    "pred_norm": 2,
+    "acc": 0.0,
+    "acc_norm": 0.0,
+    "activity_label": "Roof shingle removal",
+    "source": "activitynet",
+    "context": "Roof shingle removal: A man is sitting on a roof. He"
+  },
+  {
+    "doc_id": 1,
+    "gold": 3,
+    "loglik": [
+      -31.109375,
+      -12.7265625,
+      -18.8125,
+      -25.84375
+    ],
+    "pred": 1,
+    "choice_chars": [
+      29,
+      26,
+      37,
+      42
+    ],
+    "pred_norm": 1,
+    "acc": 0.0,
+    "acc_norm": 0.0,
+    "activity_label": "Clean and jerk",
+    "source": "activitynet",
+    "context": "Clean and jerk: A lady walks to a barbell. She bends down and grabs the pole. The lady"
+  },
+  {
+    "doc_id": 2,
+    "gold": 2,
+    "loglik": [
+      -56.78125,
+      -48.375,
+      -25.96875,
+      -120.375
+    ],
+    "pred": 2,
+    "choice_chars": [
+      67,
+      67,
+      37,
+      99
+    ],
+    "pred_norm": 2,
+    "acc": 1.0,
+    "acc_norm": 1.0,
+    "activity_label": "Canoeing",
+    "source": "activitynet",
+    "context": "Canoeing: Two women in a child are shown in a canoe while a man pulls the canoe while standing in the water, with other individuals visible in the background. The child and a different man"
+  },
+  {
+    "doc_id": 3,
+    "gold": 2,
+    "loglik": [
+      -14.2734375,
+      -26.296875,
+      -30.65625,
+      -25.65625
+    ],
+    "pred": 0,
+    "choice_chars": [
+      16,
+      14,
+      42,
+      32
+    ],
+    "pred_norm": 2,
+    "acc": 0.0,
+    "acc_norm": 1.0,
+    "activity_label": "High jump",
+    "source": "activitynet",
+    "context": "High jump: A boy is running down a track. The boy"
+  },
+  {
+    "doc_id": 4,
+    "gold": 1,
+    "loglik": [
+      -17.984375,
+      -10.484375,
+      -13.828125,
+      -20.21875
+    ],
+    "pred": 1,
+    "choice_chars": [
+      33,
+      21,
+      41,
+      23
+    ],
+    "pred_norm": 2,
+    "acc": 1.0,
+    "acc_norm": 0.0,
+    "activity_label": "High jump",
+    "source": "activitynet",
+    "context": "High jump: The boy lifts his body above the height of a pole. The boy lands on his back on to a red mat. The boy"
+  },
+  {
+    "doc_id": 5,
+    "gold": 1,
+    "loglik": [
+      -16.84375,
+      -42.75,
+      -12.8671875,
+      -35.875
+    ],
+    "pred": 2,
+    "choice_chars": [
+      19,
+      45,
+      22,
+      29
+    ],
+    "pred_norm": 2,
+    "acc": 0.0,
+    "acc_norm": 0.0,
+    "activity_label": "High jump",
+    "source": "activitynet",
+    "context": "High jump: The boy lands on his back on to a red mat. The boy gets up from the mat. The boy"
+  },
+  {
+    "doc_id": 6,
+    "gold": 2,
+    "loglik": [
+      -29.25,
+      -19.203125,
+      -33.09375,
+      -29.890625
+    ],
+    "pred": 1,
+    "choice_chars": [
+      71,
+      48,
+      45,
+      39
+    ],
+    "pred_norm": 1,
+    "acc": 0.0,
+    "acc_norm": 0.0,
+    "activity_label": "Playing harmonica",
+    "source": "activitynet",
+    "context": "Playing harmonica: A man is standing in front of a camera. He starts playing a harmonica for the camera. He"
+  },
+  {
+    "doc_id": 7,
+    "gold": 0,
+    "loglik": [
+      -56.25,
+      -49.03125,
+      -39.0625,
+      -34.25
+    ],
+    "pred": 3,
+    "choice_chars": [
+      53,
+      47,
+      41,
+      38
+    ],
+    "pred_norm": 3,
+    "acc": 0.0,
+    "acc_norm": 0.0,
+    "activity_label": "Sumo",
+    "source": "activitynet",
+    "context": "Sumo: A cartoon animation video is shown with people wandering around and rockets being shot. Two men"
+  }
+]

@@ -1,0 +1,105 @@
+# Task 2: SigLIP -> connector -> Qwen3-0.6B VLM, three-stage curriculum, grounding evaluation.
+# Every value below is taken from the PA3 manual unless marked "(impl)", which marks an
+# implementation/engineering choice that does not change the prescribed experiment.
+
+seed: 6304
+enable_thinking: false
+
+models:
+  vision: "google/siglip-base-patch16-224"     # always frozen
+  language: "Qwen/Qwen3-0.6B"                  # original weights frozen; LoRA in Stages 2-3
+  revision: "main"                             # (impl) resolved commit hashes are recorded in every manifest
+  vision_dim: 768
+  lm_dim: 1024
+  grid: 14                                     # 196 patch features in 14 x 14 row-major order
+
+# Two runs share data, seed, budgets and evaluation; only the number of visual tokens differs.
+runs:
+  main:       {visual_tokens: 196}
+  compress49: {visual_tokens: 49}              # optional experiment: 2 x 2 average pooling before the connector
+
+paths:                                          # (impl) all relative to PA3/Task 2 unless absolute
+  raw_dir: "data/raw"                           # downloaded annotation json (gitignored)
+  image_dir: "data/images"                      # only the selected COCO images are downloaded (gitignored)
+  local_image_dirs: []                          # (impl) optional folders holding train2014/ and val2014/ (e.g. a Kaggle input)
+  build_dir: "data/build"                       # materialized examples with text (gitignored; rebuilt from ids)
+  ids_dir: "data/ids"                           # selected image / question / pair ids (git-tracked)
+  feature_dir: "features"                       # FP16 SigLIP feature cache (gitignored)
+
+downloads:
+  vqa_base: "https://s3.amazonaws.com/cvmlp/vqa/mscoco/vqa/"
+  vqa_files: ["v2_Questions_Train_mscoco.zip", "v2_Annotations_Train_mscoco.zip",
+              "v2_Complementary_Pairs_Train_mscoco.zip", "v2_Questions_Val_mscoco.zip",
+              "v2_Annotations_Val_mscoco.zip", "v2_Complementary_Pairs_Val_mscoco.zip"]
+  coco_annotations: "http://images.cocodataset.org/annotations/annotations_trainval2014.zip"
+  coco_images: "http://images.cocodataset.org/"   # + {train2014|val2014}/COCO_{split}_{id:012d}.jpg
+  download_workers: 32                          # (impl)
+
+data:
+  caption_train_images: 6000
+  captions_per_train_image: 3                   # 18,000 caption examples
+  caption_dev_images: 96                        # one caption each
+  grounding_dev_pairs: {presence: 12, counting: 12}    # (impl) the manual fixes 24 pairs; we split them evenly
+  grounding_test_pairs: {presence: 32, counting: 32}   # (impl) the manual fixes 64 pairs; we split them evenly
+  grounding_pool_pairs: {presence: 4000, counting: 4000}   # (impl) reusable training pools, sampled with repetition
+  count_range: [1, 4]
+  # (impl) label-quality rules for annotation-derived questions (COCO omits objects / has ambiguous counts)
+  presence_min_area_frac: 0.01                  # positive image: largest instance covers >= 1% of the image
+  count_min_area_frac: 0.005                    # counting: every counted instance covers >= 0.5% (about one 16 px patch at 224 px)
+  presence_negative_shares_category: true       # negative image shares >= 1 other category with the positive (harder than a random image)
+  vqa_train_pairs: {"yes/no": 640, "number": 256, "other": 640}
+  vqa_dev_pairs: {"yes/no": 12, "number": 8, "other": 12}
+  vqa_test_pairs: {"yes/no": 36, "number": 24, "other": 36}
+  vqa_min_agreement: 8                          # >= 8 of 10 annotators give the consensus answer, for each image
+  caps: {question: 80, caption: 64, answer: 16} # content-token caps (examples over a cap are excluded at selection)
+
+prompts:                                        # (impl) wording; visual tokens precede the text in the user turn
+  caption: "Write a short caption for this image."
+  short_answer_suffix: "Answer the question using a single word or number."
+  presence: "Does this image contain {obj}?"
+  counting: "How many {objs} can you see?"
+
+connector:
+  hidden: 1024                                  # Linear 768 -> 1024, GELU, Linear 1024 -> 1024
+  calibration_images: 512                       # (impl) training images used to calibrate the output scale
+  calibration_texts: 2048                       # (impl) training captions + questions used for the text-embedding norm
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  bias: "none"
+  target_modules: ["q_proj", "k_proj", "v_proj", "o_proj"]
+
+train:
+  microbatch: 8
+  grad_accum: 2                                 # effective batch 16
+  weight_decay: 0.01                            # (impl) biases excluded, as in Task 1
+  betas: [0.9, 0.999]                           # (impl) AdamW defaults
+  eps: 1.0e-8
+  grad_clip: 1.0
+  warmup_frac: 0.05                             # per stage
+  min_lr_ratio: 0.1                             # cosine decay to 10% of the peak
+  gradient_checkpointing: true
+  checkpoint_every: 250
+  log_every: 25                                 # (impl) console cadence; every update is stored in the JSON log
+  stages:
+    - {name: caption_alignment, updates: 2250, connector_lr: 1.0e-3, lora_lr: null,
+       mixture: {caption: 1.0}}
+    - {name: visual_instruction, updates: 1500, connector_lr: 1.0e-4, lora_lr: 2.0e-5,
+       mixture: {presence: 0.50, counting: 0.25, caption: 0.25}}
+    - {name: vqa_specialization, updates: 750, connector_lr: 5.0e-5, lora_lr: 1.0e-5,
+       mixture: {vqa: 0.70, presence: 0.10, counting: 0.10, caption: 0.10}}
+
+dev_eval:
+  every: 500
+  extra_updates: [2250, 3750, 4500]             # stage endpoints (update 0 is always evaluated)
+  generate: true                                # (impl) also greedy-generate dev answers/captions (dev only)
+  batch_size: 8
+
+final_eval:
+  batch_size: 8
+  max_new_tokens: 16
+  conditions: ["correct", "complementary", "mismatched", "no_image"]
+  bootstrap_resamples: 4000
+  qualitative_per_category: 2                   # (impl) examples per outcome category in the qualitative panel

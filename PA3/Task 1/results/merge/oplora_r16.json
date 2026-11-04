@@ -1,0 +1,12 @@
+{
+  "method": "oplora_r16",
+  "n_modules_merged": 196,
+  "merge_time_sec": 0.07463455200195312,
+  "fp32_max_abs_logit_diff": 7.390975952148438e-05,
+  "fp32_mean_abs_logit_diff": 5.617378519673366e-06,
+  "fp16_max_abs_logit_diff": 0.0703125,
+  "fp16_mean_abs_logit_diff": 0.005610438529402018,
+  "fp16_top1_agreement": 1.0,
+  "n_positions": 65,
+  "used_projected_factors": true
+}

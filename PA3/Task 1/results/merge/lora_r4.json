@@ -1,0 +1,12 @@
+{
+  "method": "lora_r4",
+  "n_modules_merged": 196,
+  "merge_time_sec": 0.22522497177124023,
+  "fp32_max_abs_logit_diff": 0.0001087188720703125,
+  "fp32_mean_abs_logit_diff": 5.373025487642735e-06,
+  "fp16_max_abs_logit_diff": 0.0859375,
+  "fp16_mean_abs_logit_diff": 0.0056052193976938725,
+  "fp16_top1_agreement": 1.0,
+  "n_positions": 65,
+  "used_projected_factors": false
+}

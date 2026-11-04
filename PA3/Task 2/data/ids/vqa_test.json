@@ -1,0 +1,1538 @@
+[
+  {
+    "pair_id": "vqa_187533001_509826029",
+    "kind": "yes/no",
+    "question_ids": [
+      "187533001",
+      "509826029"
+    ],
+    "images": [
+      "val2014/187533",
+      "val2014/509826"
+    ],
+    "targets": [
+      "no",
+      "yes"
+    ]
+  },
+  {
+    "pair_id": "vqa_433504002_416745006",
+    "kind": "yes/no",
+    "question_ids": [
+      "433504002",
+      "416745006"
+    ],
+    "images": [
+      "val2014/433504",
+      "val2014/416745"
+    ],
+    "targets": [
+      "no",
+      "yes"
+    ]
+  },
+  {
+    "pair_id": "vqa_489879002_438788029",
+    "kind": "yes/no",
+    "question_ids": [
+      "489879002",
+      "438788029"
+    ],
+    "images": [
+      "val2014/489879",
+      "val2014/438788"
+    ],
+    "targets": [
+      "yes",
+      "no"
+    ]
+  },
+  {
+    "pair_id": "vqa_86951000_34196000",
+    "kind": "yes/no",
+    "question_ids": [
+      "86951000",
+      "34196000"
+    ],
+    "images": [
+      "val2014/86951",
+      "val2014/34196"
+    ],
+    "targets": [
+      "no",
+      "yes"
+    ]
+  },
+  {
+    "pair_id": "vqa_477846000_92338008",
+    "kind": "yes/no",
+    "question_ids": [
+      "477846000",
+      "92338008"
+    ],
+    "images": [
+      "val2014/477846",
+      "val2014/92338"
+    ],
+    "targets": [
+      "yes",
+      "no"
+    ]
+  },
+  {
+    "pair_id": "vqa_575931002_54761000",
+    "kind": "yes/no",
+    "question_ids": [
+      "575931002",
+      "54761000"
+    ],
+    "images": [
+      "val2014/575931",
+      "val2014/54761"
+    ],
+    "targets": [
+      "yes",
+      "no"
+    ]
+  },
+  {
+    "pair_id": "vqa_136042001_320249008",
+    "kind": "yes/no",
+    "question_ids": [
+      "136042001",
+      "320249008"
+    ],
+    "images": [
+      "val2014/136042",
+      "val2014/320249"
+    ],
+    "targets": [
+      "no",
+      "yes"
+    ]
+  },
+  {
+    "pair_id": "vqa_29160002_326667001",
+    "kind": "yes/no",
+    "question_ids": [
+      "29160002",
+      "326667001"
+    ],
+    "images": [
+      "val2014/29160",
+      "val2014/326667"
+    ],
+    "targets": [
+      "no",
+      "yes"
+    ]
+  },
+  {
+    "pair_id": "vqa_452836002_67180007",
+    "kind": "yes/no",
+    "question_ids": [
+      "452836002",
+      "67180007"
+    ],
+    "images": [
+      "val2014/452836",
+      "val2014/67180"
+    ],
+    "targets": [
+      "yes",
+      "no"
+    ]
+  },
+  {
+    "pair_id": "vqa_81512002_464018006",
+    "kind": "yes/no",
+    "question_ids": [
+      "81512002",
+      "464018006"
+    ],
+    "images": [
+      "val2014/81512",
+      "val2014/464018"
+    ],
+    "targets": [
+      "yes",
+      "no"
+    ]
+  },
+  {
+    "pair_id": "vqa_344860001_375573007",
+    "kind": "yes/no",
+    "question_ids": [
+      "344860001",
+      "375573007"
+    ],
+    "images": [
+      "val2014/344860",
+      "val2014/375573"
+    ],
+    "targets": [
+      "no",
+      "yes"
+    ]
+  },
+  {
+    "pair_id": "vqa_219897002_15157014",
+    "kind": "yes/no",
+    "question_ids": [
+      "219897002",
+      "15157014"
+    ],
+    "images": [
+      "val2014/219897",
+      "val2014/15157"
+    ],
+    "targets": [
+      "yes",
+      "no"
+    ]
+  },
+  {
+    "pair_id": "vqa_210708003_214989007",
+    "kind": "yes/no",
+    "question_ids": [
+      "210708003",
+      "214989007"
+    ],
+    "images": [
+      "val2014/210708",
+      "val2014/214989"
+    ],
+    "targets": [
+      "yes",
+      "no"
+    ]
+  },
+  {
+    "pair_id": "vqa_442417000_174888004",
+    "kind": "yes/no",
+    "question_ids": [
+      "442417000",
+      "174888004"
+    ],
+    "images": [
+      "val2014/442417",
+      "val2014/174888"
+    ],
+    "targets": [
+      "no",
+      "yes"
+    ]
+  },
+  {
+    "pair_id": "vqa_186705002_409100003",
+    "kind": "yes/no",
+    "question_ids": [
+      "186705002",
+      "409100003"
+    ],
+    "images": [
+      "val2014/186705",
+      "val2014/409100"
+    ],
+    "targets": [
+      "yes",
+      "no"
+    ]
+  },
+  {
+    "pair_id": "vqa_137246001_457249005",
+    "kind": "yes/no",
+    "question_ids": [
+      "137246001",
+      "457249005"
+    ],
+    "images": [
+      "val2014/137246",
+      "val2014/457249"
+    ],
+    "targets": [
+      "yes",
+      "no"
+    ]
+  },
+  {
+    "pair_id": "vqa_151832012_49984011",
+    "kind": "yes/no",
+    "question_ids": [
+      "151832012",
+      "49984011"
+    ],
+    "images": [
+      "val2014/151832",
+      "val2014/49984"
+    ],
+    "targets": [
+      "yes",
+      "no"
+    ]
+  },
+  {
+    "pair_id": "vqa_375691000_97427000",
+    "kind": "yes/no",
+    "question_ids": [
+      "375691000",
+      "97427000"
+    ],
+    "images": [
+      "val2014/375691",
+      "val2014/97427"
+    ],
+    "targets": [
+      "no",
+      "yes"
+    ]
+  },
+  {
+    "pair_id": "vqa_371873006_105812034",
+    "kind": "yes/no",
+    "question_ids": [
+      "371873006",
+      "105812034"
+    ],
+    "images": [
+      "val2014/371873",
+      "val2014/105812"
+    ],
+    "targets": [
+      "yes",
+      "no"
+    ]
+  },
+  {
+    "pair_id": "vqa_157653001_332916023",
+    "kind": "yes/no",
+    "question_ids": [
+      "157653001",
+      "332916023"
+    ],
+    "images": [
+      "val2014/157653",
+      "val2014/332916"
+    ],
+    "targets": [
+      "yes",
+      "no"
+    ]
+  },
+  {
+    "pair_id": "vqa_267862000_260238016",
+    "kind": "yes/no",
+    "question_ids": [
+      "267862000",
+      "260238016"
+    ],
+    "images": [
+      "val2014/267862",
+      "val2014/260238"
+    ],
+    "targets": [
+      "yes",
+      "no"
+    ]
+  },
+  {
+    "pair_id": "vqa_118846006_384092011",
+    "kind": "yes/no",
+    "question_ids": [
+      "118846006",
+      "384092011"
+    ],
+    "images": [
+      "val2014/118846",
+      "val2014/384092"
+    ],
+    "targets": [
+      "yes",
+      "no"
+    ]
+  },
+  {
+    "pair_id": "vqa_208648001_60090003",
+    "kind": "yes/no",
+    "question_ids": [
+      "208648001",
+      "60090003"
+    ],
+    "images": [
+      "val2014/208648",
+      "val2014/60090"
+    ],
+    "targets": [
+      "yes",
+      "no"
+    ]
+  },
+  {
+    "pair_id": "vqa_43561005_356863016",
+    "kind": "yes/no",
+    "question_ids": [
+      "43561005",
+      "356863016"
+    ],
+    "images": [
+      "val2014/43561",
+      "val2014/356863"
+    ],
+    "targets": [
+      "no",
+      "yes"
+    ]
+  },
+  {
+    "pair_id": "vqa_25609001_329957005",
+    "kind": "yes/no",
+    "question_ids": [
+      "25609001",
+      "329957005"
+    ],
+    "images": [
+      "val2014/25609",
+      "val2014/329957"
+    ],
+    "targets": [
+      "yes",
+      "no"
+    ]
+  },
+  {
+    "pair_id": "vqa_158279000_320180002",
+    "kind": "yes/no",
+    "question_ids": [
+      "158279000",
+      "320180002"
+    ],
+    "images": [
+      "val2014/158279",
+      "val2014/320180"
+    ],
+    "targets": [
+      "yes",
+      "no"
+    ]
+  },
+  {
+    "pair_id": "vqa_198782004_70332002",
+    "kind": "yes/no",
+    "question_ids": [
+      "198782004",
+      "70332002"
+    ],
+    "images": [
+      "val2014/198782",
+      "val2014/70332"
+    ],
+    "targets": [
+      "yes",
+      "no"
+    ]
+  },
+  {
+    "pair_id": "vqa_580255002_504516003",
+    "kind": "yes/no",
+    "question_ids": [
+      "580255002",
+      "504516003"
+    ],
+    "images": [
+      "val2014/580255",
+      "val2014/504516"
+    ],
+    "targets": [
+      "no",
+      "yes"
+    ]
+  },
+  {
+    "pair_id": "vqa_114419002_75786008",
+    "kind": "yes/no",
+    "question_ids": [
+      "114419002",
+      "75786008"
+    ],
+    "images": [
+      "val2014/114419",
+      "val2014/75786"
+    ],
+    "targets": [
+      "no",
+      "yes"
+    ]
+  },
+  {
+    "pair_id": "vqa_57671001_246701002",
+    "kind": "yes/no",
+    "question_ids": [
+      "57671001",
+      "246701002"
+    ],
+    "images": [
+      "val2014/57671",
+      "val2014/246701"
+    ],
+    "targets": [
+      "yes",
+      "no"
+    ]
+  },
+  {
+    "pair_id": "vqa_200870002_410168002",
+    "kind": "yes/no",
+    "question_ids": [
+      "200870002",
+      "410168002"
+    ],
+    "images": [
+      "val2014/200870",
+      "val2014/410168"
+    ],
+    "targets": [
+      "no",
+      "yes"
+    ]
+  },
+  {
+    "pair_id": "vqa_192798001_513574000",
+    "kind": "yes/no",
+    "question_ids": [
+      "192798001",
+      "513574000"
+    ],
+    "images": [
+      "val2014/192798",
+      "val2014/513574"
+    ],
+    "targets": [
+      "yes",
+      "no"
+    ]
+  },
+  {
+    "pair_id": "vqa_353027000_132415007",
+    "kind": "yes/no",
+    "question_ids": [
+      "353027000",
+      "132415007"
+    ],
+    "images": [
+      "val2014/353027",
+      "val2014/132415"
+    ],
+    "targets": [
+      "no",
+      "yes"
+    ]
+  },
+  {
+    "pair_id": "vqa_124013002_237942006",
+    "kind": "yes/no",
+    "question_ids": [
+      "124013002",
+      "237942006"
+    ],
+    "images": [
+      "val2014/124013",
+      "val2014/237942"
+    ],
+    "targets": [
+      "yes",
+      "no"
+    ]
+  },
+  {
+    "pair_id": "vqa_73560001_76384000",
+    "kind": "yes/no",
+    "question_ids": [
+      "73560001",
+      "76384000"
+    ],
+    "images": [
+      "val2014/73560",
+      "val2014/76384"
+    ],
+    "targets": [
+      "no",
+      "yes"
+    ]
+  },
+  {
+    "pair_id": "vqa_386661001_506942006",
+    "kind": "yes/no",
+    "question_ids": [
+      "386661001",
+      "506942006"
+    ],
+    "images": [
+      "val2014/386661",
+      "val2014/506942"
+    ],
+    "targets": [
+      "yes",
+      "no"
+    ]
+  },
+  {
+    "pair_id": "vqa_576946000_561539001",
+    "kind": "number",
+    "question_ids": [
+      "576946000",
+      "561539001"
+    ],
+    "images": [
+      "val2014/576946",
+      "val2014/561539"
+    ],
+    "targets": [
+      "2",
+      "6"
+    ]
+  },
+  {
+    "pair_id": "vqa_357552003_344029019",
+    "kind": "number",
+    "question_ids": [
+      "357552003",
+      "344029019"
+    ],
+    "images": [
+      "val2014/357552",
+      "val2014/344029"
+    ],
+    "targets": [
+      "2",
+      "1"
+    ]
+  },
+  {
+    "pair_id": "vqa_430546002_367953006",
+    "kind": "number",
+    "question_ids": [
+      "430546002",
+      "367953006"
+    ],
+    "images": [
+      "val2014/430546",
+      "val2014/367953"
+    ],
+    "targets": [
+      "1",
+      "0"
+    ]
+  },
+  {
+    "pair_id": "vqa_378967002_225869007",
+    "kind": "number",
+    "question_ids": [
+      "378967002",
+      "225869007"
+    ],
+    "images": [
+      "val2014/378967",
+      "val2014/225869"
+    ],
+    "targets": [
+      "1",
+      "3"
+    ]
+  },
+  {
+    "pair_id": "vqa_369675001_443038004",
+    "kind": "number",
+    "question_ids": [
+      "369675001",
+      "443038004"
+    ],
+    "images": [
+      "val2014/369675",
+      "val2014/443038"
+    ],
+    "targets": [
+      "120",
+      "2"
+    ]
+  },
+  {
+    "pair_id": "vqa_81361001_126163002",
+    "kind": "number",
+    "question_ids": [
+      "81361001",
+      "126163002"
+    ],
+    "images": [
+      "val2014/81361",
+      "val2014/126163"
+    ],
+    "targets": [
+      "2",
+      "1"
+    ]
+  },
+  {
+    "pair_id": "vqa_315610001_254732004",
+    "kind": "number",
+    "question_ids": [
+      "315610001",
+      "254732004"
+    ],
+    "images": [
+      "val2014/315610",
+      "val2014/254732"
+    ],
+    "targets": [
+      "2",
+      "4"
+    ]
+  },
+  {
+    "pair_id": "vqa_99938000_205636004",
+    "kind": "number",
+    "question_ids": [
+      "99938000",
+      "205636004"
+    ],
+    "images": [
+      "val2014/99938",
+      "val2014/205636"
+    ],
+    "targets": [
+      "3",
+      "1"
+    ]
+  },
+  {
+    "pair_id": "vqa_203438002_433505033",
+    "kind": "number",
+    "question_ids": [
+      "203438002",
+      "433505033"
+    ],
+    "images": [
+      "val2014/203438",
+      "val2014/433505"
+    ],
+    "targets": [
+      "1",
+      "0"
+    ]
+  },
+  {
+    "pair_id": "vqa_390137000_519838004",
+    "kind": "number",
+    "question_ids": [
+      "390137000",
+      "519838004"
+    ],
+    "images": [
+      "val2014/390137",
+      "val2014/519838"
+    ],
+    "targets": [
+      "2",
+      "1"
+    ]
+  },
+  {
+    "pair_id": "vqa_279809002_543566003",
+    "kind": "number",
+    "question_ids": [
+      "279809002",
+      "543566003"
+    ],
+    "images": [
+      "val2014/279809",
+      "val2014/543566"
+    ],
+    "targets": [
+      "2",
+      "1"
+    ]
+  },
+  {
+    "pair_id": "vqa_176935002_15079001",
+    "kind": "number",
+    "question_ids": [
+      "176935002",
+      "15079001"
+    ],
+    "images": [
+      "val2014/176935",
+      "val2014/15079"
+    ],
+    "targets": [
+      "2",
+      "1"
+    ]
+  },
+  {
+    "pair_id": "vqa_426948002_150576001",
+    "kind": "number",
+    "question_ids": [
+      "426948002",
+      "150576001"
+    ],
+    "images": [
+      "val2014/426948",
+      "val2014/150576"
+    ],
+    "targets": [
+      "1",
+      "2"
+    ]
+  },
+  {
+    "pair_id": "vqa_452027004_291330005",
+    "kind": "number",
+    "question_ids": [
+      "452027004",
+      "291330005"
+    ],
+    "images": [
+      "val2014/452027",
+      "val2014/291330"
+    ],
+    "targets": [
+      "3",
+      "1"
+    ]
+  },
+  {
+    "pair_id": "vqa_35887001_553790001",
+    "kind": "number",
+    "question_ids": [
+      "35887001",
+      "553790001"
+    ],
+    "images": [
+      "val2014/35887",
+      "val2014/553790"
+    ],
+    "targets": [
+      "1",
+      "0"
+    ]
+  },
+  {
+    "pair_id": "vqa_360661000_27871004",
+    "kind": "number",
+    "question_ids": [
+      "360661000",
+      "27871004"
+    ],
+    "images": [
+      "val2014/360661",
+      "val2014/27871"
+    ],
+    "targets": [
+      "3",
+      "4"
+    ]
+  },
+  {
+    "pair_id": "vqa_304924001_284509009",
+    "kind": "number",
+    "question_ids": [
+      "304924001",
+      "284509009"
+    ],
+    "images": [
+      "val2014/304924",
+      "val2014/284509"
+    ],
+    "targets": [
+      "1",
+      "3"
+    ]
+  },
+  {
+    "pair_id": "vqa_33697002_570407005",
+    "kind": "number",
+    "question_ids": [
+      "33697002",
+      "570407005"
+    ],
+    "images": [
+      "val2014/33697",
+      "val2014/570407"
+    ],
+    "targets": [
+      "0",
+      "2"
+    ]
+  },
+  {
+    "pair_id": "vqa_144932011_27662005",
+    "kind": "number",
+    "question_ids": [
+      "144932011",
+      "27662005"
+    ],
+    "images": [
+      "val2014/144932",
+      "val2014/27662"
+    ],
+    "targets": [
+      "2",
+      "1"
+    ]
+  },
+  {
+    "pair_id": "vqa_168010001_188078001",
+    "kind": "number",
+    "question_ids": [
+      "168010001",
+      "188078001"
+    ],
+    "images": [
+      "val2014/168010",
+      "val2014/188078"
+    ],
+    "targets": [
+      "5",
+      "1"
+    ]
+  },
+  {
+    "pair_id": "vqa_499226000_332940002",
+    "kind": "number",
+    "question_ids": [
+      "499226000",
+      "332940002"
+    ],
+    "images": [
+      "val2014/499226",
+      "val2014/332940"
+    ],
+    "targets": [
+      "2",
+      "1"
+    ]
+  },
+  {
+    "pair_id": "vqa_426815000_447553015",
+    "kind": "number",
+    "question_ids": [
+      "426815000",
+      "447553015"
+    ],
+    "images": [
+      "val2014/426815",
+      "val2014/447553"
+    ],
+    "targets": [
+      "0",
+      "2"
+    ]
+  },
+  {
+    "pair_id": "vqa_274864007_372914000",
+    "kind": "number",
+    "question_ids": [
+      "274864007",
+      "372914000"
+    ],
+    "images": [
+      "val2014/274864",
+      "val2014/372914"
+    ],
+    "targets": [
+      "1",
+      "2"
+    ]
+  },
+  {
+    "pair_id": "vqa_510609003_15074005",
+    "kind": "number",
+    "question_ids": [
+      "510609003",
+      "15074005"
+    ],
+    "images": [
+      "val2014/510609",
+      "val2014/15074"
+    ],
+    "targets": [
+      "2",
+      "1"
+    ]
+  },
+  {
+    "pair_id": "vqa_119308020_154520070",
+    "kind": "other",
+    "question_ids": [
+      "119308020",
+      "154520070"
+    ],
+    "images": [
+      "val2014/119308",
+      "val2014/154520"
+    ],
+    "targets": [
+      "skateboarding",
+      "flying kite"
+    ]
+  },
+  {
+    "pair_id": "vqa_51938001_376751002",
+    "kind": "other",
+    "question_ids": [
+      "51938001",
+      "376751002"
+    ],
+    "images": [
+      "val2014/51938",
+      "val2014/376751"
+    ],
+    "targets": [
+      "orange",
+      "black"
+    ]
+  },
+  {
+    "pair_id": "vqa_37003001_122747001",
+    "kind": "other",
+    "question_ids": [
+      "37003001",
+      "122747001"
+    ],
+    "images": [
+      "val2014/37003",
+      "val2014/122747"
+    ],
+    "targets": [
+      "black",
+      "orange"
+    ]
+  },
+  {
+    "pair_id": "vqa_503978006_535151003",
+    "kind": "other",
+    "question_ids": [
+      "503978006",
+      "535151003"
+    ],
+    "images": [
+      "val2014/503978",
+      "val2014/535151"
+    ],
+    "targets": [
+      "white",
+      "brown"
+    ]
+  },
+  {
+    "pair_id": "vqa_413955001_46101004",
+    "kind": "other",
+    "question_ids": [
+      "413955001",
+      "46101004"
+    ],
+    "images": [
+      "val2014/413955",
+      "val2014/46101"
+    ],
+    "targets": [
+      "baseball",
+      "tennis"
+    ]
+  },
+  {
+    "pair_id": "vqa_570001006_244487001",
+    "kind": "other",
+    "question_ids": [
+      "570001006",
+      "244487001"
+    ],
+    "images": [
+      "val2014/570001",
+      "val2014/244487"
+    ],
+    "targets": [
+      "delta",
+      "ana"
+    ]
+  },
+  {
+    "pair_id": "vqa_214720003_276552038",
+    "kind": "other",
+    "question_ids": [
+      "214720003",
+      "276552038"
+    ],
+    "images": [
+      "val2014/214720",
+      "val2014/276552"
+    ],
+    "targets": [
+      "cake",
+      "pizza"
+    ]
+  },
+  {
+    "pair_id": "vqa_518836003_377361004",
+    "kind": "other",
+    "question_ids": [
+      "518836003",
+      "377361004"
+    ],
+    "images": [
+      "val2014/518836",
+      "val2014/377361"
+    ],
+    "targets": [
+      "horse",
+      "giraffe"
+    ]
+  },
+  {
+    "pair_id": "vqa_218988000_422783003",
+    "kind": "other",
+    "question_ids": [
+      "218988000",
+      "422783003"
+    ],
+    "images": [
+      "val2014/218988",
+      "val2014/422783"
+    ],
+    "targets": [
+      "off",
+      "on"
+    ]
+  },
+  {
+    "pair_id": "vqa_539555002_187196001",
+    "kind": "other",
+    "question_ids": [
+      "539555002",
+      "187196001"
+    ],
+    "images": [
+      "val2014/539555",
+      "val2014/187196"
+    ],
+    "targets": [
+      "gray",
+      "nothing"
+    ]
+  },
+  {
+    "pair_id": "vqa_214692002_191949013",
+    "kind": "other",
+    "question_ids": [
+      "214692002",
+      "191949013"
+    ],
+    "images": [
+      "val2014/214692",
+      "val2014/191949"
+    ],
+    "targets": [
+      "baseball",
+      "tennis"
+    ]
+  },
+  {
+    "pair_id": "vqa_281259001_412247001",
+    "kind": "other",
+    "question_ids": [
+      "281259001",
+      "412247001"
+    ],
+    "images": [
+      "val2014/281259",
+      "val2014/412247"
+    ],
+    "targets": [
+      "black",
+      "red"
+    ]
+  },
+  {
+    "pair_id": "vqa_494550002_448854007",
+    "kind": "other",
+    "question_ids": [
+      "494550002",
+      "448854007"
+    ],
+    "images": [
+      "val2014/494550",
+      "val2014/448854"
+    ],
+    "targets": [
+      "orange",
+      "lemon"
+    ]
+  },
+  {
+    "pair_id": "vqa_288442003_370475005",
+    "kind": "other",
+    "question_ids": [
+      "288442003",
+      "370475005"
+    ],
+    "images": [
+      "val2014/288442",
+      "val2014/370475"
+    ],
+    "targets": [
+      "uphill",
+      "downhill"
+    ]
+  },
+  {
+    "pair_id": "vqa_106909001_34445001",
+    "kind": "other",
+    "question_ids": [
+      "106909001",
+      "34445001"
+    ],
+    "images": [
+      "val2014/106909",
+      "val2014/34445"
+    ],
+    "targets": [
+      "plastic",
+      "wood"
+    ]
+  },
+  {
+    "pair_id": "vqa_32990001_554523022",
+    "kind": "other",
+    "question_ids": [
+      "32990001",
+      "554523022"
+    ],
+    "images": [
+      "val2014/32990",
+      "val2014/554523"
+    ],
+    "targets": [
+      "bathroom",
+      "kitchen"
+    ]
+  },
+  {
+    "pair_id": "vqa_100187001_363736002",
+    "kind": "other",
+    "question_ids": [
+      "100187001",
+      "363736002"
+    ],
+    "images": [
+      "val2014/100187",
+      "val2014/363736"
+    ],
+    "targets": [
+      "on",
+      "off"
+    ]
+  },
+  {
+    "pair_id": "vqa_567787000_573993001",
+    "kind": "other",
+    "question_ids": [
+      "567787000",
+      "573993001"
+    ],
+    "images": [
+      "val2014/567787",
+      "val2014/573993"
+    ],
+    "targets": [
+      "wood",
+      "tile"
+    ]
+  },
+  {
+    "pair_id": "vqa_266977002_488219009",
+    "kind": "other",
+    "question_ids": [
+      "266977002",
+      "488219009"
+    ],
+    "images": [
+      "val2014/266977",
+      "val2014/488219"
+    ],
+    "targets": [
+      "surf",
+      "walk"
+    ]
+  },
+  {
+    "pair_id": "vqa_219344001_563758000",
+    "kind": "other",
+    "question_ids": [
+      "219344001",
+      "563758000"
+    ],
+    "images": [
+      "val2014/219344",
+      "val2014/563758"
+    ],
+    "targets": [
+      "tie",
+      "bandana"
+    ]
+  },
+  {
+    "pair_id": "vqa_567562004_573320001",
+    "kind": "other",
+    "question_ids": [
+      "567562004",
+      "573320001"
+    ],
+    "images": [
+      "val2014/567562",
+      "val2014/573320"
+    ],
+    "targets": [
+      "eating",
+      "playing wii"
+    ]
+  },
+  {
+    "pair_id": "vqa_489248003_273728020",
+    "kind": "other",
+    "question_ids": [
+      "489248003",
+      "273728020"
+    ],
+    "images": [
+      "val2014/489248",
+      "val2014/273728"
+    ],
+    "targets": [
+      "bench",
+      "horse"
+    ]
+  },
+  {
+    "pair_id": "vqa_122994002_128441001",
+    "kind": "other",
+    "question_ids": [
+      "122994002",
+      "128441001"
+    ],
+    "images": [
+      "val2014/122994",
+      "val2014/128441"
+    ],
+    "targets": [
+      "red",
+      "yellow"
+    ]
+  },
+  {
+    "pair_id": "vqa_343218003_213830000",
+    "kind": "other",
+    "question_ids": [
+      "343218003",
+      "213830000"
+    ],
+    "images": [
+      "val2014/343218",
+      "val2014/213830"
+    ],
+    "targets": [
+      "white",
+      "blue"
+    ]
+  },
+  {
+    "pair_id": "vqa_542374002_462576006",
+    "kind": "other",
+    "question_ids": [
+      "542374002",
+      "462576006"
+    ],
+    "images": [
+      "val2014/542374",
+      "val2014/462576"
+    ],
+    "targets": [
+      "apple",
+      "orange"
+    ]
+  },
+  {
+    "pair_id": "vqa_238228000_427135002",
+    "kind": "other",
+    "question_ids": [
+      "238228000",
+      "427135002"
+    ],
+    "images": [
+      "val2014/238228",
+      "val2014/427135"
+    ],
+    "targets": [
+      "tennis",
+      "soccer"
+    ]
+  },
+  {
+    "pair_id": "vqa_382191002_284365002",
+    "kind": "other",
+    "question_ids": [
+      "382191002",
+      "284365002"
+    ],
+    "images": [
+      "val2014/382191",
+      "val2014/284365"
+    ],
+    "targets": [
+      "bathroom",
+      "kitchen"
+    ]
+  },
+  {
+    "pair_id": "vqa_54088000_28293006",
+    "kind": "other",
+    "question_ids": [
+      "54088000",
+      "28293006"
+    ],
+    "images": [
+      "val2014/54088",
+      "val2014/28293"
+    ],
+    "targets": [
+      "white",
+      "green"
+    ]
+  },
+  {
+    "pair_id": "vqa_404944003_104982026",
+    "kind": "other",
+    "question_ids": [
+      "404944003",
+      "104982026"
+    ],
+    "images": [
+      "val2014/404944",
+      "val2014/104982"
+    ],
+    "targets": [
+      "orange",
+      "black"
+    ]
+  },
+  {
+    "pair_id": "vqa_266107001_45248004",
+    "kind": "other",
+    "question_ids": [
+      "266107001",
+      "45248004"
+    ],
+    "images": [
+      "val2014/266107",
+      "val2014/45248"
+    ],
+    "targets": [
+      "indianapolis",
+      "new york"
+    ]
+  },
+  {
+    "pair_id": "vqa_278867000_223955004",
+    "kind": "other",
+    "question_ids": [
+      "278867000",
+      "223955004"
+    ],
+    "images": [
+      "val2014/278867",
+      "val2014/223955"
+    ],
+    "targets": [
+      "baseball",
+      "frisbee"
+    ]
+  },
+  {
+    "pair_id": "vqa_162711002_463588015",
+    "kind": "other",
+    "question_ids": [
+      "162711002",
+      "463588015"
+    ],
+    "images": [
+      "val2014/162711",
+      "val2014/463588"
+    ],
+    "targets": [
+      "cows",
+      "horses"
+    ]
+  },
+  {
+    "pair_id": "vqa_183456009_153632013",
+    "kind": "other",
+    "question_ids": [
+      "183456009",
+      "153632013"
+    ],
+    "images": [
+      "val2014/183456",
+      "val2014/153632"
+    ],
+    "targets": [
+      "green",
+      "white"
+    ]
+  },
+  {
+    "pair_id": "vqa_145020004_329614004",
+    "kind": "other",
+    "question_ids": [
+      "145020004",
+      "329614004"
+    ],
+    "images": [
+      "val2014/145020",
+      "val2014/329614"
+    ],
+    "targets": [
+      "blue",
+      "gray"
+    ]
+  },
+  {
+    "pair_id": "vqa_523400000_464358004",
+    "kind": "other",
+    "question_ids": [
+      "523400000",
+      "464358004"
+    ],
+    "images": [
+      "val2014/523400",
+      "val2014/464358"
+    ],
+    "targets": [
+      "bathroom",
+      "bedroom"
+    ]
+  },
+  {
+    "pair_id": "vqa_100553002_565941013",
+    "kind": "other",
+    "question_ids": [
+      "100553002",
+      "565941013"
+    ],
+    "images": [
+      "val2014/100553",
+      "val2014/565941"
+    ],
+    "targets": [
+      "green",
+      "brown"
+    ]
+  }
+]

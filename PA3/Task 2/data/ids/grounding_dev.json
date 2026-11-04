@@ -1,0 +1,530 @@
+[
+  {
+    "pair_id": "presence_90_531602_529670",
+    "suite": "grounding",
+    "kind": "presence",
+    "category": "toothbrush",
+    "category_id": 90,
+    "question": "Does this image contain a toothbrush?",
+    "items": [
+      {
+        "qid": "presence_90_531602_529670_1",
+        "image": "val2014/529670",
+        "answer": "no",
+        "answer_norm": "no"
+      },
+      {
+        "qid": "presence_90_531602_529670_0",
+        "image": "val2014/531602",
+        "answer": "yes",
+        "answer_norm": "yes"
+      }
+    ]
+  },
+  {
+    "pair_id": "presence_53_424721_15180",
+    "suite": "grounding",
+    "kind": "presence",
+    "category": "apple",
+    "category_id": 53,
+    "question": "Does this image contain an apple?",
+    "items": [
+      {
+        "qid": "presence_53_424721_15180_0",
+        "image": "val2014/424721",
+        "answer": "yes",
+        "answer_norm": "yes"
+      },
+      {
+        "qid": "presence_53_424721_15180_1",
+        "image": "val2014/15180",
+        "answer": "no",
+        "answer_norm": "no"
+      }
+    ]
+  },
+  {
+    "pair_id": "presence_11_339058_31368",
+    "suite": "grounding",
+    "kind": "presence",
+    "category": "fire hydrant",
+    "category_id": 11,
+    "question": "Does this image contain a fire hydrant?",
+    "items": [
+      {
+        "qid": "presence_11_339058_31368_1",
+        "image": "val2014/31368",
+        "answer": "no",
+        "answer_norm": "no"
+      },
+      {
+        "qid": "presence_11_339058_31368_0",
+        "image": "val2014/339058",
+        "answer": "yes",
+        "answer_norm": "yes"
+      }
+    ]
+  },
+  {
+    "pair_id": "presence_87_511674_401816",
+    "suite": "grounding",
+    "kind": "presence",
+    "category": "scissors",
+    "category_id": 87,
+    "question": "Does this image contain scissors?",
+    "items": [
+      {
+        "qid": "presence_87_511674_401816_1",
+        "image": "val2014/401816",
+        "answer": "no",
+        "answer_norm": "no"
+      },
+      {
+        "qid": "presence_87_511674_401816_0",
+        "image": "val2014/511674",
+        "answer": "yes",
+        "answer_norm": "yes"
+      }
+    ]
+  },
+  {
+    "pair_id": "presence_10_530860_273586",
+    "suite": "grounding",
+    "kind": "presence",
+    "category": "traffic light",
+    "category_id": 10,
+    "question": "Does this image contain a traffic light?",
+    "items": [
+      {
+        "qid": "presence_10_530860_273586_1",
+        "image": "val2014/273586",
+        "answer": "no",
+        "answer_norm": "no"
+      },
+      {
+        "qid": "presence_10_530860_273586_0",
+        "image": "val2014/530860",
+        "answer": "yes",
+        "answer_norm": "yes"
+      }
+    ]
+  },
+  {
+    "pair_id": "presence_55_138227_303026",
+    "suite": "grounding",
+    "kind": "presence",
+    "category": "orange",
+    "category_id": 55,
+    "question": "Does this image contain an orange?",
+    "items": [
+      {
+        "qid": "presence_55_138227_303026_1",
+        "image": "val2014/303026",
+        "answer": "no",
+        "answer_norm": "no"
+      },
+      {
+        "qid": "presence_55_138227_303026_0",
+        "image": "val2014/138227",
+        "answer": "yes",
+        "answer_norm": "yes"
+      }
+    ]
+  },
+  {
+    "pair_id": "presence_18_28359_192730",
+    "suite": "grounding",
+    "kind": "presence",
+    "category": "dog",
+    "category_id": 18,
+    "question": "Does this image contain a dog?",
+    "items": [
+      {
+        "qid": "presence_18_28359_192730_1",
+        "image": "val2014/192730",
+        "answer": "no",
+        "answer_norm": "no"
+      },
+      {
+        "qid": "presence_18_28359_192730_0",
+        "image": "val2014/28359",
+        "answer": "yes",
+        "answer_norm": "yes"
+      }
+    ]
+  },
+  {
+    "pair_id": "presence_87_443301_246197",
+    "suite": "grounding",
+    "kind": "presence",
+    "category": "scissors",
+    "category_id": 87,
+    "question": "Does this image contain scissors?",
+    "items": [
+      {
+        "qid": "presence_87_443301_246197_0",
+        "image": "val2014/443301",
+        "answer": "yes",
+        "answer_norm": "yes"
+      },
+      {
+        "qid": "presence_87_443301_246197_1",
+        "image": "val2014/246197",
+        "answer": "no",
+        "answer_norm": "no"
+      }
+    ]
+  },
+  {
+    "pair_id": "presence_27_563723_247057",
+    "suite": "grounding",
+    "kind": "presence",
+    "category": "backpack",
+    "category_id": 27,
+    "question": "Does this image contain a backpack?",
+    "items": [
+      {
+        "qid": "presence_27_563723_247057_1",
+        "image": "val2014/247057",
+        "answer": "no",
+        "answer_norm": "no"
+      },
+      {
+        "qid": "presence_27_563723_247057_0",
+        "image": "val2014/563723",
+        "answer": "yes",
+        "answer_norm": "yes"
+      }
+    ]
+  },
+  {
+    "pair_id": "presence_64_468751_549055",
+    "suite": "grounding",
+    "kind": "presence",
+    "category": "potted plant",
+    "category_id": 64,
+    "question": "Does this image contain a potted plant?",
+    "items": [
+      {
+        "qid": "presence_64_468751_549055_0",
+        "image": "val2014/468751",
+        "answer": "yes",
+        "answer_norm": "yes"
+      },
+      {
+        "qid": "presence_64_468751_549055_1",
+        "image": "val2014/549055",
+        "answer": "no",
+        "answer_norm": "no"
+      }
+    ]
+  },
+  {
+    "pair_id": "presence_4_26730_923",
+    "suite": "grounding",
+    "kind": "presence",
+    "category": "motorcycle",
+    "category_id": 4,
+    "question": "Does this image contain a motorcycle?",
+    "items": [
+      {
+        "qid": "presence_4_26730_923_1",
+        "image": "val2014/923",
+        "answer": "no",
+        "answer_norm": "no"
+      },
+      {
+        "qid": "presence_4_26730_923_0",
+        "image": "val2014/26730",
+        "answer": "yes",
+        "answer_norm": "yes"
+      }
+    ]
+  },
+  {
+    "pair_id": "presence_5_376996_421307",
+    "suite": "grounding",
+    "kind": "presence",
+    "category": "airplane",
+    "category_id": 5,
+    "question": "Does this image contain an airplane?",
+    "items": [
+      {
+        "qid": "presence_5_376996_421307_1",
+        "image": "val2014/421307",
+        "answer": "no",
+        "answer_norm": "no"
+      },
+      {
+        "qid": "presence_5_376996_421307_0",
+        "image": "val2014/376996",
+        "answer": "yes",
+        "answer_norm": "yes"
+      }
+    ]
+  },
+  {
+    "pair_id": "counting_63_200047_274010",
+    "suite": "grounding",
+    "kind": "counting",
+    "category": "couch",
+    "category_id": 63,
+    "question": "How many couches can you see?",
+    "items": [
+      {
+        "qid": "counting_63_200047_274010_0",
+        "image": "val2014/200047",
+        "answer": "4",
+        "answer_norm": "4"
+      },
+      {
+        "qid": "counting_63_200047_274010_1",
+        "image": "val2014/274010",
+        "answer": "1",
+        "answer_norm": "1"
+      }
+    ]
+  },
+  {
+    "pair_id": "counting_85_248232_294176",
+    "suite": "grounding",
+    "kind": "counting",
+    "category": "clock",
+    "category_id": 85,
+    "question": "How many clocks can you see?",
+    "items": [
+      {
+        "qid": "counting_85_248232_294176_0",
+        "image": "val2014/248232",
+        "answer": "3",
+        "answer_norm": "3"
+      },
+      {
+        "qid": "counting_85_248232_294176_1",
+        "image": "val2014/294176",
+        "answer": "4",
+        "answer_norm": "4"
+      }
+    ]
+  },
+  {
+    "pair_id": "counting_73_356528_16897",
+    "suite": "grounding",
+    "kind": "counting",
+    "category": "laptop",
+    "category_id": 73,
+    "question": "How many laptops can you see?",
+    "items": [
+      {
+        "qid": "counting_73_356528_16897_1",
+        "image": "val2014/16897",
+        "answer": "4",
+        "answer_norm": "4"
+      },
+      {
+        "qid": "counting_73_356528_16897_0",
+        "image": "val2014/356528",
+        "answer": "2",
+        "answer_norm": "2"
+      }
+    ]
+  },
+  {
+    "pair_id": "counting_59_520264_84493",
+    "suite": "grounding",
+    "kind": "counting",
+    "category": "pizza",
+    "category_id": 59,
+    "question": "How many pizzas can you see?",
+    "items": [
+      {
+        "qid": "counting_59_520264_84493_1",
+        "image": "val2014/84493",
+        "answer": "4",
+        "answer_norm": "4"
+      },
+      {
+        "qid": "counting_59_520264_84493_0",
+        "image": "val2014/520264",
+        "answer": "2",
+        "answer_norm": "2"
+      }
+    ]
+  },
+  {
+    "pair_id": "counting_53_375415_199133",
+    "suite": "grounding",
+    "kind": "counting",
+    "category": "apple",
+    "category_id": 53,
+    "question": "How many apples can you see?",
+    "items": [
+      {
+        "qid": "counting_53_375415_199133_1",
+        "image": "val2014/199133",
+        "answer": "2",
+        "answer_norm": "2"
+      },
+      {
+        "qid": "counting_53_375415_199133_0",
+        "image": "val2014/375415",
+        "answer": "4",
+        "answer_norm": "4"
+      }
+    ]
+  },
+  {
+    "pair_id": "counting_76_345252_299785",
+    "suite": "grounding",
+    "kind": "counting",
+    "category": "keyboard",
+    "category_id": 76,
+    "question": "How many keyboards can you see?",
+    "items": [
+      {
+        "qid": "counting_76_345252_299785_1",
+        "image": "val2014/299785",
+        "answer": "2",
+        "answer_norm": "2"
+      },
+      {
+        "qid": "counting_76_345252_299785_0",
+        "image": "val2014/345252",
+        "answer": "1",
+        "answer_norm": "1"
+      }
+    ]
+  },
+  {
+    "pair_id": "counting_20_578595_157170",
+    "suite": "grounding",
+    "kind": "counting",
+    "category": "sheep",
+    "category_id": 20,
+    "question": "How many sheep can you see?",
+    "items": [
+      {
+        "qid": "counting_20_578595_157170_1",
+        "image": "val2014/157170",
+        "answer": "4",
+        "answer_norm": "4"
+      },
+      {
+        "qid": "counting_20_578595_157170_0",
+        "image": "val2014/578595",
+        "answer": "2",
+        "answer_norm": "2"
+      }
+    ]
+  },
+  {
+    "pair_id": "counting_79_192458_308799",
+    "suite": "grounding",
+    "kind": "counting",
+    "category": "oven",
+    "category_id": 79,
+    "question": "How many ovens can you see?",
+    "items": [
+      {
+        "qid": "counting_79_192458_308799_1",
+        "image": "val2014/308799",
+        "answer": "2",
+        "answer_norm": "2"
+      },
+      {
+        "qid": "counting_79_192458_308799_0",
+        "image": "val2014/192458",
+        "answer": "3",
+        "answer_norm": "3"
+      }
+    ]
+  },
+  {
+    "pair_id": "counting_27_277032_191314",
+    "suite": "grounding",
+    "kind": "counting",
+    "category": "backpack",
+    "category_id": 27,
+    "question": "How many backpacks can you see?",
+    "items": [
+      {
+        "qid": "counting_27_277032_191314_1",
+        "image": "val2014/191314",
+        "answer": "2",
+        "answer_norm": "2"
+      },
+      {
+        "qid": "counting_27_277032_191314_0",
+        "image": "val2014/277032",
+        "answer": "3",
+        "answer_norm": "3"
+      }
+    ]
+  },
+  {
+    "pair_id": "counting_57_386092_116182",
+    "suite": "grounding",
+    "kind": "counting",
+    "category": "carrot",
+    "category_id": 57,
+    "question": "How many carrots can you see?",
+    "items": [
+      {
+        "qid": "counting_57_386092_116182_0",
+        "image": "val2014/386092",
+        "answer": "1",
+        "answer_norm": "1"
+      },
+      {
+        "qid": "counting_57_386092_116182_1",
+        "image": "val2014/116182",
+        "answer": "4",
+        "answer_norm": "4"
+      }
+    ]
+  },
+  {
+    "pair_id": "counting_64_447087_433075",
+    "suite": "grounding",
+    "kind": "counting",
+    "category": "potted plant",
+    "category_id": 64,
+    "question": "How many potted plants can you see?",
+    "items": [
+      {
+        "qid": "counting_64_447087_433075_1",
+        "image": "val2014/433075",
+        "answer": "2",
+        "answer_norm": "2"
+      },
+      {
+        "qid": "counting_64_447087_433075_0",
+        "image": "val2014/447087",
+        "answer": "4",
+        "answer_norm": "4"
+      }
+    ]
+  },
+  {
+    "pair_id": "counting_4_47687_487181",
+    "suite": "grounding",
+    "kind": "counting",
+    "category": "motorcycle",
+    "category_id": 4,
+    "question": "How many motorcycles can you see?",
+    "items": [
+      {
+        "qid": "counting_4_47687_487181_0",
+        "image": "val2014/47687",
+        "answer": "2",
+        "answer_norm": "2"
+      },
+      {
+        "qid": "counting_4_47687_487181_1",
+        "image": "val2014/487181",
+        "answer": "3",
+        "answer_norm": "3"
+      }
+    ]
+  }
+]

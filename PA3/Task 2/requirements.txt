@@ -1,0 +1,11 @@
+# ATML PA3 Task 2 environment. torch is NOT pinned: Kaggle's preinstalled CUDA build is used.
+# Same transformers / peft versions as Task 1 (SigLIP vision model, Qwen3, peft.inject_adapter_in_model).
+transformers==4.57.1
+peft==0.17.1
+accelerate>=1.0.0
+safetensors>=0.4.3
+huggingface_hub>=0.34.0,<1.0
+pyyaml>=6.0
+pillow>=10.0
+matplotlib>=3.8
+numpy>=1.26

@@ -1,0 +1,374 @@
+{
+  "seed": 6304,
+  "vqa_val_filter": {
+    "pairs_total": 95144,
+    "eligible": 33925,
+    "drop_agreement_below_8": 57047,
+    "drop_same_consensus": 3378,
+    "drop_answer_type_differs": 794
+  },
+  "vqa_val_eligible_by_type": {
+    "yes/no": 20963,
+    "other": 8039,
+    "number": 4923
+  },
+  "vqa_train_filter": {
+    "pairs_total": 200394,
+    "drop_agreement_below_8": 119896,
+    "drop_same_consensus": 7086,
+    "eligible": 71969,
+    "drop_answer_type_differs": 1443
+  },
+  "vqa_train_eligible_by_type": {
+    "other": 17375,
+    "yes/no": 44033,
+    "number": 10561
+  },
+  "sizes": {
+    "captions_train": {
+      "examples": 18000,
+      "images": 6000
+    },
+    "captions_dev": {
+      "examples": 96,
+      "images": 96
+    },
+    "grounding_pool_presence": {
+      "pairs": 4000,
+      "questions": 8000,
+      "images": 4744
+    },
+    "grounding_pool_counting": {
+      "pairs": 4000,
+      "questions": 8000,
+      "images": 3259
+    },
+    "grounding_dev": {
+      "pairs": 24,
+      "questions": 48,
+      "images": 48
+    },
+    "grounding_test": {
+      "pairs": 64,
+      "questions": 128,
+      "images": 128
+    },
+    "vqa_train": {
+      "pairs": 1536,
+      "questions": 3072,
+      "images": 2954
+    },
+    "vqa_dev": {
+      "pairs": 32,
+      "questions": 64,
+      "images": 64
+    },
+    "vqa_test": {
+      "pairs": 96,
+      "questions": 192,
+      "images": 192
+    }
+  },
+  "answers": {
+    "grounding_pool_presence": {
+      "n_distinct": 2,
+      "top10": [
+        [
+          "yes",
+          4000
+        ],
+        [
+          "no",
+          4000
+        ]
+      ]
+    },
+    "grounding_pool_counting": {
+      "n_distinct": 4,
+      "top10": [
+        [
+          "1",
+          2582
+        ],
+        [
+          "2",
+          2337
+        ],
+        [
+          "3",
+          1837
+        ],
+        [
+          "4",
+          1244
+        ]
+      ]
+    },
+    "grounding_dev": {
+      "n_distinct": 6,
+      "top10": [
+        [
+          "no",
+          12
+        ],
+        [
+          "yes",
+          12
+        ],
+        [
+          "2",
+          9
+        ],
+        [
+          "4",
+          8
+        ],
+        [
+          "3",
+          4
+        ],
+        [
+          "1",
+          3
+        ]
+      ]
+    },
+    "grounding_test": {
+      "n_distinct": 6,
+      "top10": [
+        [
+          "yes",
+          32
+        ],
+        [
+          "no",
+          32
+        ],
+        [
+          "1",
+          20
+        ],
+        [
+          "2",
+          17
+        ],
+        [
+          "4",
+          14
+        ],
+        [
+          "3",
+          13
+        ]
+      ]
+    },
+    "vqa_train": {
+      "n_distinct": 401,
+      "top10": [
+        [
+          "yes",
+          640
+        ],
+        [
+          "no",
+          640
+        ],
+        [
+          "1",
+          157
+        ],
+        [
+          "2",
+          156
+        ],
+        [
+          "white",
+          105
+        ],
+        [
+          "black",
+          69
+        ],
+        [
+          "blue",
+          67
+        ],
+        [
+          "red",
+          55
+        ],
+        [
+          "3",
+          52
+        ],
+        [
+          "0",
+          44
+        ]
+      ]
+    },
+    "vqa_dev": {
+      "n_distinct": 30,
+      "top10": [
+        [
+          "yes",
+          12
+        ],
+        [
+          "no",
+          12
+        ],
+        [
+          "2",
+          5
+        ],
+        [
+          "1",
+          4
+        ],
+        [
+          "4",
+          2
+        ],
+        [
+          "3",
+          2
+        ],
+        [
+          "0",
+          2
+        ],
+        [
+          "black",
+          2
+        ],
+        [
+          "red",
+          2
+        ],
+        [
+          "9",
+          1
+        ]
+      ]
+    },
+    "vqa_test": {
+      "n_distinct": 55,
+      "top10": [
+        [
+          "no",
+          36
+        ],
+        [
+          "yes",
+          36
+        ],
+        [
+          "1",
+          18
+        ],
+        [
+          "2",
+          15
+        ],
+        [
+          "0",
+          5
+        ],
+        [
+          "3",
+          5
+        ],
+        [
+          "orange",
+          5
+        ],
+        [
+          "black",
+          4
+        ],
+        [
+          "white",
+          4
+        ],
+        [
+          "baseball",
+          3
+        ]
+      ]
+    }
+  },
+  "types": {
+    "grounding_pool_presence": {
+      "presence": 4000
+    },
+    "grounding_pool_counting": {
+      "counting": 4000
+    },
+    "grounding_dev": {
+      "presence": 12,
+      "counting": 12
+    },
+    "grounding_test": {
+      "presence": 32,
+      "counting": 32
+    },
+    "vqa_train": {
+      "yes/no": 640,
+      "number": 256,
+      "other": 640
+    },
+    "vqa_dev": {
+      "yes/no": 12,
+      "number": 8,
+      "other": 12
+    },
+    "vqa_test": {
+      "yes/no": 36,
+      "number": 24,
+      "other": 36
+    }
+  },
+  "grounding_categories": {
+    "grounding_pool_presence": 80,
+    "grounding_pool_counting": 76,
+    "grounding_dev": 19,
+    "grounding_test": 42
+  },
+  "grounding_label_rules": {
+    "presence_min_area_frac": 0.01,
+    "count_min_area_frac": 0.005,
+    "presence_negative_shares_category": true,
+    "count_range": [
+      1,
+      4
+    ]
+  },
+  "not_countable_categories": [
+    "broccoli",
+    "skis"
+  ],
+  "grounding_train_candidate_images": 8744,
+  "checks": {
+    "sizes_ok": {
+      "captions_train": 18000,
+      "captions_dev": 96,
+      "grounding_dev": 24,
+      "grounding_test": 64,
+      "vqa_train": 1536,
+      "vqa_dev": 32,
+      "vqa_test": 96
+    },
+    "train_images": 8744,
+    "eval_images": 528,
+    "eval_suites_image_disjoint": true,
+    "train_eval_image_overlap": 0,
+    "mismatch_excludes_own_pair": true
+  },
+  "max_tokens": {
+    "question": 20,
+    "caption": 59,
+    "answer": 7
+  },
+  "prep_sec": 332.5962493419647
+}

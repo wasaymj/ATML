@@ -1,0 +1,24 @@
+| Comparison (B − A) | Benchmark | Δ pp [95% CI] | lost (A✓→B✗) | gained (A✗→B✓) | McNemar p |
+|---|---|---|---|---|---|
+| Rank: LoRA-16 − LoRA-4 | GSM8K | +4.85 [+2.65, +7.05] | 81 | 145 | 2.48e-05 |
+| Rank: LoRA-16 − LoRA-4 | HellaSwag | -0.08 [-0.41, +0.24] | 142 | 134 | 0.674 |
+| Rank: LoRA-16 − LoRA-4 | BoolQ | +1.44 [+0.61, +2.26] | 73 | 120 | 0.000882 |
+| Rank: LoRA-16 − LoRA-4 | ARC-Easy | +1.05 [+0.13, +1.98] | 49 | 74 | 0.03 |
+| Explicit regularization: L2-SP − FullFT | GSM8K | +1.21 [-0.53, +2.96] | 65 | 81 | 0.214 |
+| Explicit regularization: L2-SP − FullFT | HellaSwag | +0.50 [+0.15, +0.86] | 143 | 193 | 0.00742 |
+| Explicit regularization: L2-SP − FullFT | BoolQ | +6.06 [+4.86, +7.28] | 115 | 313 | 2.93e-22 |
+| Explicit regularization: L2-SP − FullFT | ARC-Easy | +0.38 [-0.51, +1.26] | 57 | 66 | 0.471 |
+| Orthogonal protection: OPLoRA-16 − LoRA-16 | GSM8K | -1.06 [-2.65, +0.45] | 63 | 49 | 0.219 |
+| Orthogonal protection: OPLoRA-16 − LoRA-16 | HellaSwag | -0.14 [-0.38, +0.10] | 84 | 70 | 0.295 |
+| Orthogonal protection: OPLoRA-16 − LoRA-16 | BoolQ | -1.41 [-2.26, -0.55] | 126 | 80 | 0.00165 |
+| Orthogonal protection: OPLoRA-16 − LoRA-16 | ARC-Easy | -1.26 [-1.94, -0.63] | 47 | 17 | 0.000227 |
+| Full FT vs LoRA-16: LoRA-16 − FullFT | GSM8K | -1.21 [-3.56, +1.06] | 127 | 111 | 0.331 |
+| Full FT vs LoRA-16: LoRA-16 − FullFT | HellaSwag | +1.24 [+0.76, +1.73] | 253 | 378 | 7.35e-07 |
+| Full FT vs LoRA-16: LoRA-16 − FullFT | BoolQ | +10.28 [+8.50, +12.05] | 292 | 628 | 5.6e-29 |
+| Full FT vs LoRA-16: LoRA-16 − FullFT | ARC-Easy | +0.76 [-0.29, +1.81] | 75 | 93 | 0.19 |
+| Full FT progression: FullFT − FullFT@625 | GSM8K | +5.91 [+3.41, +8.34] | 100 | 178 | 3.37e-06 |
+| Full FT progression: FullFT − FullFT@625 | HellaSwag | +0.28 [-0.05, +0.61] | 129 | 157 | 0.11 |
+| Full FT progression: FullFT − FullFT@625 | BoolQ | +1.35 [+0.67, +2.02] | 42 | 86 | 0.000125 |
+| Full FT progression: FullFT − FullFT@625 | ARC-Easy | +1.09 [+0.42, +1.77] | 22 | 48 | 0.00255 |
+
+All comparisons use final checkpoints except the progression row. Paired over identical documents.

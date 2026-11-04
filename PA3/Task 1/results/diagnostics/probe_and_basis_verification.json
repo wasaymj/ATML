@@ -1,0 +1,9 @@
+{
+  "gsm8k_prompt_match": 32,
+  "hellaswag_context_match": 32,
+  "n_probes": {
+    "gsm8k": 32,
+    "hellaswag": 32
+  },
+  "bases_source": "oplora_bases.pt"
+}

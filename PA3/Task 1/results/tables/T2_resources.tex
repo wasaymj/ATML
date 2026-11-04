@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Training resources (one epoch, 1,250 updates, same GPU type). Export: evaluation checkpoint size; recovery: optimizer-inclusive resumable state.}
+\label{tab:t1_res}
+\begin{tabular}{lccccc}
+\toprule
+Method & Trainable & Time (h) & Peak mem (GB) & Export (MB) & Recovery (MB) \\
+\midrule
+Full FT & 596.05M & 2.42 & 11.9 & 1173 & 6822 \\
+Full FT + L2-SP & 596.05M & 2.56 & 11.9 & 1173 & 6822 \\
+LoRA-4 & 2.52M & 2.74 & 3.1 & 10 & 29 \\
+LoRA-16 & 10.09M & 2.90 & 3.3 & 39 & 116 \\
+OPLoRA-16 & 10.09M & 3.39 & 3.6 & 77 & 116 \\
+\bottomrule
+\end{tabular}
+\end{table}

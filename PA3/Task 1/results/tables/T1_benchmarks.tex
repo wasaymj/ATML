@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Zero-shot results for all seven evaluation conditions (\%). Parentheses: change from baseline in percentage points. GSM8K: flexible-extract exact match (test, 1,319); HellaSwag and ARC-Easy: normalized accuracy; BoolQ: accuracy. Retention: mean change on the three non-math benchmarks.}
+\label{tab:t1_bench}
+\begin{tabular}{lccccc}
+\toprule
+Condition & GSM8K & HellaSwag & BoolQ & ARC-Easy & Retention $\Delta$ \\
+\midrule
+Baseline & 43.37 & 47.32 & 64.37 & 56.06 & -- \\
+Full FT (mid, 625) & 58.38 (+15.01) & 45.78 (-1.54) & 59.20 (-5.17) & 62.58 (+6.52) & -0.06 \\
+Full FT & 64.29 (+20.92) & 46.06 (-1.26) & 60.55 (-3.82) & 63.68 (+7.62) & +0.84 \\
+Full FT + L2-SP & 65.50 (+22.14) & 46.55 (-0.77) & 66.61 (+2.23) & 64.06 (+8.00) & +3.15 \\
+LoRA-4 & 58.23 (+14.86) & 47.38 (+0.06) & 69.39 (+5.02) & 63.38 (+7.32) & +4.13 \\
+LoRA-16 & 63.08 (+19.71) & 47.30 (-0.02) & 70.83 (+6.45) & 64.44 (+8.38) & +4.94 \\
+OPLoRA-16 & 62.02 (+18.65) & 47.16 (-0.16) & 69.42 (+5.05) & 63.17 (+7.11) & +4.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
