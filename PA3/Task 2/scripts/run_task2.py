@@ -275,14 +275,35 @@ def step_preflight(cfg):
         gens = generate_items(vlm, store, [("qa", p["question"], it["image"]) for p in q for it in p["items"]],
                               cfg["final_eval"]["max_new_tokens"], 8)
         r["generation_example"] = gens[:4]
-        # batch composition must not change a teacher-forced NLL (padding / masks are correct)
-        single = teacher_forced(vlm, store, items[:1], False, 1)[0]
-        tol = 5e-2 if device.type == "cuda" else 1e-3
-        assert abs(single - r["nll_with_image"][0]) < tol, (single, r["nll_with_image"][0])
+        # Batch composition must not change a teacher-forced NLL (padding, masks and positions are correct). In FP16 a
+        # batch of one (no padding) and a padded batch use different attention kernels and rounding, so differences
+        # of ~1e-2..1e-1 nats are expected and only recorded; the assertion runs in FP32, where a masking/position
+        # bug would still show but kernel rounding does not.
+        mixed = items + [(a, b_, c, None) for a, b_, c, _ in items[:2]]       # with- and without-image rows together
+        batched16 = teacher_forced(vlm, store, mixed, False, len(mixed))
+        single16 = [teacher_forced(vlm, store, [it], False, 1)[0] for it in mixed]
+        r["fp16_batch_vs_single_max_abs_nll_diff"] = max(abs(a - b_) for a, b_ in zip(batched16, single16))
+        dtypes = {n: p.dtype for n, p in vlm.lm.named_parameters()}
+        vlm.lm.float()
+        amp = vlm.use_amp
+        vlm.use_amp = False
+        try:
+            batched32 = teacher_forced(vlm, store, mixed, False, len(mixed))
+            single32 = [teacher_forced(vlm, store, [it], False, 1)[0] for it in mixed]
+        finally:
+            vlm.use_amp = amp
+            with torch.no_grad():
+                for n, p in vlm.lm.named_parameters():   # FP16 -> FP32 -> FP16 is exact, so the backbone is unchanged
+                    p.data = p.data.to(dtypes[n])
+        r["fp32_batch_vs_single_max_abs_nll_diff"] = max(abs(a - b_) for a, b_ in zip(batched32, single32))
+        assert r["fp32_batch_vs_single_max_abs_nll_diff"] < 1e-3, (batched32, single32)
+        assert next(p for n, p in vlm.lm.named_parameters() if "lora_" not in n).dtype == vlm.lm_dtype
         g1 = generate_items(vlm, store, [("qa", q[0]["question"], q[0]["items"][0]["image"])], 8, 1)[0]["text"]
         r["generation_batch_invariance"] = g1 == gens[0]["text"] or g1[:4] == gens[0]["text"][:4]
         report[run] = r
-        logger.info("preflight %s OK: %s", run, {k: r[k] for k in ("sequence", "calibration")})
+        logger.info("preflight %s OK: %s", run, {k: r[k] for k in ("sequence", "calibration", "peak_gpu_gb_microbatch",
+                                                                   "fp16_batch_vs_single_max_abs_nll_diff",
+                                                                   "fp32_batch_vs_single_max_abs_nll_diff") if k in r})
         del vlm, store
         free_cuda()
     atomic_json_dump(report, os.path.join(R, "preflight_report.json"))
