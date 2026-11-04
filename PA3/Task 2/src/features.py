@@ -47,6 +47,7 @@ def cache_features(cfg: Dict[str, Any], batch_size: int = 64) -> Dict[str, Any]:
     for p in model.parameters():
         p.requires_grad_(False)
     report["load_sec"] = time.time() - t_load
+    logger.info("SigLIP on %s", torch.cuda.get_device_name(0) if device.type == "cuda" else "CPU (no GPU visible)")
     report["preprocessing"] = {"size": proc.size, "resample": int(proc.resample), "do_rescale": proc.do_rescale,
                                "rescale_factor": proc.rescale_factor, "image_mean": proc.image_mean,
                                "image_std": proc.image_std, "do_center_crop": getattr(proc, "do_center_crop", None)}
@@ -68,23 +69,16 @@ def cache_features(cfg: Dict[str, Any], batch_size: int = 64) -> Dict[str, Any]:
                 raise FileNotFoundError(f"images missing for {[k for k, p in zip(batch, paths) if p is None][:3]}")
             imgs = list(pool.map(_load_rgb, paths))
             px = proc(images=imgs, return_tensors="pt")["pixel_values"].to(device)
-            out = model(pixel_values=px, output_hidden_states=not checked)
-            h = out.last_hidden_state
+            if not checked:
+                report["final_layernorm_check"] = check_layernorm_once(model, px)
+            h = model(pixel_values=px).last_hidden_state
             if h.shape[1:] != (grid * grid, dim):
                 raise RuntimeError(f"unexpected feature shape {tuple(h.shape)}")
             if not checked:
-                pre_ln = out.hidden_states[-1]
-                once = model.vision_model.post_layernorm(pre_ln)
-                twice = model.vision_model.post_layernorm(h)
-                # (the "twice" difference is only informative for a learned, non-identity LN affine, as in SigLIP)
-                report["final_layernorm_check"] = {
-                    "max_abs_diff_vs_post_layernorm_once": float((once - h).abs().max()),
-                    "max_abs_diff_if_applied_twice": float((twice - h).abs().max()),
+                report["final_layernorm_check"].update({
                     "pixel_shape": list(px.shape), "feature_shape": list(h.shape[1:]),
                     "token_norm_mean": float(h.float().norm(dim=-1).mean()),
-                    "token_norm_std": float(h.float().norm(dim=-1).std())}
-                if report["final_layernorm_check"]["max_abs_diff_vs_post_layernorm_once"] > 1e-3:
-                    raise RuntimeError(f"last_hidden_state is not post_layernorm(encoder): {report['final_layernorm_check']}")
+                    "token_norm_std": float(h.float().norm(dim=-1).std())})
                 checked = True
             feats[s:s + len(batch)] = h.to(torch.float16).cpu()
             if (s // batch_size) % 20 == 0:
@@ -104,6 +98,39 @@ def cache_features(cfg: Dict[str, Any], batch_size: int = 64) -> Dict[str, Any]:
     report["gpu_allocated_after_release_gb"] = (torch.cuda.memory_allocated() / 2**30
                                                 if torch.cuda.is_available() else 0.0)
     return report
+
+
+@torch.no_grad()
+def check_layernorm_once(model, px: torch.Tensor) -> Dict[str, Any]:
+    """Verify that the cached features are SigLIP's final LayerNorm applied exactly once to the encoder output.
+
+    A forward hook on `post_layernorm` counts its calls and records its input/output during one normal forward
+    pass; independently, the encoder output is recomputed (embeddings -> encoder, without the vision model's
+    wrapper) and normalized once. `output_hidden_states` is deliberately not used: in recent transformers its
+    last entry is collected by hooks and can already be the post-LN output, which would make the check vacuous."""
+    vm = model.vision_model
+    seen = []
+    handle = vm.post_layernorm.register_forward_hook(lambda mod, inp, out: seen.append((inp[0], out)))
+    try:
+        h = model(pixel_values=px).last_hidden_state
+    finally:
+        handle.remove()
+    if len(seen) != 1:
+        raise RuntimeError(f"post_layernorm ran {len(seen)} times in one forward pass (expected exactly 1)")
+    ln_in, ln_out = seen[0]
+    enc = vm.encoder(inputs_embeds=vm.embeddings(px)).last_hidden_state
+    rep = {"post_layernorm_calls_per_forward": len(seen),
+           "max_abs_diff_last_hidden_vs_hooked_ln_output": float((h - ln_out).abs().max()),
+           "max_abs_diff_hooked_ln_input_vs_recomputed_encoder": float((ln_in - enc).abs().max()),
+           "max_abs_diff_last_hidden_vs_ln(recomputed_encoder)": float((h - vm.post_layernorm(enc)).abs().max()),
+           # informative only for a learned (non-identity) LN affine, as in the real checkpoint
+           "max_abs_diff_if_applied_twice": float((vm.post_layernorm(h) - h).abs().max())}
+    bad = [k for k in ("max_abs_diff_last_hidden_vs_hooked_ln_output",
+                       "max_abs_diff_hooked_ln_input_vs_recomputed_encoder",
+                       "max_abs_diff_last_hidden_vs_ln(recomputed_encoder)") if rep[k] > 1e-3]
+    if bad:
+        raise RuntimeError(f"last_hidden_state is not post_layernorm(encoder output) applied once: {rep}")
+    return rep
 
 
 class FeatureStore:
