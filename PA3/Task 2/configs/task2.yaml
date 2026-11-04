@@ -96,9 +96,12 @@ dev_eval:
   extra_updates: [2250, 3750, 4500]             # stage endpoints (update 0 is always evaluated)
   generate: true                                # (impl) also greedy-generate dev answers/captions (dev only)
   batch_size: 8
+  nll_batch_size: 1                             # (impl) teacher-forced NLL one example at a time (no padding; see final_eval)
 
 final_eval:
-  batch_size: 8
+  batch_size: 8                                 # generation (manual)
+  nll_batch_size: 1                             # (impl) FP16 padded batches shift a single NLL by up to ~0.3 nats
+                                                # (preflight); unpadded scoring makes every condition comparable
   max_new_tokens: 16
   conditions: ["correct", "complementary", "mismatched", "no_image"]
   bootstrap_resamples: 4000

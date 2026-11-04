@@ -127,10 +127,12 @@ def score_rows(rows: List[Dict], suite: str) -> None:
 
 
 def run_condition(vlm, store, pairs: List[Dict], suite: str, condition: str, mismatch: Optional[Dict[str, str]],
-                  batch_size: int, max_new_tokens: int, generate: bool = True) -> List[Dict]:
+                  batch_size: int, max_new_tokens: int, generate: bool = True, nll_batch_size: int = 1) -> List[Dict]:
+    """batch_size: generation batch (manual: 8). nll_batch_size: teacher-forced scoring batch; 1 = no padding, so a
+    question's reference NLL does not depend on which other questions share its batch (FP16 rounding)."""
     rows = question_rows(pairs, condition, mismatch)
     nll = teacher_forced(vlm, store, [("qa", r["question"], r["target"], r["image_shown"]) for r in rows],
-                         label_eos=False, batch_size=batch_size)
+                         label_eos=False, batch_size=nll_batch_size)
     for r, v in zip(rows, nll):
         r["nll"] = v
     if generate:
@@ -170,13 +172,14 @@ def _gen_summary(rows: List[Dict]) -> Dict[str, Any]:
 
 def dev_evaluate(vlm, store, sets: Dict[str, Any], cfg: Dict[str, Any], generate: bool) -> Tuple[Dict, Dict]:
     bs = cfg["dev_eval"]["batch_size"]
+    nbs = cfg["dev_eval"].get("nll_batch_size", 1)
     caps = sets["captions_dev"]
     summary: Dict[str, Any] = {"caption_loss": {}, "answer_nll": {}}
     details: Dict[str, Any] = {"captions": [{"ex_id": e["ex_id"], "image": e["image"], "reference": e["text"]}
                                             for e in caps], "answers": {}}
     for cond in ("correct", "no_image"):
         losses = teacher_forced(vlm, store, [("caption", None, e["text"], e["image"] if cond == "correct" else None)
-                                             for e in caps], label_eos=True, batch_size=bs)
+                                             for e in caps], label_eos=True, batch_size=nbs)
         summary["caption_loss"][cond] = float(np.mean(losses))
         for d, l in zip(details["captions"], losses):
             d[f"loss_{cond}"] = l
@@ -186,7 +189,7 @@ def dev_evaluate(vlm, store, sets: Dict[str, Any], cfg: Dict[str, Any], generate
         per_cond: Dict[str, List[Dict]] = {}
         for cond in ("correct", "complementary", "no_image"):
             rows = run_condition(vlm, store, sets[dev_name], suite, cond, None, bs, cfg["final_eval"]["max_new_tokens"],
-                                 generate=generate)
+                                 generate=generate, nll_batch_size=nbs)
             per_cond[cond] = rows
             res[cond] = float(np.mean([r["nll"] for r in rows]))
             res[f"{cond}_by_kind"] = {k: float(np.mean([r["nll"] for r in rows if r["kind"] == k]))
@@ -232,7 +235,7 @@ def final_evaluate(vlm, store, sets: Dict[str, Any], cfg: Dict[str, Any], out_di
             path = os.path.join(out_dir, f"{suite}_{cond}.json")
             t0 = time.time()
             rows = run_condition(vlm, store, sets[test_name], suite, cond, mismatch, fe["batch_size"],
-                                 fe["max_new_tokens"])
+                                 fe["max_new_tokens"], nll_batch_size=fe.get("nll_batch_size", 1))
             report["timing"][f"{suite}_{cond}"] = {"wall_sec": time.time() - t0,
                                                    "gen_sec_total": float(sum(r["gen_sec"] for r in rows)),
                                                    "n": len(rows)}
