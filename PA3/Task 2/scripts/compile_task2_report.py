@@ -564,8 +564,10 @@ def f2_final_accuracy(run: str = "main"):
         ax.set_ylim(0, 100)
         ax.set_ylabel("accuracy (%)")
         ax.set_title(title)
-    axes[0].legend(ncol=2, loc="upper right")
-    fig.tight_layout()
+    # legend above the panels so it never covers the tall correct-image bars
+    handles, labels = axes[0].get_legend_handles_labels()
+    fig.legend(handles, labels, ncol=4, loc="upper center", frameon=False, bbox_to_anchor=(0.5, 1.0))
+    fig.tight_layout(rect=(0, 0, 1, 0.9))
     savefig(fig, f"F2_final_accuracy_{run}")
     plt.close(fig)
 
@@ -715,12 +717,13 @@ def f8_compression():
             ax.bar(xs, vals, w, color=RCOLOR[run], label=RLABEL[run], edgecolor="white", linewidth=0.8)
             ax.errorbar(xs, vals, yerr=[lo, hi], fmt="none", ecolor=INK, elinewidth=0.8, capsize=2)
         ax.set_xticks(range(len(CONDS)))
-        ax.set_xticklabels([CLABEL[c] for c in CONDS])
+        ax.set_xticklabels([CLABEL[c].replace(" ", "\n") for c in CONDS])   # two-line labels: no overlap at 5.5 in
         ax.set_ylim(0, 100)
         ax.set_ylabel("accuracy (%)")
         ax.set_title(title)
-    axes[0].legend()
-    fig.tight_layout()
+    handles, labels = axes[0].get_legend_handles_labels()
+    fig.legend(handles, labels, ncol=2, loc="upper center", frameon=False, bbox_to_anchor=(0.5, 1.0))
+    fig.tight_layout(rect=(0, 0, 1, 0.9))
     savefig(fig, "F8_compression")
     plt.close(fig)
 

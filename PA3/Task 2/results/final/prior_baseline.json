@@ -1,0 +1,19 @@
+{
+  "grounding": {
+    "acc": 0.3984375,
+    "acc_by_kind": {
+      "presence": 0.5,
+      "counting": 0.296875
+    },
+    "pair_acc": 0.0
+  },
+  "vqa": {
+    "acc": 0.3645833333333333,
+    "acc_by_kind": {
+      "yes/no": 0.55,
+      "number": 0.4604166666666667,
+      "other": 0.11527777777777778
+    },
+    "pair_acc": 0.0
+  }
+}

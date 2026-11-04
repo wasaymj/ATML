@@ -1,0 +1,63 @@
+{
+  "model": "google/siglip-base-patch16-224",
+  "model_revision_sha": "7fd15f0689c79d79e38b1c2e2e2370a7bf2761ed",
+  "splits": {
+    "train2014": {
+      "n_images": 8744,
+      "sec": 185.67318630218506,
+      "file_mb": 2510.700511932373
+    },
+    "val2014": {
+      "n_images": 528,
+      "sec": 10.694557905197144,
+      "file_mb": 151.60662651062012
+    }
+  },
+  "load_sec": 9.362770080566406,
+  "preprocessing": {
+    "size": {
+      "height": 224,
+      "width": 224
+    },
+    "resample": 3,
+    "do_rescale": true,
+    "rescale_factor": 0.00392156862745098,
+    "image_mean": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "image_std": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "do_center_crop": null
+  },
+  "final_layernorm_check": {
+    "post_layernorm_calls_per_forward": 1,
+    "max_abs_diff_last_hidden_vs_hooked_ln_output": 0.0,
+    "max_abs_diff_hooked_ln_input_vs_recomputed_encoder": 0.0,
+    "max_abs_diff_last_hidden_vs_ln(recomputed_encoder)": 0.0,
+    "max_abs_diff_if_applied_twice": 103.91271209716797,
+    "pixel_shape": [
+      64,
+      3,
+      224,
+      224
+    ],
+    "feature_shape": [
+      196,
+      768
+    ],
+    "token_norm_mean": 61.99283218383789,
+    "token_norm_std": 9.057143211364746
+  },
+  "total_sec": 196.5469470024109,
+  "peak_gpu_gb": {
+    "allocated": 0.8932638168334961,
+    "reserved": 0.943359375
+  },
+  "device": "Tesla T4",
+  "gpu_allocated_after_release_gb": 0.02685832977294922
+}

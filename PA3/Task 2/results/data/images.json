@@ -1,0 +1,8 @@
+{
+  "n_images": 9272,
+  "n_downloaded": 9272,
+  "by_split": {
+    "train2014": 8744,
+    "val2014": 528
+  }
+}

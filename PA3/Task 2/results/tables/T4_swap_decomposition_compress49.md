@@ -1,0 +1,17 @@
+**What happens when the partner image is shown (49 tokens), in % of questions. Changed = prediction differs from the correct-image prediction (image sensitivity); follows = changed to the shown (partner) image's answer; unchanged = same answer as with the own image; other = changed to an unsupported answer. 'Score vs shown refs' scores swapped answers against the partner's references.**
+
+| Suite | Subset | n | Changed | Follows shown | Unchanged | Other |
+|---|---|---|---|---|---|---|
+| Annotation-derived grounding | All | 128 | 87.5 | 64.8 | 12.5 | 22.7 |
+|  | Counting | 64 | 81.2 | 35.9 | 18.8 | 45.3 |
+|  | Presence | 64 | 93.8 | 93.8 | 6.2 | 0.0 |
+|  | right w/ own image | 89 | 93.3 | 80.9 | 6.7 | 12.4 |
+|  | wrong w/ own image | 39 | 74.4 | 28.2 | 25.6 | 46.2 |
+|  | pairs: both follow shown image |  | 56.2 | score vs shown refs 69.5 [60.2, 78.9] |  |  |
+| Natural VQAv2 | All | 192 | 54.2 | 39.6 | 45.8 | 14.6 |
+|  | Number | 48 | 62.5 | 45.8 | 37.5 | 16.7 |
+|  | Other | 72 | 66.7 | 41.7 | 33.3 | 25.0 |
+|  | Yes/No | 72 | 36.1 | 33.3 | 63.9 | 2.8 |
+|  | right w/ own image | 117 | 65.0 | 56.4 | 35.0 | 8.5 |
+|  | wrong w/ own image | 75 | 37.3 | 13.3 | 62.7 | 24.0 |
+|  | pairs: both follow shown image |  | 34.4 | score vs shown refs 64.2 [57.9, 70.5] |  |  |

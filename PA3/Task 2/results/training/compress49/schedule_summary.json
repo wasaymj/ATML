@@ -1,0 +1,67 @@
+{
+  "caption_alignment": {
+    "examples": 36000,
+    "examples_by_component": {
+      "caption": 36000
+    },
+    "draws_by_component": {
+      "caption": 18000
+    },
+    "draw_fraction": {
+      "caption": 1.0
+    },
+    "unique_pool_items": {
+      "caption": 18000
+    }
+  },
+  "visual_instruction": {
+    "examples": 24000,
+    "examples_by_component": {
+      "presence": 12064,
+      "counting": 5904,
+      "caption": 6032
+    },
+    "draws_by_component": {
+      "presence": 6032,
+      "counting": 2952,
+      "caption": 3016
+    },
+    "draw_fraction": {
+      "presence": 0.5026666666666667,
+      "counting": 0.246,
+      "caption": 0.25133333333333335
+    },
+    "unique_pool_items": {
+      "presence": 4000,
+      "counting": 2952,
+      "caption": 6032
+    }
+  },
+  "vqa_specialization": {
+    "examples": 12000,
+    "examples_by_component": {
+      "counting": 1252,
+      "presence": 1168,
+      "vqa": 8416,
+      "caption": 1164
+    },
+    "draws_by_component": {
+      "counting": 626,
+      "presence": 584,
+      "vqa": 4208,
+      "caption": 582
+    },
+    "draw_fraction": {
+      "counting": 0.10433333333333333,
+      "presence": 0.09733333333333333,
+      "vqa": 0.7013333333333334,
+      "caption": 0.097
+    },
+    "unique_pool_items": {
+      "counting": 626,
+      "presence": 584,
+      "vqa": 1536,
+      "caption": 1164
+    }
+  }
+}

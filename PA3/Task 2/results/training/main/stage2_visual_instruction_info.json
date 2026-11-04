@@ -1,0 +1,19 @@
+{
+  "stage": 2,
+  "name": "visual_instruction",
+  "update": 3750,
+  "visual_tokens": 196,
+  "lora": {
+    "r": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "bias": "none",
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj"
+    ]
+  },
+  "connector_scale": 0.054691556841135025
+}

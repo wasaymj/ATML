@@ -30,6 +30,9 @@ ATML_PA3_extracted.txt
 Implementation_Notes/
 Task 1/task1_data_ids.zip
 Task 1/task1_results.zip
+Task 2/task2_data_ids.zip
+Task 2/task2_label_audit.zip
+Task 2/task2_results.zip
 
 # Task 2: raw COCO/VQAv2 annotations, downloaded images, materialized text, feature cache, audit contact sheets
 # (data/ids/ and results/ stay tracked)

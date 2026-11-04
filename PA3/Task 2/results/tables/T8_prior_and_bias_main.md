@@ -1,0 +1,13 @@
+**Language-prior baseline (most frequent training answer per question type; text only, pair accuracy 0 by construction) vs the VLM (196 tokens (main)) under each image condition; accuracy in %, plus the share of 'yes' answers on yes/no-type questions (references are balanced 50/50 by construction).**
+
+| Suite | Type | Prior | Correct | Compl. swap | Mismatched | No image |
+|---|---|---|---|---|---|---|
+| Annotation-derived grounding | All | 39.8 | 75.8 | 10.9 | 40.6 | 39.8 |
+|  | Counting | 29.7 | 54.7 | 18.8 | 29.7 | 29.7 |
+|  | Presence | 50.0 | 96.9 | 3.1 | 51.6 | 50.0 |
+|  | yes-rate (yes/no questions) | -- | 53.1 | 53.1 | 10.9 | 0.0 |
+| Natural VQAv2 | All | 36.5 | 64.6 | 30.9 | 33.3 | 35.6 |
+|  | Number | 46.0 | 71.9 | 20.4 | 25.4 | 35.8 |
+|  | Other | 11.5 | 61.8 | 16.5 | 15.1 | 17.4 |
+|  | Yes/No | 55.0 | 62.6 | 52.4 | 56.7 | 53.6 |
+|  | yes-rate (yes/no questions) | -- | 52.8 | 52.8 | 11.1 | 5.6 |

@@ -26,6 +26,7 @@ src/analysis.py               pair bootstrap (4,000), correct-image advantages, 
 src/vqa_eval.py               Python 3 port of the official VQA normalization + soft consensus accuracy
 scripts/run_task2.py          CLI: data | features | preflight | train | final_eval | collect | report | status
 scripts/compile_task2_report.py   tables (results/tables, .md + .tex) and figures (results/figures, .pdf + .png)
+scripts/task2_extra_checks.py      extra analysis checks -> results/analysis/extra_checks.json
 notebooks/task2_kaggle_runner.ipynb   Kaggle driver (2 x T4: main run on GPU 0, 49-token run on GPU 1)
 data/ids/                     selected image / question / pair ids, generated grounding pairs, mismatched mapping (git-tracked)
 results/                      every machine-readable result used in the report (git-tracked)
@@ -60,6 +61,15 @@ python scripts/run_task2.py --step final_eval --run all
 ```
 ```bash
 python scripts/run_task2.py --step report
+```
+After the blind label audit (`label_audit/label_audit_blind.csv` filled by hand and saved as
+`results/label_audit/label_audit_filled.csv`), the two CPU-only steps below add T11 and the extra checks
+(hand-label re-scoring, paired 196 vs 49 differences, answer formats; `results/analysis/extra_checks.json`):
+```bash
+python scripts/compile_task2_report.py
+```
+```bash
+python scripts/task2_extra_checks.py
 ```
 * `--run` accepts `main`, `compress49`, a comma-separated list or `all` (the two runs can use separate GPUs via
   `CUDA_VISIBLE_DEVICES`). Every step is idempotent: finished pieces are skipped, an interrupted run resumes

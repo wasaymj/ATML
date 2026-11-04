@@ -1,0 +1,8 @@
+**Natural VQAv2, final test (96 pairs / 192 questions), 49 tokens. Accuracy = VQA soft accuracy (local subset) in %, 95% pair-bootstrap CI (4,000 resamples); pair acc = both answers exactly match their canonical references; NLL = mean reference-answer NLL (termination excluded).**
+
+| Condition | Acc | Number | Other | Yes/No | Pair acc | Identical | Empty | Ref. NLL | s/answer |
+|---|---|---|---|---|---|---|---|---|---|
+| Correct | 64.2 [57.9, 70.5] | 65.0 [51.0, 78.1] | 58.5 [46.5, 70.1] | 69.4 [61.7, 77.4] | 34.4 [25.0, 43.8] | 45.8 [36.5, 55.2] | 0.0 | 1.20 [0.95, 1.49] | 0.028 |
+| Compl. swap | 29.6 [23.4, 35.6] | 26.7 [14.6, 39.4] | 18.9 [9.7, 28.6] | 42.2 [33.5, 50.6] | 3.1 [0.0, 7.3] | 45.8 [36.5, 55.2] | 0.0 | 2.70 [2.30, 3.16] | 0.028 |
+| Mismatched | 31.4 [25.7, 37.0] | 20.4 [11.5, 30.0] | 14.7 [7.8, 22.2] | 55.4 [49.6, 61.1] | 2.1 [0.0, 5.2] | 85.4 [78.1, 91.7] | 0.0 | 2.53 [2.13, 2.97] | 0.027 |
+| No image | 38.4 [33.3, 43.3] | 44.0 [34.4, 52.9] | 18.2 [11.0, 26.0] | 55.0 [52.5, 57.5] | 0.0 [0.0, 0.0] | 100.0 [100.0, 100.0] | 0.0 | 2.03 [1.71, 2.41] | 0.023 |

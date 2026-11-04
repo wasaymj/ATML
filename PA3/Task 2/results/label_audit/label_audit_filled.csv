@@ -1,0 +1,129 @@
+audit_id,question,your_answer (yes/no or a count; '?' if ambiguous)
+0,Does this image contain a sheep?,yes
+1,Does this image contain a sheep?,no
+2,Does this image contain a sheep?,yes
+3,Does this image contain a sheep?,no
+4,Does this image contain a person?,yes
+5,Does this image contain a person?,yes
+6,Does this image contain a cat?,yes
+7,Does this image contain a cat?,no
+8,Does this image contain a train?,no
+9,Does this image contain a train?,yes
+10,Does this image contain an airplane?,yes
+11,Does this image contain an airplane?,no
+12,Does this image contain a zebra?,no
+13,Does this image contain a zebra?,yes
+14,Does this image contain a baseball glove?,no
+15,Does this image contain a baseball glove?,yes
+16,Does this image contain a wine glass?,no
+17,Does this image contain a wine glass?,yes
+18,Does this image contain an orange?,no
+19,Does this image contain an orange?,yes
+20,Does this image contain a sheep?,no
+21,Does this image contain a sheep?,yes
+22,Does this image contain a banana?,no
+23,Does this image contain a banana?,yes
+24,Does this image contain a person?,yes
+25,Does this image contain a person?,no
+26,Does this image contain a stop sign?,yes
+27,Does this image contain a stop sign?,no
+28,Does this image contain an oven?,yes
+29,Does this image contain an oven?,no
+30,Does this image contain a sink?,yes
+31,Does this image contain a sink?,no
+32,Does this image contain a frisbee?,no
+33,Does this image contain a frisbee?,yes
+34,Does this image contain a stop sign?,yes
+35,Does this image contain a stop sign?,no
+36,Does this image contain scissors?,yes
+37,Does this image contain scissors?,no
+38,Does this image contain a backpack?,no
+39,Does this image contain a backpack?,yes
+40,Does this image contain a tie?,yes
+41,Does this image contain a tie?,no
+42,Does this image contain a pizza?,no
+43,Does this image contain a pizza?,yes
+44,Does this image contain a pizza?,no
+45,Does this image contain a pizza?,yes
+46,Does this image contain a giraffe?,no
+47,Does this image contain a giraffe?,yes
+48,Does this image contain a sports ball?,no
+49,Does this image contain a sports ball?,yes
+50,Does this image contain a zebra?,no
+51,Does this image contain a zebra?,yes
+52,Does this image contain a clock?,yes
+53,Does this image contain a clock?,no
+54,Does this image contain a fork?,yes
+55,Does this image contain a fork?,no
+56,Does this image contain a kite?,no
+57,Does this image contain a kite?,yes
+58,Does this image contain a cow?,no
+59,Does this image contain a cow?,yes
+60,Does this image contain a snowboard?,yes
+61,Does this image contain a snowboard?,no
+62,Does this image contain a clock?,no
+63,Does this image contain a clock?,yes
+64,How many horses can you see?,4
+65,How many horses can you see?,2
+66,How many zebras can you see?,3
+67,How many zebras can you see?,1
+68,How many wine glasses can you see?,4
+69,How many wine glasses can you see?,1
+70,How many donuts can you see?,0
+71,How many donuts can you see?,1
+72,How many chairs can you see?,2
+73,How many chairs can you see?,2
+74,How many baseball bats can you see?,1
+75,How many baseball bats can you see?,1
+76,How many bowls can you see?,4
+77,How many bowls can you see?,0
+78,How many motorcycles can you see?,1
+79,How many motorcycles can you see?,4
+80,How many ovens can you see?,4
+81,How many ovens can you see?,1
+82,How many dogs can you see?,1
+83,How many dogs can you see?,4
+84,How many boats can you see?,2
+85,How many boats can you see?,2
+86,How many donuts can you see?,2
+87,How many donuts can you see?,1
+88,How many toilets can you see?,0
+89,How many toilets can you see?,3
+90,How many donuts can you see?,0
+91,How many donuts can you see?,4
+92,How many cakes can you see?,1
+93,How many cakes can you see?,4
+94,How many parking meters can you see?,2
+95,How many parking meters can you see?,2
+96,How many elephants can you see?,3
+97,How many elephants can you see?,1
+98,How many frisbees can you see?,3
+99,How many frisbees can you see?,4
+100,How many ties can you see?,3
+101,How many ties can you see?,0
+102,How many scissors can you see?,2
+103,How many scissors can you see?,1
+104,How many tennis rackets can you see?,1
+105,How many tennis rackets can you see?,3
+106,How many tennis rackets can you see?,4
+107,How many tennis rackets can you see?,0
+108,How many baseball gloves can you see?,3
+109,How many baseball gloves can you see?,2
+110,How many fire hydrants can you see?,1
+111,How many fire hydrants can you see?,4
+112,How many parking meters can you see?,2
+113,How many parking meters can you see?,2
+114,How many toasters can you see?,1
+115,How many toasters can you see?,1
+116,How many kites can you see?,4
+117,How many kites can you see?,1
+118,How many trains can you see?,2
+119,How many trains can you see?,3
+120,How many birds can you see?,1
+121,How many birds can you see?,1
+122,How many chairs can you see?,2
+123,How many chairs can you see?,1
+124,How many sinks can you see?,3
+125,How many sinks can you see?,3
+126,How many handbags can you see?,5
+127,How many handbags can you see?,1

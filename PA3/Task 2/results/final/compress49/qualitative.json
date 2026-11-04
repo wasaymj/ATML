@@ -1,0 +1,1158 @@
+{
+  "grounding": [
+    {
+      "category": "grounded",
+      "category_size": 36,
+      "pair_id": "presence_24_454414_184359",
+      "kind": "presence",
+      "question": "Does this image contain a zebra?",
+      "images": [
+        "val2014/184359",
+        "val2014/454414"
+      ],
+      "references": [
+        "no",
+        "yes"
+      ],
+      "human_answers": [
+        [
+          "no"
+        ],
+        [
+          "yes"
+        ]
+      ],
+      "predictions": {
+        "correct": [
+          "no",
+          "yes"
+        ],
+        "complementary": [
+          "yes",
+          "no"
+        ],
+        "mismatched": [
+          "no",
+          "no"
+        ],
+        "no_image": [
+          "no",
+          "no"
+        ]
+      },
+      "mismatched_images": [
+        "val2014/257624",
+        "val2014/257624"
+      ],
+      "nll": {
+        "correct": [
+          0.0013044904917478561,
+          0.00035363141796551645
+        ],
+        "complementary": [
+          8.000353813171387,
+          6.813804626464844
+        ],
+        "mismatched": [
+          0.013660634867846966,
+          4.326160430908203
+        ],
+        "no_image": [
+          0.1856538951396942,
+          1.7794039249420166
+        ]
+      }
+    },
+    {
+      "category": "grounded",
+      "category_size": 36,
+      "pair_id": "presence_59_187887_16995",
+      "kind": "presence",
+      "question": "Does this image contain a pizza?",
+      "images": [
+        "val2014/16995",
+        "val2014/187887"
+      ],
+      "references": [
+        "no",
+        "yes"
+      ],
+      "human_answers": [
+        [
+          "no"
+        ],
+        [
+          "yes"
+        ]
+      ],
+      "predictions": {
+        "correct": [
+          "no",
+          "yes"
+        ],
+        "complementary": [
+          "yes",
+          "no"
+        ],
+        "mismatched": [
+          "no",
+          "no"
+        ],
+        "no_image": [
+          "yes",
+          "yes"
+        ]
+      },
+      "mismatched_images": [
+        "val2014/514294",
+        "val2014/514294"
+      ],
+      "nll": {
+        "correct": [
+          0.0016221948899328709,
+          0.005675866734236479
+        ],
+        "complementary": [
+          5.193175792694092,
+          6.626622200012207
+        ],
+        "mismatched": [
+          0.15811297297477722,
+          1.9237380027770996
+        ],
+        "no_image": [
+          0.7502152919769287,
+          0.6408402919769287
+        ]
+      }
+    },
+    {
+      "category": "insensitive",
+      "category_size": 8,
+      "pair_id": "presence_55_554980_208566",
+      "kind": "presence",
+      "question": "Does this image contain an orange?",
+      "images": [
+        "val2014/208566",
+        "val2014/554980"
+      ],
+      "references": [
+        "no",
+        "yes"
+      ],
+      "human_answers": [
+        [
+          "no"
+        ],
+        [
+          "yes"
+        ]
+      ],
+      "predictions": {
+        "correct": [
+          "yes",
+          "yes"
+        ],
+        "complementary": [
+          "yes",
+          "yes"
+        ],
+        "mismatched": [
+          "no",
+          "no"
+        ],
+        "no_image": [
+          "no",
+          "no"
+        ]
+      },
+      "mismatched_images": [
+        "val2014/222771",
+        "val2014/370448"
+      ],
+      "nll": {
+        "correct": [
+          0.880232572555542,
+          0.0018600797047838569
+        ],
+        "complementary": [
+          6.32998514175415,
+          0.536482572555542
+        ],
+        "mismatched": [
+          0.03852110728621483,
+          3.168287992477417
+        ],
+        "no_image": [
+          0.5198197364807129,
+          0.9104447364807129
+        ]
+      }
+    },
+    {
+      "category": "insensitive",
+      "category_size": 8,
+      "pair_id": "counting_16_60456_475223",
+      "kind": "counting",
+      "question": "How many birds can you see?",
+      "images": [
+        "val2014/475223",
+        "val2014/60456"
+      ],
+      "references": [
+        "2",
+        "1"
+      ],
+      "human_answers": [
+        [
+          "2"
+        ],
+        [
+          "1"
+        ]
+      ],
+      "predictions": {
+        "correct": [
+          "1",
+          "1"
+        ],
+        "complementary": [
+          "1",
+          "1"
+        ],
+        "mismatched": [
+          "1",
+          "1"
+        ],
+        "no_image": [
+          "1",
+          "1"
+        ]
+      },
+      "mismatched_images": [
+        "val2014/446902",
+        "val2014/446902"
+      ],
+      "nll": {
+        "correct": [
+          2.468689441680908,
+          0.11207737773656845
+        ],
+        "complementary": [
+          2.487077474594116,
+          0.10931435972452164
+        ],
+        "mismatched": [
+          2.066932201385498,
+          0.16068214178085327
+        ],
+        "no_image": [
+          1.5946459770202637,
+          0.9540209174156189
+        ]
+      }
+    },
+    {
+      "category": "half_right",
+      "category_size": 11,
+      "pair_id": "counting_19_507719_354491",
+      "kind": "counting",
+      "question": "How many horses can you see?",
+      "images": [
+        "val2014/507719",
+        "val2014/354491"
+      ],
+      "references": [
+        "4",
+        "2"
+      ],
+      "human_answers": [
+        [
+          "4"
+        ],
+        [
+          "2"
+        ]
+      ],
+      "predictions": {
+        "correct": [
+          "3",
+          "2"
+        ],
+        "complementary": [
+          "2",
+          "3"
+        ],
+        "mismatched": [
+          "1",
+          "1"
+        ],
+        "no_image": [
+          "1",
+          "1"
+        ]
+      },
+      "mismatched_images": [
+        "val2014/134096",
+        "val2014/134096"
+      ],
+      "nll": {
+        "correct": [
+          1.4515740871429443,
+          0.04439185559749603
+        ],
+        "complementary": [
+          9.138141632080078,
+          2.1390740871429443
+        ],
+        "mismatched": [
+          6.678214073181152,
+          2.7250890731811523
+        ],
+        "no_image": [
+          2.127829074859619,
+          1.2997039556503296
+        ]
+      }
+    },
+    {
+      "category": "half_right",
+      "category_size": 11,
+      "pair_id": "counting_32_189504_440522",
+      "kind": "counting",
+      "question": "How many ties can you see?",
+      "images": [
+        "val2014/189504",
+        "val2014/440522"
+      ],
+      "references": [
+        "3",
+        "1"
+      ],
+      "human_answers": [
+        [
+          "3"
+        ],
+        [
+          "1"
+        ]
+      ],
+      "predictions": {
+        "correct": [
+          "2",
+          "1"
+        ],
+        "complementary": [
+          "1",
+          "2"
+        ],
+        "mismatched": [
+          "2",
+          "4"
+        ],
+        "no_image": [
+          "1",
+          "1"
+        ]
+      },
+      "mismatched_images": [
+        "val2014/381031",
+        "val2014/142487"
+      ],
+      "nll": {
+        "correct": [
+          1.6049342155456543,
+          0.4002425968647003
+        ],
+        "complementary": [
+          5.150242805480957,
+          1.6205592155456543
+        ],
+        "mismatched": [
+          3.0633509159088135,
+          2.4398951530456543
+        ],
+        "no_image": [
+          2.7697606086730957,
+          0.5510106682777405
+        ]
+      }
+    },
+    {
+      "category": "responsive_wrong",
+      "category_size": 9,
+      "pair_id": "counting_81_151651_376310",
+      "kind": "counting",
+      "question": "How many sinks can you see?",
+      "images": [
+        "val2014/376310",
+        "val2014/151651"
+      ],
+      "references": [
+        "3",
+        "4"
+      ],
+      "human_answers": [
+        [
+          "3"
+        ],
+        [
+          "4"
+        ]
+      ],
+      "predictions": {
+        "correct": [
+          "2",
+          "3"
+        ],
+        "complementary": [
+          "3",
+          "2"
+        ],
+        "mismatched": [
+          "1",
+          "1"
+        ],
+        "no_image": [
+          "1",
+          "1"
+        ]
+      },
+      "mismatched_images": [
+        "val2014/156045",
+        "val2014/156045"
+      ],
+      "nll": {
+        "correct": [
+          3.881891965866089,
+          1.178987741470337
+        ],
+        "complementary": [
+          0.7883627414703369,
+          6.538142204284668
+        ],
+        "mismatched": [
+          4.517314910888672,
+          5.845439910888672
+        ],
+        "no_image": [
+          2.6709580421447754,
+          4.327208042144775
+        ]
+      }
+    },
+    {
+      "category": "responsive_wrong",
+      "category_size": 9,
+      "pair_id": "counting_87_425905_336046",
+      "kind": "counting",
+      "question": "How many scissors can you see?",
+      "images": [
+        "val2014/336046",
+        "val2014/425905"
+      ],
+      "references": [
+        "2",
+        "1"
+      ],
+      "human_answers": [
+        [
+          "2"
+        ],
+        [
+          "1"
+        ]
+      ],
+      "predictions": {
+        "correct": [
+          "1",
+          "2"
+        ],
+        "complementary": [
+          "2",
+          "1"
+        ],
+        "mismatched": [
+          "1",
+          "1"
+        ],
+        "no_image": [
+          "1",
+          "1"
+        ]
+      },
+      "mismatched_images": [
+        "val2014/283890",
+        "val2014/54337"
+      ],
+      "nll": {
+        "correct": [
+          0.8097220659255981,
+          1.1332554817199707
+        ],
+        "complementary": [
+          0.4457554817199707,
+          0.6847220659255981
+        ],
+        "mismatched": [
+          2.831397294998169,
+          0.8318210244178772
+        ],
+        "no_image": [
+          1.5139904022216797,
+          0.45149046182632446
+        ]
+      }
+    }
+  ],
+  "vqa": [
+    {
+      "category": "grounded",
+      "category_size": 33,
+      "pair_id": "vqa_32990001_554523022",
+      "kind": "other",
+      "question": "What room is this?",
+      "images": [
+        "val2014/32990",
+        "val2014/554523"
+      ],
+      "references": [
+        "bathroom",
+        "kitchen"
+      ],
+      "human_answers": [
+        [
+          "bathroom",
+          "bathroom",
+          "bathroom",
+          "bathroom",
+          "bathroom",
+          "toilet",
+          "bathroom",
+          "bathroom",
+          "bathroom",
+          "bathroom"
+        ],
+        [
+          "kitchen",
+          "kitchen",
+          "hall",
+          "kitchen",
+          "kitchen",
+          "kitchen",
+          "kitchen",
+          "kitchen",
+          "kitchen",
+          "kitchen"
+        ]
+      ],
+      "predictions": {
+        "correct": [
+          "bathroom",
+          "kitchen"
+        ],
+        "complementary": [
+          "kitchen",
+          "bathroom"
+        ],
+        "mismatched": [
+          "airport",
+          "airport"
+        ],
+        "no_image": [
+          "hall",
+          "hall"
+        ]
+      },
+      "mismatched_images": [
+        "val2014/320249",
+        "val2014/320249"
+      ],
+      "nll": {
+        "correct": [
+          0.12478922307491302,
+          0.5774453282356262
+        ],
+        "complementary": [
+          0.7681496739387512,
+          2.9048380851745605
+        ],
+        "mismatched": [
+          3.0476675033569336,
+          3.003950357437134
+        ],
+        "no_image": [
+          2.573972463607788,
+          2.115872383117676
+        ]
+      }
+    },
+    {
+      "category": "grounded",
+      "category_size": 33,
+      "pair_id": "vqa_162711002_463588015",
+      "kind": "other",
+      "question": "What animals are in the field?",
+      "images": [
+        "val2014/162711",
+        "val2014/463588"
+      ],
+      "references": [
+        "cows",
+        "horses"
+      ],
+      "human_answers": [
+        [
+          "cows",
+          "cows",
+          "cows",
+          "cows",
+          "cows",
+          "cows",
+          "cows",
+          "cows",
+          "cows",
+          "cows"
+        ],
+        [
+          "horses",
+          "horses",
+          "horses",
+          "horses",
+          "horse",
+          "horses",
+          "horse",
+          "horses",
+          "horses",
+          "horses"
+        ]
+      ],
+      "predictions": {
+        "correct": [
+          "cows",
+          "horses"
+        ],
+        "complementary": [
+          "horses",
+          "cows"
+        ],
+        "mismatched": [
+          "chicken",
+          "donkey"
+        ],
+        "no_image": [
+          "bear",
+          "bear"
+        ]
+      },
+      "mismatched_images": [
+        "val2014/105812",
+        "val2014/371873"
+      ],
+      "nll": {
+        "correct": [
+          0.3246440291404724,
+          0.199408158659935
+        ],
+        "complementary": [
+          2.2023231983184814,
+          2.331191062927246
+        ],
+        "mismatched": [
+          1.879560112953186,
+          2.7959301471710205
+        ],
+        "no_image": [
+          3.0814104080200195,
+          3.2912397384643555
+        ]
+      }
+    },
+    {
+      "category": "insensitive",
+      "category_size": 44,
+      "pair_id": "vqa_210708003_214989007",
+      "kind": "yes/no",
+      "question": "Is there more than one elephant?",
+      "images": [
+        "val2014/210708",
+        "val2014/214989"
+      ],
+      "references": [
+        "yes",
+        "no"
+      ],
+      "human_answers": [
+        [
+          "yes",
+          "yes",
+          "yes",
+          "yes",
+          "yes",
+          "yes",
+          "yes",
+          "yes",
+          "yes",
+          "yes"
+        ],
+        [
+          "no",
+          "no",
+          "no",
+          "no",
+          "no",
+          "no",
+          "no",
+          "no",
+          "no",
+          "no"
+        ]
+      ],
+      "predictions": {
+        "correct": [
+          "yes",
+          "yes"
+        ],
+        "complementary": [
+          "yes",
+          "yes"
+        ],
+        "mismatched": [
+          "no",
+          "no"
+        ],
+        "no_image": [
+          "no",
+          "no"
+        ]
+      },
+      "mismatched_images": [
+        "val2014/35887",
+        "val2014/553790"
+      ],
+      "nll": {
+        "correct": [
+          0.1699865460395813,
+          1.4076539278030396
+        ],
+        "complementary": [
+          0.31390389800071716,
+          1.9824864864349365
+        ],
+        "mismatched": [
+          2.8147644996643066,
+          0.1425110399723053
+        ],
+        "no_image": [
+          1.096097707748413,
+          0.4242226481437683
+        ]
+      }
+    },
+    {
+      "category": "insensitive",
+      "category_size": 44,
+      "pair_id": "vqa_386661001_506942006",
+      "kind": "yes/no",
+      "question": "Is this a secluded area?",
+      "images": [
+        "val2014/386661",
+        "val2014/506942"
+      ],
+      "references": [
+        "yes",
+        "no"
+      ],
+      "human_answers": [
+        [
+          "yes",
+          "yes",
+          "yes",
+          "yes",
+          "yes",
+          "no",
+          "yes",
+          "yes",
+          "yes",
+          "yes"
+        ],
+        [
+          "no",
+          "no",
+          "no",
+          "no",
+          "no",
+          "no",
+          "no",
+          "yes",
+          "no",
+          "no"
+        ]
+      ],
+      "predictions": {
+        "correct": [
+          "yes",
+          "yes"
+        ],
+        "complementary": [
+          "yes",
+          "yes"
+        ],
+        "mismatched": [
+          "no",
+          "no"
+        ],
+        "no_image": [
+          "no",
+          "no"
+        ]
+      },
+      "mismatched_images": [
+        "val2014/499226",
+        "val2014/499226"
+      ],
+      "nll": {
+        "correct": [
+          0.25239261984825134,
+          1.502671480178833
+        ],
+        "complementary": [
+          0.2526715397834778,
+          1.5023926496505737
+        ],
+        "mismatched": [
+          0.7757471799850464,
+          0.6194971799850464
+        ],
+        "no_image": [
+          1.1215994358062744,
+          0.465349406003952
+        ]
+      }
+    },
+    {
+      "category": "half_right",
+      "category_size": 10,
+      "pair_id": "vqa_219344001_563758000",
+      "kind": "other",
+      "question": "What is around the teddy bears neck?",
+      "images": [
+        "val2014/219344",
+        "val2014/563758"
+      ],
+      "references": [
+        "tie",
+        "bandana"
+      ],
+      "human_answers": [
+        [
+          "tie",
+          "tie",
+          "tie",
+          "tie",
+          "tie",
+          "scarf",
+          "scarf",
+          "tie",
+          "tie",
+          "tie"
+        ],
+        [
+          "handkerchief",
+          "bandana",
+          "bandana",
+          "bandana",
+          "bandana",
+          "bandana",
+          "bandana",
+          "bandana",
+          "bandana",
+          "handkerchief"
+        ]
+      ],
+      "predictions": {
+        "correct": [
+          "tie",
+          "band"
+        ],
+        "complementary": [
+          "band",
+          "tie"
+        ],
+        "mismatched": [
+          "tents",
+          "tents"
+        ],
+        "no_image": [
+          "bear",
+          "bear"
+        ]
+      },
+      "mismatched_images": [
+        "val2014/46101",
+        "val2014/46101"
+      ],
+      "nll": {
+        "correct": [
+          0.259787917137146,
+          4.416991233825684
+        ],
+        "complementary": [
+          4.00728178024292,
+          4.656231880187988
+        ],
+        "mismatched": [
+          7.4664106369018555,
+          7.276473045349121
+        ],
+        "no_image": [
+          5.9140424728393555,
+          4.481061935424805
+        ]
+      }
+    },
+    {
+      "category": "half_right",
+      "category_size": 10,
+      "pair_id": "vqa_100553002_565941013",
+      "kind": "other",
+      "question": "What color is the drink?",
+      "images": [
+        "val2014/100553",
+        "val2014/565941"
+      ],
+      "references": [
+        "green",
+        "brown"
+      ],
+      "human_answers": [
+        [
+          "green",
+          "green",
+          "green",
+          "green",
+          "green",
+          "green",
+          "green",
+          "yellow",
+          "green",
+          "green"
+        ],
+        [
+          "brown",
+          "brown",
+          "brown",
+          "brown",
+          "brown",
+          "brown",
+          "brown",
+          "brown",
+          "tan",
+          "brown"
+        ]
+      ],
+      "predictions": {
+        "correct": [
+          "green",
+          "blue"
+        ],
+        "complementary": [
+          "blue",
+          "green"
+        ],
+        "mismatched": [
+          "blue",
+          "blue"
+        ],
+        "no_image": [
+          "blue",
+          "blue"
+        ]
+      },
+      "mismatched_images": [
+        "val2014/73560",
+        "val2014/73560"
+      ],
+      "nll": {
+        "correct": [
+          0.8003247380256653,
+          2.2327048778533936
+        ],
+        "complementary": [
+          2.7795798778533936,
+          6.1440749168396
+        ],
+        "mismatched": [
+          1.6752448081970215,
+          4.1908698081970215
+        ],
+        "no_image": [
+          2.403409957885742,
+          4.544034957885742
+        ]
+      }
+    },
+    {
+      "category": "responsive_wrong",
+      "category_size": 9,
+      "pair_id": "vqa_404944003_104982026",
+      "kind": "other",
+      "question": "What color is the camera?",
+      "images": [
+        "val2014/404944",
+        "val2014/104982"
+      ],
+      "references": [
+        "orange",
+        "black"
+      ],
+      "human_answers": [
+        [
+          "red",
+          "orange",
+          "orange",
+          "orange",
+          "orange",
+          "orange",
+          "orange",
+          "orange",
+          "orange",
+          "red"
+        ],
+        [
+          "black",
+          "black",
+          "black",
+          "black",
+          "black",
+          "black",
+          "black",
+          "black",
+          "black",
+          "black"
+        ]
+      ],
+      "predictions": {
+        "correct": [
+          "red",
+          "white"
+        ],
+        "complementary": [
+          "white",
+          "red"
+        ],
+        "mismatched": [
+          "black",
+          "black"
+        ],
+        "no_image": [
+          "red",
+          "red"
+        ]
+      },
+      "mismatched_images": [
+        "val2014/168010",
+        "val2014/168010"
+      ],
+      "nll": {
+        "correct": [
+          3.282926559448242,
+          1.921844482421875
+        ],
+        "complementary": [
+          4.249969482421875,
+          1.6266764402389526
+        ],
+        "mismatched": [
+          5.063965797424316,
+          1.4545906782150269
+        ],
+        "no_image": [
+          4.609787464141846,
+          1.5160373449325562
+        ]
+      }
+    },
+    {
+      "category": "responsive_wrong",
+      "category_size": 9,
+      "pair_id": "vqa_122994002_128441001",
+      "kind": "other",
+      "question": "What is the main color of this?",
+      "images": [
+        "val2014/122994",
+        "val2014/128441"
+      ],
+      "references": [
+        "red",
+        "yellow"
+      ],
+      "human_answers": [
+        [
+          "red",
+          "red",
+          "red",
+          "red",
+          "red",
+          "red",
+          "red",
+          "red",
+          "red",
+          "red"
+        ],
+        [
+          "yellow",
+          "yellow",
+          "yellow",
+          "white",
+          "gray",
+          "yellow",
+          "yellow",
+          "yellow",
+          "yellow",
+          "yellow"
+        ]
+      ],
+      "predictions": {
+        "correct": [
+          "blue",
+          "red"
+        ],
+        "complementary": [
+          "red",
+          "blue"
+        ],
+        "mismatched": [
+          "white",
+          "white"
+        ],
+        "no_image": [
+          "red",
+          "red"
+        ]
+      },
+      "mismatched_images": [
+        "val2014/375691",
+        "val2014/375691"
+      ],
+      "nll": {
+        "correct": [
+          1.4748789072036743,
+          3.8084120750427246
+        ],
+        "complementary": [
+          0.6990370750427246,
+          2.3498787879943848
+        ],
+        "mismatched": [
+          2.011129856109619,
+          4.651754856109619
+        ],
+        "no_image": [
+          1.034147024154663,
+          3.612272024154663
+        ]
+      }
+    }
+  ]
+}

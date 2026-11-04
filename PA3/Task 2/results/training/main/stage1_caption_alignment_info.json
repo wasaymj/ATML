@@ -1,0 +1,8 @@
+{
+  "stage": 1,
+  "name": "caption_alignment",
+  "update": 2250,
+  "visual_tokens": 196,
+  "lora": null,
+  "connector_scale": 0.054691556841135025
+}
