@@ -1,0 +1,14 @@
+# ATML PA3 Task 3 environment. torch is NOT pinned: Kaggle's preinstalled CUDA build is used for the live run.
+# The offline analysis (prepare / offline / signals / adaptive / report) needs no GPU and no torch.
+numpy>=1.26
+pandas>=2.0
+pyarrow>=15.0
+scipy>=1.11
+pyyaml>=6.0
+matplotlib>=3.8
+math-verify[antlr4_13_2]==0.9.0      # MATH answer equivalence; the version linked by the manual (latex2sympy2_extended 1.11.0)
+huggingface_hub>=0.34.0,<1.0         # live model; MathVista metadata fallback download
+# live generation only (Step 4)
+transformers==4.57.1
+accelerate>=1.0.0
+safetensors>=0.4.3

@@ -1,0 +1,24 @@
+\begin{table}[t]
+\centering
+\small
+\caption{What the signals capture at N = 32 (held-out questions with mixed correctness): top-minus-bottom quartile correctness within a question (pp), within-question AUC, and the mean within-question Spearman correlation of the score with rollout length.}
+\label{tab:T5_signal_discrimination}
+\begin{tabular}{lllrr}
+\toprule
+Pool & Score & Top-bottom quartile (pp) & AUC & rho(length, score) \\
+\midrule
+MATH (Qwen2.5-3B) & mean logp L & +13.4 [+10.8, +15.9] & 0.610 [0.589, 0.632] & +0.22 \\
+MATH (Qwen2.5-3B) & self-certainty K & +20.4 [+17.8, +23.2] & 0.662 [0.643, 0.682] & -0.16 \\
+MATH (Qwen2.5-3B) & shortness (-T) & +7.8 [+4.8, +10.6] & 0.564 [0.537, 0.585] & -- \\
+MATH (Qwen2.5-3B) & length T vs correct (rho) & -- & -- & -0.08 \\
+MathVista (Qwen2.5-VL-3B) & mean logp L & +2.5 [+0.4, +4.6] & 0.533 [0.516, 0.549] & +0.33 \\
+MathVista (Qwen2.5-VL-3B) & self-certainty K & +4.7 [+2.6, +6.7] & 0.540 [0.523, 0.558] & +0.35 \\
+MathVista (Qwen2.5-VL-3B) & vision V & +4.3 [+2.0, +6.6] & 0.527 [0.510, 0.544] & -0.69 \\
+MathVista (Qwen2.5-VL-3B) & calibrated conf. C & +5.0 [+3.0, +7.0] & 0.540 [0.523, 0.558] & +0.35 \\
+MathVista (Qwen2.5-VL-3B) & VisConf Z & +9.1 [+6.7, +11.4] & 0.566 [0.548, 0.584] & -0.28 \\
+MathVista (Qwen2.5-VL-3B) & token fusion & +8.9 [+6.6, +11.2] & 0.560 [0.543, 0.578] & -0.32 \\
+MathVista (Qwen2.5-VL-3B) & shortness (-T) & +4.5 [+2.2, +7.0] & 0.531 [0.514, 0.547] & -- \\
+MathVista (Qwen2.5-VL-3B) & length T vs correct (rho) & -- & -- & -0.04 \\
+\bottomrule
+\end{tabular}
+\end{table}

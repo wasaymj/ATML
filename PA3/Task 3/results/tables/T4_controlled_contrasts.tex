@@ -1,0 +1,36 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Controlled contrasts on held-out questions: same score with a different aggregation (value of consensus) or same aggregation with a different score (value of the signal). Paired differences in pp with 95\% CIs; questions better/worse.}
+\label{tab:T4_controlled_contrasts}
+\begin{tabular}{llllr}
+\toprule
+Pool & N & Contrast & Diff (pp) & Q better/worse \\
+\midrule
+MATH (Qwen2.5-3B) & 8 & Self-certainty + RWC - Top-1 self-certainty & +2.8 [+1.9, +3.8] & 140/66 \\
+MATH (Qwen2.5-3B) & 8 & Top-1 self-certainty - Top-1 mean logp & +2.6 [+1.3, +3.8] & 166/113 \\
+MATH (Qwen2.5-3B) & 32 & Self-certainty + RWC - Top-1 self-certainty & +5.0 [+2.8, +7.2] & 61/22 \\
+MATH (Qwen2.5-3B) & 32 & Top-1 self-certainty - Top-1 mean logp & +6.6 [+4.2, +9.1] & 81/28 \\
+MathVista (Qwen2.5-VL-3B) & 8 & Self-certainty + RWC - Top-1 self-certainty & +4.6 [+3.5, +5.7] & 251/117 \\
+MathVista (Qwen2.5-VL-3B) & 8 & Top-1 self-certainty - Top-1 mean logp & +2.8 [+1.5, +4.1] & 211/163 \\
+MathVista (Qwen2.5-VL-3B) & 8 & VisConf + RWC - Top-1 VisConf & +4.5 [+3.4, +5.8] & 233/98 \\
+MathVista (Qwen2.5-VL-3B) & 8 & Vision + RWC - Top-1 vision & +5.8 [+4.6, +7.2] & 273/104 \\
+MathVista (Qwen2.5-VL-3B) & 8 & VisConf + RWC - Self-certainty + RWC & +0.8 [+0.0, +1.6] & 122/95 \\
+MathVista (Qwen2.5-VL-3B) & 8 & VisConf + RWC - Vision + RWC & +1.1 [+0.4, +1.8] & 138/98 \\
+MathVista (Qwen2.5-VL-3B) & 8 & Top-1 VisConf - Top-1 self-certainty & +0.8 [-0.6, +2.3] & 203/198 \\
+MathVista (Qwen2.5-VL-3B) & 8 & Top-1 VisConf - Top-1 vision & +2.4 [+1.2, +3.7] & 231/152 \\
+MathVista (Qwen2.5-VL-3B) & 8 & Token fusion + RWC - VisConf + RWC & -0.4 [-0.7, +0.0] & 59/76 \\
+MathVista (Qwen2.5-VL-3B) & 8 & Top-1 token fusion - Top-1 VisConf & -0.1 [-0.8, +0.7] & 126/125 \\
+MathVista (Qwen2.5-VL-3B) & 32 & Self-certainty + RWC - Top-1 self-certainty & +8.9 [+6.0, +11.8] & 111/39 \\
+MathVista (Qwen2.5-VL-3B) & 32 & Top-1 self-certainty - Top-1 mean logp & +6.5 [+3.5, +9.6] & 100/48 \\
+MathVista (Qwen2.5-VL-3B) & 32 & VisConf + RWC - Top-1 VisConf & +6.6 [+3.9, +9.5] & 93/40 \\
+MathVista (Qwen2.5-VL-3B) & 32 & Vision + RWC - Top-1 vision & +10.1 [+7.0, +13.0] & 120/39 \\
+MathVista (Qwen2.5-VL-3B) & 32 & VisConf + RWC - Self-certainty + RWC & +0.2 [-1.1, +1.6] & 18/16 \\
+MathVista (Qwen2.5-VL-3B) & 32 & VisConf + RWC - Vision + RWC & +0.5 [-0.8, +1.8] & 15/11 \\
+MathVista (Qwen2.5-VL-3B) & 32 & Top-1 VisConf - Top-1 self-certainty & +2.5 [-0.4, +5.8] & 96/76 \\
+MathVista (Qwen2.5-VL-3B) & 32 & Top-1 VisConf - Top-1 vision & +4.0 [+1.0, +6.9] & 93/61 \\
+MathVista (Qwen2.5-VL-3B) & 32 & Token fusion + RWC - VisConf + RWC & -0.6 [-1.5, +0.1] & 2/7 \\
+MathVista (Qwen2.5-VL-3B) & 32 & Top-1 token fusion - Top-1 VisConf & -1.4 [-3.4, +0.5] & 25/36 \\
+\bottomrule
+\end{tabular}
+\end{table}

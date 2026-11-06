@@ -1,0 +1,26 @@
+{
+ "dataset": "math",
+ "fixed32_sc_dev_acc": 0.825,
+ "tolerance_pp": 1.0,
+ "chosen": {
+  "agreement": {
+   "family": "agreement",
+   "tau": 0.625,
+   "gamma": NaN,
+   "label": "tau=0.625",
+   "acc": 0.8260000000000001,
+   "cost": 7088.955499999999,
+   "mean_rollouts": 9.15
+  },
+  "quality": {
+   "family": "quality",
+   "tau": 0.5,
+   "gamma": 0.0,
+   "label": "tau=0.5, gamma=0.0",
+   "acc": 0.8215,
+   "cost": 5479.528499999999,
+   "mean_rollouts": 7.152
+  }
+ },
+ "quality_score": "K"
+}

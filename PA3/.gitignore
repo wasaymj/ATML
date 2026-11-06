@@ -42,6 +42,11 @@ Task 2/data/build/
 Task 2/features/
 Task 2/label_audit/
 
+# Task 3: supplied rollout export and MathVista metadata (datasets; re-fetchable). data/ids/ and results/ stay tracked.
+Task 3/data/ATML-PA3-Data/
+Task 3/data/mathvista_testmini.json
+Task 3/data/live_ckpt/
+
 # OS files
 .DS_Store
 Thumbs.db

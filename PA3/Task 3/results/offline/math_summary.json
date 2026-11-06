@@ -1,0 +1,3365 @@
+{
+ "methods": {
+  "first_ans": [
+   "first",
+   "first"
+  ],
+  "self_consistency": [
+   "none",
+   "vote"
+  ],
+  "top1_logprob": [
+   "L",
+   "top1"
+  ],
+  "top1_self_certainty": [
+   "K",
+   "top1"
+  ],
+  "rwc_self_certainty": [
+   "K",
+   "rwc"
+  ],
+  "shortest": [
+   "neg_len",
+   "top1"
+  ]
+ },
+ "budgets": [
+  1,
+  2,
+  4,
+  8,
+  16,
+  32
+ ],
+ "by_split": {
+  "eval": {
+   "n_questions": 800,
+   "budgets": {
+    "1": {
+     "oracle_coverage": [
+      0.6435,
+      0.61549375,
+      0.6701281249999999
+     ],
+     "n_answer_groups": 1.0,
+     "methods": {
+      "first_ans": {
+       "acc": [
+        0.6435,
+        0.61549375,
+        0.6701281249999999
+       ],
+       "cost": 669.772625,
+       "fail_no_correct_candidate": 0.35650000000000004,
+       "fail_missed_available": 0.0,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 800,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 800,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "self_consistency": {
+       "acc": [
+        0.6435,
+        0.61549375,
+        0.6701281249999999
+       ],
+       "cost": 669.772625,
+       "fail_no_correct_candidate": 0.35650000000000004,
+       "fail_missed_available": 0.0,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 800,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 800,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "top1_logprob": {
+       "acc": [
+        0.6435,
+        0.61549375,
+        0.6701281249999999
+       ],
+       "cost": 669.772625,
+       "fail_no_correct_candidate": 0.35650000000000004,
+       "fail_missed_available": 0.0,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 800,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 800,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "top1_self_certainty": {
+       "acc": [
+        0.6435,
+        0.61549375,
+        0.6701281249999999
+       ],
+       "cost": 669.772625,
+       "fail_no_correct_candidate": 0.35650000000000004,
+       "fail_missed_available": 0.0,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 800,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 800,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "rwc_self_certainty": {
+       "acc": [
+        0.6435,
+        0.61549375,
+        0.6701281249999999
+       ],
+       "cost": 669.772625,
+       "fail_no_correct_candidate": 0.35650000000000004,
+       "fail_missed_available": 0.0,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 800,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 800,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "shortest": {
+       "acc": [
+        0.6435,
+        0.61549375,
+        0.6701281249999999
+       ],
+       "cost": 669.772625,
+       "fail_no_correct_candidate": 0.35650000000000004,
+       "fail_missed_available": 0.0,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 800,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 800,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      }
+     },
+     "contrasts": {
+      "rwc_self_certainty-top1_self_certainty": {
+       "diff": 0.0,
+       "lo": 0.0,
+       "hi": 0.0,
+       "n_questions": 800,
+       "q_better": 0,
+       "q_worse": 0
+      },
+      "top1_self_certainty-top1_logprob": {
+       "diff": 0.0,
+       "lo": 0.0,
+       "hi": 0.0,
+       "n_questions": 800,
+       "q_better": 0,
+       "q_worse": 0
+      }
+     }
+    },
+    "2": {
+     "oracle_coverage": [
+      0.7248749999999999,
+      0.699871875,
+      0.749884375
+     ],
+     "n_answer_groups": 1.3708749999999998,
+     "methods": {
+      "first_ans": {
+       "acc": [
+        0.6435,
+        0.61549375,
+        0.6701281249999999
+       ],
+       "cost": 669.772625,
+       "fail_no_correct_candidate": 0.27512500000000006,
+       "fail_missed_available": 0.08137499999999998,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 800,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 800,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "self_consistency": {
+       "acc": [
+        0.6435,
+        0.61549375,
+        0.6701281249999999
+       ],
+       "cost": 1339.8655,
+       "fail_no_correct_candidate": 0.27512500000000006,
+       "fail_missed_available": 0.08137499999999998,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 800,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 800,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "top1_logprob": {
+       "acc": [
+        0.6580000000000001,
+        0.63125,
+        0.6843812499999999
+       ],
+       "cost": 1339.8655,
+       "fail_no_correct_candidate": 0.27512500000000006,
+       "fail_missed_available": 0.0668749999999998,
+       "vs_self_consistency": {
+        "diff": 0.014499999999999999,
+        "lo": 0.007875,
+        "hi": 0.021253124999999998,
+        "n_questions": 800,
+        "q_better": 170,
+        "q_worse": 106
+       },
+       "vs_first_ans": {
+        "diff": 0.014499999999999999,
+        "lo": 0.007875,
+        "hi": 0.021253124999999998,
+        "n_questions": 800,
+        "q_better": 170,
+        "q_worse": 106
+       }
+      },
+      "top1_self_certainty": {
+       "acc": [
+        0.667625,
+        0.6421218750000001,
+        0.6936312499999999
+       ],
+       "cost": 1339.8655,
+       "fail_no_correct_candidate": 0.27512500000000006,
+       "fail_missed_available": 0.05724999999999991,
+       "vs_self_consistency": {
+        "diff": 0.024124999999999997,
+        "lo": 0.017375,
+        "hi": 0.031375,
+        "n_questions": 800,
+        "q_better": 188,
+        "q_worse": 82
+       },
+       "vs_first_ans": {
+        "diff": 0.024124999999999997,
+        "lo": 0.017375,
+        "hi": 0.031375,
+        "n_questions": 800,
+        "q_better": 188,
+        "q_worse": 82
+       }
+      },
+      "rwc_self_certainty": {
+       "acc": [
+        0.667625,
+        0.6421218750000001,
+        0.6936312499999999
+       ],
+       "cost": 1339.8655,
+       "fail_no_correct_candidate": 0.27512500000000006,
+       "fail_missed_available": 0.05724999999999991,
+       "vs_self_consistency": {
+        "diff": 0.024124999999999997,
+        "lo": 0.017375,
+        "hi": 0.031375,
+        "n_questions": 800,
+        "q_better": 188,
+        "q_worse": 82
+       },
+       "vs_first_ans": {
+        "diff": 0.024124999999999997,
+        "lo": 0.017375,
+        "hi": 0.031375,
+        "n_questions": 800,
+        "q_better": 188,
+        "q_worse": 82
+       }
+      },
+      "shortest": {
+       "acc": [
+        0.652875,
+        0.624375,
+        0.679634375
+       ],
+       "cost": 1339.8655,
+       "fail_no_correct_candidate": 0.27512500000000006,
+       "fail_missed_available": 0.07199999999999995,
+       "vs_self_consistency": {
+        "diff": 0.009375,
+        "lo": 0.0022500000000000003,
+        "hi": 0.016,
+        "n_questions": 800,
+        "q_better": 162,
+        "q_worse": 112
+       },
+       "vs_first_ans": {
+        "diff": 0.009375,
+        "lo": 0.0022500000000000003,
+        "hi": 0.016,
+        "n_questions": 800,
+        "q_better": 162,
+        "q_worse": 112
+       }
+      }
+     },
+     "contrasts": {
+      "rwc_self_certainty-top1_self_certainty": {
+       "diff": 0.0,
+       "lo": 0.0,
+       "hi": 0.0,
+       "n_questions": 800,
+       "q_better": 0,
+       "q_worse": 0
+      },
+      "top1_self_certainty-top1_logprob": {
+       "diff": 0.009625,
+       "lo": 0.0032500000000000003,
+       "hi": 0.015625,
+       "n_questions": 800,
+       "q_better": 131,
+       "q_worse": 82
+      }
+     }
+    },
+    "4": {
+     "oracle_coverage": [
+      0.7907500000000001,
+      0.76735625,
+      0.8143781250000002
+     ],
+     "n_answer_groups": 1.9277499999999999,
+     "methods": {
+      "first_ans": {
+       "acc": [
+        0.6435,
+        0.61549375,
+        0.6701281249999999
+       ],
+       "cost": 669.772625,
+       "fail_no_correct_candidate": 0.20924999999999994,
+       "fail_missed_available": 0.1472500000000001,
+       "vs_self_consistency": {
+        "diff": -0.048499999999999995,
+        "lo": -0.056503125,
+        "hi": -0.040621875,
+        "n_questions": 800,
+        "q_better": 41,
+        "q_worse": 232
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 800,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "self_consistency": {
+       "acc": [
+        0.6919999999999998,
+        0.663625,
+        0.71925
+       ],
+       "cost": 2679.6941250000004,
+       "fail_no_correct_candidate": 0.20924999999999994,
+       "fail_missed_available": 0.09875000000000023,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 800,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.048499999999999995,
+        "lo": 0.040621875,
+        "hi": 0.056503125,
+        "n_questions": 800,
+        "q_better": 232,
+        "q_worse": 41
+       }
+      },
+      "top1_logprob": {
+       "acc": [
+        0.672375,
+        0.646109375,
+        0.6996343749999999
+       ],
+       "cost": 2679.6941250000004,
+       "fail_no_correct_candidate": 0.20924999999999994,
+       "fail_missed_available": 0.11837500000000012,
+       "vs_self_consistency": {
+        "diff": -0.019625,
+        "lo": -0.028503125,
+        "hi": -0.010871875000000001,
+        "n_questions": 800,
+        "q_better": 109,
+        "q_worse": 172
+       },
+       "vs_first_ans": {
+        "diff": 0.028875,
+        "lo": 0.01961875,
+        "hi": 0.038253125,
+        "n_questions": 800,
+        "q_better": 197,
+        "q_worse": 121
+       }
+      },
+      "top1_self_certainty": {
+       "acc": [
+        0.6877500000000001,
+        0.661121875,
+        0.714378125
+       ],
+       "cost": 2679.6941250000004,
+       "fail_no_correct_candidate": 0.20924999999999994,
+       "fail_missed_available": 0.10299999999999998,
+       "vs_self_consistency": {
+        "diff": -0.0042499999999999994,
+        "lo": -0.012878125,
+        "hi": 0.004753124999999999,
+        "n_questions": 800,
+        "q_better": 127,
+        "q_worse": 142
+       },
+       "vs_first_ans": {
+        "diff": 0.044250000000000005,
+        "lo": 0.03486875,
+        "hi": 0.05463125,
+        "n_questions": 800,
+        "q_better": 233,
+        "q_worse": 85
+       }
+      },
+      "rwc_self_certainty": {
+       "acc": [
+        0.6969999999999998,
+        0.669621875,
+        0.7232499999999998
+       ],
+       "cost": 2679.6941250000004,
+       "fail_no_correct_candidate": 0.20924999999999994,
+       "fail_missed_available": 0.09375000000000022,
+       "vs_self_consistency": {
+        "diff": 0.005,
+        "lo": -0.0012531249999999997,
+        "hi": 0.012003125,
+        "n_questions": 800,
+        "q_better": 118,
+        "q_worse": 97
+       },
+       "vs_first_ans": {
+        "diff": 0.0535,
+        "lo": 0.044750000000000005,
+        "hi": 0.06263125,
+        "n_questions": 800,
+        "q_better": 251,
+        "q_worse": 55
+       }
+      },
+      "shortest": {
+       "acc": [
+        0.6519999999999999,
+        0.6242375,
+        0.6792562500000001
+       ],
+       "cost": 2679.6941250000004,
+       "fail_no_correct_candidate": 0.20924999999999994,
+       "fail_missed_available": 0.13875000000000015,
+       "vs_self_consistency": {
+        "diff": -0.04,
+        "lo": -0.05074999999999999,
+        "hi": -0.029871875000000003,
+        "n_questions": 800,
+        "q_better": 83,
+        "q_worse": 203
+       },
+       "vs_first_ans": {
+        "diff": 0.008499999999999999,
+        "lo": -0.0022531249999999973,
+        "hi": 0.018131249999999998,
+        "n_questions": 800,
+        "q_better": 164,
+        "q_worse": 142
+       }
+      }
+     },
+     "contrasts": {
+      "rwc_self_certainty-top1_self_certainty": {
+       "diff": 0.00925,
+       "lo": 0.005121875,
+       "hi": 0.013875,
+       "n_questions": 800,
+       "q_better": 106,
+       "q_worse": 51
+      },
+      "top1_self_certainty-top1_logprob": {
+       "diff": 0.015375000000000002,
+       "lo": 0.005746875,
+       "hi": 0.025128124999999998,
+       "n_questions": 800,
+       "q_better": 169,
+       "q_worse": 110
+      }
+     }
+    },
+    "8": {
+     "oracle_coverage": [
+      0.8434999999999999,
+      0.822490625,
+      0.865765625
+     ],
+     "n_answer_groups": 2.7405,
+     "methods": {
+      "first_ans": {
+       "acc": [
+        0.6435,
+        0.61549375,
+        0.6701281249999999
+       ],
+       "cost": 669.772625,
+       "fail_no_correct_candidate": 0.15650000000000008,
+       "fail_missed_available": 0.19999999999999996,
+       "vs_self_consistency": {
+        "diff": -0.074375,
+        "lo": -0.085134375,
+        "hi": -0.06337187500000001,
+        "n_questions": 800,
+        "q_better": 50,
+        "q_worse": 263
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 800,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "self_consistency": {
+       "acc": [
+        0.7178749999999999,
+        0.6896093750000001,
+        0.74513125
+       ],
+       "cost": 5344.108500000001,
+       "fail_no_correct_candidate": 0.15650000000000008,
+       "fail_missed_available": 0.125625,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 800,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.074375,
+        "lo": 0.06337187500000001,
+        "hi": 0.08513437499999998,
+        "n_questions": 800,
+        "q_better": 263,
+        "q_worse": 50
+       }
+      },
+      "top1_logprob": {
+       "acc": [
+        0.675375,
+        0.6494843749999999,
+        0.701134375
+       ],
+       "cost": 5344.108500000001,
+       "fail_no_correct_candidate": 0.15650000000000008,
+       "fail_missed_available": 0.16812499999999997,
+       "vs_self_consistency": {
+        "diff": -0.04250000000000001,
+        "lo": -0.055628125,
+        "hi": -0.029621875000000006,
+        "n_questions": 800,
+        "q_better": 80,
+        "q_worse": 179
+       },
+       "vs_first_ans": {
+        "diff": 0.031875,
+        "lo": 0.02025,
+        "hi": 0.04362812499999999,
+        "n_questions": 800,
+        "q_better": 202,
+        "q_worse": 125
+       }
+      },
+      "top1_self_certainty": {
+       "acc": [
+        0.7013750000000001,
+        0.674353125,
+        0.7296281250000001
+       ],
+       "cost": 5344.108500000001,
+       "fail_no_correct_candidate": 0.15650000000000008,
+       "fail_missed_available": 0.14212499999999983,
+       "vs_self_consistency": {
+        "diff": -0.016500000000000004,
+        "lo": -0.02875,
+        "hi": -0.004750000000000002,
+        "n_questions": 800,
+        "q_better": 97,
+        "q_worse": 143
+       },
+       "vs_first_ans": {
+        "diff": 0.057874999999999996,
+        "lo": 0.045375,
+        "hi": 0.06976249999999999,
+        "n_questions": 800,
+        "q_better": 246,
+        "q_worse": 86
+       }
+      },
+      "rwc_self_certainty": {
+       "acc": [
+        0.728875,
+        0.70249375,
+        0.755128125
+       ],
+       "cost": 5344.108500000001,
+       "fail_no_correct_candidate": 0.15650000000000008,
+       "fail_missed_available": 0.11462499999999987,
+       "vs_self_consistency": {
+        "diff": 0.011000000000000001,
+        "lo": 0.0052499999999999995,
+        "hi": 0.017003124999999997,
+        "n_questions": 800,
+        "q_better": 97,
+        "q_worse": 50
+       },
+       "vs_first_ans": {
+        "diff": 0.08537500000000002,
+        "lo": 0.07461562499999999,
+        "hi": 0.09675,
+        "n_questions": 800,
+        "q_better": 287,
+        "q_worse": 45
+       }
+      },
+      "shortest": {
+       "acc": [
+        0.645625,
+        0.61599375,
+        0.6726437499999999
+       ],
+       "cost": 5344.108500000001,
+       "fail_no_correct_candidate": 0.15650000000000008,
+       "fail_missed_available": 0.1978749999999999,
+       "vs_self_consistency": {
+        "diff": -0.07225,
+        "lo": -0.087503125,
+        "hi": -0.057125,
+        "n_questions": 800,
+        "q_better": 58,
+        "q_worse": 213
+       },
+       "vs_first_ans": {
+        "diff": 0.002125,
+        "lo": -0.011374999999999998,
+        "hi": 0.015,
+        "n_questions": 800,
+        "q_better": 177,
+        "q_worse": 166
+       }
+      }
+     },
+     "contrasts": {
+      "rwc_self_certainty-top1_self_certainty": {
+       "diff": 0.0275,
+       "lo": 0.018868749999999997,
+       "hi": 0.0375,
+       "n_questions": 800,
+       "q_better": 140,
+       "q_worse": 66
+      },
+      "top1_self_certainty-top1_logprob": {
+       "diff": 0.026000000000000002,
+       "lo": 0.013371875000000002,
+       "hi": 0.037503125,
+       "n_questions": 800,
+       "q_better": 166,
+       "q_worse": 113
+      }
+     }
+    },
+    "16": {
+     "oracle_coverage": [
+      0.8845000000000001,
+      0.8648718750000001,
+      0.9038812499999999
+     ],
+     "n_answer_groups": 4.003625,
+     "methods": {
+      "first_ans": {
+       "acc": [
+        0.6435,
+        0.61549375,
+        0.6701281249999999
+       ],
+       "cost": 669.772625,
+       "fail_no_correct_candidate": 0.11549999999999994,
+       "fail_missed_available": 0.2410000000000001,
+       "vs_self_consistency": {
+        "diff": -0.087625,
+        "lo": -0.10100312500000001,
+        "hi": -0.074871875,
+        "n_questions": 800,
+        "q_better": 62,
+        "q_worse": 262
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 800,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "self_consistency": {
+       "acc": [
+        0.7311250000000001,
+        0.7023625000000001,
+        0.7588781250000001
+       ],
+       "cost": 10677.74275,
+       "fail_no_correct_candidate": 0.11549999999999994,
+       "fail_missed_available": 0.15337499999999993,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 800,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.087625,
+        "lo": 0.07487187499999999,
+        "hi": 0.10100312500000001,
+        "n_questions": 800,
+        "q_better": 262,
+        "q_worse": 62
+       }
+      },
+      "top1_logprob": {
+       "acc": [
+        0.663875,
+        0.635496875,
+        0.6917625
+       ],
+       "cost": 10677.74275,
+       "fail_no_correct_candidate": 0.11549999999999994,
+       "fail_missed_available": 0.22062500000000007,
+       "vs_self_consistency": {
+        "diff": -0.06724999999999999,
+        "lo": -0.085134375,
+        "hi": -0.049874999999999996,
+        "n_questions": 800,
+        "q_better": 59,
+        "q_worse": 162
+       },
+       "vs_first_ans": {
+        "diff": 0.020374999999999997,
+        "lo": 0.004749999999999999,
+        "hi": 0.035003125,
+        "n_questions": 800,
+        "q_better": 195,
+        "q_worse": 143
+       }
+      },
+      "top1_self_certainty": {
+       "acc": [
+        0.7070000000000001,
+        0.6771218749999999,
+        0.735753125
+       ],
+       "cost": 10677.74275,
+       "fail_no_correct_candidate": 0.11549999999999994,
+       "fail_missed_available": 0.1775,
+       "vs_self_consistency": {
+        "diff": -0.024124999999999997,
+        "lo": -0.041131249999999994,
+        "hi": -0.008624999999999999,
+        "n_questions": 800,
+        "q_better": 78,
+        "q_worse": 121
+       },
+       "vs_first_ans": {
+        "diff": 0.0635,
+        "lo": 0.048121875,
+        "hi": 0.07825625000000001,
+        "n_questions": 800,
+        "q_better": 250,
+        "q_worse": 95
+       }
+      },
+      "rwc_self_certainty": {
+       "acc": [
+        0.7463749999999999,
+        0.7183562500000001,
+        0.7731281249999999
+       ],
+       "cost": 10677.74275,
+       "fail_no_correct_candidate": 0.11549999999999994,
+       "fail_missed_available": 0.13812500000000016,
+       "vs_self_consistency": {
+        "diff": 0.01525,
+        "lo": 0.008375,
+        "hi": 0.022003125,
+        "n_questions": 800,
+        "q_better": 69,
+        "q_worse": 27
+       },
+       "vs_first_ans": {
+        "diff": 0.102875,
+        "lo": 0.089246875,
+        "hi": 0.116753125,
+        "n_questions": 800,
+        "q_better": 282,
+        "q_worse": 49
+       }
+      },
+      "shortest": {
+       "acc": [
+        0.631625,
+        0.5997343749999999,
+        0.659634375
+       ],
+       "cost": 10677.74275,
+       "fail_no_correct_candidate": 0.11549999999999994,
+       "fail_missed_available": 0.25287500000000007,
+       "vs_self_consistency": {
+        "diff": -0.09949999999999999,
+        "lo": -0.12012812499999999,
+        "hi": -0.081371875,
+        "n_questions": 800,
+        "q_better": 40,
+        "q_worse": 186
+       },
+       "vs_first_ans": {
+        "diff": -0.011875,
+        "lo": -0.02925625,
+        "hi": 0.0037562499999999935,
+        "n_questions": 800,
+        "q_better": 164,
+        "q_worse": 177
+       }
+      }
+     },
+     "contrasts": {
+      "rwc_self_certainty-top1_self_certainty": {
+       "diff": 0.039375,
+       "lo": 0.025875000000000002,
+       "hi": 0.05325,
+       "n_questions": 800,
+       "q_better": 129,
+       "q_worse": 56
+      },
+      "top1_self_certainty-top1_logprob": {
+       "diff": 0.043125,
+       "lo": 0.02675,
+       "hi": 0.058753124999999996,
+       "n_questions": 800,
+       "q_better": 149,
+       "q_worse": 85
+      }
+     }
+    },
+    "32": {
+     "oracle_coverage": [
+      0.91375,
+      0.89496875,
+      0.93375
+     ],
+     "n_answer_groups": 5.90375,
+     "methods": {
+      "first_ans": {
+       "acc": [
+        0.6435,
+        0.61549375,
+        0.6701281249999999
+       ],
+       "cost": 669.772625,
+       "fail_no_correct_candidate": 0.08625000000000005,
+       "fail_missed_available": 0.27025,
+       "vs_self_consistency": {
+        "diff": -0.094375,
+        "lo": -0.11012499999999999,
+        "hi": -0.07975,
+        "n_questions": 800,
+        "q_better": 77,
+        "q_worse": 253
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 800,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "self_consistency": {
+       "acc": [
+        0.737875,
+        0.7083750000000001,
+        0.765509375
+       ],
+       "cost": 21347.0175,
+       "fail_no_correct_candidate": 0.08625000000000005,
+       "fail_missed_available": 0.175875,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 800,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.094375,
+        "lo": 0.07975,
+        "hi": 0.11012499999999999,
+        "n_questions": 800,
+        "q_better": 253,
+        "q_worse": 77
+       }
+      },
+      "top1_logprob": {
+       "acc": [
+        0.64,
+        0.60875,
+        0.67
+       ],
+       "cost": 21347.0175,
+       "fail_no_correct_candidate": 0.08625000000000005,
+       "fail_missed_available": 0.27374999999999994,
+       "vs_self_consistency": {
+        "diff": -0.09787499999999999,
+        "lo": -0.123875,
+        "hi": -0.07399062500000002,
+        "n_questions": 800,
+        "q_better": 20,
+        "q_worse": 103
+       },
+       "vs_first_ans": {
+        "diff": -0.0035000000000000044,
+        "lo": -0.024128125,
+        "hi": 0.016878124999999997,
+        "n_questions": 800,
+        "q_better": 180,
+        "q_worse": 167
+       }
+      },
+      "top1_self_certainty": {
+       "acc": [
+        0.70625,
+        0.67496875,
+        0.7375
+       ],
+       "cost": 21347.0175,
+       "fail_no_correct_candidate": 0.08625000000000005,
+       "fail_missed_available": 0.2074999999999999,
+       "vs_self_consistency": {
+        "diff": -0.031625,
+        "lo": -0.05512812499999999,
+        "hi": -0.00825,
+        "n_questions": 800,
+        "q_better": 35,
+        "q_worse": 63
+       },
+       "vs_first_ans": {
+        "diff": 0.06275,
+        "lo": 0.04274375,
+        "hi": 0.082509375,
+        "n_questions": 800,
+        "q_better": 228,
+        "q_worse": 115
+       }
+      },
+      "rwc_self_certainty": {
+       "acc": [
+        0.7558750000000001,
+        0.7263624999999999,
+        0.7837656249999999
+       ],
+       "cost": 21347.0175,
+       "fail_no_correct_candidate": 0.08625000000000005,
+       "fail_missed_available": 0.15787499999999988,
+       "vs_self_consistency": {
+        "diff": 0.018000000000000002,
+        "lo": 0.007243749999999999,
+        "hi": 0.029628124999999995,
+        "n_questions": 800,
+        "q_better": 22,
+        "q_worse": 6
+       },
+       "vs_first_ans": {
+        "diff": 0.112375,
+        "lo": 0.096,
+        "hi": 0.12889062499999998,
+        "n_questions": 800,
+        "q_better": 265,
+        "q_worse": 71
+       }
+      },
+      "shortest": {
+       "acc": [
+        0.62375,
+        0.59,
+        0.654634375
+       ],
+       "cost": 21347.0175,
+       "fail_no_correct_candidate": 0.08625000000000005,
+       "fail_missed_available": 0.2899999999999999,
+       "vs_self_consistency": {
+        "diff": -0.11412499999999999,
+        "lo": -0.14125312499999998,
+        "hi": -0.08985625000000003,
+        "n_questions": 800,
+        "q_better": 20,
+        "q_worse": 116
+       },
+       "vs_first_ans": {
+        "diff": -0.019750000000000004,
+        "lo": -0.043259375,
+        "hi": 0.0010124999999999845,
+        "n_questions": 800,
+        "q_better": 169,
+        "q_worse": 178
+       }
+      }
+     },
+     "contrasts": {
+      "rwc_self_certainty-top1_self_certainty": {
+       "diff": 0.049625,
+       "lo": 0.028374999999999997,
+       "hi": 0.072128125,
+       "n_questions": 800,
+       "q_better": 61,
+       "q_worse": 22
+      },
+      "top1_self_certainty-top1_logprob": {
+       "diff": 0.06625,
+       "lo": 0.042468750000000006,
+       "hi": 0.09125,
+       "n_questions": 800,
+       "q_better": 81,
+       "q_worse": 28
+      }
+     }
+    }
+   }
+  },
+  "dev": {
+   "n_questions": 200,
+   "budgets": {
+    "1": {
+     "oracle_coverage": [
+      0.74,
+      0.6879875,
+      0.7875125
+     ],
+     "n_answer_groups": 1.0,
+     "methods": {
+      "first_ans": {
+       "acc": [
+        0.74,
+        0.6879875,
+        0.7875125
+       ],
+       "cost": 571.2935,
+       "fail_no_correct_candidate": 0.26,
+       "fail_missed_available": 0.0,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 200,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 200,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "self_consistency": {
+       "acc": [
+        0.74,
+        0.6879875,
+        0.7875125
+       ],
+       "cost": 571.2935,
+       "fail_no_correct_candidate": 0.26,
+       "fail_missed_available": 0.0,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 200,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 200,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "top1_logprob": {
+       "acc": [
+        0.74,
+        0.6879875,
+        0.7875125
+       ],
+       "cost": 571.2935,
+       "fail_no_correct_candidate": 0.26,
+       "fail_missed_available": 0.0,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 200,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 200,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "top1_self_certainty": {
+       "acc": [
+        0.74,
+        0.6879875,
+        0.7875125
+       ],
+       "cost": 571.2935,
+       "fail_no_correct_candidate": 0.26,
+       "fail_missed_available": 0.0,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 200,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 200,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "rwc_self_certainty": {
+       "acc": [
+        0.74,
+        0.6879875,
+        0.7875125
+       ],
+       "cost": 571.2935,
+       "fail_no_correct_candidate": 0.26,
+       "fail_missed_available": 0.0,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 200,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 200,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "shortest": {
+       "acc": [
+        0.74,
+        0.6879875,
+        0.7875125
+       ],
+       "cost": 571.2935,
+       "fail_no_correct_candidate": 0.26,
+       "fail_missed_available": 0.0,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 200,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 200,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      }
+     },
+     "contrasts": {
+      "rwc_self_certainty-top1_self_certainty": {
+       "diff": 0.0,
+       "lo": 0.0,
+       "hi": 0.0,
+       "n_questions": 200,
+       "q_better": 0,
+       "q_worse": 0
+      },
+      "top1_self_certainty-top1_logprob": {
+       "diff": 0.0,
+       "lo": 0.0,
+       "hi": 0.0,
+       "n_questions": 200,
+       "q_better": 0,
+       "q_worse": 0
+      }
+     }
+    },
+    "2": {
+     "oracle_coverage": [
+      0.8134999999999999,
+      0.763,
+      0.8595124999999999
+     ],
+     "n_answer_groups": 1.273,
+     "methods": {
+      "first_ans": {
+       "acc": [
+        0.74,
+        0.6879875,
+        0.7875125
+       ],
+       "cost": 571.2935,
+       "fail_no_correct_candidate": 0.1865000000000001,
+       "fail_missed_available": 0.0734999999999999,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 200,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 200,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "self_consistency": {
+       "acc": [
+        0.74,
+        0.6879875,
+        0.7875125
+       ],
+       "cost": 1144.8139999999999,
+       "fail_no_correct_candidate": 0.1865000000000001,
+       "fail_missed_available": 0.0734999999999999,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 200,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 200,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "top1_logprob": {
+       "acc": [
+        0.7430000000000001,
+        0.6915,
+        0.790025
+       ],
+       "cost": 1144.8139999999999,
+       "fail_no_correct_candidate": 0.1865000000000001,
+       "fail_missed_available": 0.07049999999999979,
+       "vs_self_consistency": {
+        "diff": 0.0029999999999999988,
+        "lo": -0.008512500000000001,
+        "hi": 0.013999999999999999,
+        "n_questions": 200,
+        "q_better": 30,
+        "q_worse": 25
+       },
+       "vs_first_ans": {
+        "diff": 0.0029999999999999988,
+        "lo": -0.008512500000000001,
+        "hi": 0.013999999999999999,
+        "n_questions": 200,
+        "q_better": 30,
+        "q_worse": 25
+       }
+      },
+      "top1_self_certainty": {
+       "acc": [
+        0.7635000000000001,
+        0.7139875000000001,
+        0.8095249999999999
+       ],
+       "cost": 1144.8139999999999,
+       "fail_no_correct_candidate": 0.1865000000000001,
+       "fail_missed_available": 0.04999999999999982,
+       "vs_self_consistency": {
+        "diff": 0.023499999999999997,
+        "lo": 0.010499999999999999,
+        "hi": 0.0355,
+        "n_questions": 200,
+        "q_better": 43,
+        "q_worse": 19
+       },
+       "vs_first_ans": {
+        "diff": 0.023499999999999997,
+        "lo": 0.010499999999999999,
+        "hi": 0.0355,
+        "n_questions": 200,
+        "q_better": 43,
+        "q_worse": 19
+       }
+      },
+      "rwc_self_certainty": {
+       "acc": [
+        0.7635000000000001,
+        0.7139875000000001,
+        0.8095249999999999
+       ],
+       "cost": 1144.8139999999999,
+       "fail_no_correct_candidate": 0.1865000000000001,
+       "fail_missed_available": 0.04999999999999982,
+       "vs_self_consistency": {
+        "diff": 0.023499999999999997,
+        "lo": 0.010499999999999999,
+        "hi": 0.0355,
+        "n_questions": 200,
+        "q_better": 43,
+        "q_worse": 19
+       },
+       "vs_first_ans": {
+        "diff": 0.023499999999999997,
+        "lo": 0.010499999999999999,
+        "hi": 0.0355,
+        "n_questions": 200,
+        "q_better": 43,
+        "q_worse": 19
+       }
+      },
+      "shortest": {
+       "acc": [
+        0.765,
+        0.7119500000000001,
+        0.8115125000000001
+       ],
+       "cost": 1144.8139999999999,
+       "fail_no_correct_candidate": 0.1865000000000001,
+       "fail_missed_available": 0.04849999999999988,
+       "vs_self_consistency": {
+        "diff": 0.025,
+        "lo": 0.010499999999999999,
+        "hi": 0.0385,
+        "n_questions": 200,
+        "q_better": 45,
+        "q_worse": 18
+       },
+       "vs_first_ans": {
+        "diff": 0.025,
+        "lo": 0.010499999999999999,
+        "hi": 0.0385,
+        "n_questions": 200,
+        "q_better": 45,
+        "q_worse": 18
+       }
+      }
+     },
+     "contrasts": {
+      "rwc_self_certainty-top1_self_certainty": {
+       "diff": 0.0,
+       "lo": 0.0,
+       "hi": 0.0,
+       "n_questions": 200,
+       "q_better": 0,
+       "q_worse": 0
+      },
+      "top1_self_certainty-top1_logprob": {
+       "diff": 0.020499999999999997,
+       "lo": 0.007987499999999998,
+       "hi": 0.033,
+       "n_questions": 200,
+       "q_better": 37,
+       "q_worse": 14
+      }
+     }
+    },
+    "4": {
+     "oracle_coverage": [
+      0.856,
+      0.8085,
+      0.897025
+     ],
+     "n_answer_groups": 1.6785000000000003,
+     "methods": {
+      "first_ans": {
+       "acc": [
+        0.74,
+        0.6879875,
+        0.7875125
+       ],
+       "cost": 571.2935,
+       "fail_no_correct_candidate": 0.14400000000000002,
+       "fail_missed_available": 0.11599999999999999,
+       "vs_self_consistency": {
+        "diff": -0.053500000000000006,
+        "lo": -0.0690125,
+        "hi": -0.03948750000000001,
+        "n_questions": 200,
+        "q_better": 4,
+        "q_worse": 61
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 200,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "self_consistency": {
+       "acc": [
+        0.7935,
+        0.7394875,
+        0.8430124999999999
+       ],
+       "cost": 2281.855,
+       "fail_no_correct_candidate": 0.14400000000000002,
+       "fail_missed_available": 0.0625,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 200,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.053500000000000006,
+        "lo": 0.0394875,
+        "hi": 0.06901249999999999,
+        "n_questions": 200,
+        "q_better": 61,
+        "q_worse": 4
+       }
+      },
+      "top1_logprob": {
+       "acc": [
+        0.746,
+        0.6939875000000001,
+        0.7939999999999999
+       ],
+       "cost": 2281.855,
+       "fail_no_correct_candidate": 0.14400000000000002,
+       "fail_missed_available": 0.10999999999999999,
+       "vs_self_consistency": {
+        "diff": -0.0475,
+        "lo": -0.0680125,
+        "hi": -0.027000000000000003,
+        "n_questions": 200,
+        "q_better": 17,
+        "q_worse": 49
+       },
+       "vs_first_ans": {
+        "diff": 0.0059999999999999975,
+        "lo": -0.011000000000000001,
+        "hi": 0.023999999999999994,
+        "n_questions": 200,
+        "q_better": 40,
+        "q_worse": 33
+       }
+      },
+      "top1_self_certainty": {
+       "acc": [
+        0.7780000000000001,
+        0.726,
+        0.826
+       ],
+       "cost": 2281.855,
+       "fail_no_correct_candidate": 0.14400000000000002,
+       "fail_missed_available": 0.07799999999999985,
+       "vs_self_consistency": {
+        "diff": -0.015499999999999996,
+        "lo": -0.0305,
+        "hi": -0.0009999999999999992,
+        "n_questions": 200,
+        "q_better": 20,
+        "q_worse": 40
+       },
+       "vs_first_ans": {
+        "diff": 0.038,
+        "lo": 0.0195,
+        "hi": 0.0565,
+        "n_questions": 200,
+        "q_better": 51,
+        "q_worse": 18
+       }
+      },
+      "rwc_self_certainty": {
+       "acc": [
+        0.7965000000000001,
+        0.7439874999999999,
+        0.8430000000000001
+       ],
+       "cost": 2281.855,
+       "fail_no_correct_candidate": 0.14400000000000002,
+       "fail_missed_available": 0.059499999999999886,
+       "vs_self_consistency": {
+        "diff": 0.0030000000000000014,
+        "lo": -0.006999999999999999,
+        "hi": 0.013012499999999993,
+        "n_questions": 200,
+        "q_better": 22,
+        "q_worse": 19
+       },
+       "vs_first_ans": {
+        "diff": 0.0565,
+        "lo": 0.0395,
+        "hi": 0.07400000000000001,
+        "n_questions": 200,
+        "q_better": 63,
+        "q_worse": 8
+       }
+      },
+      "shortest": {
+       "acc": [
+        0.7705000000000001,
+        0.7190000000000001,
+        0.8200124999999999
+       ],
+       "cost": 2281.855,
+       "fail_no_correct_candidate": 0.14400000000000002,
+       "fail_missed_available": 0.08549999999999991,
+       "vs_self_consistency": {
+        "diff": -0.023000000000000003,
+        "lo": -0.043012499999999995,
+        "hi": -0.0035000000000000014,
+        "n_questions": 200,
+        "q_better": 24,
+        "q_worse": 42
+       },
+       "vs_first_ans": {
+        "diff": 0.0305,
+        "lo": 0.010487499999999995,
+        "hi": 0.050499999999999996,
+        "n_questions": 200,
+        "q_better": 47,
+        "q_worse": 28
+       }
+      }
+     },
+     "contrasts": {
+      "rwc_self_certainty-top1_self_certainty": {
+       "diff": 0.018500000000000003,
+       "lo": 0.010499999999999999,
+       "hi": 0.028499999999999998,
+       "n_questions": 200,
+       "q_better": 31,
+       "q_worse": 4
+      },
+      "top1_self_certainty-top1_logprob": {
+       "diff": 0.032,
+       "lo": 0.013500000000000005,
+       "hi": 0.05,
+       "n_questions": 200,
+       "q_better": 42,
+       "q_worse": 26
+      }
+     }
+    },
+    "8": {
+     "oracle_coverage": [
+      0.8819999999999999,
+      0.838,
+      0.92
+     ],
+     "n_answer_groups": 2.3035,
+     "methods": {
+      "first_ans": {
+       "acc": [
+        0.74,
+        0.6879875,
+        0.7875125
+       ],
+       "cost": 571.2935,
+       "fail_no_correct_candidate": 0.1180000000000001,
+       "fail_missed_available": 0.1419999999999999,
+       "vs_self_consistency": {
+        "diff": -0.08,
+        "lo": -0.10201249999999999,
+        "hi": -0.05797500000000001,
+        "n_questions": 200,
+        "q_better": 6,
+        "q_worse": 68
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 200,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "self_consistency": {
+       "acc": [
+        0.82,
+        0.7665000000000001,
+        0.868
+       ],
+       "cost": 4586.611999999999,
+       "fail_no_correct_candidate": 0.1180000000000001,
+       "fail_missed_available": 0.061999999999999944,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 200,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.08,
+        "lo": 0.05797499999999999,
+        "hi": 0.10201249999999998,
+        "n_questions": 200,
+        "q_better": 68,
+        "q_worse": 6
+       }
+      },
+      "top1_logprob": {
+       "acc": [
+        0.7354999999999999,
+        0.6835,
+        0.7875249999999999
+       ],
+       "cost": 4586.611999999999,
+       "fail_no_correct_candidate": 0.1180000000000001,
+       "fail_missed_available": 0.14649999999999996,
+       "vs_self_consistency": {
+        "diff": -0.08449999999999999,
+        "lo": -0.114,
+        "hi": -0.055487500000000016,
+        "n_questions": 200,
+        "q_better": 8,
+        "q_worse": 47
+       },
+       "vs_first_ans": {
+        "diff": -0.004500000000000001,
+        "lo": -0.029012500000000004,
+        "hi": 0.01801249999999999,
+        "n_questions": 200,
+        "q_better": 39,
+        "q_worse": 36
+       }
+      },
+      "top1_self_certainty": {
+       "acc": [
+        0.77,
+        0.7199875,
+        0.8184999999999999
+       ],
+       "cost": 4586.611999999999,
+       "fail_no_correct_candidate": 0.1180000000000001,
+       "fail_missed_available": 0.11199999999999988,
+       "vs_self_consistency": {
+        "diff": -0.05,
+        "lo": -0.074,
+        "hi": -0.02847500000000002,
+        "n_questions": 200,
+        "q_better": 11,
+        "q_worse": 37
+       },
+       "vs_first_ans": {
+        "diff": 0.03,
+        "lo": 0.007499999999999998,
+        "hi": 0.0525,
+        "n_questions": 200,
+        "q_better": 48,
+        "q_worse": 26
+       }
+      },
+      "rwc_self_certainty": {
+       "acc": [
+        0.8184999999999999,
+        0.7645000000000001,
+        0.8665125
+       ],
+       "cost": 4586.611999999999,
+       "fail_no_correct_candidate": 0.1180000000000001,
+       "fail_missed_available": 0.0635,
+       "vs_self_consistency": {
+        "diff": -0.0015000000000000002,
+        "lo": -0.009,
+        "hi": 0.005999999999999998,
+        "n_questions": 200,
+        "q_better": 8,
+        "q_worse": 8
+       },
+       "vs_first_ans": {
+        "diff": 0.0785,
+        "lo": 0.05550000000000001,
+        "hi": 0.10151249999999999,
+        "n_questions": 200,
+        "q_better": 66,
+        "q_worse": 8
+       }
+      },
+      "shortest": {
+       "acc": [
+        0.765,
+        0.7129875000000001,
+        0.8160249999999999
+       ],
+       "cost": 4586.611999999999,
+       "fail_no_correct_candidate": 0.1180000000000001,
+       "fail_missed_available": 0.11699999999999988,
+       "vs_self_consistency": {
+        "diff": -0.055,
+        "lo": -0.08152499999999999,
+        "hi": -0.028999999999999998,
+        "n_questions": 200,
+        "q_better": 12,
+        "q_worse": 43
+       },
+       "vs_first_ans": {
+        "diff": 0.025,
+        "lo": 0.0004999999999999971,
+        "hi": 0.050012499999999994,
+        "n_questions": 200,
+        "q_better": 47,
+        "q_worse": 31
+       }
+      }
+     },
+     "contrasts": {
+      "rwc_self_certainty-top1_self_certainty": {
+       "diff": 0.048499999999999995,
+       "lo": 0.0284875,
+       "hi": 0.071,
+       "n_questions": 200,
+       "q_better": 37,
+       "q_worse": 8
+      },
+      "top1_self_certainty-top1_logprob": {
+       "diff": 0.034499999999999996,
+       "lo": 0.010000000000000004,
+       "hi": 0.05801249999999998,
+       "n_questions": 200,
+       "q_better": 44,
+       "q_worse": 20
+      }
+     }
+    },
+    "16": {
+     "oracle_coverage": [
+      0.9129999999999999,
+      0.8744875000000001,
+      0.9455
+     ],
+     "n_answer_groups": 3.2314999999999996,
+     "methods": {
+      "first_ans": {
+       "acc": [
+        0.74,
+        0.6879875,
+        0.7875125
+       ],
+       "cost": 571.2935,
+       "fail_no_correct_candidate": 0.08700000000000008,
+       "fail_missed_available": 0.17299999999999993,
+       "vs_self_consistency": {
+        "diff": -0.08900000000000001,
+        "lo": -0.11449999999999999,
+        "hi": -0.0635,
+        "n_questions": 200,
+        "q_better": 9,
+        "q_worse": 66
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 200,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "self_consistency": {
+       "acc": [
+        0.8290000000000001,
+        0.774,
+        0.8775
+       ],
+       "cost": 9163.328000000001,
+       "fail_no_correct_candidate": 0.08700000000000008,
+       "fail_missed_available": 0.08399999999999985,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 200,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.08900000000000001,
+        "lo": 0.0635,
+        "hi": 0.11449999999999999,
+        "n_questions": 200,
+        "q_better": 66,
+        "q_worse": 9
+       }
+      },
+      "top1_logprob": {
+       "acc": [
+        0.7190000000000001,
+        0.6609875,
+        0.7759999999999999
+       ],
+       "cost": 9163.328000000001,
+       "fail_no_correct_candidate": 0.08700000000000008,
+       "fail_missed_available": 0.19399999999999984,
+       "vs_self_consistency": {
+        "diff": -0.11,
+        "lo": -0.15001250000000002,
+        "hi": -0.07148750000000001,
+        "n_questions": 200,
+        "q_better": 6,
+        "q_worse": 44
+       },
+       "vs_first_ans": {
+        "diff": -0.021,
+        "lo": -0.05201250000000001,
+        "hi": 0.009512499999999991,
+        "n_questions": 200,
+        "q_better": 40,
+        "q_worse": 35
+       }
+      },
+      "top1_self_certainty": {
+       "acc": [
+        0.7709999999999999,
+        0.717475,
+        0.818025
+       ],
+       "cost": 9163.328000000001,
+       "fail_no_correct_candidate": 0.08700000000000008,
+       "fail_missed_available": 0.14200000000000002,
+       "vs_self_consistency": {
+        "diff": -0.057999999999999996,
+        "lo": -0.09,
+        "hi": -0.027999999999999997,
+        "n_questions": 200,
+        "q_better": 8,
+        "q_worse": 35
+       },
+       "vs_first_ans": {
+        "diff": 0.030999999999999996,
+        "lo": 0.004487499999999997,
+        "hi": 0.058499999999999996,
+        "n_questions": 200,
+        "q_better": 50,
+        "q_worse": 27
+       }
+      },
+      "rwc_self_certainty": {
+       "acc": [
+        0.8265,
+        0.7714875000000001,
+        0.8755000000000002
+       ],
+       "cost": 9163.328000000001,
+       "fail_no_correct_candidate": 0.08700000000000008,
+       "fail_missed_available": 0.08649999999999991,
+       "vs_self_consistency": {
+        "diff": -0.002500000000000001,
+        "lo": -0.0105,
+        "hi": 0.005499999999999998,
+        "n_questions": 200,
+        "q_better": 6,
+        "q_worse": 9
+       },
+       "vs_first_ans": {
+        "diff": 0.08650000000000001,
+        "lo": 0.06200000000000001,
+        "hi": 0.11301249999999999,
+        "n_questions": 200,
+        "q_better": 66,
+        "q_worse": 8
+       }
+      },
+      "shortest": {
+       "acc": [
+        0.7680000000000001,
+        0.7115,
+        0.8190125
+       ],
+       "cost": 9163.328000000001,
+       "fail_no_correct_candidate": 0.08700000000000008,
+       "fail_missed_available": 0.1449999999999998,
+       "vs_self_consistency": {
+        "diff": -0.061,
+        "lo": -0.09149999999999998,
+        "hi": -0.028487500000000013,
+        "n_questions": 200,
+        "q_better": 7,
+        "q_worse": 36
+       },
+       "vs_first_ans": {
+        "diff": 0.028000000000000004,
+        "lo": -0.0015125000000000006,
+        "hi": 0.057,
+        "n_questions": 200,
+        "q_better": 48,
+        "q_worse": 25
+       }
+      }
+     },
+     "contrasts": {
+      "rwc_self_certainty-top1_self_certainty": {
+       "diff": 0.05549999999999999,
+       "lo": 0.0285,
+       "hi": 0.08401249999999998,
+       "n_questions": 200,
+       "q_better": 34,
+       "q_worse": 8
+      },
+      "top1_self_certainty-top1_logprob": {
+       "diff": 0.052000000000000005,
+       "lo": 0.019500000000000003,
+       "hi": 0.0855,
+       "n_questions": 200,
+       "q_better": 40,
+       "q_worse": 19
+      }
+     }
+    },
+    "32": {
+     "oracle_coverage": [
+      0.94,
+      0.9,
+      0.97
+     ],
+     "n_answer_groups": 4.65,
+     "methods": {
+      "first_ans": {
+       "acc": [
+        0.74,
+        0.6879875,
+        0.7875125
+       ],
+       "cost": 571.2935,
+       "fail_no_correct_candidate": 0.06000000000000005,
+       "fail_missed_available": 0.19999999999999996,
+       "vs_self_consistency": {
+        "diff": -0.085,
+        "lo": -0.11599999999999999,
+        "hi": -0.05898750000000001,
+        "n_questions": 200,
+        "q_better": 11,
+        "q_worse": 63
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 200,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "self_consistency": {
+       "acc": [
+        0.825,
+        0.765,
+        0.8751249999999999
+       ],
+       "cost": 18322.4,
+       "fail_no_correct_candidate": 0.06000000000000005,
+       "fail_missed_available": 0.11499999999999999,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 200,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.085,
+        "lo": 0.058987500000000005,
+        "hi": 0.11599999999999999,
+        "n_questions": 200,
+        "q_better": 63,
+        "q_worse": 11
+       }
+      },
+      "top1_logprob": {
+       "acc": [
+        0.705,
+        0.645,
+        0.765
+       ],
+       "cost": 18322.4,
+       "fail_no_correct_candidate": 0.06000000000000005,
+       "fail_missed_available": 0.235,
+       "vs_self_consistency": {
+        "diff": -0.12,
+        "lo": -0.17,
+        "hi": -0.07,
+        "n_questions": 200,
+        "q_better": 2,
+        "q_worse": 26
+       },
+       "vs_first_ans": {
+        "diff": -0.035,
+        "lo": -0.0770375,
+        "hi": 0.005012499999999985,
+        "n_questions": 200,
+        "q_better": 42,
+        "q_worse": 35
+       }
+      },
+      "top1_self_certainty": {
+       "acc": [
+        0.755,
+        0.695,
+        0.81
+       ],
+       "cost": 18322.4,
+       "fail_no_correct_candidate": 0.06000000000000005,
+       "fail_missed_available": 0.18499999999999994,
+       "vs_self_consistency": {
+        "diff": -0.07,
+        "lo": -0.115,
+        "hi": -0.025,
+        "n_questions": 200,
+        "q_better": 4,
+        "q_worse": 18
+       },
+       "vs_first_ans": {
+        "diff": 0.014999999999999996,
+        "lo": -0.023499999999999997,
+        "hi": 0.0525125,
+        "n_questions": 200,
+        "q_better": 50,
+        "q_worse": 27
+       }
+      },
+      "rwc_self_certainty": {
+       "acc": [
+        0.825,
+        0.765,
+        0.8751249999999999
+       ],
+       "cost": 18322.4,
+       "fail_no_correct_candidate": 0.06000000000000005,
+       "fail_missed_available": 0.11499999999999999,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 200,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.085,
+        "lo": 0.058987500000000005,
+        "hi": 0.11599999999999999,
+        "n_questions": 200,
+        "q_better": 63,
+        "q_worse": 11
+       }
+      },
+      "shortest": {
+       "acc": [
+        0.76,
+        0.7,
+        0.82
+       ],
+       "cost": 18322.4,
+       "fail_no_correct_candidate": 0.06000000000000005,
+       "fail_missed_available": 0.17999999999999994,
+       "vs_self_consistency": {
+        "diff": -0.065,
+        "lo": -0.11,
+        "hi": -0.015,
+        "n_questions": 200,
+        "q_better": 6,
+        "q_worse": 19
+       },
+       "vs_first_ans": {
+        "diff": 0.020000000000000004,
+        "lo": -0.020499999999999997,
+        "hi": 0.060500000000000005,
+        "n_questions": 200,
+        "q_better": 53,
+        "q_worse": 25
+       }
+      }
+     },
+     "contrasts": {
+      "rwc_self_certainty-top1_self_certainty": {
+       "diff": 0.07,
+       "lo": 0.025,
+       "hi": 0.115,
+       "n_questions": 200,
+       "q_better": 18,
+       "q_worse": 4
+      },
+      "top1_self_certainty-top1_logprob": {
+       "diff": 0.05,
+       "lo": 0.0,
+       "hi": 0.1,
+       "n_questions": 200,
+       "q_better": 18,
+       "q_worse": 8
+      }
+     }
+    }
+   }
+  },
+  "all": {
+   "n_questions": 1000,
+   "budgets": {
+    "1": {
+     "oracle_coverage": [
+      0.6628,
+      0.6387974999999999,
+      0.6853049999999999
+     ],
+     "n_answer_groups": 1.0,
+     "methods": {
+      "first_ans": {
+       "acc": [
+        0.6628,
+        0.6387974999999999,
+        0.6853049999999999
+       ],
+       "cost": 650.0767999999999,
+       "fail_no_correct_candidate": 0.33720000000000006,
+       "fail_missed_available": 0.0,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 1000,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 1000,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "self_consistency": {
+       "acc": [
+        0.6628,
+        0.6387974999999999,
+        0.6853049999999999
+       ],
+       "cost": 650.0767999999999,
+       "fail_no_correct_candidate": 0.33720000000000006,
+       "fail_missed_available": 0.0,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 1000,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 1000,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "top1_logprob": {
+       "acc": [
+        0.6628,
+        0.6387974999999999,
+        0.6853049999999999
+       ],
+       "cost": 650.0767999999999,
+       "fail_no_correct_candidate": 0.33720000000000006,
+       "fail_missed_available": 0.0,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 1000,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 1000,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "top1_self_certainty": {
+       "acc": [
+        0.6628,
+        0.6387974999999999,
+        0.6853049999999999
+       ],
+       "cost": 650.0767999999999,
+       "fail_no_correct_candidate": 0.33720000000000006,
+       "fail_missed_available": 0.0,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 1000,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 1000,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "rwc_self_certainty": {
+       "acc": [
+        0.6628,
+        0.6387974999999999,
+        0.6853049999999999
+       ],
+       "cost": 650.0767999999999,
+       "fail_no_correct_candidate": 0.33720000000000006,
+       "fail_missed_available": 0.0,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 1000,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 1000,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "shortest": {
+       "acc": [
+        0.6628,
+        0.6387974999999999,
+        0.6853049999999999
+       ],
+       "cost": 650.0767999999999,
+       "fail_no_correct_candidate": 0.33720000000000006,
+       "fail_missed_available": 0.0,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 1000,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 1000,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      }
+     },
+     "contrasts": {
+      "rwc_self_certainty-top1_self_certainty": {
+       "diff": 0.0,
+       "lo": 0.0,
+       "hi": 0.0,
+       "n_questions": 1000,
+       "q_better": 0,
+       "q_worse": 0
+      },
+      "top1_self_certainty-top1_logprob": {
+       "diff": 0.0,
+       "lo": 0.0,
+       "hi": 0.0,
+       "n_questions": 1000,
+       "q_better": 0,
+       "q_worse": 0
+      }
+     }
+    },
+    "2": {
+     "oracle_coverage": [
+      0.7426,
+      0.7198000000000001,
+      0.7642
+     ],
+     "n_answer_groups": 1.3513,
+     "methods": {
+      "first_ans": {
+       "acc": [
+        0.6628,
+        0.6387974999999999,
+        0.6853049999999999
+       ],
+       "cost": 650.0767999999999,
+       "fail_no_correct_candidate": 0.25739999999999996,
+       "fail_missed_available": 0.0798000000000001,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 1000,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 1000,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "self_consistency": {
+       "acc": [
+        0.6628,
+        0.6387974999999999,
+        0.6853049999999999
+       ],
+       "cost": 1300.8552,
+       "fail_no_correct_candidate": 0.25739999999999996,
+       "fail_missed_available": 0.0798000000000001,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 1000,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 1000,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "top1_logprob": {
+       "acc": [
+        0.675,
+        0.6506925,
+        0.6973024999999999
+       ],
+       "cost": 1300.8552,
+       "fail_no_correct_candidate": 0.25739999999999996,
+       "fail_missed_available": 0.0676,
+       "vs_self_consistency": {
+        "diff": 0.012199999999999999,
+        "lo": 0.006197499999999999,
+        "hi": 0.0181,
+        "n_questions": 1000,
+        "q_better": 200,
+        "q_worse": 131
+       },
+       "vs_first_ans": {
+        "diff": 0.012199999999999999,
+        "lo": 0.006197499999999999,
+        "hi": 0.0181,
+        "n_questions": 1000,
+        "q_better": 200,
+        "q_worse": 131
+       }
+      },
+      "top1_self_certainty": {
+       "acc": [
+        0.6868,
+        0.6631900000000001,
+        0.7089125
+       ],
+       "cost": 1300.8552,
+       "fail_no_correct_candidate": 0.25739999999999996,
+       "fail_missed_available": 0.05580000000000007,
+       "vs_self_consistency": {
+        "diff": 0.024,
+        "lo": 0.0179975,
+        "hi": 0.030402500000000002,
+        "n_questions": 1000,
+        "q_better": 231,
+        "q_worse": 101
+       },
+       "vs_first_ans": {
+        "diff": 0.024,
+        "lo": 0.0179975,
+        "hi": 0.030402500000000002,
+        "n_questions": 1000,
+        "q_better": 231,
+        "q_worse": 101
+       }
+      },
+      "rwc_self_certainty": {
+       "acc": [
+        0.6868,
+        0.6631900000000001,
+        0.7089125
+       ],
+       "cost": 1300.8552,
+       "fail_no_correct_candidate": 0.25739999999999996,
+       "fail_missed_available": 0.05580000000000007,
+       "vs_self_consistency": {
+        "diff": 0.024,
+        "lo": 0.0179975,
+        "hi": 0.030402500000000002,
+        "n_questions": 1000,
+        "q_better": 231,
+        "q_worse": 101
+       },
+       "vs_first_ans": {
+        "diff": 0.024,
+        "lo": 0.0179975,
+        "hi": 0.030402500000000002,
+        "n_questions": 1000,
+        "q_better": 231,
+        "q_worse": 101
+       }
+      },
+      "shortest": {
+       "acc": [
+        0.6752999999999999,
+        0.6515924999999999,
+        0.6977125000000001
+       ],
+       "cost": 1300.8552,
+       "fail_no_correct_candidate": 0.25739999999999996,
+       "fail_missed_available": 0.06730000000000014,
+       "vs_self_consistency": {
+        "diff": 0.012499999999999999,
+        "lo": 0.0058,
+        "hi": 0.0190025,
+        "n_questions": 1000,
+        "q_better": 207,
+        "q_worse": 130
+       },
+       "vs_first_ans": {
+        "diff": 0.012499999999999999,
+        "lo": 0.0058,
+        "hi": 0.0190025,
+        "n_questions": 1000,
+        "q_better": 207,
+        "q_worse": 130
+       }
+      }
+     },
+     "contrasts": {
+      "rwc_self_certainty-top1_self_certainty": {
+       "diff": 0.0,
+       "lo": 0.0,
+       "hi": 0.0,
+       "n_questions": 1000,
+       "q_better": 0,
+       "q_worse": 0
+      },
+      "top1_self_certainty-top1_logprob": {
+       "diff": 0.011800000000000001,
+       "lo": 0.0065,
+       "hi": 0.017,
+       "n_questions": 1000,
+       "q_better": 168,
+       "q_worse": 96
+      }
+     }
+    },
+    "4": {
+     "oracle_coverage": [
+      0.8038,
+      0.7824975,
+      0.824115
+     ],
+     "n_answer_groups": 1.8779000000000001,
+     "methods": {
+      "first_ans": {
+       "acc": [
+        0.6628,
+        0.6387974999999999,
+        0.6853049999999999
+       ],
+       "cost": 650.0767999999999,
+       "fail_no_correct_candidate": 0.19620000000000004,
+       "fail_missed_available": 0.14100000000000001,
+       "vs_self_consistency": {
+        "diff": -0.0495,
+        "lo": -0.055907500000000006,
+        "hi": -0.042699999999999995,
+        "n_questions": 1000,
+        "q_better": 45,
+        "q_worse": 293
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 1000,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "self_consistency": {
+       "acc": [
+        0.7122999999999999,
+        0.6871975,
+        0.7353124999999999
+       ],
+       "cost": 2600.1263,
+       "fail_no_correct_candidate": 0.19620000000000004,
+       "fail_missed_available": 0.09150000000000003,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 1000,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.0495,
+        "lo": 0.042699999999999995,
+        "hi": 0.0559075,
+        "n_questions": 1000,
+        "q_better": 293,
+        "q_worse": 45
+       }
+      },
+      "top1_logprob": {
+       "acc": [
+        0.6871,
+        0.6627974999999999,
+        0.7086025
+       ],
+       "cost": 2600.1263,
+       "fail_no_correct_candidate": 0.19620000000000004,
+       "fail_missed_available": 0.11669999999999991,
+       "vs_self_consistency": {
+        "diff": -0.0252,
+        "lo": -0.03269999999999999,
+        "hi": -0.017297499999999997,
+        "n_questions": 1000,
+        "q_better": 126,
+        "q_worse": 221
+       },
+       "vs_first_ans": {
+        "diff": 0.024300000000000002,
+        "lo": 0.0167,
+        "hi": 0.0325,
+        "n_questions": 1000,
+        "q_better": 237,
+        "q_worse": 154
+       }
+      },
+      "top1_self_certainty": {
+       "acc": [
+        0.7058,
+        0.6818,
+        0.7274025000000001
+       ],
+       "cost": 2600.1263,
+       "fail_no_correct_candidate": 0.19620000000000004,
+       "fail_missed_available": 0.09799999999999998,
+       "vs_self_consistency": {
+        "diff": -0.006499999999999998,
+        "lo": -0.013702499999999998,
+        "hi": 0.0018024999999999998,
+        "n_questions": 1000,
+        "q_better": 147,
+        "q_worse": 182
+       },
+       "vs_first_ans": {
+        "diff": 0.043,
+        "lo": 0.0338975,
+        "hi": 0.051607499999999994,
+        "n_questions": 1000,
+        "q_better": 284,
+        "q_worse": 103
+       }
+      },
+      "rwc_self_certainty": {
+       "acc": [
+        0.7169000000000001,
+        0.6933,
+        0.738605
+       ],
+       "cost": 2600.1263,
+       "fail_no_correct_candidate": 0.19620000000000004,
+       "fail_missed_available": 0.08689999999999987,
+       "vs_self_consistency": {
+        "diff": 0.004600000000000002,
+        "lo": -0.0005999999999999995,
+        "hi": 0.010404999999999998,
+        "n_questions": 1000,
+        "q_better": 140,
+        "q_worse": 116
+       },
+       "vs_first_ans": {
+        "diff": 0.05410000000000001,
+        "lo": 0.046200000000000005,
+        "hi": 0.061799999999999994,
+        "n_questions": 1000,
+        "q_better": 314,
+        "q_worse": 63
+       }
+      },
+      "shortest": {
+       "acc": [
+        0.6757000000000001,
+        0.6504975,
+        0.698405
+       ],
+       "cost": 2600.1263,
+       "fail_no_correct_candidate": 0.19620000000000004,
+       "fail_missed_available": 0.12809999999999988,
+       "vs_self_consistency": {
+        "diff": -0.036599999999999994,
+        "lo": -0.04520250000000001,
+        "hi": -0.0272975,
+        "n_questions": 1000,
+        "q_better": 107,
+        "q_worse": 245
+       },
+       "vs_first_ans": {
+        "diff": 0.0129,
+        "lo": 0.004100000000000001,
+        "hi": 0.0219,
+        "n_questions": 1000,
+        "q_better": 211,
+        "q_worse": 170
+       }
+      }
+     },
+     "contrasts": {
+      "rwc_self_certainty-top1_self_certainty": {
+       "diff": 0.011099999999999997,
+       "lo": 0.0069,
+       "hi": 0.014999999999999998,
+       "n_questions": 1000,
+       "q_better": 137,
+       "q_worse": 55
+      },
+      "top1_self_certainty-top1_logprob": {
+       "diff": 0.0187,
+       "lo": 0.010400000000000003,
+       "hi": 0.026900000000000004,
+       "n_questions": 1000,
+       "q_better": 211,
+       "q_worse": 136
+      }
+     }
+    },
+    "8": {
+     "oracle_coverage": [
+      0.8512000000000001,
+      0.8317924999999999,
+      0.8700025
+     ],
+     "n_answer_groups": 2.6531,
+     "methods": {
+      "first_ans": {
+       "acc": [
+        0.6628,
+        0.6387974999999999,
+        0.6853049999999999
+       ],
+       "cost": 650.0767999999999,
+       "fail_no_correct_candidate": 0.14879999999999993,
+       "fail_missed_available": 0.18840000000000012,
+       "vs_self_consistency": {
+        "diff": -0.0755,
+        "lo": -0.0854075,
+        "hi": -0.0655975,
+        "n_questions": 1000,
+        "q_better": 56,
+        "q_worse": 331
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 1000,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "self_consistency": {
+       "acc": [
+        0.7383,
+        0.7126975,
+        0.7621024999999999
+       ],
+       "cost": 5192.6092,
+       "fail_no_correct_candidate": 0.14879999999999993,
+       "fail_missed_available": 0.11290000000000011,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 1000,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.0755,
+        "lo": 0.0655975,
+        "hi": 0.0854075,
+        "n_questions": 1000,
+        "q_better": 331,
+        "q_worse": 56
+       }
+      },
+      "top1_logprob": {
+       "acc": [
+        0.6874,
+        0.6633950000000001,
+        0.7100025
+       ],
+       "cost": 5192.6092,
+       "fail_no_correct_candidate": 0.14879999999999993,
+       "fail_missed_available": 0.16380000000000006,
+       "vs_self_consistency": {
+        "diff": -0.05090000000000001,
+        "lo": -0.0631025,
+        "hi": -0.03839750000000001,
+        "n_questions": 1000,
+        "q_better": 88,
+        "q_worse": 226
+       },
+       "vs_first_ans": {
+        "diff": 0.0246,
+        "lo": 0.014097499999999999,
+        "hi": 0.0357025,
+        "n_questions": 1000,
+        "q_better": 241,
+        "q_worse": 161
+       }
+      },
+      "top1_self_certainty": {
+       "acc": [
+        0.7151000000000001,
+        0.6903975,
+        0.7373099999999999
+       ],
+       "cost": 5192.6092,
+       "fail_no_correct_candidate": 0.14879999999999993,
+       "fail_missed_available": 0.1361,
+       "vs_self_consistency": {
+        "diff": -0.0232,
+        "lo": -0.0337025,
+        "hi": -0.0117,
+        "n_questions": 1000,
+        "q_better": 108,
+        "q_worse": 180
+       },
+       "vs_first_ans": {
+        "diff": 0.0523,
+        "lo": 0.0418975,
+        "hi": 0.06300249999999999,
+        "n_questions": 1000,
+        "q_better": 294,
+        "q_worse": 112
+       }
+      },
+      "rwc_self_certainty": {
+       "acc": [
+        0.7468,
+        0.7229975,
+        0.769205
+       ],
+       "cost": 5192.6092,
+       "fail_no_correct_candidate": 0.14879999999999993,
+       "fail_missed_available": 0.10440000000000005,
+       "vs_self_consistency": {
+        "diff": 0.0085,
+        "lo": 0.0040975,
+        "hi": 0.0134,
+        "n_questions": 1000,
+        "q_better": 105,
+        "q_worse": 58
+       },
+       "vs_first_ans": {
+        "diff": 0.084,
+        "lo": 0.07339749999999999,
+        "hi": 0.09451,
+        "n_questions": 1000,
+        "q_better": 353,
+        "q_worse": 53
+       }
+      },
+      "shortest": {
+       "acc": [
+        0.6695,
+        0.6437949999999999,
+        0.6926024999999999
+       ],
+       "cost": 5192.6092,
+       "fail_no_correct_candidate": 0.14879999999999993,
+       "fail_missed_available": 0.18170000000000008,
+       "vs_self_consistency": {
+        "diff": -0.06880000000000001,
+        "lo": -0.08130749999999999,
+        "hi": -0.0558975,
+        "n_questions": 1000,
+        "q_better": 70,
+        "q_worse": 256
+       },
+       "vs_first_ans": {
+        "diff": 0.006699999999999999,
+        "lo": -0.005102500000000001,
+        "hi": 0.018012499999999987,
+        "n_questions": 1000,
+        "q_better": 224,
+        "q_worse": 197
+       }
+      }
+     },
+     "contrasts": {
+      "rwc_self_certainty-top1_self_certainty": {
+       "diff": 0.0317,
+       "lo": 0.0224975,
+       "hi": 0.0406,
+       "n_questions": 1000,
+       "q_better": 177,
+       "q_worse": 74
+      },
+      "top1_self_certainty-top1_logprob": {
+       "diff": 0.027700000000000002,
+       "lo": 0.016797500000000003,
+       "hi": 0.038200000000000005,
+       "n_questions": 1000,
+       "q_better": 210,
+       "q_worse": 133
+      }
+     }
+    },
+    "16": {
+     "oracle_coverage": [
+      0.8902,
+      0.8721975000000001,
+      0.9067050000000001
+     ],
+     "n_answer_groups": 3.8491999999999997,
+     "methods": {
+      "first_ans": {
+       "acc": [
+        0.6628,
+        0.6387974999999999,
+        0.6853049999999999
+       ],
+       "cost": 650.0767999999999,
+       "fail_no_correct_candidate": 0.10980000000000001,
+       "fail_missed_available": 0.22740000000000005,
+       "vs_self_consistency": {
+        "diff": -0.08789999999999999,
+        "lo": -0.0998,
+        "hi": -0.0755,
+        "n_questions": 1000,
+        "q_better": 71,
+        "q_worse": 328
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 1000,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "self_consistency": {
+       "acc": [
+        0.7507,
+        0.725195,
+        0.7745025
+       ],
+       "cost": 10374.8598,
+       "fail_no_correct_candidate": 0.10980000000000001,
+       "fail_missed_available": 0.13949999999999996,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 1000,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.08789999999999999,
+        "lo": 0.0755,
+        "hi": 0.0998,
+        "n_questions": 1000,
+        "q_better": 328,
+        "q_worse": 71
+       }
+      },
+      "top1_logprob": {
+       "acc": [
+        0.6749,
+        0.6503850000000001,
+        0.7009
+       ],
+       "cost": 10374.8598,
+       "fail_no_correct_candidate": 0.10980000000000001,
+       "fail_missed_available": 0.21529999999999994,
+       "vs_self_consistency": {
+        "diff": -0.0758,
+        "lo": -0.09240250000000001,
+        "hi": -0.0590975,
+        "n_questions": 1000,
+        "q_better": 65,
+        "q_worse": 206
+       },
+       "vs_first_ans": {
+        "diff": 0.012099999999999998,
+        "lo": -0.0011050000000000025,
+        "hi": 0.025107499999999994,
+        "n_questions": 1000,
+        "q_better": 235,
+        "q_worse": 178
+       }
+      },
+      "top1_self_certainty": {
+       "acc": [
+        0.7198000000000001,
+        0.6947949999999999,
+        0.7433025
+       ],
+       "cost": 10374.8598,
+       "fail_no_correct_candidate": 0.10980000000000001,
+       "fail_missed_available": 0.17039999999999988,
+       "vs_self_consistency": {
+        "diff": -0.030899999999999997,
+        "lo": -0.0448025,
+        "hi": -0.016297500000000003,
+        "n_questions": 1000,
+        "q_better": 86,
+        "q_worse": 156
+       },
+       "vs_first_ans": {
+        "diff": 0.057,
+        "lo": 0.043800000000000006,
+        "hi": 0.07100499999999998,
+        "n_questions": 1000,
+        "q_better": 300,
+        "q_worse": 122
+       }
+      },
+      "rwc_self_certainty": {
+       "acc": [
+        0.7624,
+        0.7377924999999999,
+        0.7863125000000001
+       ],
+       "cost": 10374.8598,
+       "fail_no_correct_candidate": 0.10980000000000001,
+       "fail_missed_available": 0.12780000000000002,
+       "vs_self_consistency": {
+        "diff": 0.011699999999999999,
+        "lo": 0.0062,
+        "hi": 0.017304999999999994,
+        "n_questions": 1000,
+        "q_better": 75,
+        "q_worse": 36
+       },
+       "vs_first_ans": {
+        "diff": 0.0996,
+        "lo": 0.0862975,
+        "hi": 0.11150499999999999,
+        "n_questions": 1000,
+        "q_better": 348,
+        "q_worse": 57
+       }
+      },
+      "shortest": {
+       "acc": [
+        0.6588999999999999,
+        0.6321,
+        0.6831025000000001
+       ],
+       "cost": 10374.8598,
+       "fail_no_correct_candidate": 0.10980000000000001,
+       "fail_missed_available": 0.23130000000000006,
+       "vs_self_consistency": {
+        "diff": -0.09179999999999999,
+        "lo": -0.1093075,
+        "hi": -0.07529999999999999,
+        "n_questions": 1000,
+        "q_better": 47,
+        "q_worse": 222
+       },
+       "vs_first_ans": {
+        "diff": -0.0039,
+        "lo": -0.018200000000000004,
+        "hi": 0.009804999999999996,
+        "n_questions": 1000,
+        "q_better": 212,
+        "q_worse": 202
+       }
+      }
+     },
+     "contrasts": {
+      "rwc_self_certainty-top1_self_certainty": {
+       "diff": 0.04259999999999999,
+       "lo": 0.0295,
+       "hi": 0.055609999999999986,
+       "n_questions": 1000,
+       "q_better": 163,
+       "q_worse": 64
+      },
+      "top1_self_certainty-top1_logprob": {
+       "diff": 0.044899999999999995,
+       "lo": 0.0295,
+       "hi": 0.06061249999999999,
+       "n_questions": 1000,
+       "q_better": 189,
+       "q_worse": 104
+      }
+     }
+    },
+    "32": {
+     "oracle_coverage": [
+      0.919,
+      0.902,
+      0.935
+     ],
+     "n_answer_groups": 5.653,
+     "methods": {
+      "first_ans": {
+       "acc": [
+        0.6628,
+        0.6387974999999999,
+        0.6853049999999999
+       ],
+       "cost": 650.0767999999999,
+       "fail_no_correct_candidate": 0.08099999999999996,
+       "fail_missed_available": 0.2562000000000001,
+       "vs_self_consistency": {
+        "diff": -0.0925,
+        "lo": -0.10630250000000001,
+        "hi": -0.078095,
+        "n_questions": 1000,
+        "q_better": 88,
+        "q_worse": 316
+       },
+       "vs_first_ans": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 1000,
+        "q_better": 0,
+        "q_worse": 0
+       }
+      },
+      "self_consistency": {
+       "acc": [
+        0.7553,
+        0.729195,
+        0.7795074999999999
+       ],
+       "cost": 20742.094,
+       "fail_no_correct_candidate": 0.08099999999999996,
+       "fail_missed_available": 0.16370000000000007,
+       "vs_self_consistency": {
+        "diff": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_questions": 1000,
+        "q_better": 0,
+        "q_worse": 0
+       },
+       "vs_first_ans": {
+        "diff": 0.0925,
+        "lo": 0.07809499999999998,
+        "hi": 0.10630250000000001,
+        "n_questions": 1000,
+        "q_better": 316,
+        "q_worse": 88
+       }
+      },
+      "top1_logprob": {
+       "acc": [
+        0.653,
+        0.626975,
+        0.682
+       ],
+       "cost": 20742.094,
+       "fail_no_correct_candidate": 0.08099999999999996,
+       "fail_missed_available": 0.266,
+       "vs_self_consistency": {
+        "diff": -0.1023,
+        "lo": -0.1252075,
+        "hi": -0.0789975,
+        "n_questions": 1000,
+        "q_better": 22,
+        "q_worse": 129
+       },
+       "vs_first_ans": {
+        "diff": -0.0098,
+        "lo": -0.027802499999999997,
+        "hi": 0.009502499999999995,
+        "n_questions": 1000,
+        "q_better": 222,
+        "q_worse": 202
+       }
+      },
+      "top1_self_certainty": {
+       "acc": [
+        0.716,
+        0.6889749999999999,
+        0.7430249999999999
+       ],
+       "cost": 20742.094,
+       "fail_no_correct_candidate": 0.08099999999999996,
+       "fail_missed_available": 0.20300000000000007,
+       "vs_self_consistency": {
+        "diff": -0.039299999999999995,
+        "lo": -0.0592,
+        "hi": -0.018197500000000005,
+        "n_questions": 1000,
+        "q_better": 39,
+        "q_worse": 81
+       },
+       "vs_first_ans": {
+        "diff": 0.0532,
+        "lo": 0.03519749999999999,
+        "hi": 0.0710025,
+        "n_questions": 1000,
+        "q_better": 278,
+        "q_worse": 142
+       }
+      },
+      "rwc_self_certainty": {
+       "acc": [
+        0.7697,
+        0.7447,
+        0.7947000000000001
+       ],
+       "cost": 20742.094,
+       "fail_no_correct_candidate": 0.08099999999999996,
+       "fail_missed_available": 0.1493,
+       "vs_self_consistency": {
+        "diff": 0.0144,
+        "lo": 0.0059975,
+        "hi": 0.0232025,
+        "n_questions": 1000,
+        "q_better": 22,
+        "q_worse": 6
+       },
+       "vs_first_ans": {
+        "diff": 0.1069,
+        "lo": 0.09159,
+        "hi": 0.12140250000000001,
+        "n_questions": 1000,
+        "q_better": 328,
+        "q_worse": 82
+       }
+      },
+      "shortest": {
+       "acc": [
+        0.651,
+        0.6206975,
+        0.679
+       ],
+       "cost": 20742.094,
+       "fail_no_correct_candidate": 0.08099999999999996,
+       "fail_missed_available": 0.268,
+       "vs_self_consistency": {
+        "diff": -0.10430000000000002,
+        "lo": -0.1269025,
+        "hi": -0.0814,
+        "n_questions": 1000,
+        "q_better": 26,
+        "q_worse": 135
+       },
+       "vs_first_ans": {
+        "diff": -0.011800000000000001,
+        "lo": -0.031302500000000004,
+        "hi": 0.006799999999999997,
+        "n_questions": 1000,
+        "q_better": 222,
+        "q_worse": 203
+       }
+      }
+     },
+     "contrasts": {
+      "rwc_self_certainty-top1_self_certainty": {
+       "diff": 0.053700000000000005,
+       "lo": 0.0337,
+       "hi": 0.073,
+       "n_questions": 1000,
+       "q_better": 79,
+       "q_worse": 26
+      },
+      "top1_self_certainty-top1_logprob": {
+       "diff": 0.063,
+       "lo": 0.04,
+       "hi": 0.08502499999999999,
+       "n_questions": 1000,
+       "q_better": 99,
+       "q_worse": 36
+      }
+     }
+    }
+   }
+  }
+ }
+}

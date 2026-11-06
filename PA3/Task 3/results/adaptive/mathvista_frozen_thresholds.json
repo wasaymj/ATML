@@ -1,0 +1,26 @@
+{
+ "dataset": "mathvista",
+ "fixed32_sc_dev_acc": 0.6425,
+ "tolerance_pp": 1.0,
+ "chosen": {
+  "agreement": {
+   "family": "agreement",
+   "tau": 0.625,
+   "gamma": NaN,
+   "label": "tau=0.625",
+   "acc": 0.637,
+   "cost": 5192.115,
+   "mean_rollouts": 13.972000000000003
+  },
+  "quality": {
+   "family": "quality",
+   "tau": 0.625,
+   "gamma": 0.0,
+   "label": "tau=0.625, gamma=0.0",
+   "acc": 0.637,
+   "cost": 5268.151499999999,
+   "mean_rollouts": 14.168
+  }
+ },
+ "quality_score": "Z"
+}

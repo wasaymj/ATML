@@ -6,9 +6,9 @@ config and Kaggle notebook. Implementation details for the report are in [`Imple
 
 | Task | Folder | Status | Reproduce |
 |---|---|---|---|
-| 1. LLM fine-tuning: adaptation vs retention (Full FT, L2-SP, LoRA-4/16, OPLoRA-16 on Qwen3-0.6B) | [`Task 1/`](Task%201/README.md) | code ready; runs pending | [`Task 1/README.md`](Task%201/README.md#reproduce) |
-| 2. Vision-language model and visual grounding (SigLIP → connector → Qwen3-0.6B, 3-stage curriculum, complementary-pair grounding; optional 49-token run) | [`Task 2/`](Task%202/README.md) | code ready; runs pending | [`Task 2/README.md`](Task%202/README.md#reproduce) |
-| 3. Test-time compute (sampling, selection, adaptive inference) | `Task 3/` | not started | — |
+| 1. LLM fine-tuning: adaptation vs retention (Full FT, L2-SP, LoRA-4/16, OPLoRA-16 on Qwen3-0.6B) | [`Task 1/`](Task%201/README.md) | complete (results in `Task 1/results/`) | [`Task 1/README.md`](Task%201/README.md#reproduce) |
+| 2. Vision-language model and visual grounding (SigLIP → connector → Qwen3-0.6B, 3-stage curriculum, complementary-pair grounding; optional 49-token run) | [`Task 2/`](Task%202/README.md) | complete (results in `Task 2/results/`) | [`Task 2/README.md`](Task%202/README.md#reproduce) |
+| 3. Test-time compute (best-of-N selection with self-consistency, self-certainty, VisConf + RWC; live parallel vs refinement; adaptive stopping) | [`Task 3/`](Task%203/README.md) | offline analysis complete; live Step 4 pending (Kaggle GPU) | [`Task 3/README.md`](Task%203/README.md#reproduce) |
 
 ## Common conventions
 * Seed 6304 everywhere; every run writes a manifest (config, package versions, GPU, git commit, model revision).
@@ -24,12 +24,12 @@ PA3/
 ├── Implementation_Notes/     design notes, manual-compliance checklists, deviations, Kaggle guide (per task)
 ├── Task 1/                   see Task 1/README.md
 ├── Task 2/                   see Task 2/README.md
-├── Task 3/                   (to come)
+├── Task 3/                   see Task 3/README.md
 ├── Readings/                 papers (not committed)
 └── ATML-PA3.pdf              manual (not committed)
 ```
 
 ## Attribution
 External libraries and papers are credited in each task README (lm-evaluation-harness, PEFT, Hugging Face
-Transformers/Datasets; OPLoRA, LoRA, L2-SP papers; the official VQA evaluation code, ported in Task 2). An LLM coding assistant was used for parts of the code, as
+Transformers/Datasets; OPLoRA, LoRA, L2-SP papers; the official VQA evaluation code, ported in Task 2; MathVista answer normalization, ported in Task 3; math-verify). An LLM coding assistant was used for parts of the code, as
 the manual permits; the report text is written without generative AI.

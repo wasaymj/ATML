@@ -1,0 +1,101 @@
+{
+ "scorer_version": "task3-scorer-1.1",
+ "packages": {
+  "python": "3.12.10",
+  "numpy": "2.4.6",
+  "pandas": "3.0.3",
+  "pyarrow": "25.0.1",
+  "scipy": "1.17.1",
+  "math-verify": "0.9.0",
+  "latex2sympy2_extended": "1.11.0",
+  "sympy": "1.14.0",
+  "torch": "2.13.0",
+  "transformers": "4.57.1",
+  "matplotlib": "3.10.9"
+ },
+ "rule": "math-verify equivalence (parse of \\boxed{answer}); groups from sorted unique answers, first equivalent representative",
+ "checks": {
+  "rollout_direct_vs_group_disagreements": 0,
+  "gold_unparseable": 0,
+  "nontransitive_groups": 0
+ },
+ "normalization_stats": null,
+ "math_verify_timeout_s": 5.0,
+ "math_verify_timeouts": 11,
+ "math_verify_timeout_examples": [
+  [
+   "verify",
+   "(2 + \\sqrt{2 + \\sqrt{2}})^{2525} || 1"
+  ],
+  [
+   "verify",
+   "(2 + \\sqrt{2 + \\sqrt{2}})^{2525} || 2"
+  ],
+  [
+   "verify",
+   "(2 + \\sqrt{2 + \\sqrt{2}})^{2525} || 2^{100}"
+  ],
+  [
+   "verify",
+   "(2 + \\sqrt{2 + \\sqrt{2}})^{2525} || 2^{5150}"
+  ],
+  [
+   "verify",
+   "(2 + \\sqrt{2 + \\sqrt{2}})^{2525} || 3^{2575.5}"
+  ],
+  [
+   "verify",
+   "(2 + \\sqrt{2 + \\sqrt{2}})^{2525} || 3^{5050}"
+  ],
+  [
+   "verify",
+   "(2 + \\sqrt{2 + \\sqrt{2}})^{2525} || 3^{5050} (2 + \\sqrt{2 + \\sqrt{2}})"
+  ],
+  [
+   "verify",
+   "(2 + \\sqrt{2 + \\sqrt{2}})^{2525} || 3^{5100} \\cdot 2^{50}"
+  ],
+  [
+   "verify",
+   "(2 + \\sqrt{2 + \\sqrt{2}})^{2525} || 6^{50} \\cdot 3^{5050}"
+  ],
+  [
+   "verify",
+   "(2 + \\sqrt{2 + \\sqrt{2}})^{2525} || a^{5050}"
+  ],
+  [
+   "verify",
+   "4096 \\sqrt{2} || (2 + \\sqrt{2 + \\sqrt{2}})^{2525}"
+  ]
+ ],
+ "too_complex_string_compared": 4,
+ "too_complex_examples": [
+  "\\left( \\sqrt{2 + \\sqrt{2 + \\sqrt{2}}} \\right)^{\\frac{3^{101} - 3}{2}}",
+  "a^{100} 2^{\\frac{3^{100} - 1}{2}}",
+  "a^{3^{100}} - 3a^{3^{99}}",
+  "a^{3^{101}} - 3a^{3^{100}}"
+ ],
+ "export_metadata": {
+  "config_sha256": "d3136d45726a3dbcea6b831046ae56e71b8e275794a4cd7b8881e41b910fa2f5",
+  "format_version": "1",
+  "metric_definition": "full raw-logit vocabulary; logp=log_softmax(z)[y]; kl_u_p=-log(V)-mean(log_softmax(z)); natural logarithms",
+  "token_alignment": "one value per retained generated token, from its predicting forward pass; selected stop tokens excluded",
+  "rollout_id": "zero-based 0..31 within each sample",
+  "answer_extraction": "final literal boxed expression, balanced braces; no numeric fallback",
+  "model_id": "Qwen/Qwen2.5-3B-Instruct",
+  "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+  "dataset_id": "DigitalLearningGmbH/MATH-lighteval",
+  "dataset_revision": "0530c78699ea5e8eb5530600900e1f328b48acad",
+  "row_count": "32000",
+  "pilot": "False",
+  "sample_id": "test:<zero-based row index in the pinned full test split>"
+ },
+ "n_questions": 1000,
+ "n_rollouts": 32000,
+ "rollout_accuracy": 0.66315625,
+ "coverage32": 0.919,
+ "no_answer_rate": 0.01628125,
+ "cap_rate": 0.01634375,
+ "retained_tokens": 20742094,
+ "label_sec": 398.2272756099701
+}

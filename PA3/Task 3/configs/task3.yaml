@@ -1,0 +1,83 @@
+# Task 3: test-time compute (sampling, selection, adaptive inference).
+# Every value is from the PA3 manual unless marked "(impl)", an implementation choice that does not change
+# the prescribed experiment.
+
+seed: 6304
+
+paths:                                            # relative to PA3/Task 3
+  data_dir: "data/ATML-PA3-Data"                  # supplied export (gitignored)
+  mathvista_metadata: "data/mathvista_testmini.json"   # released question metadata (manual link; gitignored; re-fetchable)
+  ids_dir: "data/ids"                             # split ids + rollout orders (git-tracked)
+  results_dir: "results"
+
+datasets:
+  math:      {folder: "qwen25-math",        model: "Qwen2.5-3B-Instruct",    benchmark: "MATH test subset",   vlm: false}
+  mathvista: {folder: "qwen25vl-mathvista", model: "Qwen2.5-VL-3B-Instruct", benchmark: "MathVista testmini", vlm: true}
+
+mathvista_metadata:                               # fallback download if data/mathvista_testmini.json is absent
+                                                  # (identical grading fields to the supplied testmini.json, verified)
+  repo: "AI4Math/MathVista"
+  revision: "2b6ad69445fbb5695c9b165475e8decdbeb97747"
+  file: "data/testmini-00000-of-00001-725687bf7a18d64b.parquet"
+
+split:
+  n_dev: 200                                      # first 200 of the permuted sorted ids; remaining 800 = held-out eval
+  n_live: 50                                      # first 50 MATH *evaluation* questions in that permutation
+
+offline:
+  budgets: [1, 2, 4, 8, 16, 32]
+  n_orders: 10                                    # seeded permutations of the 32 rollout ids per question
+  bootstrap_resamples: 1000                       # paired, question-level
+  report_split: "eval"                            # (impl) headline numbers on the 800 held-out questions
+  methods:                                        # name: [score, aggregation]; scores: first|L|K|V|Z|Ztoken|neg_len
+    both:
+      first_ans: [first, first]
+      self_consistency: [none, vote]
+      top1_logprob: [L, top1]
+      top1_self_certainty: [K, top1]
+      rwc_self_certainty: [K, rwc]
+      shortest: [neg_len, top1]                   # length-only control (Step 3)
+    vlm_only:
+      top1_vision: [V, top1]
+      rwc_vision: [V, rwc]
+      top1_visconf: [Z, top1]
+      rwc_visconf: [Z, rwc]
+      top1_token_fusion: [Ztoken, top1]           # Step 3 ablation
+      rwc_token_fusion: [Ztoken, rwc]
+
+visconf:
+  q_lo: 0.05
+  q_hi: 0.95
+  eps: 1.0e-8                                     # max(Q95 - Q05, eps)
+
+signals:
+  quartile: 0.25                                  # top vs bottom quartile within a question (N = 32)
+  n_illustrative: 6                               # (impl) fixed trajectories for the token-level plots
+
+adaptive:
+  checks: [4, 8, 16]                              # otherwise stop at 32
+  max_n: 32
+  taus: [0.5, 0.625, 0.75, 0.875, 1.0]
+  gammas: [0.0, 0.1, 0.25, 0.5]
+  tolerance_pp: 1.0                               # dev accuracy within 1 pp of fixed-32 self-consistency
+  quality_score: {math: K, mathvista: Z}          # self-certainty for MATH, VisConf for MathVista
+
+live:
+  model: "Qwen/Qwen2.5-3B-Instruct"
+  revision: "aa8e72537993ba99e69dfaafa59ed015b17504d1"
+  dtype: "float16"
+  batch_size: 1
+  temperature: 0.7
+  top_p: 0.8
+  top_k: 20
+  repetition_penalty: 1.0
+  system: "You are a helpful assistant."
+  suffix: "Think step by step inside <think> </think> tags, then give your final answer inside \\boxed{}."
+  question_suffix_sep: "\n\n"                     # README: problem, two newlines, suffix
+  refine_instruction: "Review the solution above. Identify and correct any errors; if it is correct, retain its answer. Give your final answer inside \\boxed{}."
+  total_allowance: 3072
+  single_max_new_tokens: 3072
+  parallel_n: 3
+  parallel_max_new_tokens: 1024
+  revision_max_new_tokens: 2048
+  attn_implementation: "sdpa"                     # (impl) T4 has no FlashAttention-2
