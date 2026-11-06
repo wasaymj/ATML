@@ -8,7 +8,7 @@ config and Kaggle notebook. Implementation details for the report are in [`Imple
 |---|---|---|---|
 | 1. LLM fine-tuning: adaptation vs retention (Full FT, L2-SP, LoRA-4/16, OPLoRA-16 on Qwen3-0.6B) | [`Task 1/`](Task%201/README.md) | complete (results in `Task 1/results/`) | [`Task 1/README.md`](Task%201/README.md#reproduce) |
 | 2. Vision-language model and visual grounding (SigLIP → connector → Qwen3-0.6B, 3-stage curriculum, complementary-pair grounding; optional 49-token run) | [`Task 2/`](Task%202/README.md) | complete (results in `Task 2/results/`) | [`Task 2/README.md`](Task%202/README.md#reproduce) |
-| 3. Test-time compute (best-of-N selection with self-consistency, self-certainty, VisConf + RWC; live parallel vs refinement; adaptive stopping) | [`Task 3/`](Task%203/README.md) | offline analysis complete; live Step 4 pending (Kaggle GPU) | [`Task 3/README.md`](Task%203/README.md#reproduce) |
+| 3. Test-time compute (best-of-N selection with self-consistency, self-certainty, VisConf + RWC; live parallel vs refinement; adaptive stopping) | [`Task 3/`](Task%203/README.md) | complete (results in `Task 3/results/`) | [`Task 3/README.md`](Task%203/README.md#reproduce) |
 
 ## Common conventions
 * Seed 6304 everywhere; every run writes a manifest (config, package versions, GPU, git commit, model revision).

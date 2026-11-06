@@ -1,0 +1,7 @@
+**Live MATH comparison on the fixed 50-question subset (same 3,072-token output allowance; actual tokens and runtime per question on one T4, model loading excluded; the shared initial response is charged to both parallel and refine). Revision transitions vs the shared initial answer: wrong->correct 1, correct->wrong 0, unchanged-correct 29, unchanged-wrong 20.**
+
+| Strategy | Acc. % [CI] | In tok | Out tok | Time s | Trunc. % calls | No box % calls | Peak GB |
+|---|---|---|---|---|---|---|---|
+| Single (1 x 3,072) | 60.0 [46.0, 74.0] | 108 | 672 | 32.2 | 0.0 | 0.0 | 5.98 |
+| Parallel (3 x 1,024) + SC | 62.0 [48.0, 76.0] | 325 | 1833 | 87.6 | 17.3 | 17.3 | 5.94 |
+| Refine (1,024 + 2,048) | 60.0 [46.0, 74.0] | 868 | 1213 | 59.4 | 12.0 | 12.0 | 6.17 |

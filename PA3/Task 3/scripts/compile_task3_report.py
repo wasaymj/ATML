@@ -342,7 +342,8 @@ def t10_qualitative():
             md += [f"### {cat}: {int(m.sum())} questions", ""]
             for sid in ids[:2]:
                 x = r[r.sample_id == sid].iloc[0]
-                md += [f"* **{sid}**: initial `{x.initial_answer}` -> revised `{x.answer}`", ""]
+                show = lambda a: "no answer (no box / truncated)" if not isinstance(a, str) or not a else f"`{a}`"  # noqa: E731
+                md += [f"* **{sid}**: initial {show(x.initial_answer)} -> revised {show(x.answer)}", ""]
     write_text(os.path.join(TAB, "T10_qualitative.md"), "\n".join(md) + "\n")
     logger.info("table T10_qualitative")
 
@@ -670,7 +671,7 @@ def f10_live():
     plt = plt_setup()
     fig, axes = plt.subplots(1, 3, figsize=(5.5, 1.9))
     names = ["single", "parallel", "refine"]
-    labs = ["Single\n1x3,072", "Parallel\n3x1,024", "Refine\n1,024+2,048"]
+    labs = ["Single", "Parallel", "Refine"]                 # allowances (1x3,072 / 3x1,024 / 1,024+2,048) in caption
     cols = ["#eda100", "#2a78d6", "#1baf7a"]
     for ax, (key, ylab) in zip(axes, (("acc", "accuracy (%)"), ("mean_output_tokens", "output tokens / question"),
                                       ("mean_time_s", "seconds / question"))):

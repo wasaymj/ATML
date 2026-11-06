@@ -19,7 +19,7 @@ src/adaptive.py               Step 5: dev grid -> frozen thresholds -> held-out 
 src/live.py                   Step 4: live generation (GPU, resumable) and its summary
 src/stats.py                  paired question-level bootstrap
 scripts/run_task3.py          CLI: prepare | offline | signals | adaptive | live | report | all
-scripts/compile_task3_report.py   tables (results/tables, .md + .tex) and figures (results/figures, .pdf + .png)
+scripts/compile_task3_report.py   tables (results/tables, .md + .tex) and figures (results/figures, .png committed; .pdf written locally, gitignored)
 notebooks/task3_kaggle_live.ipynb Kaggle driver for the live run (1 x T4)
 data/ids/                     split ids (dev / eval / live) and the 10 rollout orders per question (git-tracked)
 results/                      every machine-readable result used in the report (git-tracked)

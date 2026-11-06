@@ -1,0 +1,117 @@
+{
+ "n_questions": 50,
+ "strategies": {
+  "single": {
+   "acc": [
+    0.6,
+    0.46,
+    0.74
+   ],
+   "mean_input_tokens": 108.38,
+   "mean_output_tokens": 672.22,
+   "total_output_tokens": 33611,
+   "mean_time_s": 32.16507759587993,
+   "total_time_s": 1608.2538797939965,
+   "peak_gpu_gb": 5.979385852813721,
+   "truncation_rate_calls": 0.0,
+   "no_extraction_rate_calls": 0.0,
+   "final_no_answer_rate": 0.0
+  },
+  "parallel": {
+   "acc": [
+    0.62,
+    0.48,
+    0.76
+   ],
+   "mean_input_tokens": 325.14,
+   "mean_output_tokens": 1833.16,
+   "total_output_tokens": 91658,
+   "mean_time_s": 87.57697293506016,
+   "total_time_s": 4378.848646753007,
+   "peak_gpu_gb": 5.935065269470215,
+   "truncation_rate_calls": 0.17333333333333334,
+   "no_extraction_rate_calls": 0.17333333333333334,
+   "final_no_answer_rate": 0.2
+  },
+  "refine": {
+   "acc": [
+    0.6,
+    0.46,
+    0.74
+   ],
+   "mean_input_tokens": 868.36,
+   "mean_output_tokens": 1212.84,
+   "total_output_tokens": 60642,
+   "mean_time_s": 59.43688692666001,
+   "total_time_s": 2971.8443463330004,
+   "peak_gpu_gb": 6.172524452209473,
+   "truncation_rate_calls": 0.12,
+   "no_extraction_rate_calls": 0.12,
+   "final_no_answer_rate": 0.04
+  }
+ },
+ "paired": {
+  "parallel-single": {
+   "diff": 0.02,
+   "lo": -0.1,
+   "hi": 0.14,
+   "n_questions": 50,
+   "q_better": 5,
+   "q_worse": 4
+  },
+  "refine-single": {
+   "diff": 0.0,
+   "lo": -0.08049999999999997,
+   "hi": 0.1,
+   "n_questions": 50,
+   "q_better": 3,
+   "q_worse": 3
+  },
+  "parallel-refine": {
+   "diff": 0.02,
+   "lo": -0.04,
+   "hi": 0.08,
+   "n_questions": 50,
+   "q_better": 2,
+   "q_worse": 1
+  }
+ },
+ "revision_transitions": {
+  "wrong_to_correct": 1,
+  "correct_to_wrong": 0,
+  "correct_to_correct": 29,
+  "wrong_to_wrong": 20,
+  "answer_changed": 11,
+  "initial_acc": 0.58
+ },
+ "shared_initial_note": "parallel_0 is charged to both parallel and refine",
+ "environment": {
+  "model": "Qwen/Qwen2.5-3B-Instruct",
+  "revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+  "dtype": "float16",
+  "gpu": "Tesla T4",
+  "eos_ids": [
+   151643,
+   151645
+  ],
+  "load_peak_gb": 5.853966236114502,
+  "environment": {
+   "timestamp_utc": "2026-11-06T06:33:22Z",
+   "platform": "Linux-6.18.55+-x86_64-with-glibc2.39",
+   "packages": {
+    "python": "3.13.16",
+    "numpy": "2.1.3",
+    "pandas": "2.3.3",
+    "pyarrow": "23.0.1",
+    "scipy": "1.16.3",
+    "math-verify": "0.9.0",
+    "latex2sympy2_extended": "1.11.0",
+    "sympy": "1.14.0",
+    "torch": "2.11.0+cu130",
+    "transformers": "4.57.1",
+    "matplotlib": "3.10.0"
+   },
+   "git_commit": "5667b8379ab4a037e040dbbad964a8eb5dc628da"
+  }
+ }
+}

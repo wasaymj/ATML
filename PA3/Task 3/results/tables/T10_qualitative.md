@@ -66,3 +66,11 @@ Rule: candidates in each category are held-out questions ordered by SHA-256(6304
 
 * **19** (agreement): stopped at n = 4 with vote share 0.75; share of correct rollouts in the full pool 0.50
 
+## Revision examples (live)
+
+### wrong -> correct: 1 questions
+
+* **test:2460**: initial no answer (no box / truncated) -> revised `154`
+
+### correct -> wrong: 0 questions
+
