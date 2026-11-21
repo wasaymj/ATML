@@ -1,0 +1,60 @@
+{"answer": "May", "family": 0, "id": "SHORT-familiar-0000", "input": "Read this report date: May 25, 2020. Return only the month.", "split": "familiar"}
+{"answer": "888", "family": 1, "id": "SHORT-familiar-0001", "input": "Invoice: purchased 888 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "familiar"}
+{"answer": "PK", "family": 2, "id": "SHORT-familiar-0002", "input": "Shipping label: destination code PK, serial 253. Output the destination code.", "split": "familiar"}
+{"answer": "February", "family": 0, "id": "SHORT-familiar-0003", "input": "Read this report date: February 10, 2021. Return only the month.", "split": "familiar"}
+{"answer": "3761", "family": 1, "id": "SHORT-familiar-0004", "input": "Invoice: purchased 3761 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "familiar"}
+{"answer": "PK", "family": 2, "id": "SHORT-familiar-0005", "input": "Shipping label: destination code PK, serial 220. Output the destination code.", "split": "familiar"}
+{"answer": "September", "family": 0, "id": "SHORT-familiar-0006", "input": "Read this report date: September 9, 2024. Return only the month.", "split": "familiar"}
+{"answer": "1691", "family": 1, "id": "SHORT-familiar-0007", "input": "Invoice: purchased 1691 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "familiar"}
+{"answer": "GB", "family": 2, "id": "SHORT-familiar-0008", "input": "Shipping label: destination code GB, serial 273. Output the destination code.", "split": "familiar"}
+{"answer": "May", "family": 0, "id": "SHORT-familiar-0009", "input": "Read this report date: May 15, 2022. Return only the month.", "split": "familiar"}
+{"answer": "9223", "family": 1, "id": "SHORT-familiar-0010", "input": "Invoice: purchased 9223 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "familiar"}
+{"answer": "DE", "family": 2, "id": "SHORT-familiar-0011", "input": "Shipping label: destination code DE, serial 216. Output the destination code.", "split": "familiar"}
+{"answer": "June", "family": 0, "id": "SHORT-familiar-0012", "input": "Read this report date: June 19, 2022. Return only the month.", "split": "familiar"}
+{"answer": "3446", "family": 1, "id": "SHORT-familiar-0013", "input": "Invoice: purchased 3446 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "familiar"}
+{"answer": "US", "family": 2, "id": "SHORT-familiar-0014", "input": "Shipping label: destination code US, serial 246. Output the destination code.", "split": "familiar"}
+{"answer": "January", "family": 0, "id": "SHORT-familiar-0015", "input": "Read this report date: January 26, 2021. Return only the month.", "split": "familiar"}
+{"answer": "5638", "family": 1, "id": "SHORT-familiar-0016", "input": "Invoice: purchased 5638 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "familiar"}
+{"answer": "JP", "family": 2, "id": "SHORT-familiar-0017", "input": "Shipping label: destination code JP, serial 605. Output the destination code.", "split": "familiar"}
+{"answer": "November", "family": 0, "id": "SHORT-familiar-0018", "input": "Read this report date: November 16, 2024. Return only the month.", "split": "familiar"}
+{"answer": "2855", "family": 1, "id": "SHORT-familiar-0019", "input": "Invoice: purchased 2855 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "familiar"}
+{"answer": "PK", "family": 2, "id": "SHORT-familiar-0020", "input": "Shipping label: destination code PK, serial 917. Output the destination code.", "split": "familiar"}
+{"answer": "August", "family": 0, "id": "SHORT-familiar-0021", "input": "Read this report date: August 3, 2021. Return only the month.", "split": "familiar"}
+{"answer": "8452", "family": 1, "id": "SHORT-familiar-0022", "input": "Invoice: purchased 8452 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "familiar"}
+{"answer": "US", "family": 2, "id": "SHORT-familiar-0023", "input": "Shipping label: destination code US, serial 744. Output the destination code.", "split": "familiar"}
+{"answer": "November", "family": 0, "id": "SHORT-familiar-0024", "input": "Read this report date: November 21, 2020. Return only the month.", "split": "familiar"}
+{"answer": "4039", "family": 1, "id": "SHORT-familiar-0025", "input": "Invoice: purchased 4039 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "familiar"}
+{"answer": "AU", "family": 2, "id": "SHORT-familiar-0026", "input": "Shipping label: destination code AU, serial 467. Output the destination code.", "split": "familiar"}
+{"answer": "March", "family": 0, "id": "SHORT-familiar-0027", "input": "Read this report date: March 7, 2021. Return only the month.", "split": "familiar"}
+{"answer": "1189", "family": 1, "id": "SHORT-familiar-0028", "input": "Invoice: purchased 1189 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "familiar"}
+{"answer": "FR", "family": 2, "id": "SHORT-familiar-0029", "input": "Shipping label: destination code FR, serial 618. Output the destination code.", "split": "familiar"}
+{"id": "SHORT-shifted-0000", "family": 0, "input": "Which month is encoded in the date-field: 2025-10-27? Answer with the full month name.", "answer": "October", "split": "shifted"}
+{"id": "SHORT-shifted-0001", "family": 1, "input": "JSON line {\"count\": 9610, \"batch\": 484}. Give count as digits, nothing else.", "answer": "9610", "split": "shifted"}
+{"id": "SHORT-shifted-0002", "family": 2, "input": "Entry country_code=DE; timestamp=2021. Extract the two-letter code only.", "answer": "DE", "split": "shifted"}
+{"id": "SHORT-shifted-0003", "family": 0, "input": "Which month is encoded in the date-field: 2026-05-24? Answer with the full month name.", "answer": "May", "split": "shifted"}
+{"id": "SHORT-shifted-0004", "family": 1, "input": "JSON line {\"count\": 6471, \"batch\": 359}. Give count as digits, nothing else.", "answer": "6471", "split": "shifted"}
+{"id": "SHORT-shifted-0005", "family": 2, "input": "Entry country_code=US; timestamp=2024. Extract the two-letter code only.", "answer": "US", "split": "shifted"}
+{"id": "SHORT-shifted-0006", "family": 0, "input": "Which month is encoded in the date-field: 2020-12-09? Answer with the full month name.", "answer": "December", "split": "shifted"}
+{"id": "SHORT-shifted-0007", "family": 1, "input": "JSON line {\"count\": 185, \"batch\": 466}. Give count as digits, nothing else.", "answer": "185", "split": "shifted"}
+{"id": "SHORT-shifted-0008", "family": 2, "input": "Entry country_code=CA; timestamp=2024. Extract the two-letter code only.", "answer": "CA", "split": "shifted"}
+{"id": "SHORT-shifted-0009", "family": 0, "input": "Which month is encoded in the date-field: 2021-06-22? Answer with the full month name.", "answer": "June", "split": "shifted"}
+{"id": "SHORT-shifted-0010", "family": 1, "input": "JSON line {\"count\": 6515, \"batch\": 944}. Give count as digits, nothing else.", "answer": "6515", "split": "shifted"}
+{"id": "SHORT-shifted-0011", "family": 2, "input": "Entry country_code=PK; timestamp=2022. Extract the two-letter code only.", "answer": "PK", "split": "shifted"}
+{"id": "SHORT-shifted-0012", "family": 0, "input": "Which month is encoded in the date-field: 2023-10-18? Answer with the full month name.", "answer": "October", "split": "shifted"}
+{"id": "SHORT-shifted-0013", "family": 1, "input": "JSON line {\"count\": 2354, \"batch\": 590}. Give count as digits, nothing else.", "answer": "2354", "split": "shifted"}
+{"id": "SHORT-shifted-0014", "family": 2, "input": "Entry country_code=AU; timestamp=2026. Extract the two-letter code only.", "answer": "AU", "split": "shifted"}
+{"id": "SHORT-shifted-0015", "family": 0, "input": "Which month is encoded in the date-field: 2023-10-06? Answer with the full month name.", "answer": "October", "split": "shifted"}
+{"id": "SHORT-shifted-0016", "family": 1, "input": "JSON line {\"count\": 3508, \"batch\": 993}. Give count as digits, nothing else.", "answer": "3508", "split": "shifted"}
+{"id": "SHORT-shifted-0017", "family": 2, "input": "Entry country_code=CA; timestamp=2020. Extract the two-letter code only.", "answer": "CA", "split": "shifted"}
+{"id": "SHORT-shifted-0018", "family": 0, "input": "Which month is encoded in the date-field: 2021-11-11? Answer with the full month name.", "answer": "November", "split": "shifted"}
+{"id": "SHORT-shifted-0019", "family": 1, "input": "JSON line {\"count\": 5794, \"batch\": 796}. Give count as digits, nothing else.", "answer": "5794", "split": "shifted"}
+{"id": "SHORT-shifted-0020", "family": 2, "input": "Entry country_code=DE; timestamp=2023. Extract the two-letter code only.", "answer": "DE", "split": "shifted"}
+{"id": "SHORT-shifted-0021", "family": 0, "input": "Which month is encoded in the date-field: 2022-04-27? Answer with the full month name.", "answer": "April", "split": "shifted"}
+{"id": "SHORT-shifted-0022", "family": 1, "input": "JSON line {\"count\": 6433, \"batch\": 128}. Give count as digits, nothing else.", "answer": "6433", "split": "shifted"}
+{"id": "SHORT-shifted-0023", "family": 2, "input": "Entry country_code=PK; timestamp=2023. Extract the two-letter code only.", "answer": "PK", "split": "shifted"}
+{"id": "SHORT-shifted-0024", "family": 0, "input": "Which month is encoded in the date-field: 2020-04-19? Answer with the full month name.", "answer": "April", "split": "shifted"}
+{"id": "SHORT-shifted-0025", "family": 1, "input": "JSON line {\"count\": 110, \"batch\": 350}. Give count as digits, nothing else.", "answer": "110", "split": "shifted"}
+{"id": "SHORT-shifted-0026", "family": 2, "input": "Entry country_code=FR; timestamp=2020. Extract the two-letter code only.", "answer": "FR", "split": "shifted"}
+{"id": "SHORT-shifted-0027", "family": 0, "input": "Which month is encoded in the date-field: 2024-03-10? Answer with the full month name.", "answer": "March", "split": "shifted"}
+{"id": "SHORT-shifted-0028", "family": 1, "input": "JSON line {\"count\": 3394, \"batch\": 900}. Give count as digits, nothing else.", "answer": "3394", "split": "shifted"}
+{"id": "SHORT-shifted-0029", "family": 2, "input": "Entry country_code=FR; timestamp=2022. Extract the two-letter code only.", "answer": "FR", "split": "shifted"}

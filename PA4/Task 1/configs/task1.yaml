@@ -1,0 +1,115 @@
+# PA4 Task 1 - Model compression (pruning and weight-only quantization) of Qwen/Qwen2.5-1.5B.
+# Every value marked (manual) is prescribed by ATML_PA4.pdf, Section 1. Values marked (impl) are
+# engineering choices that do not change any prescribed quantity; (design) are our own method choices
+# for the parts the manual leaves open (P3/Q3 sensitivity + allocation, AWQ details). They are fixed here,
+# in git, BEFORE any held-out result exists ("fix the candidate allocations and their selection criterion
+# before accessing test results").
+
+seed: 6304                                   # (manual) common reference seed
+
+model:
+  name: Qwen/Qwen2.5-1.5B                    # (manual) base checkpoint, not -Instruct
+  revision: null                             # null -> commit SHA locked by setup_data.py (model_base)
+  dtype: float16                             # (manual) unchanged FP16 weights
+  attn_implementation: sdpa                  # (impl) PyTorch SDPA; actual backend is recorded
+
+data:
+  repo_dir: ../atml-pa4-datasets             # relative to "PA4/Task 1"
+  calibration_file: data/public_locked/c4_calibration_locked.jsonl.gz
+  development_file: data/public_locked/c4_development_locked.jsonl.gz
+  wikitext_file: data/public_locked/wikitext2_test_windows_locked.jsonl.gz
+  c4val_file: data/public_locked/c4_validation_windows_locked.jsonl.gz
+  hellaswag_file: data/public_locked/hellaswag_val_locked.jsonl.gz
+  lock_file: data/local_source_revisions.json
+  n_calibration: 128                         # (manual) 128 x 512 C4-train sequences
+  n_development: 32                          # (manual) 32 x 512 C4-train development sequences
+  seq_len: 512                               # (manual)
+  scored_tokens_per_suite: 50000             # (manual) WikiText-2 test and C4 validation
+  window_len: 512                            # (manual) non-overlapping 512-token prediction windows
+  hellaswag_full: 2000                       # (manual)
+  hellaswag_diag: 512                        # (manual) first 512 IDs = paired diagnostic subset
+
+eval:
+  max_tokens_per_batch: 8192                 # (impl) padded tokens per forward pass
+  logit_chunk_tokens: 2048                   # (impl) rows of the 151,936-way softmax per chunk (FP32)
+  # (manual) full 2,000-example HellaSwag for: FP16 baseline, the three 50%-sparsity pruning methods,
+  # and all three INT4 and INT3 quantization variants. Every other condition: first 512 IDs.
+  hellaswag_full_conditions: [fp16, P1_mag_s50, P2_wanda_s50, P3_s50,
+                              Q1_rtn_b4, Q1_rtn_b3, Q2_awq_b4, Q2_awq_b3, Q3_mix_b4budget, Q3_mix_b3budget]
+  continuation_prompts: 4                    # (design) qualitative: first 48 tokens of dev sequences 0-3
+  continuation_prompt_tokens: 48
+  continuation_new_tokens: 40                # greedy
+
+calib:
+  chunk_seqs: 8                              # (impl) calibration sequences per block forward (128 % 8 == 0)
+  kl_token_chunk: 1024                       # (impl) tokens per FP32 log-softmax chunk
+
+pruning:
+  sparsities: [0.25, 0.50, 0.75]             # (manual) P1/P2
+  nm: [2, 4]                                 # (manual) 2:4 diagnostic for 50% Wanda
+  hist_bins: 120                             # (impl) log10-score histogram bins kept per projection
+  hist_range: [-9.0, 3.0]
+  spearman_sample: 200000                    # (impl) weights sampled per projection for rho(|W|, Wanda)
+
+p3:                                          # (design) nonuniform Wanda; ranking rule unchanged
+  targets: [0.50, 0.75]                      # (manual)
+  s_min: 0.10                                # (manual) 0.10 <= s <= 0.85 per allocation unit
+  s_max: 0.85
+  unit: block                                # (design) one sparsity per Transformer block (OWL, App. C)
+  measures: [owl_lod, fisher_taylor, probe_kl, block_influence]
+  transform: {owl_lod: raw, fisher_taylor: log, probe_kl: log, block_influence: raw}
+  owl_M: [5, 7]                              # (design) OWL outlier multiplier candidates (OWL Sec. 3.3)
+  lambdas: [0.04, 0.08, 0.12]                # (design) allocation spread: s_l in a 2*lambda band around S
+  # Pre-registered selection on the 32-sequence development set (never on test):
+  #   measure m* = argmin_m mean_S min_h devNLL(m, h, S); then h*_S = argmin_h devNLL(m*, h, S).
+  selection: dev_nll
+
+quant:
+  bits: [8, 4, 3]                            # (manual) Q1/Q2
+  group_size: 128                            # (manual) along input columns
+  range_min: 1.0e-5                          # (impl) as llm-awq: (max-min).clamp(min=1e-5)
+
+awq:                                         # (design) AWQ-style scale search (Lin et al., 2024)
+  grid: 20                                   # alpha in {0, 0.05, ..., 0.95} (llm-awq n_grid=20)
+  search_bits: [2, 3, 4, 8]                  # 2-bit only needed by Q3
+  scale_clamp_min: 1.0e-4                    # as llm-awq
+  token_chunk: 8192                          # (impl) tokens per inspected-module forward
+
+q3:                                          # (design) mixed precision with the Q2 quantizer
+  allowed_bits: [2, 3, 4, 8]                 # (manual)
+  unit: awq_group                            # (design) 4 AWQ scaling groups per block: qkv, o, gateup, down
+  budgets: [4, 3]                            # (manual) <= Q2 uniform INT4 / INT3 packed bytes
+  measures: [fisher_taylor, probe_kl, local_err]
+  selection: dev_nll                         # m* = argmin_m mean_budget devNLL(m, budget)
+
+probes:
+  kl_stride: 1                               # (design) probe KL on every calibration position of all 128 IDs
+  p3_sparsities: [0.50, 0.75]
+  q3_bits: [2, 3, 4, 8]
+
+fisher:
+  n_passes: 2                                # (impl) accumulate FP32 Fisher for half the blocks at a time
+  loss_scale: 1024.0                         # (impl) FP16 backward; lowered automatically on overflow
+
+resources:
+  prefill_lengths: [512, 2048]               # (manual)
+  decode_tokens: 64                          # (manual)
+  decode_prompt_len: 512                     # (design) 64 greedy decode steps after a 512-token prefill
+  warmup: 3                                  # (impl)
+  reps: 10                                   # (manual) at least 5 warmed-up repetitions
+  serialize: true                            # (design) also write the packed checkpoint and measure the file
+  serialize_dir: /tmp/pa4_task1_serialize
+
+microbench:
+  block: 13                                  # (impl) real weights from this block
+  m_values: [1, 512, 2048]
+  sparsities: [0.50, 0.75]
+  warmup: 10
+  reps: 50
+
+transfer:                                    # post-hoc (after the frozen selection) held-out check of candidates
+  hellaswag: false
+
+bootstrap:
+  resamples: 10000
+  seed: 6304

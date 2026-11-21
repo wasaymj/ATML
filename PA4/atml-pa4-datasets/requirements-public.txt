@@ -1,0 +1,4 @@
+# Dataset preparation (PyTorch is installed by Colab for optional GPU prefix generation)
+datasets>=3,<5
+transformers==4.57.1
+huggingface_hub==0.36.2

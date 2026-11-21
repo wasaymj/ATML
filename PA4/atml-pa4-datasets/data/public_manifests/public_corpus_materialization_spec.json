@@ -1,0 +1,57 @@
+{
+  "status": "NOT MATERIALIZED; staff must pin HF dataset revisions, download, and freeze actual token windows and prefix banks before release",
+  "tokenizer": "Qwen/Qwen2.5-1.5B",
+  "c4_calibration": {
+    "split": "train",
+    "sequences": 128,
+    "tokens_per_sequence": 512,
+    "candidate_file": "c4_candidate_rows.jsonl"
+  },
+  "c4_development": {
+    "split": "train",
+    "sequences": 32,
+    "tokens_per_sequence": 512,
+    "candidate_file": "c4_candidate_rows.jsonl",
+    "exclude_calibration": true
+  },
+  "c4_eval": {
+    "split": "validation",
+    "scored_tokens": 50000,
+    "window": 512,
+    "must_be_disjoint": true
+  },
+  "wikitext2_eval": {
+    "split": "test",
+    "scored_tokens": 50000,
+    "window": 512
+  },
+  "hellaswag_validation": {
+    "row_ids": "hellaswag_val_ids.jsonl",
+    "full": 2000,
+    "diagnostic": "first 512 IDs"
+  },
+  "gsm8k_train": {
+    "row_ids": "gsm8k_train_ids.jsonl"
+  },
+  "gsm8k_test": {
+    "row_ids": "gsm8k_test_ids.jsonl"
+  },
+  "prefix_banks": {
+    "must_be_materialized_on_gpu": true,
+    "banks": [
+      "teacher",
+      "original_draft",
+      "exact_spec_original_gamma4"
+    ],
+    "positions": [
+      1,
+      16,
+      17,
+      32,
+      33,
+      64,
+      65,
+      192
+    ]
+  }
+}

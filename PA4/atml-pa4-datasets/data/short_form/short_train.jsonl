@@ -1,0 +1,300 @@
+{"answer": "February", "family": 0, "id": "SHORT-train-0000", "input": "Read this report date: February 17, 2021. Return only the month.", "split": "train"}
+{"answer": "8441", "family": 1, "id": "SHORT-train-0001", "input": "Invoice: purchased 8441 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "AU", "family": 2, "id": "SHORT-train-0002", "input": "Shipping label: destination code AU, serial 759. Output the destination code.", "split": "train"}
+{"answer": "December", "family": 0, "id": "SHORT-train-0003", "input": "Read this report date: December 7, 2021. Return only the month.", "split": "train"}
+{"answer": "2258", "family": 1, "id": "SHORT-train-0004", "input": "Invoice: purchased 2258 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "AU", "family": 2, "id": "SHORT-train-0005", "input": "Shipping label: destination code AU, serial 462. Output the destination code.", "split": "train"}
+{"answer": "February", "family": 0, "id": "SHORT-train-0006", "input": "Read this report date: February 27, 2020. Return only the month.", "split": "train"}
+{"answer": "6040", "family": 1, "id": "SHORT-train-0007", "input": "Invoice: purchased 6040 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "DE", "family": 2, "id": "SHORT-train-0008", "input": "Shipping label: destination code DE, serial 326. Output the destination code.", "split": "train"}
+{"answer": "June", "family": 0, "id": "SHORT-train-0009", "input": "Read this report date: June 11, 2026. Return only the month.", "split": "train"}
+{"answer": "7412", "family": 1, "id": "SHORT-train-0010", "input": "Invoice: purchased 7412 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "AU", "family": 2, "id": "SHORT-train-0011", "input": "Shipping label: destination code AU, serial 622. Output the destination code.", "split": "train"}
+{"answer": "October", "family": 0, "id": "SHORT-train-0012", "input": "Read this report date: October 17, 2020. Return only the month.", "split": "train"}
+{"answer": "4798", "family": 1, "id": "SHORT-train-0013", "input": "Invoice: purchased 4798 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "JP", "family": 2, "id": "SHORT-train-0014", "input": "Shipping label: destination code JP, serial 919. Output the destination code.", "split": "train"}
+{"answer": "February", "family": 0, "id": "SHORT-train-0015", "input": "Read this report date: February 26, 2023. Return only the month.", "split": "train"}
+{"answer": "9395", "family": 1, "id": "SHORT-train-0016", "input": "Invoice: purchased 9395 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "AU", "family": 2, "id": "SHORT-train-0017", "input": "Shipping label: destination code AU, serial 526. Output the destination code.", "split": "train"}
+{"answer": "April", "family": 0, "id": "SHORT-train-0018", "input": "Read this report date: April 1, 2025. Return only the month.", "split": "train"}
+{"answer": "4639", "family": 1, "id": "SHORT-train-0019", "input": "Invoice: purchased 4639 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "CA", "family": 2, "id": "SHORT-train-0020", "input": "Shipping label: destination code CA, serial 700. Output the destination code.", "split": "train"}
+{"answer": "April", "family": 0, "id": "SHORT-train-0021", "input": "Read this report date: April 17, 2025. Return only the month.", "split": "train"}
+{"answer": "167", "family": 1, "id": "SHORT-train-0022", "input": "Invoice: purchased 167 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "JP", "family": 2, "id": "SHORT-train-0023", "input": "Shipping label: destination code JP, serial 935. Output the destination code.", "split": "train"}
+{"answer": "December", "family": 0, "id": "SHORT-train-0024", "input": "Read this report date: December 24, 2021. Return only the month.", "split": "train"}
+{"answer": "4749", "family": 1, "id": "SHORT-train-0025", "input": "Invoice: purchased 4749 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "PK", "family": 2, "id": "SHORT-train-0026", "input": "Shipping label: destination code PK, serial 369. Output the destination code.", "split": "train"}
+{"answer": "June", "family": 0, "id": "SHORT-train-0027", "input": "Read this report date: June 19, 2024. Return only the month.", "split": "train"}
+{"answer": "7696", "family": 1, "id": "SHORT-train-0028", "input": "Invoice: purchased 7696 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "FR", "family": 2, "id": "SHORT-train-0029", "input": "Shipping label: destination code FR, serial 343. Output the destination code.", "split": "train"}
+{"answer": "February", "family": 0, "id": "SHORT-train-0030", "input": "Read this report date: February 20, 2025. Return only the month.", "split": "train"}
+{"answer": "6441", "family": 1, "id": "SHORT-train-0031", "input": "Invoice: purchased 6441 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "AU", "family": 2, "id": "SHORT-train-0032", "input": "Shipping label: destination code AU, serial 408. Output the destination code.", "split": "train"}
+{"answer": "May", "family": 0, "id": "SHORT-train-0033", "input": "Read this report date: May 25, 2026. Return only the month.", "split": "train"}
+{"answer": "528", "family": 1, "id": "SHORT-train-0034", "input": "Invoice: purchased 528 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "PK", "family": 2, "id": "SHORT-train-0035", "input": "Shipping label: destination code PK, serial 797. Output the destination code.", "split": "train"}
+{"answer": "March", "family": 0, "id": "SHORT-train-0036", "input": "Read this report date: March 16, 2022. Return only the month.", "split": "train"}
+{"answer": "7713", "family": 1, "id": "SHORT-train-0037", "input": "Invoice: purchased 7713 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "JP", "family": 2, "id": "SHORT-train-0038", "input": "Shipping label: destination code JP, serial 187. Output the destination code.", "split": "train"}
+{"answer": "April", "family": 0, "id": "SHORT-train-0039", "input": "Read this report date: April 11, 2022. Return only the month.", "split": "train"}
+{"answer": "4631", "family": 1, "id": "SHORT-train-0040", "input": "Invoice: purchased 4631 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "US", "family": 2, "id": "SHORT-train-0041", "input": "Shipping label: destination code US, serial 218. Output the destination code.", "split": "train"}
+{"answer": "February", "family": 0, "id": "SHORT-train-0042", "input": "Read this report date: February 27, 2021. Return only the month.", "split": "train"}
+{"answer": "810", "family": 1, "id": "SHORT-train-0043", "input": "Invoice: purchased 810 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "AU", "family": 2, "id": "SHORT-train-0044", "input": "Shipping label: destination code AU, serial 824. Output the destination code.", "split": "train"}
+{"answer": "January", "family": 0, "id": "SHORT-train-0045", "input": "Read this report date: January 7, 2021. Return only the month.", "split": "train"}
+{"answer": "1756", "family": 1, "id": "SHORT-train-0046", "input": "Invoice: purchased 1756 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "FR", "family": 2, "id": "SHORT-train-0047", "input": "Shipping label: destination code FR, serial 665. Output the destination code.", "split": "train"}
+{"answer": "September", "family": 0, "id": "SHORT-train-0048", "input": "Read this report date: September 16, 2022. Return only the month.", "split": "train"}
+{"answer": "8633", "family": 1, "id": "SHORT-train-0049", "input": "Invoice: purchased 8633 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "JP", "family": 2, "id": "SHORT-train-0050", "input": "Shipping label: destination code JP, serial 773. Output the destination code.", "split": "train"}
+{"answer": "April", "family": 0, "id": "SHORT-train-0051", "input": "Read this report date: April 11, 2025. Return only the month.", "split": "train"}
+{"answer": "5322", "family": 1, "id": "SHORT-train-0052", "input": "Invoice: purchased 5322 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "CA", "family": 2, "id": "SHORT-train-0053", "input": "Shipping label: destination code CA, serial 316. Output the destination code.", "split": "train"}
+{"answer": "June", "family": 0, "id": "SHORT-train-0054", "input": "Read this report date: June 9, 2024. Return only the month.", "split": "train"}
+{"answer": "2584", "family": 1, "id": "SHORT-train-0055", "input": "Invoice: purchased 2584 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "AU", "family": 2, "id": "SHORT-train-0056", "input": "Shipping label: destination code AU, serial 291. Output the destination code.", "split": "train"}
+{"answer": "July", "family": 0, "id": "SHORT-train-0057", "input": "Read this report date: July 17, 2020. Return only the month.", "split": "train"}
+{"answer": "4618", "family": 1, "id": "SHORT-train-0058", "input": "Invoice: purchased 4618 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "PK", "family": 2, "id": "SHORT-train-0059", "input": "Shipping label: destination code PK, serial 783. Output the destination code.", "split": "train"}
+{"answer": "October", "family": 0, "id": "SHORT-train-0060", "input": "Read this report date: October 26, 2025. Return only the month.", "split": "train"}
+{"answer": "4779", "family": 1, "id": "SHORT-train-0061", "input": "Invoice: purchased 4779 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "CA", "family": 2, "id": "SHORT-train-0062", "input": "Shipping label: destination code CA, serial 340. Output the destination code.", "split": "train"}
+{"answer": "July", "family": 0, "id": "SHORT-train-0063", "input": "Read this report date: July 23, 2022. Return only the month.", "split": "train"}
+{"answer": "1307", "family": 1, "id": "SHORT-train-0064", "input": "Invoice: purchased 1307 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "FR", "family": 2, "id": "SHORT-train-0065", "input": "Shipping label: destination code FR, serial 752. Output the destination code.", "split": "train"}
+{"answer": "December", "family": 0, "id": "SHORT-train-0066", "input": "Read this report date: December 6, 2025. Return only the month.", "split": "train"}
+{"answer": "604", "family": 1, "id": "SHORT-train-0067", "input": "Invoice: purchased 604 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "JP", "family": 2, "id": "SHORT-train-0068", "input": "Shipping label: destination code JP, serial 478. Output the destination code.", "split": "train"}
+{"answer": "January", "family": 0, "id": "SHORT-train-0069", "input": "Read this report date: January 20, 2022. Return only the month.", "split": "train"}
+{"answer": "7866", "family": 1, "id": "SHORT-train-0070", "input": "Invoice: purchased 7866 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "JP", "family": 2, "id": "SHORT-train-0071", "input": "Shipping label: destination code JP, serial 200. Output the destination code.", "split": "train"}
+{"answer": "October", "family": 0, "id": "SHORT-train-0072", "input": "Read this report date: October 25, 2022. Return only the month.", "split": "train"}
+{"answer": "2074", "family": 1, "id": "SHORT-train-0073", "input": "Invoice: purchased 2074 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "FR", "family": 2, "id": "SHORT-train-0074", "input": "Shipping label: destination code FR, serial 694. Output the destination code.", "split": "train"}
+{"answer": "September", "family": 0, "id": "SHORT-train-0075", "input": "Read this report date: September 18, 2025. Return only the month.", "split": "train"}
+{"answer": "2267", "family": 1, "id": "SHORT-train-0076", "input": "Invoice: purchased 2267 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "CA", "family": 2, "id": "SHORT-train-0077", "input": "Shipping label: destination code CA, serial 170. Output the destination code.", "split": "train"}
+{"answer": "February", "family": 0, "id": "SHORT-train-0078", "input": "Read this report date: February 18, 2020. Return only the month.", "split": "train"}
+{"answer": "5273", "family": 1, "id": "SHORT-train-0079", "input": "Invoice: purchased 5273 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "GB", "family": 2, "id": "SHORT-train-0080", "input": "Shipping label: destination code GB, serial 548. Output the destination code.", "split": "train"}
+{"answer": "November", "family": 0, "id": "SHORT-train-0081", "input": "Read this report date: November 28, 2021. Return only the month.", "split": "train"}
+{"answer": "2659", "family": 1, "id": "SHORT-train-0082", "input": "Invoice: purchased 2659 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "CA", "family": 2, "id": "SHORT-train-0083", "input": "Shipping label: destination code CA, serial 657. Output the destination code.", "split": "train"}
+{"answer": "January", "family": 0, "id": "SHORT-train-0084", "input": "Read this report date: January 14, 2023. Return only the month.", "split": "train"}
+{"answer": "92", "family": 1, "id": "SHORT-train-0085", "input": "Invoice: purchased 92 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "CA", "family": 2, "id": "SHORT-train-0086", "input": "Shipping label: destination code CA, serial 515. Output the destination code.", "split": "train"}
+{"answer": "August", "family": 0, "id": "SHORT-train-0087", "input": "Read this report date: August 18, 2023. Return only the month.", "split": "train"}
+{"answer": "8355", "family": 1, "id": "SHORT-train-0088", "input": "Invoice: purchased 8355 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "AU", "family": 2, "id": "SHORT-train-0089", "input": "Shipping label: destination code AU, serial 227. Output the destination code.", "split": "train"}
+{"answer": "August", "family": 0, "id": "SHORT-train-0090", "input": "Read this report date: August 28, 2024. Return only the month.", "split": "train"}
+{"answer": "6995", "family": 1, "id": "SHORT-train-0091", "input": "Invoice: purchased 6995 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "AU", "family": 2, "id": "SHORT-train-0092", "input": "Shipping label: destination code AU, serial 402. Output the destination code.", "split": "train"}
+{"answer": "May", "family": 0, "id": "SHORT-train-0093", "input": "Read this report date: May 24, 2020. Return only the month.", "split": "train"}
+{"answer": "6416", "family": 1, "id": "SHORT-train-0094", "input": "Invoice: purchased 6416 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "JP", "family": 2, "id": "SHORT-train-0095", "input": "Shipping label: destination code JP, serial 192. Output the destination code.", "split": "train"}
+{"answer": "July", "family": 0, "id": "SHORT-train-0096", "input": "Read this report date: July 1, 2026. Return only the month.", "split": "train"}
+{"answer": "1176", "family": 1, "id": "SHORT-train-0097", "input": "Invoice: purchased 1176 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "JP", "family": 2, "id": "SHORT-train-0098", "input": "Shipping label: destination code JP, serial 998. Output the destination code.", "split": "train"}
+{"answer": "May", "family": 0, "id": "SHORT-train-0099", "input": "Read this report date: May 16, 2020. Return only the month.", "split": "train"}
+{"answer": "2299", "family": 1, "id": "SHORT-train-0100", "input": "Invoice: purchased 2299 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "GB", "family": 2, "id": "SHORT-train-0101", "input": "Shipping label: destination code GB, serial 751. Output the destination code.", "split": "train"}
+{"answer": "March", "family": 0, "id": "SHORT-train-0102", "input": "Read this report date: March 24, 2022. Return only the month.", "split": "train"}
+{"answer": "1988", "family": 1, "id": "SHORT-train-0103", "input": "Invoice: purchased 1988 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "DE", "family": 2, "id": "SHORT-train-0104", "input": "Shipping label: destination code DE, serial 279. Output the destination code.", "split": "train"}
+{"answer": "July", "family": 0, "id": "SHORT-train-0105", "input": "Read this report date: July 7, 2026. Return only the month.", "split": "train"}
+{"answer": "4725", "family": 1, "id": "SHORT-train-0106", "input": "Invoice: purchased 4725 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "GB", "family": 2, "id": "SHORT-train-0107", "input": "Shipping label: destination code GB, serial 805. Output the destination code.", "split": "train"}
+{"answer": "March", "family": 0, "id": "SHORT-train-0108", "input": "Read this report date: March 20, 2025. Return only the month.", "split": "train"}
+{"answer": "3123", "family": 1, "id": "SHORT-train-0109", "input": "Invoice: purchased 3123 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "JP", "family": 2, "id": "SHORT-train-0110", "input": "Shipping label: destination code JP, serial 900. Output the destination code.", "split": "train"}
+{"answer": "April", "family": 0, "id": "SHORT-train-0111", "input": "Read this report date: April 17, 2024. Return only the month.", "split": "train"}
+{"answer": "371", "family": 1, "id": "SHORT-train-0112", "input": "Invoice: purchased 371 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "GB", "family": 2, "id": "SHORT-train-0113", "input": "Shipping label: destination code GB, serial 711. Output the destination code.", "split": "train"}
+{"answer": "February", "family": 0, "id": "SHORT-train-0114", "input": "Read this report date: February 7, 2020. Return only the month.", "split": "train"}
+{"answer": "8165", "family": 1, "id": "SHORT-train-0115", "input": "Invoice: purchased 8165 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "GB", "family": 2, "id": "SHORT-train-0116", "input": "Shipping label: destination code GB, serial 294. Output the destination code.", "split": "train"}
+{"answer": "October", "family": 0, "id": "SHORT-train-0117", "input": "Read this report date: October 11, 2022. Return only the month.", "split": "train"}
+{"answer": "7669", "family": 1, "id": "SHORT-train-0118", "input": "Invoice: purchased 7669 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "GB", "family": 2, "id": "SHORT-train-0119", "input": "Shipping label: destination code GB, serial 733. Output the destination code.", "split": "train"}
+{"answer": "January", "family": 0, "id": "SHORT-train-0120", "input": "Read this report date: January 10, 2020. Return only the month.", "split": "train"}
+{"answer": "4640", "family": 1, "id": "SHORT-train-0121", "input": "Invoice: purchased 4640 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "DE", "family": 2, "id": "SHORT-train-0122", "input": "Shipping label: destination code DE, serial 327. Output the destination code.", "split": "train"}
+{"answer": "March", "family": 0, "id": "SHORT-train-0123", "input": "Read this report date: March 24, 2024. Return only the month.", "split": "train"}
+{"answer": "1377", "family": 1, "id": "SHORT-train-0124", "input": "Invoice: purchased 1377 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "JP", "family": 2, "id": "SHORT-train-0125", "input": "Shipping label: destination code JP, serial 637. Output the destination code.", "split": "train"}
+{"answer": "November", "family": 0, "id": "SHORT-train-0126", "input": "Read this report date: November 26, 2024. Return only the month.", "split": "train"}
+{"answer": "9573", "family": 1, "id": "SHORT-train-0127", "input": "Invoice: purchased 9573 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "AU", "family": 2, "id": "SHORT-train-0128", "input": "Shipping label: destination code AU, serial 748. Output the destination code.", "split": "train"}
+{"answer": "February", "family": 0, "id": "SHORT-train-0129", "input": "Read this report date: February 17, 2025. Return only the month.", "split": "train"}
+{"answer": "9391", "family": 1, "id": "SHORT-train-0130", "input": "Invoice: purchased 9391 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "AU", "family": 2, "id": "SHORT-train-0131", "input": "Shipping label: destination code AU, serial 860. Output the destination code.", "split": "train"}
+{"answer": "June", "family": 0, "id": "SHORT-train-0132", "input": "Read this report date: June 2, 2022. Return only the month.", "split": "train"}
+{"answer": "6797", "family": 1, "id": "SHORT-train-0133", "input": "Invoice: purchased 6797 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "GB", "family": 2, "id": "SHORT-train-0134", "input": "Shipping label: destination code GB, serial 498. Output the destination code.", "split": "train"}
+{"answer": "September", "family": 0, "id": "SHORT-train-0135", "input": "Read this report date: September 8, 2026. Return only the month.", "split": "train"}
+{"answer": "1570", "family": 1, "id": "SHORT-train-0136", "input": "Invoice: purchased 1570 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "GB", "family": 2, "id": "SHORT-train-0137", "input": "Shipping label: destination code GB, serial 295. Output the destination code.", "split": "train"}
+{"answer": "February", "family": 0, "id": "SHORT-train-0138", "input": "Read this report date: February 5, 2024. Return only the month.", "split": "train"}
+{"answer": "6189", "family": 1, "id": "SHORT-train-0139", "input": "Invoice: purchased 6189 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "JP", "family": 2, "id": "SHORT-train-0140", "input": "Shipping label: destination code JP, serial 794. Output the destination code.", "split": "train"}
+{"answer": "August", "family": 0, "id": "SHORT-train-0141", "input": "Read this report date: August 13, 2020. Return only the month.", "split": "train"}
+{"answer": "4549", "family": 1, "id": "SHORT-train-0142", "input": "Invoice: purchased 4549 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "FR", "family": 2, "id": "SHORT-train-0143", "input": "Shipping label: destination code FR, serial 677. Output the destination code.", "split": "train"}
+{"answer": "July", "family": 0, "id": "SHORT-train-0144", "input": "Read this report date: July 7, 2025. Return only the month.", "split": "train"}
+{"answer": "9689", "family": 1, "id": "SHORT-train-0145", "input": "Invoice: purchased 9689 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "DE", "family": 2, "id": "SHORT-train-0146", "input": "Shipping label: destination code DE, serial 883. Output the destination code.", "split": "train"}
+{"answer": "April", "family": 0, "id": "SHORT-train-0147", "input": "Read this report date: April 17, 2023. Return only the month.", "split": "train"}
+{"answer": "6771", "family": 1, "id": "SHORT-train-0148", "input": "Invoice: purchased 6771 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "AU", "family": 2, "id": "SHORT-train-0149", "input": "Shipping label: destination code AU, serial 856. Output the destination code.", "split": "train"}
+{"answer": "April", "family": 0, "id": "SHORT-train-0150", "input": "Read this report date: April 10, 2023. Return only the month.", "split": "train"}
+{"answer": "8995", "family": 1, "id": "SHORT-train-0151", "input": "Invoice: purchased 8995 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "FR", "family": 2, "id": "SHORT-train-0152", "input": "Shipping label: destination code FR, serial 394. Output the destination code.", "split": "train"}
+{"answer": "January", "family": 0, "id": "SHORT-train-0153", "input": "Read this report date: January 4, 2022. Return only the month.", "split": "train"}
+{"answer": "6023", "family": 1, "id": "SHORT-train-0154", "input": "Invoice: purchased 6023 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "AU", "family": 2, "id": "SHORT-train-0155", "input": "Shipping label: destination code AU, serial 365. Output the destination code.", "split": "train"}
+{"answer": "September", "family": 0, "id": "SHORT-train-0156", "input": "Read this report date: September 9, 2023. Return only the month.", "split": "train"}
+{"answer": "6880", "family": 1, "id": "SHORT-train-0157", "input": "Invoice: purchased 6880 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "PK", "family": 2, "id": "SHORT-train-0158", "input": "Shipping label: destination code PK, serial 434. Output the destination code.", "split": "train"}
+{"answer": "January", "family": 0, "id": "SHORT-train-0159", "input": "Read this report date: January 1, 2024. Return only the month.", "split": "train"}
+{"answer": "3303", "family": 1, "id": "SHORT-train-0160", "input": "Invoice: purchased 3303 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "CA", "family": 2, "id": "SHORT-train-0161", "input": "Shipping label: destination code CA, serial 182. Output the destination code.", "split": "train"}
+{"answer": "September", "family": 0, "id": "SHORT-train-0162", "input": "Read this report date: September 15, 2024. Return only the month.", "split": "train"}
+{"answer": "1735", "family": 1, "id": "SHORT-train-0163", "input": "Invoice: purchased 1735 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "GB", "family": 2, "id": "SHORT-train-0164", "input": "Shipping label: destination code GB, serial 503. Output the destination code.", "split": "train"}
+{"answer": "March", "family": 0, "id": "SHORT-train-0165", "input": "Read this report date: March 19, 2025. Return only the month.", "split": "train"}
+{"answer": "8343", "family": 1, "id": "SHORT-train-0166", "input": "Invoice: purchased 8343 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "US", "family": 2, "id": "SHORT-train-0167", "input": "Shipping label: destination code US, serial 927. Output the destination code.", "split": "train"}
+{"answer": "June", "family": 0, "id": "SHORT-train-0168", "input": "Read this report date: June 16, 2022. Return only the month.", "split": "train"}
+{"answer": "4754", "family": 1, "id": "SHORT-train-0169", "input": "Invoice: purchased 4754 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "GB", "family": 2, "id": "SHORT-train-0170", "input": "Shipping label: destination code GB, serial 104. Output the destination code.", "split": "train"}
+{"answer": "July", "family": 0, "id": "SHORT-train-0171", "input": "Read this report date: July 22, 2020. Return only the month.", "split": "train"}
+{"answer": "9119", "family": 1, "id": "SHORT-train-0172", "input": "Invoice: purchased 9119 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "GB", "family": 2, "id": "SHORT-train-0173", "input": "Shipping label: destination code GB, serial 525. Output the destination code.", "split": "train"}
+{"answer": "January", "family": 0, "id": "SHORT-train-0174", "input": "Read this report date: January 18, 2023. Return only the month.", "split": "train"}
+{"answer": "4941", "family": 1, "id": "SHORT-train-0175", "input": "Invoice: purchased 4941 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "FR", "family": 2, "id": "SHORT-train-0176", "input": "Shipping label: destination code FR, serial 379. Output the destination code.", "split": "train"}
+{"answer": "November", "family": 0, "id": "SHORT-train-0177", "input": "Read this report date: November 9, 2025. Return only the month.", "split": "train"}
+{"answer": "1725", "family": 1, "id": "SHORT-train-0178", "input": "Invoice: purchased 1725 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "CA", "family": 2, "id": "SHORT-train-0179", "input": "Shipping label: destination code CA, serial 666. Output the destination code.", "split": "train"}
+{"answer": "August", "family": 0, "id": "SHORT-train-0180", "input": "Read this report date: August 5, 2023. Return only the month.", "split": "train"}
+{"answer": "2371", "family": 1, "id": "SHORT-train-0181", "input": "Invoice: purchased 2371 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "JP", "family": 2, "id": "SHORT-train-0182", "input": "Shipping label: destination code JP, serial 478. Output the destination code.", "split": "train"}
+{"answer": "June", "family": 0, "id": "SHORT-train-0183", "input": "Read this report date: June 7, 2026. Return only the month.", "split": "train"}
+{"answer": "1821", "family": 1, "id": "SHORT-train-0184", "input": "Invoice: purchased 1821 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "CA", "family": 2, "id": "SHORT-train-0185", "input": "Shipping label: destination code CA, serial 942. Output the destination code.", "split": "train"}
+{"answer": "February", "family": 0, "id": "SHORT-train-0186", "input": "Read this report date: February 19, 2020. Return only the month.", "split": "train"}
+{"answer": "9981", "family": 1, "id": "SHORT-train-0187", "input": "Invoice: purchased 9981 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "FR", "family": 2, "id": "SHORT-train-0188", "input": "Shipping label: destination code FR, serial 332. Output the destination code.", "split": "train"}
+{"answer": "December", "family": 0, "id": "SHORT-train-0189", "input": "Read this report date: December 24, 2021. Return only the month.", "split": "train"}
+{"answer": "6253", "family": 1, "id": "SHORT-train-0190", "input": "Invoice: purchased 6253 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "AU", "family": 2, "id": "SHORT-train-0191", "input": "Shipping label: destination code AU, serial 820. Output the destination code.", "split": "train"}
+{"answer": "December", "family": 0, "id": "SHORT-train-0192", "input": "Read this report date: December 1, 2021. Return only the month.", "split": "train"}
+{"answer": "1655", "family": 1, "id": "SHORT-train-0193", "input": "Invoice: purchased 1655 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "GB", "family": 2, "id": "SHORT-train-0194", "input": "Shipping label: destination code GB, serial 282. Output the destination code.", "split": "train"}
+{"answer": "February", "family": 0, "id": "SHORT-train-0195", "input": "Read this report date: February 27, 2023. Return only the month.", "split": "train"}
+{"answer": "8071", "family": 1, "id": "SHORT-train-0196", "input": "Invoice: purchased 8071 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "AU", "family": 2, "id": "SHORT-train-0197", "input": "Shipping label: destination code AU, serial 529. Output the destination code.", "split": "train"}
+{"answer": "May", "family": 0, "id": "SHORT-train-0198", "input": "Read this report date: May 6, 2023. Return only the month.", "split": "train"}
+{"answer": "7820", "family": 1, "id": "SHORT-train-0199", "input": "Invoice: purchased 7820 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "DE", "family": 2, "id": "SHORT-train-0200", "input": "Shipping label: destination code DE, serial 738. Output the destination code.", "split": "train"}
+{"answer": "April", "family": 0, "id": "SHORT-train-0201", "input": "Read this report date: April 1, 2024. Return only the month.", "split": "train"}
+{"answer": "3350", "family": 1, "id": "SHORT-train-0202", "input": "Invoice: purchased 3350 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "JP", "family": 2, "id": "SHORT-train-0203", "input": "Shipping label: destination code JP, serial 458. Output the destination code.", "split": "train"}
+{"answer": "July", "family": 0, "id": "SHORT-train-0204", "input": "Read this report date: July 10, 2021. Return only the month.", "split": "train"}
+{"answer": "4999", "family": 1, "id": "SHORT-train-0205", "input": "Invoice: purchased 4999 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "AU", "family": 2, "id": "SHORT-train-0206", "input": "Shipping label: destination code AU, serial 596. Output the destination code.", "split": "train"}
+{"answer": "December", "family": 0, "id": "SHORT-train-0207", "input": "Read this report date: December 3, 2023. Return only the month.", "split": "train"}
+{"answer": "3133", "family": 1, "id": "SHORT-train-0208", "input": "Invoice: purchased 3133 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "JP", "family": 2, "id": "SHORT-train-0209", "input": "Shipping label: destination code JP, serial 821. Output the destination code.", "split": "train"}
+{"answer": "June", "family": 0, "id": "SHORT-train-0210", "input": "Read this report date: June 18, 2023. Return only the month.", "split": "train"}
+{"answer": "6169", "family": 1, "id": "SHORT-train-0211", "input": "Invoice: purchased 6169 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "FR", "family": 2, "id": "SHORT-train-0212", "input": "Shipping label: destination code FR, serial 739. Output the destination code.", "split": "train"}
+{"answer": "January", "family": 0, "id": "SHORT-train-0213", "input": "Read this report date: January 10, 2026. Return only the month.", "split": "train"}
+{"answer": "8713", "family": 1, "id": "SHORT-train-0214", "input": "Invoice: purchased 8713 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "PK", "family": 2, "id": "SHORT-train-0215", "input": "Shipping label: destination code PK, serial 330. Output the destination code.", "split": "train"}
+{"answer": "March", "family": 0, "id": "SHORT-train-0216", "input": "Read this report date: March 6, 2024. Return only the month.", "split": "train"}
+{"answer": "979", "family": 1, "id": "SHORT-train-0217", "input": "Invoice: purchased 979 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "FR", "family": 2, "id": "SHORT-train-0218", "input": "Shipping label: destination code FR, serial 687. Output the destination code.", "split": "train"}
+{"answer": "June", "family": 0, "id": "SHORT-train-0219", "input": "Read this report date: June 18, 2022. Return only the month.", "split": "train"}
+{"answer": "2073", "family": 1, "id": "SHORT-train-0220", "input": "Invoice: purchased 2073 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "PK", "family": 2, "id": "SHORT-train-0221", "input": "Shipping label: destination code PK, serial 107. Output the destination code.", "split": "train"}
+{"answer": "August", "family": 0, "id": "SHORT-train-0222", "input": "Read this report date: August 14, 2026. Return only the month.", "split": "train"}
+{"answer": "3743", "family": 1, "id": "SHORT-train-0223", "input": "Invoice: purchased 3743 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "CA", "family": 2, "id": "SHORT-train-0224", "input": "Shipping label: destination code CA, serial 809. Output the destination code.", "split": "train"}
+{"answer": "October", "family": 0, "id": "SHORT-train-0225", "input": "Read this report date: October 25, 2024. Return only the month.", "split": "train"}
+{"answer": "7676", "family": 1, "id": "SHORT-train-0226", "input": "Invoice: purchased 7676 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "GB", "family": 2, "id": "SHORT-train-0227", "input": "Shipping label: destination code GB, serial 647. Output the destination code.", "split": "train"}
+{"answer": "July", "family": 0, "id": "SHORT-train-0228", "input": "Read this report date: July 10, 2020. Return only the month.", "split": "train"}
+{"answer": "4274", "family": 1, "id": "SHORT-train-0229", "input": "Invoice: purchased 4274 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "US", "family": 2, "id": "SHORT-train-0230", "input": "Shipping label: destination code US, serial 471. Output the destination code.", "split": "train"}
+{"answer": "December", "family": 0, "id": "SHORT-train-0231", "input": "Read this report date: December 9, 2022. Return only the month.", "split": "train"}
+{"answer": "9871", "family": 1, "id": "SHORT-train-0232", "input": "Invoice: purchased 9871 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "JP", "family": 2, "id": "SHORT-train-0233", "input": "Shipping label: destination code JP, serial 910. Output the destination code.", "split": "train"}
+{"answer": "November", "family": 0, "id": "SHORT-train-0234", "input": "Read this report date: November 18, 2025. Return only the month.", "split": "train"}
+{"answer": "2785", "family": 1, "id": "SHORT-train-0235", "input": "Invoice: purchased 2785 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "JP", "family": 2, "id": "SHORT-train-0236", "input": "Shipping label: destination code JP, serial 344. Output the destination code.", "split": "train"}
+{"answer": "June", "family": 0, "id": "SHORT-train-0237", "input": "Read this report date: June 26, 2021. Return only the month.", "split": "train"}
+{"answer": "7977", "family": 1, "id": "SHORT-train-0238", "input": "Invoice: purchased 7977 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "GB", "family": 2, "id": "SHORT-train-0239", "input": "Shipping label: destination code GB, serial 986. Output the destination code.", "split": "train"}
+{"answer": "November", "family": 0, "id": "SHORT-train-0240", "input": "Read this report date: November 7, 2021. Return only the month.", "split": "train"}
+{"answer": "6963", "family": 1, "id": "SHORT-train-0241", "input": "Invoice: purchased 6963 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "DE", "family": 2, "id": "SHORT-train-0242", "input": "Shipping label: destination code DE, serial 281. Output the destination code.", "split": "train"}
+{"answer": "February", "family": 0, "id": "SHORT-train-0243", "input": "Read this report date: February 8, 2025. Return only the month.", "split": "train"}
+{"answer": "4776", "family": 1, "id": "SHORT-train-0244", "input": "Invoice: purchased 4776 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "CA", "family": 2, "id": "SHORT-train-0245", "input": "Shipping label: destination code CA, serial 433. Output the destination code.", "split": "train"}
+{"answer": "June", "family": 0, "id": "SHORT-train-0246", "input": "Read this report date: June 19, 2024. Return only the month.", "split": "train"}
+{"answer": "8508", "family": 1, "id": "SHORT-train-0247", "input": "Invoice: purchased 8508 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "GB", "family": 2, "id": "SHORT-train-0248", "input": "Shipping label: destination code GB, serial 915. Output the destination code.", "split": "train"}
+{"answer": "April", "family": 0, "id": "SHORT-train-0249", "input": "Read this report date: April 10, 2020. Return only the month.", "split": "train"}
+{"answer": "7824", "family": 1, "id": "SHORT-train-0250", "input": "Invoice: purchased 7824 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "FR", "family": 2, "id": "SHORT-train-0251", "input": "Shipping label: destination code FR, serial 643. Output the destination code.", "split": "train"}
+{"answer": "February", "family": 0, "id": "SHORT-train-0252", "input": "Read this report date: February 15, 2022. Return only the month.", "split": "train"}
+{"answer": "3808", "family": 1, "id": "SHORT-train-0253", "input": "Invoice: purchased 3808 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "FR", "family": 2, "id": "SHORT-train-0254", "input": "Shipping label: destination code FR, serial 571. Output the destination code.", "split": "train"}
+{"answer": "June", "family": 0, "id": "SHORT-train-0255", "input": "Read this report date: June 4, 2023. Return only the month.", "split": "train"}
+{"answer": "5385", "family": 1, "id": "SHORT-train-0256", "input": "Invoice: purchased 5385 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "AU", "family": 2, "id": "SHORT-train-0257", "input": "Shipping label: destination code AU, serial 371. Output the destination code.", "split": "train"}
+{"answer": "January", "family": 0, "id": "SHORT-train-0258", "input": "Read this report date: January 7, 2026. Return only the month.", "split": "train"}
+{"answer": "442", "family": 1, "id": "SHORT-train-0259", "input": "Invoice: purchased 442 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "JP", "family": 2, "id": "SHORT-train-0260", "input": "Shipping label: destination code JP, serial 845. Output the destination code.", "split": "train"}
+{"answer": "October", "family": 0, "id": "SHORT-train-0261", "input": "Read this report date: October 2, 2021. Return only the month.", "split": "train"}
+{"answer": "5056", "family": 1, "id": "SHORT-train-0262", "input": "Invoice: purchased 5056 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "JP", "family": 2, "id": "SHORT-train-0263", "input": "Shipping label: destination code JP, serial 161. Output the destination code.", "split": "train"}
+{"answer": "February", "family": 0, "id": "SHORT-train-0264", "input": "Read this report date: February 15, 2020. Return only the month.", "split": "train"}
+{"answer": "117", "family": 1, "id": "SHORT-train-0265", "input": "Invoice: purchased 117 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "US", "family": 2, "id": "SHORT-train-0266", "input": "Shipping label: destination code US, serial 505. Output the destination code.", "split": "train"}
+{"answer": "May", "family": 0, "id": "SHORT-train-0267", "input": "Read this report date: May 5, 2020. Return only the month.", "split": "train"}
+{"answer": "7866", "family": 1, "id": "SHORT-train-0268", "input": "Invoice: purchased 7866 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "FR", "family": 2, "id": "SHORT-train-0269", "input": "Shipping label: destination code FR, serial 219. Output the destination code.", "split": "train"}
+{"answer": "November", "family": 0, "id": "SHORT-train-0270", "input": "Read this report date: November 11, 2024. Return only the month.", "split": "train"}
+{"answer": "4568", "family": 1, "id": "SHORT-train-0271", "input": "Invoice: purchased 4568 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "CA", "family": 2, "id": "SHORT-train-0272", "input": "Shipping label: destination code CA, serial 514. Output the destination code.", "split": "train"}
+{"answer": "August", "family": 0, "id": "SHORT-train-0273", "input": "Read this report date: August 17, 2026. Return only the month.", "split": "train"}
+{"answer": "3121", "family": 1, "id": "SHORT-train-0274", "input": "Invoice: purchased 3121 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "AU", "family": 2, "id": "SHORT-train-0275", "input": "Shipping label: destination code AU, serial 486. Output the destination code.", "split": "train"}
+{"answer": "May", "family": 0, "id": "SHORT-train-0276", "input": "Read this report date: May 22, 2025. Return only the month.", "split": "train"}
+{"answer": "4914", "family": 1, "id": "SHORT-train-0277", "input": "Invoice: purchased 4914 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "JP", "family": 2, "id": "SHORT-train-0278", "input": "Shipping label: destination code JP, serial 807. Output the destination code.", "split": "train"}
+{"answer": "November", "family": 0, "id": "SHORT-train-0279", "input": "Read this report date: November 27, 2020. Return only the month.", "split": "train"}
+{"answer": "5580", "family": 1, "id": "SHORT-train-0280", "input": "Invoice: purchased 5580 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "GB", "family": 2, "id": "SHORT-train-0281", "input": "Shipping label: destination code GB, serial 475. Output the destination code.", "split": "train"}
+{"answer": "July", "family": 0, "id": "SHORT-train-0282", "input": "Read this report date: July 27, 2024. Return only the month.", "split": "train"}
+{"answer": "7803", "family": 1, "id": "SHORT-train-0283", "input": "Invoice: purchased 7803 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "JP", "family": 2, "id": "SHORT-train-0284", "input": "Shipping label: destination code JP, serial 602. Output the destination code.", "split": "train"}
+{"answer": "March", "family": 0, "id": "SHORT-train-0285", "input": "Read this report date: March 20, 2022. Return only the month.", "split": "train"}
+{"answer": "3645", "family": 1, "id": "SHORT-train-0286", "input": "Invoice: purchased 3645 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "FR", "family": 2, "id": "SHORT-train-0287", "input": "Shipping label: destination code FR, serial 811. Output the destination code.", "split": "train"}
+{"answer": "May", "family": 0, "id": "SHORT-train-0288", "input": "Read this report date: May 28, 2020. Return only the month.", "split": "train"}
+{"answer": "9241", "family": 1, "id": "SHORT-train-0289", "input": "Invoice: purchased 9241 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "GB", "family": 2, "id": "SHORT-train-0290", "input": "Shipping label: destination code GB, serial 931. Output the destination code.", "split": "train"}
+{"answer": "February", "family": 0, "id": "SHORT-train-0291", "input": "Read this report date: February 1, 2022. Return only the month.", "split": "train"}
+{"answer": "4957", "family": 1, "id": "SHORT-train-0292", "input": "Invoice: purchased 4957 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "JP", "family": 2, "id": "SHORT-train-0293", "input": "Shipping label: destination code JP, serial 662. Output the destination code.", "split": "train"}
+{"answer": "September", "family": 0, "id": "SHORT-train-0294", "input": "Read this report date: September 19, 2020. Return only the month.", "split": "train"}
+{"answer": "5285", "family": 1, "id": "SHORT-train-0295", "input": "Invoice: purchased 5285 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "US", "family": 2, "id": "SHORT-train-0296", "input": "Shipping label: destination code US, serial 435. Output the destination code.", "split": "train"}
+{"answer": "February", "family": 0, "id": "SHORT-train-0297", "input": "Read this report date: February 21, 2026. Return only the month.", "split": "train"}
+{"answer": "7214", "family": 1, "id": "SHORT-train-0298", "input": "Invoice: purchased 7214 crates and paid by transfer. How many crates were purchased? Give the integer.", "split": "train"}
+{"answer": "GB", "family": 2, "id": "SHORT-train-0299", "input": "Shipping label: destination code GB, serial 883. Output the destination code.", "split": "train"}
