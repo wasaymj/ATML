@@ -9,4 +9,4 @@
 | INT4 | local_err | 3b:34 4b:63 8b:15 | 680,652,288 | 13.717 |  | 18.917 | 16.905 |
 | INT3 | local_err | 2b:31 3b:54 4b:17 8b:10 | 515,957,248 | 109.846 |  | 297.934 | 158.661 |
 
-Allocation unit: one AWQ scaling group per block (q/k/v, o, gate/up, down; 28 x 4 = 112 units), the finest unit whose quantizer is exactly Q2's at its bit width (q/k/v and gate/up share one AWQ scale). Allocation: exact knapsack under the Q2 uniform budget. m* = argmin_m mean_budget devNLL(m, budget); allocation = exact knapsack. Scores: fisher_taylor 2.6893, probe_kl 2.6907, local_err 3.6589
+Allocation unit: one AWQ scaling group per block (q/k/v, o, gate/up, down; 28 x 4 = 112 units), the finest unit whose quantizer is exactly Q2's at its bit width (q/k/v and gate/up share one AWQ scale). Selection rule: m* = argmin_m mean_budget devNLL(m, budget); allocation = exact knapsack under the Q2 uniform packed-byte budget. Mean dev NLL per measure: fisher_taylor 2.6893, probe_kl 2.6907, local_err 3.6589

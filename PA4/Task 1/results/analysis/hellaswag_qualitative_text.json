@@ -1,0 +1,162 @@
+{
+ "source": "Rowan/hellaswag validation via the Hugging Face dataset viewer; preprocessing as in the run",
+ "dataset_revision_used_by_run": "218ec52e09a7e7462a5400043bb9a69a41d06b76",
+ "cases": {
+  "0": {
+   "order": 0,
+   "row": 1,
+   "context": "Clean and jerk: A lady walks to a barbell. She bends down and grabs the pole. The lady",
+   "endings": [
+    "swings and lands in her arms.",
+    "pulls the barbell forward.",
+    "pulls a rope attached to the barbell.",
+    "stands and lifts the weight over her head."
+   ],
+   "gold": 3,
+   "verified_against_saved_char_lengths_and_label": true
+  },
+  "16": {
+   "order": 16,
+   "row": 87,
+   "context": "Clean and jerk: A man in a blue shirt and shorts lifts a large weight over his head. Another man is filming it. The same man comes back and lifts the weight over his head again. He",
+   "endings": [
+    "drops it on the ground and walks away.",
+    "again lifts the weight over his head.",
+    "drops it and runs towards the camera.",
+    "drops it onto the floor where it gets stuck."
+   ],
+   "gold": 0,
+   "verified_against_saved_char_lengths_and_label": true
+  },
+  "64": {
+   "order": 64,
+   "row": 294,
+   "context": "Rope skipping: A person is jumping rope on a white mat. A man is kneeling down on the ground in front of a red table. He",
+   "endings": [
+    "takes a large knife and begins sharpening it.",
+    "gets up and starts jumping rope.",
+    "does a forward flip over the table.",
+    "is throwing darts at a target."
+   ],
+   "gold": 1,
+   "verified_against_saved_char_lengths_and_label": true
+  },
+  "128": {
+   "order": 128,
+   "row": 568,
+   "context": "Baking cookies: She sprinkles some sugar on a parchment paper and rolls the dough in it and covers it before keeping it in the refrigerator. After cooling the dough, she takes it out and cuts them into rectangular pieces. She",
+   "endings": [
+    "places the raw cookie on a cookie sheet and bakes them.",
+    "seeds a cookie inside the cookie then puts them inside a rolled up package.",
+    "folds them in shape and makes the dough into a sling and a bowl with frosting.",
+    "removes the tube without cutting the dough."
+   ],
+   "gold": 0,
+   "verified_against_saved_char_lengths_and_label": true
+  },
+  "192": {
+   "order": 192,
+   "row": 850,
+   "context": "Mixing drinks: This woman is showing her viewers how to make a chambord royale. First she",
+   "endings": [
+    "grinds it and adds salt and baking soda.",
+    "opens the bottle of beer that she had made and pours 1 perpatrick into the tiny glass with lime to continue drinking the beer.",
+    "fills her shaker up halfway with ice and then she adds vodka and chambord and she puts one ounce of both of them and then she adds a little bit of pineapple juice and cranberry juice.",
+    "demonstrates by mixing a mixture in a baking pan."
+   ],
+   "gold": 2,
+   "verified_against_saved_char_lengths_and_label": true
+  },
+  "256": {
+   "order": 256,
+   "row": 1134,
+   "context": "Hanging wallpaper: A woman is standing with a roll of wall paper. The woman",
+   "endings": [
+    "then shows how to arm wrap a wall paper fire with an iron.",
+    "then unrolls the wall paper.",
+    "turns around and presses something into a square.",
+    "takes an idem and folds it around the wall piece."
+   ],
+   "gold": 1,
+   "verified_against_saved_char_lengths_and_label": true
+  },
+  "297": {
+   "order": 297,
+   "row": 1359,
+   "context": "Calf roping: A cowboy on a horse is released from a gate. He",
+   "endings": [
+    "uses a rope to tie the horse.",
+    "ropes a calf, then dismounts.",
+    "ropes a calf as people run by.",
+    "ropes a small horse and beats the shit out of it until it is loose."
+   ],
+   "gold": 1,
+   "verified_against_saved_char_lengths_and_label": true
+  },
+  "320": {
+   "order": 320,
+   "row": 1511,
+   "context": "Cutting the grass: Trees blow in the breeze as a man mows the lawn. The sun",
+   "endings": [
+    "peeks from behind the clouds and lights the scene up.",
+    "drops below the trees as people cheer the man on.",
+    "begins to set as a small parking lot full of cars is shown.",
+    "begins to set on a day in june with numerous hollywood stars."
+   ],
+   "gold": 0,
+   "verified_against_saved_char_lengths_and_label": true
+  },
+  "327": {
+   "order": 327,
+   "row": 1552,
+   "context": "Slacklining: Then they start to make strange faces towards the camera. They start bouncing and doing tricks on some kind of bouncy rope. Some of the the tricks",
+   "endings": [
+    "are really bad and they have to be repaired.",
+    "look like they are very extreme.",
+    "are actually cracked and they put their protective helmets in place to keep it in place.",
+    "are in jumps, like jumping from ropes with a going down jumps."
+   ],
+   "gold": 1,
+   "verified_against_saved_char_lengths_and_label": true
+  },
+  "341": {
+   "order": 341,
+   "row": 1623,
+   "context": "Trimming branches or hedges: A man has climbed a large ladder outside. He",
+   "endings": [
+    "is using trimmers to cut and trim large trees.",
+    "ropes and lures a cow into the open.",
+    "is using it to pull himself up onto a platform where a car is parked.",
+    "is life saving at the bottom of the ladder."
+   ],
+   "gold": 0,
+   "verified_against_saved_char_lengths_and_label": true
+  },
+  "384": {
+   "order": 384,
+   "row": 1836,
+   "context": "Decorating the Christmas tree: The people begin to add ornments to the christmas tree. A boy pops bubble wrap on the floor. A boy rides around on a toy. A kid",
+   "endings": [
+    "cuts post clipped christmas tree branches off of the christmas tree.",
+    "lifts up a weight above his head and drops it, then a boy enters lifting it above his neck.",
+    "lays under the tree putting things on it.",
+    "uses a ukulele on the christmas tree."
+   ],
+   "gold": 2,
+   "verified_against_saved_char_lengths_and_label": true
+  },
+  "448": {
+   "order": 448,
+   "row": 2154,
+   "context": "Ice fishing: A group of people, children and families live, travel, and ice fish on a vast ice and snow covered piece of land. A group of men and a woman",
+   "endings": [
+    "ride in class on a loaded catamaran.",
+    "fish swimming on snowy shore.",
+    "talk to a camera while showcasing fish caught and live fishing in ice holes on a snow and ice covered terrain.",
+    "assemble on the ice and ice."
+   ],
+   "gold": 2,
+   "verified_against_saved_char_lengths_and_label": true
+  }
+ }
+}

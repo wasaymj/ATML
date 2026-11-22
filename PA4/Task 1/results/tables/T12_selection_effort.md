@@ -1,16 +1,18 @@
-| Family | Component | Minutes (GPU) |
+| Family | Component | Minutes (one T4) |
 |---|---|---|
-| P3 | dense_pass_s | 0.36 |
-| P3 | owl_lod_s | 0.03 |
-| P3 | fisher_s | 1.80 |
-| P3 | probes_block_s | 12.91 |
-| P3 | probes_component_s | 4.66 |
-| P3 | isolated probes (count 70) | 17.57 |
-| P3 | dev candidate builds + dev ppl (all) | 16.97 |
-| Q3 | fisher_s | 1.80 |
-| Q3 | dense_final_s | 0.21 |
-| Q3 | probes_unit_s | 98.42 |
-| Q3 | probes_component_s | 2.59 |
-| Q3 | isolated probes (count 456) | 100.89 |
-| Q3 | dev candidate builds + dev ppl (all) | 0.92 |
-| Q2/Q3 | AWQ scale search (all bit widths) | 22.51 |
+| P3 | dense statistics pass (input norms, Block Influence, residual stats) | 0.36 |
+| P3 | OWL outlier ratios | 0.03 |
+| P3 | Fisher pass (squared gradients on the calibration set) | 1.80 |
+| P3 | isolated block probes (28 blocks x 2 sparsities) | 12.91 |
+| P3 | component probes (one projection type everywhere) | 4.66 |
+| P3 | development-set candidate builds + dev perplexity (all candidates) | 16.97 |
+| P3 | **total selection effort** | **36.73** |
+| Q3 | Fisher pass (squared gradients on the calibration set) | 1.80 |
+| Q3 | dense reference pass for probes | 0.21 |
+| Q3 | isolated unit probes (112 units x 4 bit widths) | 98.42 |
+| Q3 | component probes (one projection type everywhere) | 2.59 |
+| Q3 | development-set candidate builds + dev perplexity (all candidates) | 0.92 |
+| Q3 | **total selection effort** | **103.94** |
+| Q2/Q3 | AWQ scale search (bits 2/3/4/8, shared by Q2 and Q3) | 22.51 |
+
+GPU time of the sensitivity measurement and development-set selection, excluding the final builds and evaluations (T4). The isolated probes are the dominant cost.

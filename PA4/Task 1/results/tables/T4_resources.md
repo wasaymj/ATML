@@ -1,4 +1,4 @@
-| Condition | Logical MB (sparse bitmap / packed) | As executed MB (dense FP16) | Serialized file MB | CSR int64 MB | Compression s | Compression peak GiB | Prefill 512 ms | Prefill 2048 ms | Decode 64 tok ms | Peak alloc prefill-2048 GiB | Weights alloc GiB |
+| Condition | Logical MiB (sparse bitmap / packed) | As executed MiB (dense FP16) | Serialized file MiB | CSR int64 MiB | Compression s | Compression peak GiB | Prefill 512 ms | Prefill 2048 ms | Decode 64 tok ms | Peak alloc prefill-2048 GiB | Weights alloc GiB |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | FP16 | 2,944.4 | 2,944.4 | - | - | 0.0 | 2.88 | 143.4 | 895.2 | 2349.5 | 3.45 | 2.88 |
 | P1 mag 25% | 2,475.8 | 2,944.4 | 2,476.1 | 9,821.6 | 15.6 | 3.36 | 142.7 | 899.5 | 2290.8 | 3.45 | 2.88 |
@@ -19,4 +19,4 @@
 | Q3 mixed (INT4 budget) | 1,093.9 | 2,944.4 | 1,094.1 | - | 4.8 | 3.86 | 138.8 | 870.6 | 2366.1 | 3.46 | 2.89 |
 | Q3 mixed (INT3 budget) | 937.4 | 2,944.4 | 937.7 | - | 4.2 | 3.86 | 136.5 | 862.3 | 2419.7 | 3.46 | 2.89 |
 
-Latency: batch 1, median of 10 CUDA-synchronised repetitions after warm-up; decode = 64 greedy steps after a 512-token prefill. Every compressed model executes as dense FP16 (zeros / fake-quantized weights), so its GPU allocation and latency are those of FP16; logical/packed bytes are storage only.
+Latency: batch 1, median of 10 CUDA-synchronised repetitions after warm-up; decode = 64 greedy steps after a 512-token prefill. Every compressed model executes as dense FP16 (zeros / fake-quantized weights), so its GPU allocation and latency are those of FP16; logical/packed bytes are storage only. MiB = 2^20 bytes.

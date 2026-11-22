@@ -1,4 +1,4 @@
-Condition,Logical MB (sparse bitmap / packed),As executed MB (dense FP16),Serialized file MB,CSR int64 MB,Compression s,Compression peak GiB,Prefill 512 ms,Prefill 2048 ms,Decode 64 tok ms,Peak alloc prefill-2048 GiB,Weights alloc GiB
+Condition,Logical MiB (sparse bitmap / packed),As executed MiB (dense FP16),Serialized file MiB,CSR int64 MiB,Compression s,Compression peak GiB,Prefill 512 ms,Prefill 2048 ms,Decode 64 tok ms,Peak alloc prefill-2048 GiB,Weights alloc GiB
 FP16,"2,944.4","2,944.4",-,-,0.0,2.88,143.4,895.2,2349.5,3.45,2.88
 P1 mag 25%,"2,475.8","2,944.4","2,476.1","9,821.6",15.6,3.36,142.7,899.5,2290.8,3.45,2.88
 P1 mag 50%,"1,851.1","2,944.4","1,851.3","6,697.8",4.0,3.36,136.9,874.8,2277.0,3.45,2.88

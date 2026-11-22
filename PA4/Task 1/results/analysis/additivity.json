@@ -10,6 +10,11 @@
   "measured_kl": 0.30007579508592935
  },
  {
+  "condition": "Q2 AWQ INT8",
+  "sum_isolated_kl": 0.0017447980308116194,
+  "measured_kl": 0.0002136911541668228
+ },
+ {
   "condition": "Q2 AWQ INT4",
   "sum_isolated_kl": 0.05422309332950052,
   "measured_kl": 0.054050326289029504
@@ -18,11 +23,6 @@
   "condition": "Q2 AWQ INT3",
   "sum_isolated_kl": 0.24351964774655466,
   "measured_kl": 0.3134230603910472
- },
- {
-  "condition": "Q2 AWQ INT8",
-  "sum_isolated_kl": 0.0017447980308116194,
-  "measured_kl": 0.0002136911541668228
  },
  {
   "condition": "P2 Wanda 50%",

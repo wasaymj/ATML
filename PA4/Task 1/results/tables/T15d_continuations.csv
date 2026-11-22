@@ -1,0 +1,37 @@
+Prompt,Model,Greedy continuation (40 tokens),distinct-2
+0,prompt,"KUALA LUMPUR, Malaysia, April 30, 2018 /PRNewswire/ — Sun Life Malaysia recently announced its collaborative partnershi…",-
+,FP16,"app. The app, which is available on both iOS and Android, is designed to help people stay healthy and motivated to live…",1.00
+,P1 mag 50%,app. The in-app and in-market experience is the new and inalienating one that the in-app and in-market experience is th…,0.46
+,P2 Wanda 50%,app. The app is designed to help people to make healthier choices and improve their health. Sun Life Malaysia is the fi…,0.95
+,P3 nonuni. 50%,app. The app is designed to help individuals and businesses to improve their health and wellness by providing a platfor…,0.67
+,P2 Wanda 75%,. — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —,0.05
+,Q1 RTN INT3,"app. The app is the first to be developed under the new initiative, and is set to be rolled out to the 1.3 million poli…",0.95
+,Q2 AWQ INT3,"app. The app, which is available on both iOS and Android, is a one-stop-shop for all your health-related needs. It is a…",0.69
+,Q3 mixed (INT3 budget),"app. The app, which is available on both iOS and Android platforms, is designed to help users to manage their health an…",0.95
+1,prompt,"The report is the second in a two-part assessment of the coalition’s record on the NHS, the first part of which looked …",-
+,FP16,". The report, by the coalition’s health minister, Lord Rooker, says the NHS is “in a state of crisis” and that the coal…",0.87
+,P1 mag 50%,", and the fact that the inquest and inquest and inquest and inquest and inquest and inquest and inquest and inquest and…",0.23
+,P2 Wanda 50%,". The report’s findings are based on the government’s own data, which shows that the NHS has been spending more than £1…",0.90
+,P3 nonuni. 50%,". The report’s findings are based on the government’s own data, which shows that the NHS has been spending more than £1…",0.90
+,P2 Wanda 75%,the first part of the first part of the first part of the first part of the first part of the first part of the first p…,0.10
+,Q1 RTN INT3,"from the real work of the NHS in England. The report also looks at the NHS budget, and the evidence that the government…",0.85
+,Q2 AWQ INT3,"from the real work of the NHS. The report, by the coalition of doctors, nurses and other health workers, is the first i…",0.95
+,Q3 mixed (INT3 budget),"from the real issues. The report, which is the first in a series of reports from the coalition, is a comprehensive and …",0.92
+2,prompt,Jesse Winker will undergo season-ending shoulder surgery. He was batting .299 this year with 7 homers and 43 RBI. Throu…,-
+,FP16,"26-year-old outfielder was able to play through the pain, but it was getting to the point where he needed surgery. Wink…",1.00
+,P1 mag 50%,2008 season is a little more than a little over the 7 aces and 43 on the umps and the umps and the umps and the umps and,0.67
+,P2 Wanda 50%,2019 season was his first in the big leagues. He was batting .299 with 7 homers and 43 RBI. Winker was a bit more than …,1.00
+,P3 nonuni. 50%,2016 season was his first in the big leagues. He was batting .299 with 7 homers and 43 RBI. He was also a part of the t…,0.95
+,P2 Wanda 75%,last 2,0.10
+,Q1 RTN INT3,2019 season was no different. The 2019 season was a success. He was batting .299 with 7 homers and 43 RBI. Jesse,0.85
+,Q2 AWQ INT3,"pain was so bad that he had to undergo season-ending surgery. Winker, who was batting .299 with 7 homers and 43 RBI, wi…",1.00
+,Q3 mixed (INT3 budget),"pain was so bad that Winker was forced to miss the entire 2019 season, and he was forced to deal with the pain for the …",0.87
+3,prompt,"You are currently connected to the website www.buyfollowersbysms.com, published by Conseil NR, SASU, registered capital…",-
+,FP16,"000 000 000, with its registered office at 10 rue de la République, 14000 Caen, France. The",0.72
+,P1 mag 50%,0000000000000000000000000000000000000000,0.03
+,P2 Wanda 50%,"000, registered RCS of Caen: 799 530 000, registered RCS of Caen: 799 530 0",0.46
+,P3 nonuni. 50%,"000, registered RCS of Caen: 799 530 000, registered RCS of Caen: 799 530 0",0.46
+,P2 Wanda 75%,20 20 20 20 20 20 20 20 2 2,0.13
+,Q1 RTN INT3,".000 €, registered RCS of Paris: 799 530.000 €, registered RCS of Paris: 799 530.0",0.46
+,Q2 AWQ INT3,"000 00, registered address: 13, rue de la Cour d'Argenteuil, 74000, registered VAT number: FR 00",0.77
+,Q3 mixed (INT3 budget),000 000 000 000 000 000 000 000 000 000,0.08

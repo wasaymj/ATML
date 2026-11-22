@@ -34,7 +34,10 @@ def acc_paired(ca, cb, B=10000, seed=6304) -> dict:
     ca, cb = np.asarray(ca, float), np.asarray(cb, float)
     assert len(ca) == len(cb)
     idx = _idx(len(ca), B, seed)
-    d = (cb[idx] - ca[idx]).mean(1) * 100
+    d = np.empty(B)
+    for i in range(0, B, 1000):        # row chunks: identical per-replicate means, ~10x less peak memory
+        j = min(B, i + 1000)
+        d[i:j] = (cb[idx[i:j]] - ca[idx[i:j]]).mean(1) * 100
     return {"acc_a": ca.mean() * 100, "acc_b": cb.mean() * 100, "d_pp": (cb.mean() - ca.mean()) * 100,
             "d_pp_ci": np.percentile(d, [2.5, 97.5]).tolist(), "n": len(ca),
             "a_only": int(((ca == 1) & (cb == 0)).sum()), "b_only": int(((ca == 0) & (cb == 1)).sum()),
