@@ -1,0 +1,193 @@
+Impl,dtype,L,Mode,Median ms,SD ms,Peak alloc MiB (above inputs),Peak reserved MiB,Error / unsupported
+dense,float16,256,forward,1.01,1.53,10,44,
+dense,float16,256,forward_backward,2.83,0.07,15,46,
+tiled_autograd,float16,256,forward,6.57,1.79,3,46,
+tiled_autograd,float16,256,forward_backward,19.29,1.47,7,50,
+tiled_recompute,float16,256,forward,3.83,1.82,3,46,
+tiled_recompute,float16,256,forward_backward,8.42,0.46,5,48,
+sdpa_auto,float16,256,forward,0.11,0.02,0,42,
+sdpa_auto,float16,256,forward_backward,0.52,0.03,2,44,
+sdpa_math,float16,256,forward,0.84,0.05,7,46,
+sdpa_math,float16,256,forward_backward,1.70,0.06,10,48,
+sdpa_efficient,float16,256,forward,0.20,0.35,0,42,
+sdpa_efficient,float16,256,forward_backward,0.70,0.03,2,44,
+sdpa_flash,float16,256,forward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_flash,float16,256,forward_backward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_cudnn,float16,256,forward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_cudnn,float16,256,forward_backward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+dense,float16,512,forward,1.14,0.04,40,66,
+dense,float16,512,forward_backward,5.15,1.33,57,86,
+tiled_autograd,float16,512,forward,10.50,0.15,3,48,
+tiled_autograd,float16,512,forward_backward,29.49,31.30,18,64,
+tiled_recompute,float16,512,forward,11.47,5.61,3,48,
+tiled_recompute,float16,512,forward_backward,42.52,2.79,7,52,
+sdpa_auto,float16,512,forward,0.19,0.01,0,46,
+sdpa_auto,float16,512,forward_backward,0.68,0.46,4,48,
+sdpa_math,float16,512,forward,1.20,0.24,23,52,
+sdpa_math,float16,512,forward_backward,2.36,0.03,36,74,
+sdpa_efficient,float16,512,forward,0.23,0.02,0,46,
+sdpa_efficient,float16,512,forward_backward,0.78,0.04,4,48,
+sdpa_flash,float16,512,forward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_flash,float16,512,forward_backward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_cudnn,float16,512,forward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_cudnn,float16,512,forward_backward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+dense,float16,1024,forward,3.56,0.01,161,210,
+dense,float16,1024,forward_backward,10.52,0.31,227,274,
+tiled_autograd,float16,1024,forward,32.34,3.02,4,52,
+tiled_autograd,float16,1024,forward_backward,134.89,44.46,59,110,
+tiled_recompute,float16,1024,forward,33.94,10.46,4,52,
+tiled_recompute,float16,1024,forward_backward,141.91,38.50,13,56,
+sdpa_auto,float16,1024,forward,0.32,0.26,1,50,
+sdpa_auto,float16,1024,forward_backward,1.44,0.55,7,54,
+sdpa_math,float16,1024,forward,2.92,0.06,84,132,
+sdpa_math,float16,1024,forward_backward,5.90,0.34,135,172,
+sdpa_efficient,float16,1024,forward,0.37,0.98,1,50,
+sdpa_efficient,float16,1024,forward_backward,1.32,0.02,7,54,
+sdpa_flash,float16,1024,forward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_flash,float16,1024,forward_backward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_cudnn,float16,1024,forward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_cudnn,float16,1024,forward_backward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+dense,float16,2048,forward,13.36,0.01,644,706,
+dense,float16,2048,forward_backward,36.60,1.20,904,946,
+tiled_autograd,float16,2048,forward,114.15,20.75,6,66,
+tiled_autograd,float16,2048,forward_backward,280.81,226.26,216,276,
+tiled_recompute,float16,2048,forward,135.74,22.54,6,66,
+tiled_recompute,float16,2048,forward_backward,329.92,92.36,26,86,
+sdpa_auto,float16,2048,forward,0.90,0.03,2,60,
+sdpa_auto,float16,2048,forward_backward,3.64,0.04,14,62,
+sdpa_math,float16,2048,forward,10.14,0.16,320,382,
+sdpa_math,float16,2048,forward_backward,16.38,0.06,526,602,
+sdpa_efficient,float16,2048,forward,0.44,0.02,2,60,
+sdpa_efficient,float16,2048,forward_backward,1.63,0.02,14,62,
+sdpa_flash,float16,2048,forward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_flash,float16,2048,forward_backward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_cudnn,float16,2048,forward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_cudnn,float16,2048,forward_backward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+dense,float16,4096,forward,48.67,0.03,2576,3142,
+dense,float16,4096,forward_backward,144.86,0.08,3608,4162,
+tiled_autograd,float16,4096,forward,485.04,56.45,10,88,
+tiled_autograd,float16,4096,forward_backward,1767.10,525.69,823,896,
+tiled_recompute,float16,4096,forward,566.49,77.97,10,88,
+tiled_recompute,float16,4096,forward_backward,1210.24,113.81,52,128,
+sdpa_auto,float16,4096,forward,2.84,0.95,4,80,
+sdpa_auto,float16,4096,forward_backward,11.54,0.21,28,82,
+sdpa_math,float16,4096,forward,32.19,0.79,1248,1362,
+sdpa_math,float16,4096,forward_backward,62.55,0.90,2076,2262,
+sdpa_efficient,float16,4096,forward,1.20,0.75,4,80,
+sdpa_efficient,float16,4096,forward_backward,7.33,0.83,28,82,
+sdpa_flash,float16,4096,forward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_flash,float16,4096,forward_backward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_cudnn,float16,4096,forward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_cudnn,float16,4096,forward_backward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+dense,float16,8192,forward,193.78,0.25,10305,12382,
+dense,float16,8192,forward_backward,575.01,0.15,14417,14542,
+tiled_autograd,float16,8192,forward,1945.40,97.92,18,132,
+tiled_autograd,float16,8192,forward_backward,6997.76,512.18,3201,3322,
+tiled_recompute,float16,8192,forward,1132.43,500.75,18,132,
+tiled_recompute,float16,8192,forward_backward,2597.17,146.19,104,232,
+sdpa_auto,float16,8192,forward,8.51,0.04,8,120,
+sdpa_auto,float16,8192,forward_backward,27.37,0.23,57,162,
+sdpa_math,float16,8192,forward,138.19,0.76,4928,5162,
+sdpa_math,float16,8192,forward_backward,282.92,2.98,8248,8762,
+sdpa_efficient,float16,8192,forward,5.45,1.15,8,120,
+sdpa_efficient,float16,8192,forward_backward,27.78,0.46,57,162,
+sdpa_flash,float16,8192,forward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_flash,float16,8192,forward_backward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_cudnn,float16,8192,forward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_cudnn,float16,8192,forward_backward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+dense,float32,256,forward,0.61,0.06,10,64,
+dense,float32,256,forward_backward,1.94,0.03,15,68,
+tiled_autograd,float32,256,forward,2.27,0.13,3,48,
+tiled_autograd,float32,256,forward_backward,6.44,0.82,6,52,
+tiled_recompute,float32,256,forward,2.28,0.07,3,48,
+tiled_recompute,float32,256,forward_backward,4.56,0.11,5,50,
+sdpa_auto,float32,256,forward,0.09,0.03,0,44,
+sdpa_auto,float32,256,forward_backward,0.79,0.05,3,48,
+sdpa_math,float32,256,forward,0.42,0.01,5,46,
+sdpa_math,float32,256,forward_backward,1.16,0.07,10,48,
+sdpa_efficient,float32,256,forward,0.21,0.03,0,44,
+sdpa_efficient,float32,256,forward_backward,0.79,0.02,3,48,
+sdpa_flash,float32,256,forward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_flash,float32,256,forward_backward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_cudnn,float32,256,forward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_cudnn,float32,256,forward_backward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+dense,float32,512,forward,1.24,0.01,40,68,
+dense,float32,512,forward_backward,3.77,0.01,58,94,
+tiled_autograd,float32,512,forward,6.42,0.12,3,52,
+tiled_autograd,float32,512,forward_backward,18.38,0.54,17,66,
+tiled_recompute,float32,512,forward,6.83,0.40,3,52,
+tiled_recompute,float32,512,forward_backward,12.67,0.53,7,56,
+sdpa_auto,float32,512,forward,0.44,0.01,1,50,
+sdpa_auto,float32,512,forward_backward,1.62,0.01,6,54,
+sdpa_math,float32,512,forward,0.94,0.01,20,52,
+sdpa_math,float32,512,forward_backward,2.08,0.03,36,74,
+sdpa_efficient,float32,512,forward,0.47,0.02,1,50,
+sdpa_efficient,float32,512,forward_backward,1.67,0.01,6,54,
+sdpa_flash,float32,512,forward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_flash,float32,512,forward_backward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_cudnn,float32,512,forward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_cudnn,float32,512,forward_backward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+dense,float32,1024,forward,3.86,0.02,161,206,
+dense,float32,1024,forward_backward,10.90,0.45,229,306,
+tiled_autograd,float32,1024,forward,22.98,0.85,5,46,
+tiled_autograd,float32,1024,forward_backward,73.53,5.30,54,112,
+tiled_recompute,float32,1024,forward,20.24,1.06,5,46,
+tiled_recompute,float32,1024,forward_backward,40.09,2.73,11,66,
+sdpa_auto,float32,1024,forward,1.08,0.03,2,40,
+sdpa_auto,float32,1024,forward_backward,4.32,0.04,12,62,
+sdpa_math,float32,1024,forward,2.51,0.02,78,122,
+sdpa_math,float32,1024,forward_backward,5.42,0.03,136,202,
+sdpa_efficient,float32,1024,forward,1.09,0.04,2,40,
+sdpa_efficient,float32,1024,forward_backward,4.41,0.03,12,62,
+sdpa_flash,float32,1024,forward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_flash,float32,1024,forward_backward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_cudnn,float32,1024,forward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_cudnn,float32,1024,forward_backward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+dense,float32,2048,forward,13.79,0.28,644,702,
+dense,float32,2048,forward_backward,38.78,0.21,908,962,
+tiled_autograd,float32,2048,forward,76.55,1.27,9,68,
+tiled_autograd,float32,2048,forward_backward,266.73,16.17,191,262,
+tiled_recompute,float32,2048,forward,80.57,0.98,9,88,
+tiled_recompute,float32,2048,forward_backward,140.35,10.94,20,88,
+sdpa_auto,float32,2048,forward,3.12,0.06,4,60,
+sdpa_auto,float32,2048,forward_backward,12.07,0.07,24,82,
+sdpa_math,float32,2048,forward,7.69,0.25,308,382,
+sdpa_math,float32,2048,forward_backward,16.39,0.19,528,602,
+sdpa_efficient,float32,2048,forward,1.40,0.04,4,60,
+sdpa_efficient,float32,2048,forward_backward,8.03,0.61,24,82,
+sdpa_flash,float32,2048,forward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_flash,float32,2048,forward_backward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_cudnn,float32,2048,forward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_cudnn,float32,2048,forward_backward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+dense,float32,4096,forward,49.91,0.09,2576,3162,
+dense,float32,4096,forward_backward,153.00,0.24,3616,4202,
+tiled_autograd,float32,4096,forward,252.11,2.99,17,112,
+tiled_autograd,float32,4096,forward_backward,865.85,71.17,708,808,
+tiled_recompute,float32,4096,forward,256.63,19.14,18,132,
+tiled_recompute,float32,4096,forward_backward,555.42,21.31,40,132,
+sdpa_auto,float32,4096,forward,10.26,1.29,8,100,
+sdpa_auto,float32,4096,forward_backward,28.61,0.28,48,142,
+sdpa_math,float32,4096,forward,30.26,0.22,1224,1342,
+sdpa_math,float32,4096,forward_backward,62.61,0.76,2080,2242,
+sdpa_efficient,float32,4096,forward,6.67,1.27,8,100,
+sdpa_efficient,float32,4096,forward_backward,28.92,0.35,48,142,
+sdpa_flash,float32,4096,forward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_flash,float32,4096,forward_backward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_cudnn,float32,4096,forward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_cudnn,float32,4096,forward_backward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+dense,float32,8192,forward,202.95,0.96,10305,12422,
+dense,float32,8192,forward_backward,638.68,3.19,14433,14622,
+tiled_autograd,float32,8192,forward,1048.89,45.90,34,220,
+tiled_autograd,float32,8192,forward_backward,3517.95,104.15,2714,2910,
+tiled_recompute,float32,8192,forward,1080.66,39.98,34,200,
+tiled_recompute,float32,8192,forward_backward,1983.69,32.78,80,260,
+sdpa_auto,float32,8192,forward,25.22,3.81,16,180,
+sdpa_auto,float32,8192,forward_backward,106.83,0.51,97,262,
+sdpa_math,float32,8192,forward,122.92,1.93,4880,5182,
+sdpa_math,float32,8192,forward_backward,259.66,3.35,8256,8762,
+sdpa_efficient,float32,8192,forward,25.52,0.70,16,180,
+sdpa_efficient,float32,8192,forward_backward,108.09,0.46,97,262,
+sdpa_flash,float32,8192,forward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_flash,float32,8192,forward_backward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_cudnn,float32,8192,forward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')
+sdpa_cudnn,float32,8192,forward_backward,-,-,-,-,unsupported/failed: RuntimeError('No available kernel. Aborting execution.')

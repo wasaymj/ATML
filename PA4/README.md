@@ -8,7 +8,7 @@ notebook.
 |---|---|---|---|
 | 1. Pruning and weight-only quantization of Qwen2.5-1.5B (magnitude, Wanda, nonuniform Wanda, 2:4; RTN, AWQ-style, mixed precision) | [`Task 1/`](Task%201/README.md) | implemented | [`Task 1/README.md`](Task%201/README.md#reproduce) |
 | 2. Exact/tiled/SDPA attention; MQAR with dense, window, linear, dilated and delta-rule attention; KV-cache eviction, quantization and hybrid at a matched INT4 budget | [`Task 2/`](Task%202/README.md) | implemented | [`Task 2/README.md`](Task%202/README.md#reproduce) |
-| 3. Exact speculative sampling and draft distillation | `Task 3/` | not started | – |
+| 3. Exact speculative sampling (Qwen2.5-1.5B target, 0.5B draft); off-/on-policy forward-KL LoRA distillation; prefix-bank alignment and speculative-execution cost analysis | [`Task 3/`](Task%203/README.md) | implemented | [`Task 3/README.md`](Task%203/README.md#reproduce) |
 
 ## Common conventions
 * Seed 6304. Every run records package versions, GPU, git commit, model revision and config hash
@@ -30,7 +30,7 @@ PA4/
 ├── atml-pa4-datasets/       course data repository (scripts, manifests, frozen MQAR/KV/short-form data)
 ├── Task 1/                  see Task 1/README.md
 ├── Task 2/                  see Task 2/README.md
-├── Task 3/                  (to come)
+├── Task 3/                  see Task 3/README.md
 ├── Implementation_Notes/    design notes (not committed)
 └── Readings/, ATML_PA4.pdf  papers and manual (not committed)
 ```

@@ -1,0 +1,6 @@
+Mechanism,Attended pairs / layer (T=256),Mean positions/query per head,Max look-back per head,Persistent bytes / layer (FP32; KV cache or state),Max 2-layer span,Share of distances 1-255 reachable in 2 layers,Measured ms / training update
+Dense,131584,128/128/128/128,255/255/255/255,262144,-,-,20.6
+Window W=64,57472,56/56/56/56,63/63/63/63,65536,126,0.494,20.4
+Local/dilated,45376,56/56/32/32,63/63/252/252,162304,504,1.000,20.6
+Linear (ELU+1),-,all (compressed),unbounded,16896,-,-,18.7
+Delta-rule (B3),-,all (compressed),unbounded,16896,-,-,490.4

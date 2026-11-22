@@ -1,0 +1,68 @@
+/usr/local/lib/python3.13/dist-packages/torch/autograd/graph.py:869: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:335.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[11:26:32] Part A correctness L=256 done
+[11:26:34] Part A correctness L=512 done
+[11:26:36] Part A correctness L=1024 done
+[11:26:39] Part A correctness L=2048 done
+[11:26:46] Part A correctness L=4096 done
+[11:27:11] Part A correctness L=8192 done
+/usr/local/lib/python3.13/dist-packages/torch/profiler/profiler.py:224: UserWarning: Warning: Profiler clears events at the end of each cycle.Only events from the current cycle will be reported.To keep events across cycles, set acc_events=True.
+  _warn_once(
+/kaggle/working/ATML/PA4/Task 2/src/attention_ops.py:146: UserWarning: Memory efficient kernel not used because: (Triggered internally at /pytorch/aten/src/ATen/native/transformers/cuda/sdp_utils.cpp:986.)
+  return F.scaled_dot_product_attention(q, k, v, is_causal=causal)
+/kaggle/working/ATML/PA4/Task 2/src/attention_ops.py:146: UserWarning: Memory Efficient attention has been runtime disabled. (Triggered internally at /pytorch/aten/src/ATen/native/transformers/sdp_utils_cpp.h:552.)
+  return F.scaled_dot_product_attention(q, k, v, is_causal=causal)
+/kaggle/working/ATML/PA4/Task 2/src/attention_ops.py:146: UserWarning: Flash attention kernel not used because: (Triggered internally at /pytorch/aten/src/ATen/native/transformers/cuda/sdp_utils.cpp:988.)
+  return F.scaled_dot_product_attention(q, k, v, is_causal=causal)
+/kaggle/working/ATML/PA4/Task 2/src/attention_ops.py:146: UserWarning: Flash attention only supports gpu architectures in the range [sm80, sm121]. Attempting to run on a sm 7.5 gpu. (Triggered internally at /pytorch/aten/src/ATen/native/transformers/cuda/sdp_utils.cpp:342.)
+  return F.scaled_dot_product_attention(q, k, v, is_causal=causal)
+/kaggle/working/ATML/PA4/Task 2/src/attention_ops.py:146: UserWarning: cuDNN attention kernel not used because: (Triggered internally at /pytorch/aten/src/ATen/native/transformers/cuda/sdp_utils.cpp:990.)
+  return F.scaled_dot_product_attention(q, k, v, is_causal=causal)
+/kaggle/working/ATML/PA4/Task 2/src/attention_ops.py:146: UserWarning: cuDNN attention has been runtime disabled. (Triggered internally at /pytorch/aten/src/ATen/native/transformers/cuda/sdp_utils.cpp:706.)
+  return F.scaled_dot_product_attention(q, k, v, is_causal=causal)
+/kaggle/working/ATML/PA4/Task 2/src/attention_ops.py:146: UserWarning: Flash attention has been runtime disabled. (Triggered internally at /pytorch/aten/src/ATen/native/transformers/sdp_utils_cpp.h:540.)
+  return F.scaled_dot_product_attention(q, k, v, is_causal=causal)
+/kaggle/working/ATML/PA4/Task 2/src/attention_ops.py:146: UserWarning: cuDNN MHA only supports gpu architectures in the range [sm80, sm121]. Attempting to run on a sm 7.5 gpu. (Triggered internally at /pytorch/aten/src/ATen/native/transformers/cuda/sdp_utils.cpp:647.)
+  return F.scaled_dot_product_attention(q, k, v, is_causal=causal)
+[11:28:52] Part A bench float16 L=256 done
+[11:28:57] Part A bench float16 L=512 done
+[11:29:06] Part A bench float16 L=1024 done
+[11:29:26] Part A bench float16 L=2048 done
+[11:30:31] Part A bench float16 L=4096 done
+[11:33:57] Part A bench float16 L=8192 done
+/kaggle/working/ATML/PA4/Task 2/src/attention_ops.py:146: UserWarning: Expected query, key and value to all be of dtype: {Half}. Got Query dtype: float, Key dtype: float, and Value dtype: float instead. (Triggered internally at /pytorch/aten/src/ATen/native/transformers/sdp_utils_cpp.h:91.)
+  return F.scaled_dot_product_attention(q, k, v, is_causal=causal)
+[11:33:59] Part A bench float32 L=256 done
+[11:34:02] Part A bench float32 L=512 done
+[11:34:07] Part A bench float32 L=1024 done
+[11:34:19] Part A bench float32 L=2048 done
+[11:34:54] Part A bench float32 L=4096 done
+[11:37:06] Part A bench float32 L=8192 done
+[11:37:06] Part A finished in 10.6 min
+[11:37:06] step part_a finished
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1795347450.156037     271 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+[11:40:36] C1 validation: {'split_max_abs_logit_diff': 0.21875, 'all_finite': True, 'retain_all_identical_fraction': 1.0, 'evict_vs_mask_max_abs_logit_diff': 0.1328125}
+[11:41:23] Part C 10/180 prompts
+[11:42:10] Part C 20/180 prompts
+[11:42:58] Part C 30/180 prompts
+[11:43:45] Part C 40/180 prompts
+[11:44:33] Part C 50/180 prompts
+[11:45:21] Part C 60/180 prompts
+[11:46:09] Part C 70/180 prompts
+[11:46:57] Part C 80/180 prompts
+[11:47:46] Part C 90/180 prompts
+[11:49:09] Part C 100/180 prompts
+[11:50:32] Part C 110/180 prompts
+[11:51:54] Part C 120/180 prompts
+[11:53:17] Part C 130/180 prompts
+[11:54:40] Part C 140/180 prompts
+[11:56:03] Part C 150/180 prompts
+[11:57:26] Part C 160/180 prompts
+[11:58:50] Part C 170/180 prompts
+[12:00:13] Part C 180/180 prompts
+[12:00:23] C5 bench L=2048 B=1 done
+[12:00:39] C5 bench L=2048 B=8 done
+[12:00:46] C5 bench L=4096 B=1 done
+[12:01:16] C5 bench L=4096 B=8 done
+[12:01:16] step part_c finished

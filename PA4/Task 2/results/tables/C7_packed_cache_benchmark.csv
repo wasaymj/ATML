@@ -1,0 +1,13 @@
+L,Batch,Layout,Serialized MiB / FP16 MiB,Encode ms (all layers),Unpack+dequantize ms,Decode step FP16 ms,Decode step with unpack ms
+2048,1,channelK_tokenV_int4,15.75 / 56.00,27.70,12.21,40.79,52.15
+2048,1,tokenwise_int4,15.75 / 56.00,24.01,10.18,40.79,51.57
+2048,1,channelK_tokenV_int2,8.75 / 56.00,24.56,11.33,40.79,58.81
+2048,8,channelK_tokenV_int4,126.00 / 448.00,124.97,44.74,113.13,158.48
+2048,8,tokenwise_int4,126.00 / 448.00,123.91,38.90,113.13,152.49
+2048,8,channelK_tokenV_int2,70.00 / 448.00,123.02,43.79,113.13,157.55
+4096,1,channelK_tokenV_int4,31.50 / 112.00,33.30,12.45,46.55,59.99
+4096,1,tokenwise_int4,31.50 / 112.00,33.53,11.61,46.55,56.07
+4096,1,channelK_tokenV_int2,17.50 / 112.00,32.72,11.84,46.55,58.07
+4096,8,channelK_tokenV_int4,252.00 / 896.00,244.84,87.51,231.77,319.61
+4096,8,tokenwise_int4,252.00 / 896.00,243.46,76.00,231.77,307.58
+4096,8,channelK_tokenV_int2,140.00 / 896.00,241.57,86.01,231.77,317.81

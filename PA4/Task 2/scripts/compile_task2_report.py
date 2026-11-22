@@ -72,8 +72,10 @@ def save_fig(r, fig, name):
 
 def boot_diff(a, b, B=10000, seed=6304):
     a, b = np.asarray(a, float), np.asarray(b, float)
-    idx = np.random.default_rng(seed).integers(0, len(a), (B, len(a)))
-    d = (b[idx] - a[idx]).mean(1)
+    rng = np.random.default_rng(seed)
+    diff = b - a
+    # drawn in 500-row chunks from the same generator: the same index stream as one (B, n) draw, bounded memory
+    d = np.concatenate([diff[rng.integers(0, len(a), (min(500, B - i), len(a)))].mean(1) for i in range(0, B, 500)])
     return float(b.mean() - a.mean()), np.percentile(d, [2.5, 97.5]).tolist()
 
 
@@ -583,6 +585,330 @@ def _c_figs(r, plt, rows):
                     "Fixed prompts chosen before results (config part_c.qualitative_ids); masks in figures/FC3.")
 
 
+# ============================================================================ mechanism diagnostic (D*)
+# Supplementary run (scripts/diagnose_task2.py). Figures FD* use the PA3 style (5.5 in wide, 8 pt text).
+DCOL = {"dense": "#1f77b4", "window": "#2ca02c", "dilated": "#8c564b", "linear": "#d62728", "delta": "#9467bd"}
+DARMS = {"fp16": "FP16 (reference)", "k_channel": "K channel-wise INT4 (main)", "k_token": "K token-wise INT4 (main)",
+         "k_token_v_fp16": "K token-wise, V FP16", "v_token_k_fp16": "K FP16, V token-wise INT4",
+         "k_token_int8": "K token-wise INT8", "k_token_center": "K token-wise, channel mean removed",
+         "k_token_outlier2": "K token-wise, top-2 channels FP16", "k_token_outlier8": "K token-wise, top-8 channels FP16",
+         "k_token_sink8": "K token-wise, first 8 tokens FP16", "k_token_layers01": "K token-wise in layers 0-1 only",
+         "k_token_except01": "K token-wise except layers 0-1"}
+
+
+def _pa3(plt):
+    return plt.rc_context({"font.size": 8, "axes.titlesize": 8, "axes.labelsize": 8, "xtick.labelsize": 7,
+                           "ytick.labelsize": 7, "legend.fontsize": 7, "legend.frameon": False, "axes.grid": False,
+                           "axes.spines.top": False, "axes.spines.right": False, "lines.linewidth": 1.2,
+                           "savefig.dpi": 300, "figure.constrained_layout.use": True})
+
+
+def _dlabel(name):
+    mech, k, reg, s = name.split("_")
+    return f"{MECH[mech]} {k} {reg}", s[1:]
+
+
+def _dgroup(names):
+    g = defaultdict(list)
+    for n in names:
+        g[_dlabel(n)[0]].append(n)
+    return g
+
+
+def d_b_tables(r, plt):
+    d = r.j("diagnostics", "part_b_diagnostic.json")
+    if not d:
+        return "no part B diagnostic"
+    tx, dy = d.get("taxonomy", {}), d.get("dynamics", {})
+    if tx:
+        rows = []
+        for lab, ns in _dgroup(tx).items():
+            accs = [tx[n]["acc"] for n in ns]
+            split = np.std(accs) > 0.2                     # bimodal seeds -> one row per seed
+            for sub in ([[n] for n in ns] if split else [ns]):
+                t = [tx[n] for n in sub]
+                sl = np.array([x["slot_acc_K16"] for x in t]).mean(0)
+                seeds = "/".join(_dlabel(n)[1][-2:] for n in sub)
+                rows.append([lab, seeds, f3(100 * np.mean([x["acc"] for x in t]), 1),
+                             f3(100 * np.mean([x["wrong_in_context"] for x in t]), 1),
+                             f3(100 * np.mean([x["not_in_context"] for x in t]), 1),
+                             f3(100 * sl[:4].mean(), 1), f3(100 * sl[4:8].mean(), 1), f3(100 * sl[8:].mean(), 1),
+                             f3(np.mean([x.get("wrong_slot_entropy_norm_K16", np.nan) for x in t]), 2)])
+        write_table(r, "D1_failure_taxonomy", ["Model", "Seeds (63xx)", "Test acc %", "Wrong: other value of the sequence %",
+                                               "Wrong: value not in the sequence %", "K16 slots 0-3 acc %", "K16 slots 4-7 acc %",
+                                               "K16 slots 8-15 acc %", "Wrong-slot entropy (norm.)"], rows,
+                    "All 9,216 test sequences (query-weighted). Slot = index j of the queried pair (key at 2j, value at 2j+1); "
+                    "slot accuracy on the K = 16 test sequences, so every slot is measured under the same load of 16 pairs. "
+                    "Wrong-slot entropy: entropy of the slot whose value a wrong answer copies, / ln 16 (1 = uniform over the "
+                    "16 pairs). Configurations whose seeds differ by > 20 pp are listed per seed.")
+    if dy:
+        rows = []
+        for lab, ns in _dgroup(dy).items():
+            for n in ns:
+                x = dy[n]
+                la = x["loss_at"]
+                rows.append([lab, _dlabel(n)[1], f3(x["ln_K_train"], 2), f3(la.get("500"), 2), f3(la.get("1000"), 2),
+                             f3(la.get("2000"), 2), f3(la.get("4500"), 3), x["escape_update_acc50"] or "never",
+                             f3(x["clipped_frac_mean"], 2)])
+        write_table(r, "D2_training_dynamics", ["Model", "Seed", "ln K_train", "Train loss @500", "@1000", "@2000", "@4500",
+                                                "First update with train acc >= 50%", "Share of updates clipped"], rows,
+                    "Running training loss (50-update windows). Cross-entropy of a uniform guess over the K_train values of the "
+                    "sequence = ln K_train; over all 64 values = ln 64 = 4.16. A run whose loss sits at ln K_train is "
+                    "copying a value of the sequence without binding it to its key.")
+    ci, ab = d.get("circuit", {}), d.get("ablation", {})
+    if ci:
+        rows = []
+        for n, x in ci.items():
+            b, ret, oth, fil = (np.array(x[k]) for k in ("bind", "ret", "other", "filler"))
+            hb = int(b[0].argmax())
+            bsl = np.array(x.get("bind_by_slot", np.full((2, 4, 16), np.nan)))[0, hb]
+            rows.append([*_dlabel(n), f3(100 * tx.get(n, {}).get("acc", np.nan), 1), f"{f3(b[0].max(), 2)} (H{hb})",
+                         " / ".join(f3(bsl[a:z].mean(), 2) for a, z in ((0, 4), (4, 8), (8, 16))),
+                         f3(b[0].mean(), 2), f3(ret[1].mean(), 2), f3(oth[1].mean(), 3), f3(fil[1].mean(), 2)])
+        write_table(r, "D3_attention_circuit", ["Model", "Seed", "Test acc %", "Layer-1 binding, best head",
+                                                "Best head by slot 0-3 / 4-7 / 8-15", "Layer-1 binding, mean",
+                                                "Layer-2 query -> matching value", "Layer-2 query -> each other value",
+                                                "Layer-2 query -> filler (total)"], rows,
+                    "Attention weights on K = 16 test sequences (ELU+1 models: the normalised kernel weights "
+                    "phi(q)phi(k)/sum). Binding = weight from a value position to its own key (uniform causal attention would "
+                    "give ~1/(2j+2)). Layer-2 entries are means over the four heads. Window/dilated models: queries with "
+                    "distance <= 63 only. Delta-rule models have no attention matrix (see D5).")
+    if ab:
+        rows = []
+        for n, x in ab.items():
+            l1 = {k: v["acc"] for k, v in x.items() if k.startswith("L1H")}
+            l2 = {k: v["acc"] for k, v in x.items() if k.startswith("L2H")}
+            k1, k2 = min(l1, key=l1.get), min(l2, key=l2.get)
+            bh = f"H{int(np.argmax(ci[n]['bind'][0]))}" if n in ci else "-"
+            rows.append([*_dlabel(n), f3(100 * x["none"]["acc"], 1), f"{k1[2:]}: {f3(100 * l1[k1], 1)}", bh,
+                         f3(100 * np.median(list(l1.values())), 1), f"{k2[2:]}: {f3(100 * l2[k2], 1)}",
+                         f3(100 * x["L1_all"]["acc"], 1), f3(100 * x["L2_all"]["acc"], 1),
+                         f3(100 * x["L1_all"]["wrong_in_context"], 1)])
+        write_table(r, "D4_head_ablation", ["Model", "Seed", "Acc %", "Worst single layer-1 head: acc %",
+                                            "Best binding head (D3)", "Median layer-1 head ablated: acc %",
+                                            "Worst single layer-2 head: acc %", "All layer-1 heads: acc %",
+                                            "All layer-2 heads: acc %", "All layer-1 heads: wrong but in-context %"], rows,
+                    "Zero-ablation of one head's output (before the output projection) at test time; K = 16 test sequences "
+                    "(window: near regime). Chance among the 16 values of a sequence = 6.25 %.")
+    g = d.get("gates", {})
+    if g.get("delta"):
+        rows = []
+        for n, x in g["delta"].items():
+            bt = {k: np.array(v) for k, v in x["beta_by_type"].items()}
+            a = x["acc"]
+            rows.append([_dlabel(n)[1]] + [f"{f3(bt[t][0].mean(), 2)} / {f3(bt[t][1].mean(), 2)}"
+                                           for t in ("key", "value", "query", "filler")] +
+                        [f3(100 * a[k], 1) for k in ("none", "fillers_as_pairs", "uniform", "one", "pairs_as_fillers")])
+        write_table(r, "D5_delta_gates", ["Seed", "beta key (L1 / L2)", "beta value", "beta query", "beta filler",
+                                          "Acc %", "Fillers write like pairs", "Uniform beta", "beta = 1", "Pairs write like fillers"],
+                    rows, "Delta rule, K = 16 test sequences. beta = write strength (sigmoid gate), mean over heads per layer. "
+                    "Interventions replace beta at test time only, per head and sequence: fillers get the mean beta of the "
+                    "key/value positions; every position gets the sequence mean; beta = 1 everywhere; key/value positions "
+                    "get the mean filler beta.")
+    if g.get("linear_filler_mask"):
+        rows = [[*_dlabel(n), f3(100 * x["none"], 1), f3(100 * x["fillers_not_written"], 1)]
+                for n, x in g["linear_filler_mask"].items()]
+        write_table(r, "D5b_linear_filler_control", ["Model", "Seed", "Acc %", "Acc % with filler tokens not written"], rows,
+                    "ELU+1 linear attention, K = 16 test sequences: at test time filler positions contribute nothing to the "
+                    "state or the normaliser (both layers). If failure were interference from fillers, accuracy would rise.")
+    rel = d.get("relocation", {})
+    if rel:
+        rows = []
+        shifts = sorted({int(s) for x in rel.values() for s in x["by_shift"]})
+        for lab, ns in _dgroup(rel).items():
+            accs = np.array([[rel[n]["by_shift"][str(s)]["acc"] for s in shifts] for n in ns])
+            split = np.std(accs[:, 0]) > 0.2
+            for sub in ([[i] for i in range(len(ns))] if split else [list(range(len(ns)))]):
+                rows.append([lab, "/".join(_dlabel(ns[i])[1][-2:] for i in sub)] + [f3(100 * accs[sub, j].mean(), 1)
+                                                                                    for j in range(len(shifts))])
+        write_table(r, "D6_pair_block_relocation", ["Model", "Seeds (63xx)"] + [f"slots {s}-{s + 3}" for s in shifts], rows,
+                    "K = 4 test sequences with the block of 4 pairs moved from slots 0-3 to slots s..s+3 (positions before "
+                    "the block become filler; queries that would fall inside or before the block are dropped). The number "
+                    "of pairs stays 4; only where the block sits changes, and the layout leaves the training distribution "
+                    "(filler before the pairs). Window models: one-hop-reachable queries only.")
+    rt = d.get("retrain", {})
+    if rt.get("arms"):
+        tx_all = tx
+        ref = {"window_mixed_reach63": "window_K16_mixed", "window_near_thinned": "window_K16_near",
+               "dilated_near": "dilated_K16_mixed", "dilated_mixed_reach63": "dilated_K16_mixed",
+               "linear_mixed_extra_seeds": "linear_K16_mixed"}
+        rows = []
+        for arm, x in rt["arms"].items():
+            runs_ = x["runs"]
+            base = [n for n in tx_all if n.startswith(ref[arm])]
+            rows.append([arm, f"{x['mech']} K{x['K']} {x['regime']}", x["rule"], f3(x["supervised_queries_per_seq"], 2),
+                         " / ".join(f3(100 * v["test_acc_all"], 1) for v in runs_.values()),
+                         " / ".join(f3(100 * v["acc_reachable_d_le_63"], 1) for v in runs_.values()),
+                         " / ".join(str(v["escape_update_acc50"] or "never") for v in runs_.values()),
+                         " / ".join(f3(100 * tx_all[n].get("acc_reachable_d_le_63", tx_all[n]["acc"]), 1) for n in base)])
+        write_table(r, "D7_retraining_arms", ["Arm", "Training data", "Supervised queries", "Supervised per sequence",
+                                              "Test acc % per seed", "Acc % on queries with d <= 63", "Escape update",
+                                              "Main-run reference (d <= 63 for window/dilated)"], rows,
+                    f"Same pools, recipe (4,500 updates) and seeds as the main run (linear: five new seeds). reach = only "
+                    f"queries with distance <= 63 supervised; thin = each query kept with probability "
+                    f"{f3(rt.get('reach_fraction_mixed_K16'), 3)} (the supervised share under 'reach' on mixed data). "
+                    f"Reference column: the main-run model the arm is compared with ({', '.join(sorted(set(ref.values())))}).")
+    return "ok"
+
+
+def d_c_tables(r, plt):
+    d = r.j("diagnostics", "part_c_diagnostic.json")
+    if not d:
+        return "no part C diagnostic"
+    rows = []
+    for arm, s in d["arms"].items():
+        at = s.get("attn_by_layer")
+        rows.append([DARMS.get(arm, arm), f3(100 * s["exact_match"], 1), f3(s["gold_nll_median"], 3), f3(s.get("post_prefill_kl"), 4),
+                     f"{s['k_rel_mse']:.2e}", f3(s["extra_fp16_bytes_mean"] / 2 ** 20, 2),
+                     f3(np.mean(at["kl"]), 3) if at else "-", f3(np.mean(at["evidence_mass"]), 3) if at else "-",
+                     f3(np.mean(at["token0_mass"]), 3) if at else "-"])
+    fp = d["arms"]["k_channel"].get("attn_by_layer")
+    write_table(r, "D8_tokenwise_key_interventions", ["Context cache", "Exact match %", "Gold NLL (median)", "Post-prefill KL",
+                                                      "K rel. MSE", "Extra FP16 MiB", "Attention KL vs FP16 (mean layer)",
+                                                      "Evidence mass", "Token-0 mass"], rows,
+                f"{d['n_prompts']} prompts; only the context cache differs (suffix and generated tokens FP16; greedy cap "
+                f"{d['max_new_tokens']} tokens, FP16 answers take 6). V is token-wise INT4 unless stated. Attention columns: "
+                f"FP16 suffix queries against the arm's context keys, mean over layers, heads and suffix positions (FP16: "
+                f"evidence mass {f3(np.mean(fp['evidence_mass_fp16']), 3) if fp else '-'}, token-0 mass "
+                f"{f3(np.mean(fp['token0_mass_fp16']), 3) if fp else '-'}). Extra FP16 MiB: bytes the arm keeps beyond the "
+                f"INT4 layout (diagnostic arms are not budget-matched).")
+    ks = d["key_stats_by_layer"]
+    write_table(r, "D9_key_channel_statistics", ["Layer", "max |channel mean| / median channel SD",
+                                                 "Token-wise INT4 step / median channel SD",
+                                                 "Ordinary channels with SD < step/2 %", "Top-8 mean |K| / median",
+                                                 "Top-8 channel overlap with prompt 1 (Jaccard)"],
+                [[l, f3(ks["offset_ratio"][l], 1), f3(ks["step_over_sd"][l], 2), f3(100 * ks["collapsed_share"][l], 1),
+                  f3(ks["top8_mean_abs_over_median"][l], 1), f3(ks["top8_jaccard_vs_first_prompt"][l], 2)]
+                 for l in range(len(ks["offset_ratio"]))],
+                "Context keys after RoPE, FP16 model, mean over KV heads and prompts. Step = (max - min)/15 of a 64-channel "
+                "token group (median over tokens and groups). A channel whose spread is below half a step is mapped to <= 2 "
+                "codes, i.e. its token-to-token variation is erased.")
+    return "ok"
+
+
+def d_figs(r, plt):
+    d = r.j("diagnostics", "part_b_diagnostic.json") or {}
+    dc = r.j("diagnostics", "part_c_diagnostic.json")
+    made = []
+    tx, runs = d.get("taxonomy", {}), _runs(r)
+    with _pa3(plt):
+        if tx and runs:
+            fig, ax = plt.subplots(1, 2, figsize=(5.5, 2.3))
+            for (mech, K), ls in [(("dense", 4), "-"), (("dense", 8), "-"), (("dense", 16), "-"), (("linear", 4), "--")]:
+                ns = [n for n in tx if n.startswith(f"{mech}_K{K}_mixed")]
+                if not ns:
+                    continue
+                sl = 100 * np.array([tx[n]["slot_acc_K16"] for n in ns]).mean(0)
+                ax[0].plot(range(16), sl, ls, marker="o", ms=2.5, color={4: "#1f77b4", 8: "#ff7f0e", 16: "#2ca02c"}[K],
+                           label=f"{'Dense' if mech == 'dense' else 'Linear'}, K_train={K}")
+            ax[0].axhline(100 / 16, color="0.5", lw=0.8, ls=":")
+            ax[0].set(xlabel="Slot of the queried pair (K = 16 test sequences)", ylabel="Test accuracy (%)",
+                      title="(a) Accuracy by pair slot", ylim=(0, 105), xticks=range(0, 16, 2))
+            ax[0].legend(loc="center right", bbox_to_anchor=(1.0, 0.5))
+            for n, c in [("linear_K16_mixed_s6304", "#d62728"), ("linear_K16_mixed_s6305", "#ff9896"),
+                         ("linear_K16_mixed_s6306", "#7f0000"), ("delta_K16_mixed_s6304", "#9467bd"),
+                         ("dense_K16_mixed_s6304", "#1f77b4")]:
+                if n in runs:
+                    tc = runs[n]["train_curve"]
+                    ax[1].plot([t["update"] for t in tc], [t["loss"] for t in tc], color=c,
+                               label=f"{MECH[n.split('_')[0]]} s{n[-4:]}")
+            ax[1].axhline(np.log(16), color="0.3", lw=0.8, ls="--")
+            ax[1].text(4500, np.log(16) + 0.1, "ln 16", ha="right", va="bottom", fontsize=7)
+            ax[1].set(xlabel="Optimizer update", ylabel="Training loss (nats)", title="(b) K = 16 mixed training", ylim=(0, 4.4))
+            ax[1].legend(loc="lower left")
+            save_fig(r, fig, "FD1_slot_accuracy_and_plateau")
+            made.append("FD1")
+        ci, ab = d.get("circuit", {}), d.get("ablation", {})
+        if ci and ab:
+            fig, ax = plt.subplots(1, 2, figsize=(5.5, 2.5), gridspec_kw={"width_ratios": [1, 1.5]})
+            for n, x in ci.items():
+                mech = n.split("_")[0]
+                ax[0].scatter(max(x["bind"][0]), 100 * tx.get(n, {}).get("acc", np.nan), s=10, color=DCOL[mech],
+                              label=MECH[mech])
+            h, l = ax[0].get_legend_handles_labels()
+            u = dict(zip(l, h))
+            ax[0].legend(u.values(), u.keys(), loc="lower right")
+            ax[0].set(xlabel="Best layer-1 binding weight", ylabel="Test accuracy (%)",
+                      title="(a) Binding head vs accuracy (42 runs)", xlim=(0, 1), ylim=(0, 105))
+            names = list(ab)
+            xs = np.arange(len(names))
+            none = [100 * ab[n]["none"]["acc"] for n in names]
+            worst1 = [100 * min(v["acc"] for k, v in ab[n].items() if k.startswith("L1H")) for n in names]
+            med1 = [100 * np.median([v["acc"] for k, v in ab[n].items() if k.startswith("L1H")]) for n in names]
+            all2 = [100 * ab[n]["L2_all"]["acc"] for n in names]
+            for off, vals, c, lab in [(-0.27, med1, "#2ca02c", "median layer-1 head"),
+                                      (0.0, worst1, "#d62728", "worst layer-1 head"), (0.27, all2, "#1f77b4", "all layer-2 heads")]:
+                ax[1].bar(xs + off, vals, 0.27, color=c, label=lab)
+            ax[1].axhline(100 / 16, color="0.5", lw=0.8, ls=":")
+            groups = defaultdict(list)
+            for i, n in enumerate(names):
+                groups[n.split("_")[0] + (" near" if n.startswith("dense_K16_near") else "")].append(i)
+            short = {"dense": "dense", "dense near": "d. near", "window": "window", "linear": "lin.", "delta": "delta"}
+            for gname, idx in groups.items():
+                ax[1].text(np.mean(idx), -0.16, short.get(gname, gname), transform=ax[1].get_xaxis_transform(),
+                           ha="center", va="top", fontsize=6)
+            ax[1].set_xticks(xs)
+            ax[1].set_xticklabels([n[-2:] for n in names], fontsize=6)
+            ax[1].set(ylabel="Test accuracy (%)", title="(b) Zero-ablation of heads (K = 16)", ylim=(0, 130), yticks=range(0, 101, 20))
+            ax[1].legend(loc="upper center", ncol=3, handlelength=1, columnspacing=0.8)
+            save_fig(r, fig, "FD2_circuit_and_ablation")
+            made.append("FD2")
+        rt, g = d.get("retrain", {}), d.get("gates", {})
+        if rt.get("arms") or g.get("delta"):
+            fig, ax = plt.subplots(1, 2, figsize=(5.5, 2.3))
+            if rt.get("arms"):
+                labs = []
+                for i, (arm, x) in enumerate(rt["arms"].items()):
+                    v = [100 * y["acc_reachable_d_le_63"] if x["mech"] in ("window", "dilated") else 100 * y["test_acc_all"]
+                         for y in x["runs"].values()]
+                    ax[0].scatter([i] * len(v), v, s=12, color=DCOL[x["mech"]], zorder=3)
+                    labs.append(arm.replace("_", " ").replace("extra seeds", "5 new seeds"))
+                base = {"window": "window_K16_mixed", "dilated": "dilated_K16_mixed", "linear": "linear_K16_mixed"}
+                for i, (arm, x) in enumerate(rt["arms"].items()):
+                    ns = [n for n in tx if n.startswith(base.get(x["mech"], "~"))]
+                    if ns and "near" not in arm:
+                        v = [100 * tx[n].get("acc_reachable_d_le_63", tx[n]["acc"]) for n in ns]
+                        ax[0].scatter([i + 0.2] * len(v), v, s=10, marker="x", color="0.4", zorder=3)
+                ax[0].set_xticks(range(len(labs)))
+                ax[0].set_xticklabels(labs, rotation=25, ha="right", fontsize=6)
+                ax[0].set(ylabel="Test accuracy (%)", title="(a) Retraining arms (x = main run)", ylim=(-3, 105))
+            if g.get("delta"):
+                modes = ["none", "fillers_as_pairs", "uniform", "one", "pairs_as_fillers"]
+                ml = ["learned", "fillers\nlike pairs", "uniform", "beta = 1", "pairs\nlike fillers"]
+                vals = np.array([[100 * x["acc"][m] for m in modes] for x in g["delta"].values()])
+                ax[1].bar(range(len(modes)), vals.mean(0), 0.6, color=DCOL["delta"])
+                for j in range(len(modes)):
+                    ax[1].scatter([j] * len(vals), vals[:, j], s=6, color="k", zorder=3)
+                ax[1].set_xticks(range(len(modes)))
+                ax[1].set_xticklabels(ml, fontsize=6)
+                ax[1].set(ylabel="Test accuracy (%)", title="(b) Delta rule: write-gate interventions", ylim=(0, 105))
+            save_fig(r, fig, "FD3_retraining_and_gates")
+            made.append("FD3")
+        if dc:
+            fig, ax = plt.subplots(1, 2, figsize=(5.5, 2.7), gridspec_kw={"width_ratios": [1.1, 1]})
+            arms = [a for a in dc["arms"] if a != "fp16"]
+            em = [100 * dc["arms"][a]["exact_match"] for a in arms]
+            ax[0].barh(range(len(arms)), em, color=["#1f77b4" if a == "k_channel" else "#d62728" if a == "k_token" else "0.55"
+                                                    for a in arms])
+            ax[0].set_yticks(range(len(arms)))
+            ax[0].set_yticklabels([DARMS[a] for a in arms], fontsize=6.5)
+            ax[0].invert_yaxis()
+            ax[0].set(xlabel="Exact match (%)", title="(a) Interventions on token-wise keys", xlim=(0, 105))
+            for a, c in [("k_channel", "#1f77b4"), ("k_token", "#d62728"), ("k_token_outlier8", "#2ca02c"),
+                         ("k_token_center", "#ff7f0e"), ("k_token_sink8", "#8c564b")]:
+                at = dc["arms"][a].get("attn_by_layer")
+                if at:
+                    ax[1].plot(range(len(at["kl"])), np.maximum(at["kl"], 1e-6), color=c, label=DARMS[a].replace("K token-wise, ", ""))
+            ax[1].set_yscale("log")
+            from matplotlib.ticker import MaxNLocator
+            ax[1].xaxis.set_major_locator(MaxNLocator(integer=True))
+            ax[1].set(xlabel="Layer", ylabel="Attention KL vs FP16 (nats)", title="(b) Attention distortion by layer")
+            ax[1].legend(fontsize=6, loc="best")
+            save_fig(r, fig, "FD4_tokenwise_key_mechanism")
+            made.append("FD4")
+    return ", ".join(made) or "no diagnostic figures"
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--results", default=str(RESULTS))
@@ -591,7 +917,7 @@ def main():
     r = R(Path(a.results), load_config(a.config))
     plt = setup_mpl()
     failed = []
-    for fn in (a_tables, a_bench, b_tables, b_figs, b_resources, c_tables):
+    for fn in (a_tables, a_bench, b_tables, b_figs, b_resources, c_tables, d_b_tables, d_c_tables, d_figs):
         try:
             msg = fn(r, plt)
             print(f"{fn.__name__}: {msg or 'ok'}")

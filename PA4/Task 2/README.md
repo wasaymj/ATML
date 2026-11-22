@@ -18,9 +18,13 @@ src/mqar_model.py         MQAR Transformer and attention mechanisms (masks, line
 src/part_b.py             training loop, evaluation, controls, theoretical costs, inference sweep
 src/kv_quant.py           KV group quantizer, layouts, byte formula, streaming quantized cache, bit packing
 src/part_c.py             prompt split, question votes, policies at the matched budget, validation (C1), benchmark (C5)
+src/diag_b.py             mechanism diagnostic, Part B (failure taxonomy, plateaus, circuit, ablation, gates, retraining)
+src/diag_c.py             mechanism diagnostic, Part C (interventions on token-wise INT4 keys, attention distortion)
 scripts/run_task2.py      CLI: part_a | part_b | part_c | report | status
-scripts/compile_task2_report.py   tables + figures + analysis JSON
+scripts/diagnose_task2.py CLI of the mechanism diagnostic: --part b | c (run after the main run)
+scripts/compile_task2_report.py   tables + figures + analysis JSON (incl. diagnostic tables D1-D9, figures FD1-FD4)
 notebooks/task2_kaggle_runner.ipynb   Kaggle driver (GPU 0: Part B; GPU 1: Parts A and C)
+notebooks/task2_diagnostics.ipynb     Kaggle driver of the diagnostic (GPU 0: Part B; GPU 1: Part C), ~45 min
 tests/test_units.py       CPU unit tests; tests/smoke_cpu.py: CPU end-to-end run of all parts on tiny settings
 results/                  machine-readable outputs (git-tracked)
 ```
@@ -45,6 +49,26 @@ MQAR training pools are cached in `_cache/` and final MQAR checkpoints written t
 the Kaggle notebook zips the checkpoints separately). Local checks: `python tests/test_units.py`,
 `python tests/smoke_cpu.py --work <dir>`.
 
+### Mechanism diagnostic (after the main run)
+A supplementary run that changes no main-run condition and reuses the main run's `results/` and the 42 MQAR
+checkpoints (on Kaggle: upload `task2_mqar_checkpoints.zip` as a dataset and add it as input to
+`notebooks/task2_diagnostics.ipynb`). Manually:
+```bash
+CUDA_VISIBLE_DEVICES=0 python scripts/diagnose_task2.py --part b --ckpt_dir checkpoints
+```
+```bash
+CUDA_VISIBLE_DEVICES=1 python scripts/diagnose_task2.py --part c
+```
+```bash
+python scripts/compile_task2_report.py
+```
+Part B: what wrong answers are, accuracy by pair slot, loss plateaus, attention binding/retrieval scores per head,
+zero-ablation of heads, delta-rule write-gate interventions, an ELU+1 filler control, pair-block relocation, and 17
+retraining runs (unreachable queries unsupervised, thinned near supervision, dilated on near data, five extra linear
+seeds; their checkpoints go to `checkpoints/diag/`). Part C: eleven variants of the token-wise INT4 key cache
+(outlier channels or sink tokens kept in FP16, channel mean removed, INT8, layer localisation, K-only/V-only) on all
+180 prompts, with per-layer attention distortion measured against fixed FP16 queries.
+
 ## Outputs
 | Path | Content |
 |---|---|
@@ -55,6 +79,8 @@ the Kaggle notebook zips the checkpoints separately). Local checks: `python test
 | `results/part_c/per_prompt.jsonl.gz` | every prompt × cache: answer, metrics, bytes, timings, memory |
 | `results/part_c/validation.json`, `prompts_meta.json`, `bench_packed.json`, `qualitative/` | C1 checks, encoded lengths and evidence tokens, C5 benchmark, selection masks of 6 fixed prompts |
 | `results/tables/`, `results/figures/`, `results/analysis/` | compiled tables, figures and statistics |
+| `results/diagnostics/part_b_diagnostic.json`, `retrain/runs/` | Part B mechanism diagnostic; retraining runs (same files as `part_b/runs`) |
+| `results/diagnostics/part_c_diagnostic.json`, `part_c_per_prompt.jsonl.gz` | Part C key-cache interventions: summary and every prompt × arm |
 
 ## Attribution
 * Online softmax / FlashAttention forward and backward recurrences from Dao et al. (2022) and Dao (2023);

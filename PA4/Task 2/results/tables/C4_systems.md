@@ -1,0 +1,10 @@
+| Cache | Context prefill ms | Question scoring ms | Compression ms | Suffix ms | Decode ms / token | Context cache MiB (serialized) | Decode-time cache beyond context MiB | Peak allocated GiB |
+|---|---|---|---|---|---|---|---|---|
+| FP16 full cache | 2512 | 0 | 0 | 51 | 39.2 | 107.3 | 1.06 | 3.39 |
+| Evict: sink+recent | 2512 | 0 | 30 | 40 | 33.7 | 30.7 | 1.06 | 3.09 |
+| Evict: question-aware | 2512 | 72 | 41 | 41 | 34.0 | 30.7 | 1.06 | 3.09 |
+| INT4 channel-K/token-V | 2512 | 0 | 75 | 50 | 39.2 | 30.7 | 0.37 | 3.29 |
+| INT4 token-wise K/V | 2512 | 0 | 74 | 50 | 45.7 | 30.7 | 0.51 | 3.30 |
+| Hybrid FP16 + INT2 | 2512 | 72 | 136 | 42 | 39.2 | 29.8 | 1.06 | 3.29 |
+
+Means over prompts. Quantized caches are fake-quantized (dequantized FP16 in GPU memory) before ordinary SDPA, so allocated memory is not reduced; eviction happens after a full prefill, so the prefill peak is unchanged (see prefill_peak_allocated in per_prompt.jsonl.gz).

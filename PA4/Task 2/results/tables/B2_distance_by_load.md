@@ -1,0 +1,46 @@
+| Mechanism | Train K | Train regime | Eval K | [0,32) | [32,64) | [64,128) | [128,256) |
+|---|---|---|---|---|---|---|---|
+| Delta-rule (B3) | 16 | mixed | 4 | 99.7 | 100.0 | 100.0 | 100.0 |
+| Delta-rule (B3) | 16 | mixed | 8 | 99.5 | 100.0 | 100.0 | 100.0 |
+| Delta-rule (B3) | 16 | mixed | 16 | 100.0 | 100.0 | 100.0 | 100.0 |
+| Dense | 16 | mixed | 4 | 99.7 | 100.0 | 100.0 | 100.0 |
+| Dense | 16 | mixed | 8 | 99.8 | 100.0 | 100.0 | 100.0 |
+| Dense | 16 | mixed | 16 | 100.0 | 100.0 | 100.0 | 100.0 |
+| Dense | 16 | near | 4 | 99.6 | 100.0 | 100.0 | 99.8 |
+| Dense | 16 | near | 8 | 99.8 | 100.0 | 100.0 | 99.9 |
+| Dense | 16 | near | 16 | 100.0 | 100.0 | 100.0 | 99.8 |
+| Dense | 4 | mixed | 4 | 100.0 | 100.0 | 100.0 | 100.0 |
+| Dense | 4 | mixed | 8 | 60.2 | 67.3 | 64.4 | 65.2 |
+| Dense | 4 | mixed | 16 | 12.0 | 39.4 | 32.4 | 33.9 |
+| Dense | 8 | mixed | 4 | 100.0 | 100.0 | 100.0 | 100.0 |
+| Dense | 8 | mixed | 8 | 100.0 | 100.0 | 100.0 | 100.0 |
+| Dense | 8 | mixed | 16 | 29.1 | 58.9 | 53.0 | 53.4 |
+| Local/dilated | 16 | mixed | 4 | 24.6 | 22.0 | 18.0 | 16.5 |
+| Local/dilated | 16 | mixed | 8 | 12.4 | 12.7 | 11.8 | 11.9 |
+| Local/dilated | 16 | mixed | 16 | 5.9 | 6.8 | 5.8 | 6.2 |
+| Local/dilated | 4 | mixed | 4 | 32.0 | 32.4 | 29.2 | 30.4 |
+| Local/dilated | 4 | mixed | 8 | 13.0 | 16.4 | 13.8 | 15.1 |
+| Local/dilated | 4 | mixed | 16 | 1.7 | 9.3 | 7.0 | 7.5 |
+| Linear (ELU+1) | 16 | mixed | 4 | 51.7 | 50.8 | 51.1 | 50.3 |
+| Linear (ELU+1) | 16 | mixed | 8 | 43.6 | 42.4 | 42.3 | 42.4 |
+| Linear (ELU+1) | 16 | mixed | 16 | 38.2 | 38.8 | 39.3 | 38.9 |
+| Linear (ELU+1) | 4 | mixed | 4 | 99.2 | 99.4 | 99.2 | 99.3 |
+| Linear (ELU+1) | 4 | mixed | 8 | 51.2 | 59.3 | 55.8 | 57.2 |
+| Linear (ELU+1) | 4 | mixed | 16 | 7.8 | 34.4 | 28.0 | 29.2 |
+| Linear (ELU+1) | 8 | mixed | 4 | 74.7 | 75.0 | 75.4 | 74.9 |
+| Linear (ELU+1) | 8 | mixed | 8 | 70.7 | 70.4 | 70.2 | 70.6 |
+| Linear (ELU+1) | 8 | mixed | 16 | 21.3 | 42.4 | 38.1 | 38.5 |
+| Window W=64 | 16 | mixed | 4 | 24.4 | 24.1 | 25.0 | 1.5 |
+| Window W=64 | 16 | mixed | 8 | 12.8 | 13.0 | 13.6 | 1.5 |
+| Window W=64 | 16 | mixed | 16 | 5.7 | 7.4 | 7.4 | 1.4 |
+| Window W=64 | 16 | near | 4 | 99.7 | 100.0 | 3.4 | 1.5 |
+| Window W=64 | 16 | near | 8 | 99.8 | 100.0 | 3.4 | 1.5 |
+| Window W=64 | 16 | near | 16 | 100.0 | 100.0 | 2.8 | 1.6 |
+| Window W=64 | 4 | near | 4 | 100.0 | 100.0 | 3.8 | 1.6 |
+| Window W=64 | 4 | near | 8 | 60.6 | 69.2 | 3.0 | 1.5 |
+| Window W=64 | 4 | near | 16 | 12.5 | 42.2 | 2.2 | 1.6 |
+| Window W=64 | 8 | near | 4 | 100.0 | 100.0 | 3.3 | 1.6 |
+| Window W=64 | 8 | near | 8 | 100.0 | 100.0 | 3.6 | 1.6 |
+| Window W=64 | 8 | near | 16 | 30.2 | 61.5 | 2.6 | 1.6 |
+
+Accuracy (%) by the recorded source-query distance (all regimes pooled) and evaluation K. For W = 64 two-layer models, distances > 126 are outside the receptive field by construction (an access limit, not a training failure).

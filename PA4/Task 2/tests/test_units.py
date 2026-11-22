@@ -130,6 +130,54 @@ def test_budget_sizes():
         assert nb <= budget and 72 + M + r + 64 * Gc == L
 
 
+def test_diag_relocation_and_supervision():
+    """Diagnostic transforms: the relocated K = 4 block keeps every key unique (checked inside shifted_k4) and the
+    answers/distances consistent; supervision masks only remove labels."""
+    import numpy as np
+    from src import diag_b as D, mqar_data as MD
+    from src.utils import load_config
+    cfg = load_config()
+    test = D.subsample(MD.load_frozen(cfg, "test"), 40)
+    for s in D.SHIFTS:
+        arr, qt = D.shifted_k4(test, s)
+        tok = arr["tokens"].astype(int)
+        for i, row in enumerate(arr["qpos"]):
+            for c, p in enumerate(row):
+                if p < 0:
+                    continue
+                key = tok[i, p]
+                kpos = np.nonzero(tok[i, :p] == key)[0]
+                assert len(kpos) == 1 and kpos[0] >= 2 * s and tok[i, kpos[0] + 1] == arr["answers"][i, c]
+        assert (qt["slot"] >= s).all() and (qt["slot"] <= s + 3).all() and (qt["distance"] >= 1).all()
+    pool = {k: test[k] for k in ("tokens", "qpos", "answers", "distances")}
+    reach = D.supervision(pool, "reach")
+    assert ((reach["qpos"] >= 0) <= (pool["qpos"] >= 0)).all()
+    assert (pool["distances"][reach["qpos"] >= 0] <= D.REACH).all()
+    thin = D.supervision(pool, "thin", keep_frac=0.25)
+    assert ((thin["qpos"] >= 0) <= (pool["qpos"] >= 0)).all()
+
+
+def test_diag_tokenwise_key_arms():
+    """Outlier arm: kept channels are exact; the remaining channels are quantized on a grid that ignores them."""
+    from src import diag_c as DC
+    torch.manual_seed(0)
+    k = torch.randn(1, 2, 130, 128, dtype=torch.float32)
+    k[..., 5] += 40.0                                          # one outlier channel per head
+    lq = 128
+    out = DC._outlier(k, lq, 2)
+    idx = DC.outlier_channels(k, lq, 2)
+    assert (idx == 5).any(-1).all()
+    assert torch.equal(out[:, :, :, 5], k[:, :, :, 5]) and torch.equal(out[:, :, lq:], k[:, :, lq:])
+    e_out = (out[..., 64:] - k[..., 64:]).abs().mean()
+    e_tok = (DC._token_k(k, lq)[..., :64] - k[..., :64]).abs().mean()
+    assert (out[..., :64] - k[..., :64]).abs().mean() < 0.5 * e_tok and e_out < 0.5 * e_tok * 10
+    c = DC._center(k, lq)
+    assert torch.equal(c[:, :, lq:], k[:, :, lq:])
+    for arm in DC.ARMS:
+        kv, extra = DC.arm_kv(arm, [(k.half(), k.half())])
+        assert kv[0][0].shape == k.shape and extra >= 0
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_"):

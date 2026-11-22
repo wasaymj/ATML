@@ -1,0 +1,109 @@
+{
+ "dense": {
+  "pairs_per_head": [
+   32896,
+   32896,
+   32896,
+   32896
+  ],
+  "pairs_per_layer": 131584,
+  "max_positions_per_query": [
+   256,
+   256,
+   256,
+   256
+  ],
+  "mean_positions_per_query": [
+   128.5,
+   128.5,
+   128.5,
+   128.5
+  ],
+  "max_lookback": [
+   255,
+   255,
+   255,
+   255
+  ],
+  "cache_positions_per_head_at_T": 256,
+  "kv_cache_bytes_per_layer_fp32": 262144
+ },
+ "window": {
+  "pairs_per_head": [
+   14368,
+   14368,
+   14368,
+   14368
+  ],
+  "pairs_per_layer": 57472,
+  "max_positions_per_query": [
+   64,
+   64,
+   64,
+   64
+  ],
+  "mean_positions_per_query": [
+   56.125,
+   56.125,
+   56.125,
+   56.125
+  ],
+  "max_lookback": [
+   63,
+   63,
+   63,
+   63
+  ],
+  "cache_positions_per_head_at_T": 64,
+  "kv_cache_bytes_per_layer_fp32": 65536,
+  "max_two_layer_span": 126,
+  "frac_distances_1_255_reachable_two_layers": 0.49411764705882355
+ },
+ "dilated": {
+  "pairs_per_head": [
+   14368,
+   14368,
+   8320,
+   8320
+  ],
+  "pairs_per_layer": 45376,
+  "max_positions_per_query": [
+   64,
+   64,
+   64,
+   64
+  ],
+  "mean_positions_per_query": [
+   56.125,
+   56.125,
+   32.5,
+   32.5
+  ],
+  "max_lookback": [
+   63,
+   63,
+   252,
+   252
+  ],
+  "cache_positions_per_head_at_T": [
+   64,
+   64,
+   253,
+   253
+  ],
+  "kv_cache_bytes_per_layer_fp32": 162304,
+  "max_two_layer_span": 504,
+  "frac_distances_1_255_reachable_two_layers": 1.0
+ },
+ "linear": {
+  "pairs_per_layer": "n/a (no pairwise scores in the recurrent form)",
+  "state_numbers_per_layer": 4224,
+  "state_bytes_per_layer_fp32": 16896,
+  "positions_per_query": "all previous (compressed into the state)"
+ },
+ "delta": {
+  "state_numbers_per_layer": 4224,
+  "state_bytes_per_layer_fp32": 16896,
+  "matches_linear_state": true
+ }
+}

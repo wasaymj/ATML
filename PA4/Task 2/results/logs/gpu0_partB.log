@@ -1,0 +1,308 @@
+[11:26:28] generating MQAR train pool K=4 mixed n=144000 with 4 processes
+[11:27:20] generating MQAR train pool K=4 near n=144000 with 4 processes
+[11:27:51] generating MQAR train pool K=8 mixed n=144000 with 4 processes
+[11:29:12] generating MQAR train pool K=8 near n=144000 with 4 processes
+[11:29:55] generating MQAR train pool K=16 mixed n=144000 with 4 processes
+[11:32:09] generating MQAR train pool K=16 near n=144000 with 4 processes
+/kaggle/working/ATML/PA4/Task 2/src/part_b.py:110: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  if not math.isfinite(float(loss)) or not math.isfinite(gn):
+[11:33:28] dense_K4_mixed_s6304 u=500 dev acc 0.107
+[11:33:38] dense_K4_mixed_s6304 u=1000 dev acc 0.481
+[11:33:48] dense_K4_mixed_s6304 u=1500 dev acc 0.498
+[11:33:58] dense_K4_mixed_s6304 u=2000 dev acc 0.500
+[11:34:18] dense_K4_mixed_s6304 u=3000 dev acc 0.500
+[11:34:48] dense_K4_mixed_s6304 u=4500 dev acc 0.508
+[11:35:08] dense_K4_mixed_s6304 test acc 0.5097 (1.5 min)
+[11:35:18] dense_K4_mixed_s6305 u=500 dev acc 0.109
+[11:35:29] dense_K4_mixed_s6305 u=1000 dev acc 0.498
+[11:35:39] dense_K4_mixed_s6305 u=1500 dev acc 0.523
+[11:35:50] dense_K4_mixed_s6305 u=2000 dev acc 0.525
+[11:36:10] dense_K4_mixed_s6305 u=3000 dev acc 0.535
+[11:36:40] dense_K4_mixed_s6305 u=4500 dev acc 0.533
+[11:37:01] dense_K4_mixed_s6305 test acc 0.5323 (1.5 min)
+[11:37:12] dense_K4_mixed_s6306 u=500 dev acc 0.108
+[11:37:23] dense_K4_mixed_s6306 u=1000 dev acc 0.473
+[11:37:33] dense_K4_mixed_s6306 u=1500 dev acc 0.487
+[11:37:44] dense_K4_mixed_s6306 u=2000 dev acc 0.492
+[11:38:04] dense_K4_mixed_s6306 u=3000 dev acc 0.504
+[11:38:35] dense_K4_mixed_s6306 u=4500 dev acc 0.506
+[11:38:56] dense_K4_mixed_s6306 test acc 0.5071 (1.6 min)
+[11:39:07] dense_K8_mixed_s6304 u=500 dev acc 0.109
+[11:39:17] dense_K8_mixed_s6304 u=1000 dev acc 0.712
+[11:39:28] dense_K8_mixed_s6304 u=1500 dev acc 0.729
+[11:39:38] dense_K8_mixed_s6304 u=2000 dev acc 0.727
+[11:39:59] dense_K8_mixed_s6304 u=3000 dev acc 0.727
+[11:40:30] dense_K8_mixed_s6304 u=4500 dev acc 0.731
+[11:40:50] dense_K8_mixed_s6304 test acc 0.7316 (1.6 min)
+[11:41:01] dense_K8_mixed_s6305 u=500 dev acc 0.108
+[11:41:11] dense_K8_mixed_s6305 u=1000 dev acc 0.204
+[11:41:22] dense_K8_mixed_s6305 u=1500 dev acc 0.723
+[11:41:33] dense_K8_mixed_s6305 u=2000 dev acc 0.725
+[11:41:53] dense_K8_mixed_s6305 u=3000 dev acc 0.725
+[11:42:24] dense_K8_mixed_s6305 u=4500 dev acc 0.723
+[11:42:44] dense_K8_mixed_s6305 test acc 0.7229 (1.6 min)
+[11:42:55] dense_K8_mixed_s6306 u=500 dev acc 0.108
+[11:43:06] dense_K8_mixed_s6306 u=1000 dev acc 0.705
+[11:43:16] dense_K8_mixed_s6306 u=1500 dev acc 0.725
+[11:43:27] dense_K8_mixed_s6306 u=2000 dev acc 0.726
+[11:43:47] dense_K8_mixed_s6306 u=3000 dev acc 0.727
+[11:44:18] dense_K8_mixed_s6306 u=4500 dev acc 0.728
+[11:44:38] dense_K8_mixed_s6306 test acc 0.7278 (1.6 min)
+[11:44:49] dense_K16_mixed_s6304 u=500 dev acc 0.104
+[11:45:00] dense_K16_mixed_s6304 u=1000 dev acc 0.108
+[11:45:11] dense_K16_mixed_s6304 u=1500 dev acc 0.991
+[11:45:21] dense_K16_mixed_s6304 u=2000 dev acc 0.999
+[11:45:42] dense_K16_mixed_s6304 u=3000 dev acc 0.999
+[11:46:12] dense_K16_mixed_s6304 u=4500 dev acc 1.000
+[11:46:33] dense_K16_mixed_s6304 test acc 0.9998 (1.6 min)
+[11:46:44] dense_K16_mixed_s6305 u=500 dev acc 0.106
+[11:46:54] dense_K16_mixed_s6305 u=1000 dev acc 0.107
+[11:47:05] dense_K16_mixed_s6305 u=1500 dev acc 0.813
+[11:47:15] dense_K16_mixed_s6305 u=2000 dev acc 0.999
+[11:47:36] dense_K16_mixed_s6305 u=3000 dev acc 1.000
+[11:48:06] dense_K16_mixed_s6305 u=4500 dev acc 1.000
+[11:48:27] dense_K16_mixed_s6305 test acc 0.9998 (1.6 min)
+[11:48:38] dense_K16_mixed_s6306 u=500 dev acc 0.107
+[11:48:48] dense_K16_mixed_s6306 u=1000 dev acc 0.107
+[11:48:59] dense_K16_mixed_s6306 u=1500 dev acc 0.114
+[11:49:09] dense_K16_mixed_s6306 u=2000 dev acc 0.999
+[11:49:30] dense_K16_mixed_s6306 u=3000 dev acc 1.000
+[11:50:01] dense_K16_mixed_s6306 u=4500 dev acc 1.000
+[11:50:21] dense_K16_mixed_s6306 test acc 0.9998 (1.6 min)
+[11:50:32] dense_K16_near_s6304 u=500 dev acc 0.104
+[11:50:42] dense_K16_near_s6304 u=1000 dev acc 0.995
+[11:50:53] dense_K16_near_s6304 u=1500 dev acc 0.997
+[11:51:03] dense_K16_near_s6304 u=2000 dev acc 0.999
+[11:51:23] dense_K16_near_s6304 u=3000 dev acc 0.999
+[11:51:53] dense_K16_near_s6304 u=4500 dev acc 0.999
+[11:52:14] dense_K16_near_s6304 test acc 0.9991 (1.5 min)
+[11:52:24] dense_K16_near_s6305 u=500 dev acc 0.098
+[11:52:35] dense_K16_near_s6305 u=1000 dev acc 0.997
+[11:52:45] dense_K16_near_s6305 u=1500 dev acc 0.998
+[11:52:56] dense_K16_near_s6305 u=2000 dev acc 0.999
+[11:53:16] dense_K16_near_s6305 u=3000 dev acc 1.000
+[11:53:46] dense_K16_near_s6305 u=4500 dev acc 0.999
+[11:54:07] dense_K16_near_s6305 test acc 0.9995 (1.5 min)
+[11:54:17] dense_K16_near_s6306 u=500 dev acc 0.099
+[11:54:28] dense_K16_near_s6306 u=1000 dev acc 0.994
+[11:54:38] dense_K16_near_s6306 u=1500 dev acc 0.996
+[11:54:48] dense_K16_near_s6306 u=2000 dev acc 0.998
+[11:55:08] dense_K16_near_s6306 u=3000 dev acc 0.999
+[11:55:39] dense_K16_near_s6306 u=4500 dev acc 0.999
+[11:55:59] dense_K16_near_s6306 test acc 0.9984 (1.5 min)
+[11:56:10] window_K4_near_s6304 u=500 dev acc 0.075
+[11:56:20] window_K4_near_s6304 u=1000 dev acc 0.214
+[11:56:31] window_K4_near_s6304 u=1500 dev acc 0.217
+[11:56:41] window_K4_near_s6304 u=2000 dev acc 0.219
+[11:57:01] window_K4_near_s6304 u=3000 dev acc 0.224
+[11:57:31] window_K4_near_s6304 u=4500 dev acc 0.222
+[11:57:33] window_K4_near_s6304 test acc 0.2222 (1.5 min)
+[11:57:43] window_K4_near_s6305 u=500 dev acc 0.065
+[11:57:53] window_K4_near_s6305 u=1000 dev acc 0.223
+[11:58:04] window_K4_near_s6305 u=1500 dev acc 0.225
+[11:58:14] window_K4_near_s6305 u=2000 dev acc 0.226
+[11:58:34] window_K4_near_s6305 u=3000 dev acc 0.230
+[11:59:04] window_K4_near_s6305 u=4500 dev acc 0.230
+[11:59:06] window_K4_near_s6305 test acc 0.2307 (1.5 min)
+[11:59:17] window_K4_near_s6306 u=500 dev acc 0.065
+[11:59:27] window_K4_near_s6306 u=1000 dev acc 0.212
+[11:59:37] window_K4_near_s6306 u=1500 dev acc 0.215
+[11:59:47] window_K4_near_s6306 u=2000 dev acc 0.216
+[12:00:08] window_K4_near_s6306 u=3000 dev acc 0.218
+[12:00:38] window_K4_near_s6306 u=4500 dev acc 0.219
+[12:00:40] window_K4_near_s6306 test acc 0.2204 (1.5 min)
+[12:00:50] window_K8_near_s6304 u=500 dev acc 0.066
+[12:01:01] window_K8_near_s6304 u=1000 dev acc 0.308
+[12:01:11] window_K8_near_s6304 u=1500 dev acc 0.309
+[12:01:21] window_K8_near_s6304 u=2000 dev acc 0.309
+[12:01:41] window_K8_near_s6304 u=3000 dev acc 0.309
+[12:02:11] window_K8_near_s6304 u=4500 dev acc 0.309
+[12:02:13] window_K8_near_s6304 test acc 0.3081 (1.5 min)
+[12:02:24] window_K8_near_s6305 u=500 dev acc 0.062
+[12:02:34] window_K8_near_s6305 u=1000 dev acc 0.306
+[12:02:44] window_K8_near_s6305 u=1500 dev acc 0.306
+[12:02:55] window_K8_near_s6305 u=2000 dev acc 0.307
+[12:03:15] window_K8_near_s6305 u=3000 dev acc 0.306
+[12:03:45] window_K8_near_s6305 u=4500 dev acc 0.307
+[12:03:47] window_K8_near_s6305 test acc 0.3080 (1.5 min)
+[12:03:57] window_K8_near_s6306 u=500 dev acc 0.064
+[12:04:07] window_K8_near_s6306 u=1000 dev acc 0.307
+[12:04:18] window_K8_near_s6306 u=1500 dev acc 0.309
+[12:04:28] window_K8_near_s6306 u=2000 dev acc 0.309
+[12:04:48] window_K8_near_s6306 u=3000 dev acc 0.309
+[12:05:18] window_K8_near_s6306 u=4500 dev acc 0.309
+[12:05:20] window_K8_near_s6306 test acc 0.3096 (1.5 min)
+[12:05:30] window_K16_near_s6304 u=500 dev acc 0.062
+[12:05:41] window_K16_near_s6304 u=1000 dev acc 0.417
+[12:05:51] window_K16_near_s6304 u=1500 dev acc 0.418
+[12:06:01] window_K16_near_s6304 u=2000 dev acc 0.417
+[12:06:21] window_K16_near_s6304 u=3000 dev acc 0.416
+[12:06:51] window_K16_near_s6304 u=4500 dev acc 0.416
+[12:06:53] window_K16_near_s6304 test acc 0.4159 (1.5 min)
+[12:07:04] window_K16_near_s6305 u=500 dev acc 0.063
+[12:07:14] window_K16_near_s6305 u=1000 dev acc 0.416
+[12:07:24] window_K16_near_s6305 u=1500 dev acc 0.416
+[12:07:35] window_K16_near_s6305 u=2000 dev acc 0.417
+[12:07:55] window_K16_near_s6305 u=3000 dev acc 0.416
+[12:08:25] window_K16_near_s6305 u=4500 dev acc 0.417
+[12:08:27] window_K16_near_s6305 test acc 0.4165 (1.5 min)
+[12:08:37] window_K16_near_s6306 u=500 dev acc 0.063
+[12:08:47] window_K16_near_s6306 u=1000 dev acc 0.416
+[12:08:58] window_K16_near_s6306 u=1500 dev acc 0.417
+[12:09:08] window_K16_near_s6306 u=2000 dev acc 0.416
+[12:09:28] window_K16_near_s6306 u=3000 dev acc 0.417
+[12:09:58] window_K16_near_s6306 u=4500 dev acc 0.417
+[12:10:00] window_K16_near_s6306 test acc 0.4164 (1.5 min)
+[12:10:11] window_K16_mixed_s6304 u=500 dev acc 0.016
+[12:10:21] window_K16_mixed_s6304 u=1000 dev acc 0.046
+[12:10:32] window_K16_mixed_s6304 u=1500 dev acc 0.063
+[12:10:42] window_K16_mixed_s6304 u=2000 dev acc 0.062
+[12:11:03] window_K16_mixed_s6304 u=3000 dev acc 0.063
+[12:11:33] window_K16_mixed_s6304 u=4500 dev acc 0.063
+[12:11:35] window_K16_mixed_s6304 test acc 0.0630 (1.5 min)
+[12:11:46] window_K16_mixed_s6305 u=500 dev acc 0.015
+[12:11:56] window_K16_mixed_s6305 u=1000 dev acc 0.043
+[12:12:07] window_K16_mixed_s6305 u=1500 dev acc 0.064
+[12:12:17] window_K16_mixed_s6305 u=2000 dev acc 0.063
+[12:12:37] window_K16_mixed_s6305 u=3000 dev acc 0.066
+[12:13:08] window_K16_mixed_s6305 u=4500 dev acc 0.064
+[12:13:10] window_K16_mixed_s6305 test acc 0.0634 (1.5 min)
+[12:13:20] window_K16_mixed_s6306 u=500 dev acc 0.016
+[12:13:31] window_K16_mixed_s6306 u=1000 dev acc 0.044
+[12:13:41] window_K16_mixed_s6306 u=1500 dev acc 0.063
+[12:13:52] window_K16_mixed_s6306 u=2000 dev acc 0.064
+[12:14:12] window_K16_mixed_s6306 u=3000 dev acc 0.064
+[12:14:43] window_K16_mixed_s6306 u=4500 dev acc 0.066
+[12:14:45] window_K16_mixed_s6306 test acc 0.0640 (1.5 min)
+[12:14:54] linear_K4_mixed_s6304 u=500 dev acc 0.108
+[12:15:04] linear_K4_mixed_s6304 u=1000 dev acc 0.109
+[12:15:13] linear_K4_mixed_s6304 u=1500 dev acc 0.109
+[12:15:23] linear_K4_mixed_s6304 u=2000 dev acc 0.127
+[12:15:41] linear_K4_mixed_s6304 u=3000 dev acc 0.458
+[12:16:08] linear_K4_mixed_s6304 u=4500 dev acc 0.469
+[12:16:10] linear_K4_mixed_s6304 test acc 0.4697 (1.4 min)
+[12:16:20] linear_K4_mixed_s6305 u=500 dev acc 0.108
+[12:16:29] linear_K4_mixed_s6305 u=1000 dev acc 0.107
+[12:16:39] linear_K4_mixed_s6305 u=1500 dev acc 0.108
+[12:16:48] linear_K4_mixed_s6305 u=2000 dev acc 0.129
+[12:17:06] linear_K4_mixed_s6305 u=3000 dev acc 0.455
+[12:17:34] linear_K4_mixed_s6305 u=4500 dev acc 0.466
+[12:17:36] linear_K4_mixed_s6305 test acc 0.4665 (1.4 min)
+[12:17:45] linear_K4_mixed_s6306 u=500 dev acc 0.105
+[12:17:55] linear_K4_mixed_s6306 u=1000 dev acc 0.107
+[12:18:04] linear_K4_mixed_s6306 u=1500 dev acc 0.107
+[12:18:13] linear_K4_mixed_s6306 u=2000 dev acc 0.122
+[12:18:32] linear_K4_mixed_s6306 u=3000 dev acc 0.451
+[12:18:59] linear_K4_mixed_s6306 u=4500 dev acc 0.459
+[12:19:01] linear_K4_mixed_s6306 test acc 0.4590 (1.4 min)
+[12:19:11] linear_K8_mixed_s6304 u=500 dev acc 0.016
+[12:19:20] linear_K8_mixed_s6304 u=1000 dev acc 0.109
+[12:19:30] linear_K8_mixed_s6304 u=1500 dev acc 0.111
+[12:19:39] linear_K8_mixed_s6304 u=2000 dev acc 0.123
+[12:19:58] linear_K8_mixed_s6304 u=3000 dev acc 0.727
+[12:20:25] linear_K8_mixed_s6304 u=4500 dev acc 0.732
+[12:20:27] linear_K8_mixed_s6304 test acc 0.7326 (1.4 min)
+[12:20:36] linear_K8_mixed_s6305 u=500 dev acc 0.017
+[12:20:46] linear_K8_mixed_s6305 u=1000 dev acc 0.108
+[12:20:55] linear_K8_mixed_s6305 u=1500 dev acc 0.110
+[12:21:05] linear_K8_mixed_s6305 u=2000 dev acc 0.107
+[12:21:23] linear_K8_mixed_s6305 u=3000 dev acc 0.110
+[12:21:51] linear_K8_mixed_s6305 u=4500 dev acc 0.109
+[12:21:53] linear_K8_mixed_s6305 test acc 0.1072 (1.4 min)
+[12:22:02] linear_K8_mixed_s6306 u=500 dev acc 0.016
+[12:22:12] linear_K8_mixed_s6306 u=1000 dev acc 0.107
+[12:22:21] linear_K8_mixed_s6306 u=1500 dev acc 0.108
+[12:22:31] linear_K8_mixed_s6306 u=2000 dev acc 0.108
+[12:22:49] linear_K8_mixed_s6306 u=3000 dev acc 0.680
+[12:23:17] linear_K8_mixed_s6306 u=4500 dev acc 0.731
+[12:23:18] linear_K8_mixed_s6306 test acc 0.7324 (1.4 min)
+[12:23:28] linear_K16_mixed_s6304 u=500 dev acc 0.016
+[12:23:38] linear_K16_mixed_s6304 u=1000 dev acc 0.106
+[12:23:47] linear_K16_mixed_s6304 u=1500 dev acc 0.109
+[12:23:57] linear_K16_mixed_s6304 u=2000 dev acc 0.109
+[12:24:16] linear_K16_mixed_s6304 u=3000 dev acc 0.110
+[12:24:43] linear_K16_mixed_s6304 u=4500 dev acc 0.141
+[12:24:45] linear_K16_mixed_s6304 test acc 0.1410 (1.4 min)
+[12:24:55] linear_K16_mixed_s6305 u=500 dev acc 0.015
+[12:25:04] linear_K16_mixed_s6305 u=1000 dev acc 0.109
+[12:25:14] linear_K16_mixed_s6305 u=1500 dev acc 0.109
+[12:25:23] linear_K16_mixed_s6305 u=2000 dev acc 0.109
+[12:25:42] linear_K16_mixed_s6305 u=3000 dev acc 0.696
+[12:26:10] linear_K16_mixed_s6305 u=4500 dev acc 0.998
+[12:26:12] linear_K16_mixed_s6305 test acc 0.9982 (1.4 min)
+[12:26:21] linear_K16_mixed_s6306 u=500 dev acc 0.016
+[12:26:31] linear_K16_mixed_s6306 u=1000 dev acc 0.107
+[12:26:40] linear_K16_mixed_s6306 u=1500 dev acc 0.107
+[12:26:50] linear_K16_mixed_s6306 u=2000 dev acc 0.107
+[12:27:09] linear_K16_mixed_s6306 u=3000 dev acc 0.110
+[12:27:37] linear_K16_mixed_s6306 u=4500 dev acc 0.111
+[12:27:38] linear_K16_mixed_s6306 test acc 0.1088 (1.4 min)
+[12:27:49] dilated_K4_mixed_s6304 u=500 dev acc 0.104
+[12:28:00] dilated_K4_mixed_s6304 u=1000 dev acc 0.110
+[12:28:10] dilated_K4_mixed_s6304 u=1500 dev acc 0.111
+[12:28:21] dilated_K4_mixed_s6304 u=2000 dev acc 0.111
+[12:28:41] dilated_K4_mixed_s6304 u=3000 dev acc 0.114
+[12:29:12] dilated_K4_mixed_s6304 u=4500 dev acc 0.128
+[12:29:14] dilated_K4_mixed_s6304 test acc 0.1274 (1.6 min)
+[12:29:24] dilated_K4_mixed_s6305 u=500 dev acc 0.097
+[12:29:35] dilated_K4_mixed_s6305 u=1000 dev acc 0.108
+[12:29:45] dilated_K4_mixed_s6305 u=1500 dev acc 0.108
+[12:29:56] dilated_K4_mixed_s6305 u=2000 dev acc 0.110
+[12:30:16] dilated_K4_mixed_s6305 u=3000 dev acc 0.113
+[12:30:46] dilated_K4_mixed_s6305 u=4500 dev acc 0.118
+[12:30:48] dilated_K4_mixed_s6305 test acc 0.1177 (1.5 min)
+[12:30:59] dilated_K4_mixed_s6306 u=500 dev acc 0.102
+[12:31:09] dilated_K4_mixed_s6306 u=1000 dev acc 0.109
+[12:31:20] dilated_K4_mixed_s6306 u=1500 dev acc 0.107
+[12:31:30] dilated_K4_mixed_s6306 u=2000 dev acc 0.111
+[12:31:51] dilated_K4_mixed_s6306 u=3000 dev acc 0.118
+[12:32:21] dilated_K4_mixed_s6306 u=4500 dev acc 0.143
+[12:32:23] dilated_K4_mixed_s6306 test acc 0.1416 (1.5 min)
+[12:32:34] dilated_K16_mixed_s6304 u=500 dev acc 0.017
+[12:32:44] dilated_K16_mixed_s6304 u=1000 dev acc 0.100
+[12:32:55] dilated_K16_mixed_s6304 u=1500 dev acc 0.103
+[12:33:05] dilated_K16_mixed_s6304 u=2000 dev acc 0.103
+[12:33:26] dilated_K16_mixed_s6304 u=3000 dev acc 0.104
+[12:33:56] dilated_K16_mixed_s6304 u=4500 dev acc 0.103
+[12:33:58] dilated_K16_mixed_s6304 test acc 0.1015 (1.5 min)
+[12:34:09] dilated_K16_mixed_s6305 u=500 dev acc 0.015
+[12:34:19] dilated_K16_mixed_s6305 u=1000 dev acc 0.101
+[12:34:30] dilated_K16_mixed_s6305 u=1500 dev acc 0.105
+[12:34:40] dilated_K16_mixed_s6305 u=2000 dev acc 0.106
+[12:35:01] dilated_K16_mixed_s6305 u=3000 dev acc 0.107
+[12:35:31] dilated_K16_mixed_s6305 u=4500 dev acc 0.100
+[12:35:33] dilated_K16_mixed_s6305 test acc 0.0986 (1.5 min)
+[12:35:44] dilated_K16_mixed_s6306 u=500 dev acc 0.016
+[12:35:54] dilated_K16_mixed_s6306 u=1000 dev acc 0.103
+[12:36:05] dilated_K16_mixed_s6306 u=1500 dev acc 0.105
+[12:36:15] dilated_K16_mixed_s6306 u=2000 dev acc 0.108
+[12:36:35] dilated_K16_mixed_s6306 u=3000 dev acc 0.104
+[12:37:06] dilated_K16_mixed_s6306 u=4500 dev acc 0.096
+[12:37:08] dilated_K16_mixed_s6306 test acc 0.0958 (1.5 min)
+[12:41:21] delta_K16_mixed_s6304 u=500 dev acc 0.106
+[12:45:32] delta_K16_mixed_s6304 u=1000 dev acc 0.947
+[12:49:42] delta_K16_mixed_s6304 u=1500 dev acc 0.999
+[12:53:52] delta_K16_mixed_s6304 u=2000 dev acc 1.000
+[13:02:12] delta_K16_mixed_s6304 u=3000 dev acc 1.000
+[13:14:41] delta_K16_mixed_s6304 u=4500 dev acc 1.000
+[13:14:45] delta_K16_mixed_s6304 test acc 0.9999 (37.5 min)
+[13:18:56] delta_K16_mixed_s6305 u=500 dev acc 0.105
+[13:23:05] delta_K16_mixed_s6305 u=1000 dev acc 0.319
+[13:27:13] delta_K16_mixed_s6305 u=1500 dev acc 0.994
+[13:31:21] delta_K16_mixed_s6305 u=2000 dev acc 0.998
+[13:39:38] delta_K16_mixed_s6305 u=3000 dev acc 0.998
+[13:51:42] delta_K16_mixed_s6305 u=4500 dev acc 0.999
+[13:51:45] delta_K16_mixed_s6305 test acc 0.9992 (36.9 min)
+[13:55:49] delta_K16_mixed_s6306 u=500 dev acc 0.108
+[13:59:47] delta_K16_mixed_s6306 u=1000 dev acc 0.888
+[14:03:46] delta_K16_mixed_s6306 u=1500 dev acc 0.998
+[14:07:44] delta_K16_mixed_s6306 u=2000 dev acc 0.999
+[14:15:33] delta_K16_mixed_s6306 u=3000 dev acc 1.000
+[14:27:37] delta_K16_mixed_s6306 u=4500 dev acc 1.000
+[14:27:40] delta_K16_mixed_s6306 test acc 1.0000 (35.8 min)
+[14:27:43] inference sweep T=256 done
+[14:27:49] inference sweep T=1024 done
+[14:28:09] inference sweep T=4096 done
+[14:29:05] inference sweep T=8192 done
+[14:29:05] step part_b finished
