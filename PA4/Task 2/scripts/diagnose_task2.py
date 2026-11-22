@@ -2,6 +2,7 @@
 
   python scripts/diagnose_task2.py --part b [--ckpt_dir checkpoints] [--steps taxonomy,...]   # MQAR, ~35 min on a T4
   python scripts/diagnose_task2.py --part c [--limit N]                                       # KV cache, ~35 min on a T4
+  python scripts/diagnose_task2.py --part b --steps followup [--arms a,b]   # follow-up retraining (no checkpoints needed)
 
 Part B (src/diag_b.py) reads the main run's results/part_b (predictions, training curves) and the 42 final MQAR
 checkpoints; it writes results/diagnostics/part_b_diagnostic.json and retraining runs under
@@ -19,6 +20,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from src.utils import RESULTS, TASK_DIR, env_record, load_config, log, save_json, set_seed  # noqa: E402
 
 B_STEPS = ["taxonomy", "dynamics", "relocation", "circuit", "ablation", "gates", "retrain"]
+FOLLOWUP = "followup"          # separate, checkpoint-free step (run on its own: --steps followup [--arms a,b])
 
 
 def main():
@@ -30,6 +32,7 @@ def main():
     ap.add_argument("--ckpt_dir", default=str(TASK_DIR / "checkpoints"))
     ap.add_argument("--cache_dir", default=str(TASK_DIR / "_cache"))
     ap.add_argument("--steps", default=",".join(B_STEPS), help="Part B steps (comma-separated)")
+    ap.add_argument("--arms", default=None, help="followup: comma-separated arm names (default: all)")
     ap.add_argument("--subsample", type=int, default=None, help="Part B: first N test sequences per cell (smoke)")
     ap.add_argument("--limit", type=int, default=None, help="Part C: first N prompts (smoke)")
     ap.add_argument("--max_new", type=int, default=12, help="Part C greedy cap (FP16 answers are 6 tokens)")
@@ -44,10 +47,13 @@ def main():
     if a.part == "b":
         from src import diag_b
         steps = [s for s in a.steps.split(",") if s]
-        bad = set(steps) - set(B_STEPS)
+        bad = set(steps) - set(B_STEPS) - {FOLLOWUP}
+        if FOLLOWUP in steps and steps != [FOLLOWUP]:
+            sys.exit("run --steps followup on its own")
         if bad:
             sys.exit(f"unknown steps {bad}")
-        diag_b.run(cfg, a.device, res, Path(a.ckpt_dir), Path(a.cache_dir), steps, a.subsample)
+        diag_b.run(cfg, a.device, res, Path(a.ckpt_dir), Path(a.cache_dir), steps, a.subsample,
+                   a.arms.split(",") if a.arms else None)
     else:
         from src import diag_c
         diag_c.run(cfg, a.device, res, limit=a.limit, max_new=a.max_new)

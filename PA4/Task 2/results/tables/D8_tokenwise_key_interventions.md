@@ -1,0 +1,16 @@
+| Context cache | Exact match % | Gold NLL (median) | Post-prefill KL | K rel. MSE | Extra FP16 MiB | Attention KL vs FP16 (mean layer) | Evidence mass | Token-0 mass |
+|---|---|---|---|---|---|---|---|---|
+| FP16 (reference) | 100.0 | 0.003 | - | 0.00e+00 | 0.00 | - | - | - |
+| K channel-wise INT4 (main) | 100.0 | 0.005 | 0.0024 | 1.74e-03 | 0.00 | 0.006 | 0.067 | 0.357 |
+| K token-wise INT4 (main) | 0.0 | 20.733 | 5.5908 | 1.72e-02 | 0.00 | 1.561 | 0.068 | 0.360 |
+| K token-wise, V FP16 | 0.0 | 19.986 | 5.3786 | 1.72e-02 | 0.00 | - | - | - |
+| K FP16, V token-wise INT4 | 100.0 | 0.004 | 0.0007 | 0.00e+00 | 0.00 | - | - | - |
+| K token-wise INT8 | 100.0 | 0.005 | 0.0016 | 5.71e-05 | 0.00 | 0.003 | 0.067 | 0.358 |
+| K token-wise, channel mean removed | 98.9 | 0.006 | 0.0296 | 4.20e-03 | 0.01 | 0.017 | 0.067 | 0.360 |
+| K token-wise, top-2 channels FP16 | 0.0 | 21.245 | 4.9853 | 8.71e-03 | 0.83 | 1.998 | 0.069 | 0.356 |
+| K token-wise, top-8 channels FP16 | 0.0 | 24.669 | 7.5987 | 4.61e-03 | 3.33 | 0.887 | 0.067 | 0.356 |
+| K token-wise, first 8 tokens FP16 | 0.0 | 21.728 | 5.8860 | 1.72e-02 | 0.11 | 1.548 | 0.068 | 0.354 |
+| K token-wise in layers 0-1 only | 0.0 | 21.851 | 6.1050 | 3.89e-03 | 0.00 | - | - | - |
+| K token-wise except layers 0-1 | 98.9 | 0.025 | 0.0575 | 1.50e-02 | 0.00 | - | - | - |
+
+180 prompts; only the context cache differs (suffix and generated tokens FP16; greedy cap 12 tokens, FP16 answers take 6). V is token-wise INT4 unless stated. Attention columns: FP16 suffix queries against the arm's context keys, mean over layers, heads and suffix positions (FP16: evidence mass 0.067, token-0 mass 0.357). Extra FP16 MiB: bytes the arm keeps beyond the INT4 layout (diagnostic arms are not budget-matched).

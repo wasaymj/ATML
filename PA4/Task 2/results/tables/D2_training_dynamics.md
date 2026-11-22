@@ -1,0 +1,46 @@
+| Model | Seed | ln K_train | Train loss @500 | @1000 | @2000 | @4500 | First update with train acc >= 50% | Share of updates clipped |
+|---|---|---|---|---|---|---|---|---|
+| Dense K4 mixed | 6304 | 1.39 | 1.99 | 0.02 | 0.00 | 0.000 | 800 | 0.20 |
+| Dense K4 mixed | 6305 | 1.39 | 1.96 | 0.05 | 0.00 | 0.000 | 900 | 0.21 |
+| Dense K4 mixed | 6306 | 1.39 | 1.98 | 0.02 | 0.00 | 0.000 | 800 | 0.20 |
+| Dense K8 mixed | 6304 | 2.08 | 2.99 | 0.45 | 0.00 | 0.000 | 950 | 0.06 |
+| Dense K8 mixed | 6305 | 2.08 | 2.97 | 2.37 | 0.00 | 0.000 | 1100 | 0.06 |
+| Dense K8 mixed | 6306 | 2.08 | 2.98 | 0.74 | 0.00 | 0.000 | 1000 | 0.06 |
+| Dense K16 mixed | 6304 | 2.77 | 3.88 | 3.50 | 0.00 | 0.000 | 1450 | 0.05 |
+| Dense K16 mixed | 6305 | 2.77 | 3.87 | 3.46 | 0.00 | 0.000 | 1550 | 0.05 |
+| Dense K16 mixed | 6306 | 2.77 | 3.79 | 3.38 | 0.02 | 0.000 | 1900 | 0.05 |
+| Dense K16 near | 6304 | 2.77 | 3.60 | 0.01 | 0.00 | 0.000 | 850 | 0.03 |
+| Dense K16 near | 6305 | 2.77 | 3.56 | 0.01 | 0.00 | 0.000 | 750 | 0.04 |
+| Dense K16 near | 6306 | 2.77 | 3.57 | 0.01 | 0.00 | 0.000 | 850 | 0.02 |
+| Window W=64 K4 near | 6304 | 1.39 | 1.77 | 0.00 | 0.00 | 0.000 | 550 | 0.15 |
+| Window W=64 K4 near | 6305 | 1.39 | 1.80 | 0.01 | 0.00 | 0.001 | 600 | 0.15 |
+| Window W=64 K4 near | 6306 | 1.39 | 1.82 | 0.01 | 0.00 | 0.000 | 650 | 0.16 |
+| Window W=64 K8 near | 6304 | 2.08 | 2.71 | 0.01 | 0.00 | 0.000 | 650 | 0.04 |
+| Window W=64 K8 near | 6305 | 2.08 | 2.71 | 0.00 | 0.00 | 0.000 | 650 | 0.04 |
+| Window W=64 K8 near | 6306 | 2.08 | 2.70 | 0.01 | 0.00 | 0.000 | 700 | 0.05 |
+| Window W=64 K16 near | 6304 | 2.77 | 3.44 | 0.01 | 0.00 | 0.000 | 800 | 0.03 |
+| Window W=64 K16 near | 6305 | 2.77 | 3.40 | 0.01 | 0.00 | 0.000 | 750 | 0.04 |
+| Window W=64 K16 near | 6306 | 2.77 | 3.40 | 0.00 | 0.00 | 0.000 | 700 | 0.03 |
+| Window W=64 K16 mixed | 6304 | 2.77 | 4.17 | 4.15 | 4.00 | 3.889 | never | 0.00 |
+| Window W=64 K16 mixed | 6305 | 2.77 | 4.17 | 4.15 | 4.00 | 3.899 | never | 0.00 |
+| Window W=64 K16 mixed | 6306 | 2.77 | 4.17 | 4.15 | 3.99 | 3.892 | never | 0.00 |
+| Linear (ELU+1) K4 mixed | 6304 | 1.39 | 2.93 | 1.61 | 1.45 | 0.020 | 2200 | 0.25 |
+| Linear (ELU+1) K4 mixed | 6305 | 1.39 | 2.63 | 1.61 | 1.45 | 0.027 | 2150 | 0.25 |
+| Linear (ELU+1) K4 mixed | 6306 | 1.39 | 2.90 | 1.62 | 1.46 | 0.019 | 2150 | 0.25 |
+| Linear (ELU+1) K8 mixed | 6304 | 2.08 | 4.17 | 2.53 | 2.19 | 0.011 | 2350 | 0.06 |
+| Linear (ELU+1) K8 mixed | 6305 | 2.08 | 4.17 | 2.42 | 2.18 | 2.124 | never | 0.00 |
+| Linear (ELU+1) K8 mixed | 6306 | 2.08 | 4.17 | 2.55 | 2.23 | 0.016 | 2900 | 0.05 |
+| Linear (ELU+1) K16 mixed | 6304 | 2.77 | 4.17 | 3.54 | 2.95 | 2.757 | never | 0.00 |
+| Linear (ELU+1) K16 mixed | 6305 | 2.77 | 4.17 | 3.45 | 2.98 | 0.011 | 3050 | 0.04 |
+| Linear (ELU+1) K16 mixed | 6306 | 2.77 | 4.17 | 3.55 | 2.97 | 2.812 | never | 0.00 |
+| Local/dilated K4 mixed | 6304 | 1.39 | 3.49 | 2.17 | 1.75 | 1.491 | never | 0.97 |
+| Local/dilated K4 mixed | 6305 | 1.39 | 3.72 | 2.18 | 1.75 | 1.509 | never | 0.97 |
+| Local/dilated K4 mixed | 6306 | 1.39 | 3.49 | 2.14 | 1.71 | 1.444 | never | 0.97 |
+| Local/dilated K16 mixed | 6304 | 2.77 | 4.17 | 3.93 | 3.61 | 3.293 | never | 0.00 |
+| Local/dilated K16 mixed | 6305 | 2.77 | 4.17 | 3.94 | 3.60 | 3.283 | never | 0.00 |
+| Local/dilated K16 mixed | 6306 | 2.77 | 4.17 | 3.95 | 3.61 | 3.253 | never | 0.00 |
+| Delta-rule (B3) K16 mixed | 6304 | 2.77 | 3.77 | 0.28 | 0.00 | 0.000 | 850 | 0.03 |
+| Delta-rule (B3) K16 mixed | 6305 | 2.77 | 3.90 | 2.77 | 0.01 | 0.001 | 1100 | 0.06 |
+| Delta-rule (B3) K16 mixed | 6306 | 2.77 | 3.74 | 0.60 | 0.00 | 0.000 | 900 | 0.03 |
+
+Running training loss (50-update windows). Cross-entropy of a uniform guess over the K_train values of the sequence = ln K_train; over all 64 values = ln 64 = 4.16. A run whose loss sits at ln K_train is copying a value of the sequence without binding it to its key.

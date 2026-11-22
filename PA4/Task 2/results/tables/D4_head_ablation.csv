@@ -1,0 +1,14 @@
+Model,Seed,Acc %,Worst single layer-1 head: acc %,Best binding head (D3),Median layer-1 head ablated: acc %,Worst single layer-2 head: acc %,All layer-1 heads: acc %,All layer-2 heads: acc %,All layer-1 heads: wrong but in-context %
+Dense K16 mixed,6304,100.0,H1: 40.6,H1,100.0,H1: 92.1,4.6,1.9,67.8
+Dense K16 mixed,6305,100.0,H3: 16.1,H3,100.0,H3: 77.5,5.7,1.8,83.4
+Dense K16 mixed,6306,100.0,H2: 13.0,H2,100.0,H1: 89.6,5.7,2.4,85.7
+Dense K16 near,6304,99.9,H3: 95.5,H3,99.2,H3: 91.8,5.0,1.9,71.7
+Dense K16 near,6305,99.9,H0: 84.3,H0,99.8,H3: 92.3,4.7,1.7,66.1
+Dense K16 near,6306,99.9,H0: 92.0,H0,99.4,H1: 92.3,4.6,1.9,63.4
+Window W=64 K16 near,6304,100.0,H0: 92.8,H0,99.9,H3: 95.0,7.6,2.4,88.6
+Window W=64 K16 near,6305,100.0,H3: 85.2,H3,100.0,H0: 93.7,8.2,2.3,90.6
+Window W=64 K16 near,6306,100.0,H1: 63.9,H1,100.0,H3: 90.8,7.9,2.6,90.3
+Linear (ELU+1) K16 mixed,6305,99.7,H0: 39.1,H0,96.2,H2: 96.8,5.8,4.5,88.0
+Delta-rule (B3) K16 mixed,6304,100.0,H1: 98.4,-,99.6,H3: 78.5,3.3,2.4,53.2
+Delta-rule (B3) K16 mixed,6305,100.0,H0: 69.5,-,99.8,H1: 73.9,2.7,2.7,40.5
+Delta-rule (B3) K16 mixed,6306,100.0,H1: 93.5,-,99.4,H3: 83.3,3.5,2.8,51.9

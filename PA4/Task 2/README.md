@@ -25,6 +25,7 @@ scripts/diagnose_task2.py CLI of the mechanism diagnostic: --part b | c (run aft
 scripts/compile_task2_report.py   tables + figures + analysis JSON (incl. diagnostic tables D1-D9, figures FD1-FD4)
 notebooks/task2_kaggle_runner.ipynb   Kaggle driver (GPU 0: Part B; GPU 1: Parts A and C)
 notebooks/task2_diagnostics.ipynb     Kaggle driver of the diagnostic (GPU 0: Part B; GPU 1: Part C), ~45 min
+notebooks/task2_followup.ipynb        Kaggle driver of the mixed-data follow-up (retraining only), ~35 min
 tests/test_units.py       CPU unit tests; tests/smoke_cpu.py: CPU end-to-end run of all parts on tiny settings
 results/                  machine-readable outputs (git-tracked)
 ```
@@ -62,6 +63,12 @@ CUDA_VISIBLE_DEVICES=1 python scripts/diagnose_task2.py --part c
 ```bash
 python scripts/compile_task2_report.py
 ```
+Follow-up (no checkpoints needed; Kaggle: `notebooks/task2_followup.ipynb`, ~35 min). It asks what in mixed data blocks
+window/dilated learning: near data with only 20.7% of its queries left in the input, mixed data with the far query
+tokens removed (removed queries become filler), and window-mixed with 3× the updates. Output: table D10, figure FD5.
+```bash
+python scripts/diagnose_task2.py --part b --steps followup
+```
 Part B: what wrong answers are, accuracy by pair slot, loss plateaus, attention binding/retrieval scores per head,
 zero-ablation of heads, delta-rule write-gate interventions, an ELU+1 filler control, pair-block relocation, and 17
 retraining runs (unreachable queries unsupervised, thinned near supervision, dilated on near data, five extra linear
@@ -80,6 +87,7 @@ seeds; their checkpoints go to `checkpoints/diag/`). Part C: eleven variants of 
 | `results/part_c/validation.json`, `prompts_meta.json`, `bench_packed.json`, `qualitative/` | C1 checks, encoded lengths and evidence tokens, C5 benchmark, selection masks of 6 fixed prompts |
 | `results/tables/`, `results/figures/`, `results/analysis/` | compiled tables, figures and statistics |
 | `results/diagnostics/part_b_diagnostic.json`, `retrain/runs/` | Part B mechanism diagnostic; retraining runs (same files as `part_b/runs`) |
+| `results/diagnostics/followup/<arm>.json`, `followup/runs/` | mixed-data follow-up arms (input statistics, per-seed accuracy, escape, loss curves) |
 | `results/diagnostics/part_c_diagnostic.json`, `part_c_per_prompt.jsonl.gz` | Part C key-cache interventions: summary and every prompt × arm |
 
 ## Attribution

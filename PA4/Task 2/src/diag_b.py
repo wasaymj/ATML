@@ -578,8 +578,123 @@ def retrain(cfg, device, out_dir: Path, cache_dir: Path, ckpt_root: Path, arms=N
     return summary
 
 
+# ----------------------------------------------------------------------------- 7. follow-up: why mixed data blocks
+# The first retraining arms showed that window/dilated attention fail on mixed data even when only the reachable
+# (d <= 63) queries are supervised, while near data with the same supervised count learns. Reachable queries sit at
+# the same positions and distances in both regimes (mean query position 56, distance 40); what differs is the INPUT
+# around them: in near sequences a reachable query has ~7.5 other query tokens in its 63-token window, in mixed
+# sequences ~1.6, and mixed sequences also carry ~12.7 far query tokens (d > 63). These arms edit the input itself
+# (removed queries become random filler and are unsupervised) to separate the candidate causes:
+#   *_near_sparse_input   near data with only 20.7 % of the queries left in the input (the mixed reachable share):
+#                         few other queries nearby, no far query tokens
+#   *_mixed_far_removed   mixed data with the far query tokens replaced by filler: the mixed reachable queries
+#                         (and their slot distribution) without far tokens
+#   window_mixed_long     the main window-mixed condition with 3x the update budget (LR schedule stretched): a
+#                         delayed or a blocked phase transition?
+FOLLOWUP_ARMS = {
+    # name: (mech, K, regime, input rule, update-budget multiplier)
+    "window_near_sparse_input": ("window", 16, "near", "sparse_input", None),
+    "window_mixed_far_removed": ("window", 16, "mixed", "far_removed", None),
+    "dilated_near_sparse_input": ("dilated", 16, "near", "sparse_input", None),
+    "dilated_mixed_far_removed": ("dilated", 16, "mixed", "far_removed", None),
+    "window_mixed_long": ("window", 16, "mixed", "all", 3),
+}
+
+
+def edit_inputs(pool, rule, keep_frac=None, seed=6304):
+    """Remove queries from the INPUT (token -> random filler 2..63) and from the supervision. 'all' leaves the pool
+    unchanged; 'sparse_input' keeps each query with probability keep_frac; 'far_removed' drops queries with d > 63."""
+    tok = pool["tokens"].copy()
+    q = pool["qpos"].astype(np.int64).copy()
+    rng = np.random.default_rng(seed)
+    if rule == "all":
+        drop = np.zeros(q.shape, bool)
+    elif rule == "sparse_input":
+        drop = (q >= 0) & (rng.random(q.shape) >= keep_frac)
+    elif rule == "far_removed":
+        drop = (q >= 0) & (pool["distances"] > REACH)
+    else:
+        raise ValueError(rule)
+    r, c = np.nonzero(drop)
+    tok[r, q[r, c]] = rng.integers(2, 64, size=len(r)).astype(tok.dtype)
+    q[drop] = -1
+    return {"tokens": tok, "qpos": q.astype(np.int16), "answers": pool["answers"], "distances": pool["distances"]}
+
+
+def input_stats(arr, n=4000) -> dict:
+    """Context of the supervised queries in the (edited) training input, first n sequences."""
+    q, d = arr["qpos"][:n].astype(np.int64), arr["distances"][:n]
+    others, far_tok, sup = [], [], []
+    for i in range(len(q)):
+        live = q[i][q[i] >= 0]
+        sup.append(len(live))
+        far_tok.append(int(((q[i] >= 0) & (d[i] > REACH)).sum()))
+        for j in np.nonzero((q[i] >= 0) & (d[i] <= REACH))[0]:
+            p = q[i, j]
+            others.append(int(((live >= p - REACH) & (live < p)).sum()))
+    return {"supervised_per_seq": float(np.mean(sup)), "far_query_tokens_per_seq": float(np.mean(far_tok)),
+            "other_queries_in_window_of_reachable": float(np.mean(others)) if others else None}
+
+
+def followup(cfg, device, out_dir: Path, cache_dir: Path, ckpt_root: Path, arms=None) -> dict:
+    import copy
+    pb0 = cfg["part_b"]
+    test, dev = MD.load_frozen(cfg, "test"), MD.load_frozen(cfg, "dev")
+    if pb0.get("eval_subsample"):
+        test, dev = subsample(test, pb0["eval_subsample"]), subsample(dev, pb0["eval_subsample"])
+    qt_test, qt_dev = MD.query_table(test), MD.query_table(dev)
+    test_t, dev_t = to_device(test, device), to_device(dev, device)
+    todo = [a for a in FOLLOWUP_ARMS if not arms or a in arms]
+    reach_frac = None
+    if any(FOLLOWUP_ARMS[a][3] == "sparse_input" for a in todo):      # the mixed reachable share, as in D7
+        mixed16 = MD.train_pool(cfg, 16, "mixed", pb0["batch"] * pb0["updates"], cache_dir)
+        m = mixed16["qpos"] >= 0
+        reach_frac = float((mixed16["distances"][m] <= REACH).mean())
+        del mixed16
+    out = {}
+    for arm, (mech, K, reg, rule, mult) in FOLLOWUP_ARMS.items():
+        if arms and arm not in arms:
+            continue
+        f = out_dir / f"{arm}.json"
+        if f.exists():
+            out[arm] = json.loads(f.read_text())
+            continue
+        c2 = copy.deepcopy(cfg)
+        pb = c2["part_b"]
+        if mult:                                       # longer budget: same recipe, LR decay stretched
+            pb["updates"] = mult * pb0["updates"]
+            pb["eval_at"] = sorted(set(pb["eval_at"]) | {k * pb0["updates"] // 2 for k in range(2, 2 * mult + 1)})
+        pool = MD.train_pool(c2, K, reg, pb["batch"] * pb["updates"], cache_dir)
+        arr = edit_inputs(pool, rule, keep_frac=reach_frac)
+        rec = {"mech": mech, "K": K, "regime": reg, "input_rule": rule, "updates": pb["updates"],
+               "keep_frac": reach_frac if rule == "sparse_input" else None, "input_stats": input_stats(arr), "runs": {}}
+        tl = to_device(arr, device)
+        del pool, arr
+        for seed in pb["seeds"]:
+            s = train_one(c2, mech, K, reg, seed, tl, dev_t, test_t, qt_dev, qt_test,
+                          out_dir / "runs" / f"{arm}_s{seed}", ckpt_root / arm, device)
+            tc = s["train_curve"]
+            cz = np.load(out_dir / "runs" / f"{arm}_s{seed}" / "test_predictions.npz")["correct"].astype(bool)
+            rec["runs"][str(seed)] = {"test_acc_all": s["test_acc_all"],
+                                      "acc_reachable_d_le_63": float(cz[qt_test["distance"] <= REACH].mean()),
+                                      "escape_update_acc50": next((c["update"] for c in tc if c["acc"] >= 0.5), None),
+                                      "final_train_loss": tc[-1]["loss"] if tc else None,
+                                      "loss_curve": [[c["update"], c["loss"]] for c in tc][::4],
+                                      "dev_curve": [{"update": c["update"], "dev_acc": c["dev_acc"]} for c in s["dev_curve"]]}
+        del tl
+        free_cuda()
+        from .utils import save_json
+        save_json(f, rec)
+        out[arm] = rec
+        log(f"followup {arm}: " + " ".join(f"{k}={v['acc_reachable_d_le_63']:.3f}@d<=63 esc={v['escape_update_acc50']}"
+                                           for k, v in rec["runs"].items()))
+    return out
+
+
 # ----------------------------------------------------------------------------- driver
-def run(cfg, device, res: Path, ckpt_dir: Path, cache_dir: Path, steps, subsample_n=None) -> dict:
+def run(cfg, device, res: Path, ckpt_dir: Path, cache_dir: Path, steps, subsample_n=None, arms=None) -> dict:
+    if steps == ["followup"]:          # checkpoint-free; one JSON per arm (two GPUs can run disjoint arms)
+        return followup(cfg, device, res / "diagnostics" / "followup", cache_dir, ckpt_dir / "diag", arms)
     out_f = res / "diagnostics" / "part_b_diagnostic.json"
     out = json.loads(out_f.read_text()) if out_f.exists() else {}
     test = MD.load_frozen(cfg, "test")

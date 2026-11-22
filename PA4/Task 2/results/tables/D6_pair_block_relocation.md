@@ -1,0 +1,19 @@
+| Model | Seeds (63xx) | slots 0-3 | slots 2-5 | slots 4-7 | slots 6-9 | slots 8-11 | slots 10-13 | slots 12-15 |
+|---|---|---|---|---|---|---|---|---|
+| Dense K4 mixed | 04/05/06 | 100.0 | 77.5 | 30.7 | 15.3 | 12.1 | 11.0 | 9.4 |
+| Dense K8 mixed | 04/05/06 | 100.0 | 92.7 | 93.3 | 56.8 | 16.3 | 10.6 | 9.0 |
+| Dense K16 mixed | 04/05/06 | 99.9 | 72.3 | 64.1 | 60.9 | 61.7 | 66.4 | 73.5 |
+| Dense K16 near | 04/05/06 | 99.8 | 76.7 | 70.7 | 69.8 | 69.2 | 73.3 | 78.2 |
+| Window W=64 K4 near | 04/05/06 | 100.0 | 79.4 | 34.3 | 18.5 | 15.3 | 14.0 | 12.6 |
+| Window W=64 K8 near | 04/05/06 | 100.0 | 94.4 | 95.3 | 62.6 | 21.1 | 14.1 | 11.9 |
+| Window W=64 K16 near | 04/05/06 | 99.9 | 77.3 | 71.0 | 70.1 | 69.6 | 74.9 | 80.2 |
+| Linear (ELU+1) K4 mixed | 04/05/06 | 99.3 | 68.3 | 34.5 | 29.7 | 26.1 | 24.8 | 22.9 |
+| Linear (ELU+1) K8 mixed | 04 | 99.9 | 98.3 | 98.3 | 72.2 | 33.7 | 14.6 | 6.8 |
+| Linear (ELU+1) K8 mixed | 05 | 25.0 | 25.0 | 25.4 | 25.1 | 25.2 | 25.0 | 25.2 |
+| Linear (ELU+1) K8 mixed | 06 | 99.8 | 97.1 | 96.9 | 71.0 | 30.9 | 15.5 | 11.5 |
+| Linear (ELU+1) K16 mixed | 04 | 27.3 | 26.3 | 25.5 | 25.2 | 25.6 | 25.7 | 25.7 |
+| Linear (ELU+1) K16 mixed | 05 | 99.9 | 96.7 | 94.1 | 90.6 | 86.4 | 87.1 | 84.2 |
+| Linear (ELU+1) K16 mixed | 06 | 24.9 | 25.1 | 25.1 | 25.0 | 25.2 | 25.1 | 25.0 |
+| Delta-rule (B3) K16 mixed | 04/05/06 | 99.9 | 100.0 | 100.0 | 100.0 | 100.0 | 100.0 | 100.0 |
+
+K = 4 test sequences with the block of 4 pairs moved from slots 0-3 to slots s..s+3 (positions before the block become filler; queries that would fall inside or before the block are dropped). The number of pairs stays 4; only where the block sits changes, and the layout leaves the training distribution (filler before the pairs). Window models: one-hop-reachable queries only.

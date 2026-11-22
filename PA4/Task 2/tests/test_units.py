@@ -157,6 +157,36 @@ def test_diag_relocation_and_supervision():
     assert ((thin["qpos"] >= 0) <= (pool["qpos"] >= 0)).all()
 
 
+def test_diag_followup_input_edits():
+    """Follow-up arms: removed queries vanish from the input (no key re-occurs after the pair block) and from the
+    supervision; kept queries and the pair block are untouched; the input statistics follow."""
+    import numpy as np
+    from src import diag_b as D, mqar_data as MD
+    from src.utils import load_config
+    cfg = load_config()
+    test = D.subsample(MD.load_frozen(cfg, "test"), 60)
+    pool = {k: test[k] for k in ("tokens", "qpos", "answers", "distances")}
+    for rule in ("all", "sparse_input", "far_removed"):
+        arr = D.edit_inputs(pool, rule, keep_frac=0.2)
+        tok, q0, q1 = arr["tokens"].astype(int), pool["qpos"].astype(int), arr["qpos"].astype(int)
+        assert ((q1 >= 0) <= (q0 >= 0)).all()
+        if rule == "all":
+            assert (tok == pool["tokens"]).all() and (q1 == q0).all()
+        if rule == "far_removed":
+            assert (pool["distances"][q1 >= 0] <= D.REACH).all()
+            assert ((q1 >= 0) == ((q0 >= 0) & (pool["distances"] <= D.REACH))).all()
+        for i in range(len(tok)):
+            k = int((q0[i] >= 0).sum())
+            assert (tok[i, :2 * k] == pool["tokens"][i, :2 * k]).all()           # pair block untouched
+            keys = set(tok[i, 0:2 * k:2].tolist())
+            live = set(q1[i][q1[i] >= 0].tolist())
+            for p in range(2 * k, tok.shape[1]):                                 # a key re-occurs only at live queries
+                assert (tok[i, p] in keys) == (p in live), (rule, i, p)
+        st = D.input_stats(arr)
+        assert abs(st["supervised_per_seq"] - (q1 >= 0).sum(1).mean()) < 1e-9
+    assert D.input_stats(D.edit_inputs(pool, "far_removed"))["far_query_tokens_per_seq"] == 0
+
+
 def test_diag_tokenwise_key_arms():
     """Outlier arm: kept channels are exact; the remaining channels are quantized on a grid that ignores them."""
     from src import diag_c as DC

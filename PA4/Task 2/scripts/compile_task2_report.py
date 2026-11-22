@@ -909,6 +909,63 @@ def d_figs(r, plt):
     return ", ".join(made) or "no diagnostic figures"
 
 
+FOLLOW_LAB = {"window_near_sparse_input": "window, near, 20.7% of queries in input",
+              "window_mixed_far_removed": "window, mixed, far query tokens removed",
+              "dilated_near_sparse_input": "dilated, near, 20.7% of queries in input",
+              "dilated_mixed_far_removed": "dilated, mixed, far query tokens removed",
+              "window_mixed_long": "window, mixed (main condition), 13,500 updates"}
+
+
+def d_followup(r, plt):
+    """D10 / FD5: follow-up retraining arms (what in mixed data blocks window/dilated learning)."""
+    fdir = r.res / "diagnostics" / "followup"
+    arms = {a: r.j("diagnostics", "followup", f"{a}.json") for a in FOLLOW_LAB} if fdir.exists() else {}
+    arms = {a: x for a, x in arms.items() if x}
+    if not arms:
+        return "no follow-up arms"
+    rows = []
+    for a, x in arms.items():
+        st, rn = x["input_stats"], x["runs"]
+        rows.append([FOLLOW_LAB[a], x["updates"], f3(st["supervised_per_seq"], 2),
+                     f3(st["other_queries_in_window_of_reachable"], 2), f3(st["far_query_tokens_per_seq"], 1),
+                     " / ".join(f3(100 * v["acc_reachable_d_le_63"], 1) for v in rn.values()),
+                     " / ".join(str(v["escape_update_acc50"] or "never") for v in rn.values())])
+    write_table(r, "D10_mixed_data_followup", ["Arm", "Updates", "Supervised queries / seq",
+                                               "Other queries in the window of a reachable query",
+                                               "Far query tokens / seq", "Acc % on d <= 63 per seed", "Escape update"], rows,
+                "Removed queries are replaced by random filler in the input and are unsupervised. Input statistics from "
+                "the first 4,000 training sequences. Earlier arms (D7), same statistics: window/dilated mixed with "
+                "reach-63 supervision 3.3 supervised / ~1.6 other queries / ~12.7 far tokens (never learned); window near "
+                "thinned 3.3 / ~7.5 / 0 (learned in 2 of 3 seeds). 13,500-update arm: same recipe with the linear LR "
+                "decay stretched over the longer budget.")
+    with _pa3(plt):
+        fig, ax = plt.subplots(1, 2, figsize=(5.5, 2.3), gridspec_kw={"width_ratios": [1.3, 1]})
+        short = {"window_near_sparse_input": "W near\nsparse", "window_mixed_far_removed": "W mixed\nfar removed",
+                 "dilated_near_sparse_input": "D near\nsparse", "dilated_mixed_far_removed": "D mixed\nfar removed"}
+        prev = ((r.j("diagnostics", "part_b_diagnostic.json") or {}).get("retrain") or {}).get("arms", {})
+        cols = [("D7: W near\nthinned", prev.get("window_near_thinned"), "0.6"),
+                ("D7: W mixed\nreach-63", prev.get("window_mixed_reach63"), "0.6")]
+        cols += [(short[a], arms[a], "#1f77b4" if a.startswith("window") else "#8c564b") for a in short if a in arms]
+        cols = [c for c in cols if c[1]]
+        for i, (lab, x, col) in enumerate(cols):
+            ys = [100 * v["acc_reachable_d_le_63"] for v in x["runs"].values()]
+            ax[0].scatter([i] * len(ys), ys, s=14, color=col, zorder=3)
+        ax[0].set_xticks(range(len(cols)))
+        ax[0].set_xticklabels([c[0] for c in cols], fontsize=5.5)
+        ax[0].set(ylabel="Accuracy on d <= 63 (%)", ylim=(-3, 105), title="(a) Input edits (3 seeds; grey = D7)")
+        if "window_mixed_long" in arms:
+            for s, v in arms["window_mixed_long"]["runs"].items():
+                c = np.array(v["loss_curve"])
+                if len(c):
+                    ax[1].plot(c[:, 0] / 1000, c[:, 1], label=f"seed {s}")
+            ax[1].axhline(np.log(16), color="0.5", ls=":", lw=0.8)
+            ax[1].axvline(arms["window_mixed_long"]["updates"] / 3000, color="0.5", ls="--", lw=0.8)   # main budget
+            ax[1].set(xlabel="Update (thousands)", ylabel="Training loss", title="(b) Window, mixed, 3x budget")
+            ax[1].legend(fontsize=6)
+        save_fig(r, fig, "FD5_mixed_data_followup")
+    return "ok"
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--results", default=str(RESULTS))
@@ -917,7 +974,7 @@ def main():
     r = R(Path(a.results), load_config(a.config))
     plt = setup_mpl()
     failed = []
-    for fn in (a_tables, a_bench, b_tables, b_figs, b_resources, c_tables, d_b_tables, d_c_tables, d_figs):
+    for fn in (a_tables, a_bench, b_tables, b_figs, b_resources, c_tables, d_b_tables, d_c_tables, d_figs, d_followup):
         try:
             msg = fn(r, plt)
             print(f"{fn.__name__}: {msg or 'ok'}")
