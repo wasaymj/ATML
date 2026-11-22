@@ -1,0 +1,180 @@
+{
+ "env": {
+  "python": "3.13.16 (main, Oct  1 2026, 15:40:24) [GCC 13.3.0]",
+  "platform": "Linux-6.18.55+-x86_64-with-glibc2.39",
+  "torch": "2.11.0+cu130",
+  "cuda_available": true,
+  "torch_cuda": "13.0",
+  "cudnn": 92700,
+  "git_commit": "d41fa080bff194be5c3b3eb0cb6d1f9896642e2a",
+  "time": "2026-11-21 20:46:51 UTC",
+  "transformers": "4.57.1",
+  "huggingface_hub": "0.36.2",
+  "datasets": "4.8.5",
+  "tokenizers": "0.22.2",
+  "safetensors": "0.8.0",
+  "numpy": "2.1.3",
+  "scipy": "1.16.3",
+  "accelerate": "1.15.0",
+  "gpu": {
+   "name": "Tesla T4",
+   "capability": "7.5",
+   "total_memory_bytes": 15636037632,
+   "visible_devices": "0",
+   "count": 1
+  },
+  "config_sha256": "66db6920e293e99d8b3e48865bf4aa02c3f6aa6749c9eda32bf080c32b2e800a"
+ },
+ "accounting": {
+  "n_eligible_matrices": 196,
+  "n_eligible_weights": 1310195712,
+  "n_other_unique_params": 233518592,
+  "other_fp16_bytes": 467037184,
+  "n_unique_params": 1543714304,
+  "tie_word_embeddings_config": true,
+  "lm_head_shares_embedding_storage": true,
+  "eligible_shapes": {
+   "q": [
+    1536,
+    1536
+   ],
+   "k": [
+    256,
+    1536
+   ],
+   "v": [
+    256,
+    1536
+   ],
+   "o": [
+    1536,
+    1536
+   ],
+   "gate": [
+    8960,
+    1536
+   ],
+   "up": [
+    8960,
+    1536
+   ],
+   "down": [
+    1536,
+    8960
+   ]
+  },
+  "n_blocks": 28
+ },
+ "checks": {
+  "enumeration_errors": [],
+  "calib_logits_finite": true,
+  "calib_logits_absmax": 32.0625,
+  "restore_ok": true,
+  "padding_invariance_max_abs_logprob_diff": 0.03601551055908203,
+  "quant_q_b2": {
+   "pack_roundtrip": true,
+   "dequant_equal": true,
+   "max_err_over_half_step": 1.000971794128418,
+   "rel_fro_err": 0.5105541944503784,
+   "clipped": 103,
+   "groups_range_excludes_zero": 0,
+   "groups": 18432
+  },
+  "quant_q_b3": {
+   "pack_roundtrip": true,
+   "dequant_equal": true,
+   "max_err_over_half_step": 1.0047574043273926,
+   "rel_fro_err": 0.21991375088691711,
+   "clipped": 90,
+   "groups_range_excludes_zero": 0,
+   "groups": 18432
+  },
+  "quant_q_b4": {
+   "pack_roundtrip": true,
+   "dequant_equal": true,
+   "max_err_over_half_step": 1.0099188089370728,
+   "rel_fro_err": 0.10281317681074142,
+   "clipped": 90,
+   "groups_range_excludes_zero": 0,
+   "groups": 18432
+  },
+  "quant_q_b8": {
+   "pack_roundtrip": true,
+   "dequant_equal": true,
+   "max_err_over_half_step": 1.178637146949768,
+   "rel_fro_err": 0.006056028418242931,
+   "clipped": 508,
+   "groups_range_excludes_zero": 0,
+   "groups": 18432
+  },
+  "quant_down_b2": {
+   "pack_roundtrip": true,
+   "dequant_equal": true,
+   "max_err_over_half_step": 1.000971794128418,
+   "rel_fro_err": 0.5253995060920715,
+   "clipped": 740,
+   "groups_range_excludes_zero": 0,
+   "groups": 107520
+  },
+  "quant_down_b3": {
+   "pack_roundtrip": true,
+   "dequant_equal": true,
+   "max_err_over_half_step": 1.0047574043273926,
+   "rel_fro_err": 0.22899624705314636,
+   "clipped": 625,
+   "groups_range_excludes_zero": 0,
+   "groups": 107520
+  },
+  "quant_down_b4": {
+   "pack_roundtrip": true,
+   "dequant_equal": true,
+   "max_err_over_half_step": 1.0094162225723267,
+   "rel_fro_err": 0.10702600330114365,
+   "clipped": 582,
+   "groups_range_excludes_zero": 0,
+   "groups": 107520
+  },
+  "quant_down_b8": {
+   "pack_roundtrip": true,
+   "dequant_equal": true,
+   "max_err_over_half_step": 1.261083722114563,
+   "rel_fro_err": 0.006299206987023354,
+   "clipped": 3099,
+   "groups_range_excludes_zero": 0,
+   "groups": 107520
+  },
+  "awq_fold_check": {
+   "bits_of_scales": 4,
+   "max_abs_logit_diff": 0.107421875,
+   "rel_l2": 0.0017985270824283361,
+   "mean_kl": 1.6182886611204594e-05,
+   "top1_agreement": 0.99755859375,
+   "quick": true
+  },
+  "wanda_50_exact_zeros": true,
+  "p3_exact_counts": true,
+  "p3_alloc_range": [
+   0.6313333333333332,
+   0.85
+  ],
+  "fisher_peak_bytes_plus_accumulator": 8323849216,
+  "gpu_total_bytes": 15636037632,
+  "c4_first4_ppl": 12.868794104788057,
+  "hellaswag_first16_acc_norm": 0.4375
+ },
+ "sdpa_backends": {
+  "model_attn_implementation": "sdpa",
+  "global_flags": {
+   "flash": true,
+   "mem_efficient": true,
+   "math": true
+  },
+  "FLASH_ATTENTION": "unsupported: RuntimeError: No available kernel. Aborting execution.",
+  "EFFICIENT_ATTENTION": "supported",
+  "CUDNN_ATTENTION": "unsupported: RuntimeError: No available kernel. Aborting execution.",
+  "MATH": "supported",
+  "expected_dispatch_unforced_causal_no_mask": "EFFICIENT_ATTENTION",
+  "note": "Unforced calls with an explicit mask (padded batches) cannot use FLASH; Task 1 batches are right-padded and run with is_causal and no mask."
+ },
+ "passed": true
+}

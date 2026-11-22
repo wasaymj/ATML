@@ -29,3 +29,7 @@ logs/
 
 # local CPU smoke-test workspace
 Task 1/_smoke/
+Task 2/_smoke/
+Task 2/_smoke.log
+Task 2/_cache/
+Task 2/checkpoints/

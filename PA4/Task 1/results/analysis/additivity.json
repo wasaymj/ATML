@@ -1,0 +1,37 @@
+[
+ {
+  "condition": "Q3 mixed (INT4 budget)",
+  "sum_isolated_kl": 0.053621565780608435,
+  "measured_kl": 0.05350005410888657
+ },
+ {
+  "condition": "Q3 mixed (INT3 budget)",
+  "sum_isolated_kl": 0.23047715478003528,
+  "measured_kl": 0.30007579508592935
+ },
+ {
+  "condition": "Q2 AWQ INT4",
+  "sum_isolated_kl": 0.05422309332950052,
+  "measured_kl": 0.054050326289029504
+ },
+ {
+  "condition": "Q2 AWQ INT3",
+  "sum_isolated_kl": 0.24351964774655466,
+  "measured_kl": 0.3134230603910472
+ },
+ {
+  "condition": "Q2 AWQ INT8",
+  "sum_isolated_kl": 0.0017447980308116194,
+  "measured_kl": 0.0002136911541668228
+ },
+ {
+  "condition": "P2 Wanda 50%",
+  "sum_isolated_kl": 0.279470703537246,
+  "measured_kl": 0.3072719086406282
+ },
+ {
+  "condition": "P2 Wanda 75%",
+  "sum_isolated_kl": 1.899351515109175,
+  "measured_kl": 4.763022051398768
+ }
+]

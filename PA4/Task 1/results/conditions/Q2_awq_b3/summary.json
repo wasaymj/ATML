@@ -1,0 +1,84 @@
+{
+ "name": "Q2_awq_b3",
+ "family": "Q2",
+ "method": "AWQ-style",
+ "bits": 3,
+ "dev": {
+  "N": 16352,
+  "mean_nll": 2.834159020246584,
+  "ppl": 17.016084099212417,
+  "n_windows": 32
+ },
+ "wikitext2": {
+  "N": 50000,
+  "mean_nll": 3.2461859793947534,
+  "ppl": 25.692162373932735,
+  "n_windows": 437
+ },
+ "c4val": {
+  "N": 50000,
+  "mean_nll": 3.0561387309770867,
+  "ppl": 21.24536451230911,
+  "n_windows": 177
+ },
+ "hellaswag": {
+  "n": 2000,
+  "acc": 0.442,
+  "acc_norm": 0.618,
+  "acc_first512": 0.41015625,
+  "acc_norm_first512": 0.54296875
+ },
+ "hellaswag_subset": "full_2000",
+ "storage": {
+  "eligible_bytes": 515966976,
+  "other_fp16_bytes": 467037184,
+  "total_bytes": 983004160,
+  "fp16_total_bytes": 3087428608,
+  "compression_vs_fp16_total": 3.140809300339075,
+  "effective_bits_per_eligible_weight": 3.15047268907563,
+  "representation": "packed b-bit codes + b-bit zero-points + FP16 scales per 128-column group",
+  "bytes_codes": 491323392,
+  "bytes_zeros": 4171776,
+  "bytes_scales": 20471808,
+  "serialized_file_bytes": 983246971,
+  "pack_unpack_mismatches": 0,
+  "nominal_bits_per_eligible_weight": 3.0,
+  "executed_as": "fake-quantized FP16 weights in dense FP16 GEMM (no low-bit kernel)"
+ },
+ "calibration": {
+  "kl": 0.3134230603910472,
+  "nll_ref": 2.6160565878313813,
+  "nll_cmp": 2.909115300486466,
+  "top1_agree": 0.7108763454011742,
+  "n_positions": 65408,
+  "drift_last_block": 0.10348816215991974
+ },
+ "timings_s": {
+  "compression_s": 4.25820596199992,
+  "calibration_measure_s": 55.15738910899972,
+  "eval_ppl_s": 30.182876957999724,
+  "eval_hellaswag_s": 124.08059749999984,
+  "latency_s": 43.20372571500002
+ },
+ "compression_peak_allocated_bytes": 3916066304,
+ "latency": {
+  "weights_allocated_bytes": 3098545664,
+  "unit": "ms",
+  "batch": 1,
+  "prefill_logits": "last position only",
+  "prefill_512": 138.18267059326172,
+  "prefill_2048": 860.5376281738281,
+  "decode_64": 2300.7198486328125
+ },
+ "config_sha256": "66db6920e293e99d8b3e48865bf4aa02c3f6aa6749c9eda32bf080c32b2e800a",
+ "model_revision": "8faed761d45a263340a0528343f099c05c9a4323",
+ "finished": "2026-11-21 21:32:55",
+ "bits_map": {
+  "uniform": 3
+ },
+ "quant_stats": {
+  "clipped": 8867,
+  "groups_range_excludes_zero": 0,
+  "groups": 10235904
+ }
+}

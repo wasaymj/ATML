@@ -1,0 +1,10 @@
+| Comparison | Quantity | Method | Reference | Difference | Check |
+|---|---|---|---|---|---|
+| P3 nonuni. 50% vs P2 Wanda 50% | zeroed eligible weights | 655,097,856 | 655,097,856 | 0 | OK |
+| P3 nonuni. 75% vs P2 Wanda 75% | zeroed eligible weights | 982,646,784 | 982,646,784 | 0 | OK |
+| Wanda 2:4 vs P2 Wanda 50% | zeroed eligible weights | 655,097,856 | 655,097,856 | 0 | OK |
+| P2 Wanda 50% vs P1 mag 50% | zeroed eligible weights | 655,097,856 | 655,097,856 | 0 | OK |
+| Q3 mixed (INT4 budget) vs Q2 AWQ INT4 | total packed bytes incl. metadata + FP16 rest | 1,147,040,256 | 1,147,724,800 | -684544 | OK |
+| Q3 mixed (INT3 budget) vs Q2 AWQ INT3 | total packed bytes incl. metadata + FP16 rest | 982,985,216 | 983,004,160 | -18944 | OK |
+| Q2 AWQ INT4 vs Q1 RTN INT4 | total packed bytes incl. metadata + FP16 rest | 1,147,724,800 | 1,147,724,800 | 0 | OK |
+| Q2 AWQ INT3 vs Q1 RTN INT3 | total packed bytes incl. metadata + FP16 rest | 983,004,160 | 983,004,160 | 0 | OK |

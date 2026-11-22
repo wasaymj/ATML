@@ -1,0 +1,133 @@
+{
+ "uniform|budget=INT4": {
+  "two_bit_units": [],
+  "eight_bit_units": [],
+  "sum_probe_kl_at_alloc": 0.05422309332950052,
+  "sum_probe_kl_two_bit": 0,
+  "dev_ppl": 13.106333110490343
+ },
+ "uniform|budget=INT3": {
+  "two_bit_units": [],
+  "eight_bit_units": [],
+  "sum_probe_kl_at_alloc": 0.24351964774655466,
+  "sum_probe_kl_two_bit": 0,
+  "dev_ppl": 17.016084099212417
+ },
+ "fisher_taylor|budget=INT4": {
+  "two_bit_units": [],
+  "eight_bit_units": [
+   "0.qkv",
+   "0.o"
+  ],
+  "sum_probe_kl_at_alloc": 0.053621565780608435,
+  "sum_probe_kl_two_bit": 0,
+  "dev_ppl": 13.08163771331958
+ },
+ "fisher_taylor|budget=INT3": {
+  "two_bit_units": [
+   "0.gateup",
+   "13.gateup",
+   "14.gateup",
+   "15.gateup"
+  ],
+  "eight_bit_units": [],
+  "sum_probe_kl_at_alloc": 0.23047715478003528,
+  "sum_probe_kl_two_bit": 0.042312331468508435,
+  "dev_ppl": 16.567221876681746
+ },
+ "probe_kl|budget=INT4": {
+  "two_bit_units": [],
+  "eight_bit_units": [
+   "0.qkv",
+   "0.o"
+  ],
+  "sum_probe_kl_at_alloc": 0.053621565780608435,
+  "sum_probe_kl_two_bit": 0,
+  "dev_ppl": 13.08163771331958
+ },
+ "probe_kl|budget=INT3": {
+  "two_bit_units": [
+   "0.gateup",
+   "13.gateup",
+   "14.gateup",
+   "15.gateup"
+  ],
+  "eight_bit_units": [],
+  "sum_probe_kl_at_alloc": 0.22658111527584923,
+  "sum_probe_kl_two_bit": 0.042312331468508435,
+  "dev_ppl": 16.614662204205796
+ },
+ "local_err|budget=INT4": {
+  "two_bit_units": [],
+  "eight_bit_units": [
+   "0.qkv",
+   "0.o",
+   "0.gateup",
+   "0.down",
+   "1.qkv",
+   "1.o",
+   "1.gateup",
+   "1.down",
+   "25.qkv",
+   "26.qkv",
+   "26.down",
+   "27.qkv",
+   "27.o",
+   "27.gateup",
+   "27.down"
+  ],
+  "sum_probe_kl_at_alloc": 0.09703779621892121,
+  "sum_probe_kl_two_bit": 0,
+  "dev_ppl": 13.717396316058286
+ },
+ "local_err|budget=INT3": {
+  "two_bit_units": [
+   "3.gateup",
+   "3.down",
+   "4.gateup",
+   "4.down",
+   "5.gateup",
+   "5.down",
+   "6.gateup",
+   "6.down",
+   "7.gateup",
+   "7.down",
+   "8.gateup",
+   "8.down",
+   "9.gateup",
+   "9.down",
+   "10.gateup",
+   "10.down",
+   "11.gateup",
+   "11.down",
+   "12.gateup",
+   "12.down",
+   "13.gateup",
+   "13.down",
+   "14.gateup",
+   "14.down",
+   "15.gateup",
+   "15.down",
+   "16.gateup",
+   "16.down",
+   "17.gateup",
+   "17.down",
+   "18.gateup"
+  ],
+  "eight_bit_units": [
+   "0.qkv",
+   "0.o",
+   "0.gateup",
+   "0.down",
+   "1.qkv",
+   "1.o",
+   "1.gateup",
+   "1.down",
+   "27.qkv",
+   "27.o"
+  ],
+  "sum_probe_kl_at_alloc": 0.4790889196781563,
+  "sum_probe_kl_two_bit": 0.3777746573498804,
+  "dev_ppl": 109.84627444586977
+ }
+}

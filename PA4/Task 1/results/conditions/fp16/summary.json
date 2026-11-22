@@ -1,0 +1,69 @@
+{
+ "name": "fp16",
+ "family": "baseline",
+ "method": "FP16",
+ "dev": {
+  "N": 16352,
+  "mean_nll": 2.5267618723859213,
+  "ppl": 12.51292202552103,
+  "n_windows": 32
+ },
+ "wikitext2": {
+  "N": 50000,
+  "mean_nll": 2.7792642274694312,
+  "ppl": 16.10716537723083,
+  "n_windows": 437
+ },
+ "c4val": {
+  "N": 50000,
+  "mean_nll": 2.7055174905555623,
+  "ppl": 14.96205741088038,
+  "n_windows": 177
+ },
+ "hellaswag": {
+  "n": 2000,
+  "acc": 0.504,
+  "acc_norm": 0.694,
+  "acc_first512": 0.462890625,
+  "acc_norm_first512": 0.58203125
+ },
+ "hellaswag_subset": "full_2000",
+ "storage": {
+  "eligible_bytes": 2620391424,
+  "other_fp16_bytes": 467037184,
+  "total_bytes": 3087428608,
+  "fp16_total_bytes": 3087428608,
+  "compression_vs_fp16_total": 1.0,
+  "effective_bits_per_eligible_weight": 16.0,
+  "representation": "dense FP16",
+  "nominal_bits_per_eligible_weight": 16
+ },
+ "calibration": {
+  "kl": 0.0,
+  "nll_ref": 2.6160565878313813,
+  "nll_cmp": 2.6160565878313813,
+  "top1_agree": 1.0,
+  "n_positions": 65408,
+  "drift_last_block": 0.0
+ },
+ "timings_s": {
+  "compression_s": 2.3945000009462092e-05,
+  "calibration_measure_s": 45.96589616099999,
+  "eval_ppl_s": 31.176802049999992,
+  "eval_hellaswag_s": 130.496731618,
+  "latency_s": 44.31123908200004
+ },
+ "compression_peak_allocated_bytes": 3087429120,
+ "latency": {
+  "weights_allocated_bytes": 3096997376,
+  "unit": "ms",
+  "batch": 1,
+  "prefill_logits": "last position only",
+  "prefill_512": 143.39226531982422,
+  "prefill_2048": 895.1971435546875,
+  "decode_64": 2349.4832763671875
+ },
+ "config_sha256": "66db6920e293e99d8b3e48865bf4aa02c3f6aa6749c9eda32bf080c32b2e800a",
+ "model_revision": "8faed761d45a263340a0528343f099c05c9a4323",
+ "finished": "2026-11-21 20:51:49"
+}

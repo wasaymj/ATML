@@ -1,0 +1,116 @@
+{
+ "name": "P3_s75",
+ "family": "P3",
+ "method": "wanda + block_influence allocation",
+ "target_sparsity": 0.75,
+ "selected": {
+  "measure": "block_influence",
+  "M": null,
+  "lam": 0.12,
+  "dev_nll": 5.16108176017532
+ },
+ "dev": {
+  "N": 16352,
+  "mean_nll": 5.16108176017532,
+  "ppl": 174.352961717961,
+  "n_windows": 32
+ },
+ "wikitext2": {
+  "N": 50000,
+  "mean_nll": 5.793366982161542,
+  "ppl": 328.1159270805755,
+  "n_windows": 437
+ },
+ "c4val": {
+  "N": 50000,
+  "mean_nll": 5.342842432312952,
+  "ppl": 209.1062366841727,
+  "n_windows": 177
+ },
+ "hellaswag": {
+  "n": 512,
+  "acc": 0.28515625,
+  "acc_norm": 0.359375,
+  "acc_first512": 0.28515625,
+  "acc_norm_first512": 0.359375
+ },
+ "hellaswag_subset": "first_512",
+ "storage": {
+  "eligible_bytes": 818872320,
+  "other_fp16_bytes": 467037184,
+  "total_bytes": 1285909504,
+  "fp16_total_bytes": 3087428608,
+  "compression_vs_fp16_total": 2.400968807210869,
+  "effective_bits_per_eligible_weight": 5.0,
+  "representation": "16-bit sparse: 1 mask bit per eligible weight + FP16 nonzeros (byte-padded per matrix)",
+  "dense_fp16_with_zeros_total_bytes": 3087428608,
+  "csr_int32_total_bytes": 2434912016,
+  "csr_int64_total_bytes": 3747688992,
+  "nm24_format_total_bytes": 1941007360,
+  "nnz": 327548928,
+  "achieved_sparsity_nonzero_based": 0.75,
+  "serialized_file_bytes": 1286130347,
+  "nominal_bits_per_eligible_weight": 16,
+  "executed_as": "dense FP16 GEMM with explicit zeros (no sparse kernel)"
+ },
+ "calibration": {
+  "kl": 2.5618314855019406,
+  "nll_ref": 2.6160565878313813,
+  "nll_cmp": 5.1180885337336885,
+  "top1_agree": 0.280149217221135,
+  "n_positions": 65408,
+  "drift_last_block": 0.48232579231262207
+ },
+ "timings_s": {
+  "compression_s": 35.53010713399999,
+  "calibration_measure_s": 52.71614413899988,
+  "eval_ppl_s": 28.797626714000216,
+  "eval_hellaswag_s": 17.250591099000303,
+  "latency_s": 41.96233025800029
+ },
+ "compression_peak_allocated_bytes": 4088646656,
+ "latency": {
+  "weights_allocated_bytes": 3105517056,
+  "unit": "ms",
+  "batch": 1,
+  "prefill_logits": "last position only",
+  "prefill_512": 131.2819366455078,
+  "prefill_2048": 849.9123229980469,
+  "decode_64": 2243.6920166015625
+ },
+ "config_sha256": "66db6920e293e99d8b3e48865bf4aa02c3f6aa6749c9eda32bf080c32b2e800a",
+ "model_revision": "8faed761d45a263340a0528343f099c05c9a4323",
+ "finished": "2026-11-21 22:01:03",
+ "achieved_sparsity": 0.75,
+ "zeros": 982646784,
+ "allocation": [
+  0.5276308806799748,
+  0.7427240305202362,
+  0.7450021059162617,
+  0.7498024278123773,
+  0.7498506968720713,
+  0.7535622543017707,
+  0.7517430651620788,
+  0.7543015403328077,
+  0.7575508942561278,
+  0.7604472682023538,
+  0.761245972939072,
+  0.7618552872703985,
+  0.765921022573042,
+  0.7652891939427935,
+  0.7673458428982629,
+  0.7676308806799748,
+  0.7676043733948867,
+  0.7653265590787259,
+  0.7639427743651823,
+  0.7595930916732032,
+  0.7623267514331556,
+  0.7593926744829371,
+  0.7628552999404508,
+  0.764557740307698,
+  0.7666274278987639,
+  0.7666228820375901,
+  0.7665231495292691,
+  0.7127239114985331
+ ]
+}

@@ -1,0 +1,11 @@
+| Proj | Score mass removed (50% unstr.) | ... (2:4) | ratio | Layer err (50% unstr.) | Layer err (2:4) | ratio |
+|---|---|---|---|---|---|---|
+| q | 0.1720 | 0.2180 | 1.27 | 5.61e-03 | 1.13e-02 | 2.01 |
+| k | 0.1594 | 0.2037 | 1.28 | 5.49e-03 | 1.15e-02 | 2.09 |
+| v | 0.1658 | 0.2116 | 1.28 | 2.67e-02 | 5.51e-02 | 2.07 |
+| o | 0.1738 | 0.2409 | 1.39 | 3.48e-02 | 8.29e-02 | 2.38 |
+| gate | 0.1803 | 0.2285 | 1.27 | 1.35e-02 | 2.91e-02 | 2.16 |
+| up | 0.1918 | 0.2421 | 1.26 | 4.53e-02 | 8.77e-02 | 1.94 |
+| down | 0.1811 | 0.2256 | 1.25 | 3.59e-02 | 6.06e-02 | 1.69 |
+
+Same sparsity and the same Wanda score; 2:4 must drop 2 of every 4 consecutive weights in a row, so it cannot keep clustered important weights. Score mass = removed share of sum |W_ij| ||X_j||.

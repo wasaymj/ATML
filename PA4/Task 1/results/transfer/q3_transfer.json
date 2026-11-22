@@ -1,0 +1,58 @@
+{
+ "uniform|budget=INT4": {
+  "dev_nll": 2.573095556934804,
+  "wikitext2_nll": 2.8587605152584956,
+  "wikitext2_ppl": 17.4398970481063,
+  "c4val_nll": 2.7676216590142255,
+  "c4val_ppl": 15.920724035743918
+ },
+ "uniform|budget=INT3": {
+  "dev_nll": 2.834159020246584,
+  "wikitext2_nll": 3.2461859793947534,
+  "wikitext2_ppl": 25.692162373932735,
+  "c4val_nll": 3.0561387309770867,
+  "c4val_ppl": 21.24536451230911
+ },
+ "fisher_taylor|budget=INT4": {
+  "dev_nll": 2.57120954563159,
+  "wikitext2_nll": 2.858039108975356,
+  "wikitext2_ppl": 17.42732033380429,
+  "c4val_nll": 2.7671982120446827,
+  "c4val_ppl": 15.913983880547915
+ },
+ "fisher_taylor|budget=INT3": {
+  "dev_nll": 2.807426157555905,
+  "wikitext2_nll": 3.198457863198627,
+  "wikitext2_ppl": 24.49472683593079,
+  "c4val_nll": 3.0387934340506835,
+  "c4val_ppl": 20.880034891265957
+ },
+ "probe_kl|budget=INT4": {
+  "dev_nll": 2.57120954563159,
+  "wikitext2_nll": 2.858039108975356,
+  "wikitext2_ppl": 17.42732033380429,
+  "c4val_nll": 2.7671982120446827,
+  "c4val_ppl": 15.913983880547915
+ },
+ "probe_kl|budget=INT3": {
+  "dev_nll": 2.810285570826836,
+  "wikitext2_nll": 3.222414231288758,
+  "wikitext2_ppl": 25.088616849268888,
+  "c4val_nll": 3.041350443987836,
+  "c4val_ppl": 20.933493666152867
+ },
+ "local_err|budget=INT4": {
+  "dev_nll": 2.618664831406538,
+  "wikitext2_nll": 2.9400604632746044,
+  "wikitext2_ppl": 18.916990060842036,
+  "c4val_nll": 2.827603083138828,
+  "c4val_ppl": 16.904892602520786
+ },
+ "local_err|budget=INT3": {
+  "dev_nll": 4.699081883333964,
+  "wikitext2_nll": 5.696873042022195,
+  "wikitext2_ppl": 297.9343147842412,
+  "c4val_nll": 5.066769339838736,
+  "c4val_ppl": 158.66091895580894
+ }
+}

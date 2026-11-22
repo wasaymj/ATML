@@ -1,0 +1,20 @@
+{
+  "repos": {
+    "c4": "allenai/c4",
+    "wikitext": "Salesforce/wikitext",
+    "hellaswag": "Rowan/hellaswag",
+    "gsm8k": "openai/gsm8k",
+    "model_base": "Qwen/Qwen2.5-1.5B",
+    "model_target": "Qwen/Qwen2.5-1.5B-Instruct",
+    "model_draft": "Qwen/Qwen2.5-0.5B-Instruct"
+  },
+  "revisions": {
+    "c4": "1588ec454efa1a09f29cd18ddd04fe05fc8653a2",
+    "wikitext": "b08601e04326c79dfdd32d625aee71d232d685c3",
+    "hellaswag": "218ec52e09a7e7462a5400043bb9a69a41d06b76",
+    "gsm8k": "740312add88f781978c0658806c59bc2815b9866",
+    "model_base": "8faed761d45a263340a0528343f099c05c9a4323",
+    "model_target": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+    "model_draft": "7ae557604adf67be50417f59c2c2f167def9a775"
+  }
+}

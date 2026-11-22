@@ -1,0 +1,10 @@
+{
+ "quant_stats": {
+  "clipped": 14971,
+  "groups_range_excludes_zero": 0,
+  "groups": 10235904
+ },
+ "bits_map": {
+  "uniform": 4
+ }
+}

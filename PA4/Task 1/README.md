@@ -36,6 +36,8 @@ src/
 scripts/run_task1.py        CLI: preflight | family_prune | family_quant | report | status | single steps
 scripts/compile_task1_report.py   tables (results/tables) + figures (results/figures) + analysis JSON
 notebooks/task1_kaggle_runner.ipynb   Kaggle driver (2 x T4, one version)
+scripts/diagnose_task1.py   supplementary mechanism diagnostic (after the main run; changes no condition)
+notebooks/task1_diagnostics.ipynb     Kaggle driver for the diagnostic (1 x T4, ~30 min)
 tests/test_units.py         CPU unit tests (quantizer, packing, masks, allocation, knapsack, AWQ folding)
 tests/smoke_cpu.py          CPU end-to-end run of every step on a tiny random Qwen2 with synthetic data
 results/                    machine-readable outputs (git-tracked)
@@ -67,6 +69,13 @@ python scripts/run_task1.py --step report
 running the same command again. Local checks without a GPU: `python tests/test_units.py` and
 `python tests/smoke_cpu.py --work <dir>`.
 
+Supplementary mechanism diagnostic (after the main run, once its `results/` are committed): import
+`notebooks/task1_diagnostics.ipynb` (one T4), or run `python scripts/diagnose_task1.py` then the report step. It
+reuses the saved AWQ scales and calibration tokens, recomputes nothing from the main run, selects nothing, and only
+adds `results/diagnostics/mechanism_diagnostic.json` plus tables T20-T23 and figure F13. Tables T16-T19 and figure F12
+(residual stream vs fragility, Q3 allocation anatomy, 2:4 vs unstructured) need no GPU: they are re-analyses of files
+the main run already saved.
+
 Order constraints enforced by the code: P3/Q3 held-out evaluation refuses to run until the development-set selection
 file (`results/sensitivity/{p3,q3}_selection.json`) exists; the post-hoc transfer step runs only after it.
 
@@ -84,6 +93,7 @@ file (`results/sensitivity/{p3,q3}_selection.json`) exists; the post-hoc transfe
 | `results/resources/` | kernel micro-benchmarks, SDPA backend table |
 | `results/env/`, `results/data_selection/` | environment, preflight, parameter accounting; selected IDs, token windows, revision lock |
 | `results/tables/`, `results/figures/`, `results/analysis/` | compiled tables, figures and statistics |
+| `results/diagnostics/` | supplementary mechanism diagnostic (dense residual map, weight difficulty, propagation traces, patching and protection tests) |
 
 ## Attribution
 * Wanda scoring and per-output comparison groups follow Sun et al. (2024) (Algorithm 1; block-sequential calibration as

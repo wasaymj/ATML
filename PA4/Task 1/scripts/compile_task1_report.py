@@ -575,6 +575,262 @@ def t_qualitative(r: R):
     save_json(r.ana / "continuations_aligned.json", cont)
 
 
+# ============================================================================ mechanism analyses (saved data)
+def _q3_unit_table(r: R):
+    """Per Q3 unit (block, AWQ group): 2-bit probe KL next to every local quantity that could explain it."""
+    q = r.j("sensitivity", "q3_sensitivity.json")
+    a = r.j("sensitivity", "awq_search.json")
+    p = r.j("sensitivity", "p3_sensitivity.json")
+    if not (q and a):
+        return None
+    L = len(a["table"])
+    act_key = {"qkv": "q", "o": "o", "gateup": "gate", "down": "down"}
+    rows = []
+    for l in range(L):
+        t = a["table"][str(l)]
+        for g in GROUPS:
+            u = f"{l}.{g}"
+            loss = t[g]["2"]["loss"]
+            rows.append({"unit": u, "block": l, "group": g, "probe_kl2": q["probe_kl"][u]["2"]["kl"],
+                         "probe_kl3": q["probe_kl"][u]["3"]["kl"], "loss2": loss, "ref_ms": t[g]["ref_ms"],
+                         "rel_out_err2": loss / max(t[g]["ref_ms"], 1e-30), "resid_ms": t["resid_ms"],
+                         "local_err2": q["local_err"][u]["2"], "fisher2": q["fisher_taylor"][u]["2"],
+                         "act_max_over_median": p["dense_act_norm"][f"{l}.{act_key[g]}"]["max_over_median"] if p else np.nan,
+                         "act_kurtosis": p["dense_act_norm"][f"{l}.{act_key[g]}"]["kurtosis"] if p else np.nan})
+    for x in rows:
+        x["kl_per_abs_err"] = x["probe_kl2"] / max(x["loss2"], 1e-30)       # amplification of absolute output error
+        x["kl_per_rel_err"] = x["probe_kl2"] / max(x["rel_out_err2"], 1e-30)
+    return rows
+
+
+def t_mech_residual(r: R):
+    """Where is the massive residual activation written and erased, and does it coincide with the fragile units?"""
+    p = r.j("sensitivity", "p3_sensitivity.json")
+    rows_u = _q3_unit_table(r)
+    if not (p and rows_u):
+        return "no sensitivity files"
+    L = len(p["resid_rms"])
+    U = {x["unit"]: x for x in rows_u}
+    p3 = p["probe_kl"]
+    rows, out = [], []
+    for l in range(L):
+        nxt_max = p["resid_max"][l + 1] if l + 1 < L else np.nan          # input of block l+1 = output of block l
+        rec = {"block": l, "resid_rms_in": p["resid_rms"][l], "resid_max_in": p["resid_max"][l], "resid_max_out": nxt_max,
+               "max_over_rms_in": p["resid_max"][l] / max(p["resid_rms"][l], 1e-30), "block_influence": p["block_influence"][l],
+               **{f"ref_ms_{g}": U[f"{l}.{g}"]["ref_ms"] for g in GROUPS},
+               **{f"q3_kl2_{g}": U[f"{l}.{g}"]["probe_kl2"] for g in GROUPS},
+               "p3_kl50": p3["0.5"][l]["kl"], "p3_kl75": p3["0.75"][l]["kl"]}
+        out.append(rec)
+        rows.append([l, f"{rec['resid_rms_in']:.2f}", f"{rec['resid_max_in']:.0f}", f"{nxt_max:.0f}" if np.isfinite(nxt_max) else "-",
+                     f"{rec['max_over_rms_in']:.0f}", f3(rec["block_influence"]),
+                     *[f"{rec[f'ref_ms_{g}']:.3g}" for g in GROUPS], *[f"{rec[f'q3_kl2_{g}']:.3g}" for g in GROUPS],
+                     f"{rec['p3_kl50']:.3g}", f"{rec['p3_kl75']:.3g}"])
+    write_table(r, "T16_residual_stream_and_fragility",
+                ["Block", "RMS(h_in)", "max|h_in|", "max|h_out|", "max/RMS in", "Block infl.",
+                 *[f"out MS {g}" for g in GROUPS], *[f"KL@2b {g}" for g in GROUPS], "P3 probe KL 50%", "P3 probe KL 75%"],
+                rows, "Dense FP16 statistics on the 128 calibration sequences (saved by the main run). max|h| = largest "
+                "absolute entry of the residual stream entering (in) / leaving (out) the block; out MS = mean square of the "
+                "group's module output (q/k/v -> attention output after o_proj for qkv and o; MLP output for gateup and down). "
+                "KL@2b = isolated 2-bit probe KL of that group; P3 probe KL = whole block pruned with Wanda at 50 / 75%.")
+    # correlations of fragility with each candidate explanation (over all 112 units / 28 blocks)
+    corr = {}
+    y = [x["probe_kl2"] for x in rows_u]
+    for k in ["loss2", "rel_out_err2", "local_err2", "fisher2", "ref_ms", "act_max_over_median", "act_kurtosis"]:
+        corr[f"probe_kl2~{k}"] = spearman([x[k] for x in rows_u], y)
+    corr["p3_kl50~block_influence"] = spearman([x["block_influence"] for x in out], [x["p3_kl50"] for x in out])
+    corr["p3_kl50~max_over_rms_in"] = spearman([x["max_over_rms_in"] for x in out], [x["p3_kl50"] for x in out])
+    save_json(r.ana / "mechanism_residual_stream.json", {"per_block": out, "per_unit": rows_u, "spearman": corr})
+    crow = [[k.split("~")[1], v["n"], f3(v["rho"]), f"{v['p']:.2g}" if v["p"] is not None else "-"] for k, v in corr.items()]
+    write_table(r, "T17_fragility_correlates", ["Candidate explanation of probe KL", "n", "Spearman rho", "p"], crow,
+                "Rows 1-7: over the 112 Q3 units, against the isolated 2-bit probe KL. loss2 = absolute MSE of the "
+                "group's output at 2 bits (AWQ search); rel_out_err2 = loss2 / output mean square; local_err2 = loss2 / "
+                "residual mean square (the Q3 local_err measure); act_* = outlier statistics of the input-channel norms. "
+                "Last two rows: over the 28 blocks, against the P3 50% block probe KL.")
+
+
+def t_mech_local_alloc(r: R):
+    """Why did the local-error allocation fail? Where it spent 2 bits, and what those units cost by probe KL."""
+    cand = r.j("sensitivity", "q3_candidates.json")
+    rows_u = _q3_unit_table(r)
+    tr = r.j("transfer", "q3_transfer.json") or {}
+    if not (cand and rows_u):
+        return "no q3 candidates"
+    U = {x["unit"]: x for x in rows_u}
+    q = r.j("sensitivity", "q3_sensitivity.json")
+    rows, out = [], {}
+    for cid, c in cand.items():
+        al = c["allocation"]
+        two = [u for u, b in al.items() if b == 2]
+        eight = [u for u, b in al.items() if b == 8]
+        kl_sum = sum(q["probe_kl"][u][str(b)]["kl"] for u, b in al.items())
+        kl_two = sum(q["probe_kl"][u]["2"]["kl"] for u in two)
+        blocks2 = sorted({U[u]["block"] for u in two})
+        mid = sum(1 for u in two if 3 <= U[u]["block"] <= 25)
+        out[cid] = {"two_bit_units": two, "eight_bit_units": eight, "sum_probe_kl_at_alloc": kl_sum,
+                    "sum_probe_kl_two_bit": kl_two, "dev_ppl": c["dev_ppl"]}
+        rows.append([cid.replace("|budget=", " @ "), len(two), mid, len(eight), ",".join(map(str, blocks2[:12])) + ("..." if len(blocks2) > 12 else ""),
+                     f"{kl_two:.3f}", f"{kl_sum:.3f}", f3(c["dev_ppl"]), f3(tr.get(cid, {}).get("wikitext2_ppl"))])
+    write_table(r, "T18_q3_allocation_anatomy", ["Candidate", "# units at 2b", "... in blocks 3-25", "# units at 8b",
+                                                 "Blocks holding 2-bit units", "Sum probe KL of 2-bit units",
+                                                 "Sum probe KL, whole allocation", "Dev ppl", "Wiki ppl (post-hoc)"], rows,
+                "Sum probe KL = sum of the isolated probe KLs of the units at their allocated widths (the additive "
+                "prediction of the damage). local_err normalises the output MSE by the residual-stream mean square, "
+                "which from block 3 on is dominated by the massive activation (T16), so mid-network units look cheap.")
+    # a direct test of the normalisation explanation: rank of mid-block units under each normaliser
+    save_json(r.ana / "q3_allocation_anatomy.json", out)
+
+
+def t_mech_nm(r: R):
+    """2:4 versus unstructured 50%: how much more Wanda-score mass the fixed pattern forces out."""
+    a = r.j("conditions", "P2_wanda_s50", "compress_info.json") if "P2_wanda_s50" in r.S else None
+    b = r.j("conditions", "P2_wanda24_s50", "compress_info.json") if "P2_wanda24_s50" in r.S else None
+    if not (a and b):
+        return "missing 2:4 or 50% Wanda"
+    ca = r.j("conditions", "P2_wanda_s50", "calibration.json")
+    cb = r.j("conditions", "P2_wanda24_s50", "calibration.json")
+    rows, out = [], {}
+    for k in PROJ:
+        ma = np.mean([v["score_mass_removed"] for kk, v in a["per_proj"].items() if kk.split(".")[1] == k])
+        mb = np.mean([v["score_mass_removed"] for kk, v in b["per_proj"].items() if kk.split(".")[1] == k])
+        ea = np.mean([v["rel_err"] for kk, v in ca["per_proj"].items() if kk.split(".")[1] == k])
+        eb = np.mean([v["rel_err"] for kk, v in cb["per_proj"].items() if kk.split(".")[1] == k])
+        out[k] = {"mass_unstructured": ma, "mass_24": mb, "err_unstructured": ea, "err_24": eb}
+        rows.append([k, f"{ma:.4f}", f"{mb:.4f}", f"{mb / ma:.2f}", f"{ea:.2e}", f"{eb:.2e}", f"{eb / ea:.2f}"])
+    write_table(r, "T19_nm_vs_unstructured", ["Proj", "Score mass removed (50% unstr.)", "... (2:4)", "ratio",
+                                              "Layer err (50% unstr.)", "Layer err (2:4)", "ratio"], rows,
+                "Same sparsity and the same Wanda score; 2:4 must drop 2 of every 4 consecutive weights in a row, so it "
+                "cannot keep clustered important weights. Score mass = removed share of sum |W_ij| ||X_j||.")
+    save_json(r.ana / "nm_vs_unstructured.json", out)
+
+
+def t_diagnostics(r: R):
+    """Tables from scripts/diagnose_task1.py (supplementary mechanism diagnostic)."""
+    d = r.j("diagnostics", "mechanism_diagnostic.json")
+    if not d:
+        return "no diagnostics/mechanism_diagnostic.json (run scripts/diagnose_task1.py)"
+    n = d["meta"]["n_seq"]
+    B = d["dense"]["boundaries"]
+    a0 = d["dense"]["attn_mass_on_token0"]["per_layer_mean"]
+    W = {w["block"]: w for w in d["dense"]["writers"]}
+    rows = []
+    for x in B:
+        l = x["boundary"]
+        w = W.get(l)
+        rows.append([l, f"{x['max_over_rms']:.0f}", x["n_massive"], f3(x["massive_frac_at_pos0"], 2),
+                     ",".join(map(str, list(x["massive_channels"])[:4])) or "-", f3(x["massive_share_of_sq_norm"], 3),
+                     f"{x['tok0_norm_over_rest']:.1f}", f3(a0[l], 3),
+                     f3(w["mlp_share_of_increment"], 2) if w else "-"])
+    write_table(r, "T20_massive_activations", ["Boundary (input of block)", "max/RMS", "# massive entries",
+                                               "share at token 0", "channels", "share of ||h||^2", "||h_0|| / mean ||h_t>0||",
+                                               "attn mass on token 0 (block)", "MLP share of block's write (to next)"], rows,
+                f"Dense FP16, first {n} calibration sequences, eager attention. Massive = |h| > {d['meta']['massive_ratio']:.0f} x "
+                "RMS of the boundary. Attention mass = mean over heads and queries t >= 1 of the weight on key 0 in that "
+                "block. Last column: share of the increment h_(l+1) - h_l at the next boundary's massive entries written "
+                f"by the MLP of block l (rest: attention). Sanity: dense vs dense KL = {d['dense']['dense_vs_dense_kl']:.1e}.")
+    wd = d["weight_difficulty"]
+    tr, pt = d.get("trace", {}), d.get("patch", {})
+    rows = []
+    for u, t in tr.items():
+        w = wd.get(u, {}).get("2")
+        p = pt.get(u) or {}
+        def g3(x, fmt):
+            return "-" if x is None else format(x, fmt)
+
+        def kl(k):
+            return f"{p[k]['kl']:.3g}" if k in p else "-"
+        L = len(t["drift"])
+        last = L - 1
+        rows.append([u, f"{t['kl']:.3g}", f3(t["saved_probe_kl_128seq_sdpa"], 4), g3(w and w["weight_rel_err"], ".3f"),
+                     g3(w and w["act_weighted_rel_err"], ".3f"), g3(t["own_rel_err"], ".3g"), g3(t["own_err_share_at_pos0"], ".2f"),
+                     f"{t['drift'][last]:.3g}", f"{t['drift_excl_massive'][last]:.3g}",
+                     f"{max(abs(x) for x in t['attn0_change']):.3f}",
+                     p.get("boundary", "-"), kl("token0"), kl("all_but_token0"), p.get("massive_boundary", "-"),
+                     kl("massive_entries"), kl("random_entries_same_count")])
+    if rows:
+        write_table(r, "T21_propagation_and_patching",
+                    ["Unit @2b", "KL", "saved probe KL", "weight rel. err", "act-weighted rel. err", "own sublayer rel. err",
+                     "own err share at token 0", "drift entering last block", "... excl. massive", "max |d attn to token 0|",
+                     "patch boundary", "KL, token 0 restored", "KL, all but token 0 restored", "massive boundary",
+                     "KL, massive entries restored", "KL, random entries restored"], rows,
+                    "One unit at 2 bits (AWQ scales of the main run), or one whole block pruned with Wanda (l.p75 = "
+                    "the P3 block probe), everything else FP16. Saved probe KL = the main run's value (128 sequences, "
+                    "SDPA; this run: first 32, eager). Restored = activation patching "
+                    "at the boundary right after the unit (massive / random: at the first boundary holding massive entries): "
+                    "those residual entries are set back to their dense values and the rest of the network runs on. If "
+                    "restoring token 0 removes most of the KL, the damage travels through the first token's state; if "
+                    "restoring only the massive entries does, it travels through the massive activation specifically.")
+    rows = []
+    for u, p in d.get("protect", {}).items():
+        rnd = [x["kl"] for x in p["random_input_channels"]]
+        rn = [x["kl"] for x in p.get("random_neurons", [])]
+        rows.append([u, f"{p['none']['kl']:.3g}", f"{p['top_input_channels']['kl']:.3g}",
+                     f"{p['top_input_channels_requant']['kl']:.3g}" if "top_input_channels_requant" in p else "-",
+                     f"{np.mean(rnd):.3g} +/- {np.std(rnd):.2g}",
+                     f"{p['top_token0_neurons']['kl']:.3g}" if "top_token0_neurons" in p else "-",
+                     f"{np.mean(rn):.3g}" if rn else "-"])
+    if rows:
+        write_table(r, "T22_weight_protection", ["Unit @2b", "KL, nothing kept", f"KL, top-{d['meta']['k']} input channels FP16",
+                                                 "... also removed from group ranges",
+                                                 "... random channels (mean +/- sd)", f"KL, top-{d['meta']['k']} token-0 neurons FP16",
+                                                 "... random neurons"], rows,
+                    "Causal test of where the damage enters: the same unit at 2 bits, with k input channels (largest dense "
+                    "input norm) or k MLP neurons (largest |activation| at token 0; gate/up rows or down columns) kept in "
+                    "FP16 (third column: the kept channels are also left out when the quantizer sets each group's range, "
+                    "which tests whether those outliers coarsen the grid of the other weights), compared with "
+                    f"{d['meta']['n_random']} random draws of the same size. Diagnostic only, not a method.")
+    rows = []
+    for u, w in wd.items():
+        rows.append([u, *[f"{w[str(b)]['weight_rel_err']:.3f}" for b in (2, 3, 4)], f"{w['2']['act_weighted_rel_err']:.3f}",
+                     f"{w['2']['share_of_act_err_on_top8_channels']:.2f}", f"{w['group_range_over_std_mean']:.2f}",
+                     f"{w['input_norm_max_over_median']:.1f}"])
+    write_table(r, "T23_weight_difficulty", ["Unit", "weight rel. err 2b", "3b", "4b", "act-weighted rel. err 2b",
+                                             "share on top-8 channels", "group range / std", "input norm max/median"], rows,
+                "Local difficulty of each Q3 unit with its AWQ scales: ||W_hat - W||^2 / ||W||^2, the same weighted by "
+                "dense input-channel energy (diagonal prediction of relative output error), and the spread of the scaled "
+                "weights inside 128-groups (larger = coarser grid for the bulk of weights).")
+
+
+def f_diagnostics(r: R, plt):
+    d = r.j("diagnostics", "mechanism_diagnostic.json")
+    if not d or not d.get("trace"):
+        return
+    fig, ax = plt.subplots(1, 3, figsize=(14, 3.6))
+    for u, t in d["trace"].items():
+        x = range(len(t["drift"]))
+        ax[0].plot(x, t["drift_excl_massive"], marker=".", label=u)
+        mr = [np.nan if v is None else v for v in t["massive_rel_change"]]
+        ax[1].plot(x, mr, marker=".", label=u)
+        ax[2].plot(x, t["attn0_change"], marker=".", label=u)
+    ax[0].set(yscale="log", xlabel="Boundary", title="Drift vs FP16, massive entries excluded")
+    ax[1].set(yscale="log", xlabel="Boundary", title="Relative change of the massive entries")
+    ax[2].set(xlabel="Block", title="Change of attention mass on token 0")
+    ax[0].legend(ncol=2, fontsize=6.5)
+    save_fig(r, fig, "F13_propagation_traces")
+
+
+def f_mech(r: R, plt):
+    m = r.j("analysis", "mechanism_residual_stream.json")
+    if not m:
+        return
+    B = m["per_block"]
+    x = [b["block"] for b in B]
+    fig, ax = plt.subplots(3, 1, figsize=(11, 7.2), sharex=True)
+    ax[0].plot(x, [b["resid_max_in"] for b in B], marker="o", label="max |h| entering block")
+    ax[0].plot(x, [b["resid_rms_in"] for b in B], marker=".", label="RMS(h) entering block")
+    ax[0].set(yscale="symlog", title="Residual stream of the dense model (calibration)")
+    ax[0].legend()
+    for g in GROUPS:
+        ax[1].plot(x, [b[f"ref_ms_{g}"] for b in B], marker=".", label=g)
+    ax[1].set(yscale="log", title="Mean square of each group's module output (what the block writes)")
+    ax[1].legend(ncol=4)
+    for g in GROUPS:
+        ax[2].plot(x, [b[f"q3_kl2_{g}"] for b in B], marker=".", label=f"Q3 {g} @2b")
+    ax[2].plot(x, [b["p3_kl50"] for b in B], "k--", marker="x", label="P3 block @50%")
+    ax[2].set(yscale="log", xlabel="Transformer block", ylabel="probe KL", title="Isolated sensitivity (final-logit KL)")
+    ax[2].legend(ncol=5, fontsize=7.5)
+    save_fig(r, fig, "F12_residual_stream_vs_fragility")
+
+
 # =========================================================================================== figures
 def f_tradeoff(r: R, plt):
     if "fp16" not in r.S:
@@ -891,8 +1147,10 @@ def main():
     r = R(Path(a.results), load_config(a.config))
     plt = setup_mpl()
     jobs = [t_quality, t_nll, t_pairs, t_budget, t_resources, t_microbench, t_p3, t_q3, t_calib_vs_heldout, t_local_errors,
-            t_rq1, t_awq, t_selection_effort, t_tokens, t_hs_margin, t_qualitative]
-    figs = [f_tradeoff, f_p3, f_q3, f_drift, f_local_err, f_calib_vs_heldout, f_rq1, f_awq, f_tokens, f_latency, f_additivity]
+            t_rq1, t_awq, t_selection_effort, t_tokens, t_hs_margin, t_qualitative,
+            t_mech_residual, t_mech_local_alloc, t_mech_nm, t_diagnostics]
+    figs = [f_tradeoff, f_p3, f_q3, f_drift, f_local_err, f_calib_vs_heldout, f_rq1, f_awq, f_tokens, f_latency, f_additivity,
+            f_mech, f_diagnostics]
     failed = []
     for fn in jobs + figs:
         try:

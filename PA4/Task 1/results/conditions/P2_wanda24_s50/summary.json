@@ -1,0 +1,80 @@
+{
+ "name": "P2_wanda24_s50",
+ "family": "NM",
+ "method": "wanda 2:4",
+ "target_sparsity": 0.5,
+ "dev": {
+  "N": 16352,
+  "mean_nll": 3.7550656387643793,
+  "ppl": 42.73702492399856,
+  "n_windows": 32
+ },
+ "wikitext2": {
+  "N": 50000,
+  "mean_nll": 4.20438234035564,
+  "ppl": 66.97921452944782,
+  "n_windows": 437
+ },
+ "c4val": {
+  "N": 50000,
+  "mean_nll": 3.9367135222585126,
+  "ppl": 51.249892592412294,
+  "n_windows": 177
+ },
+ "hellaswag": {
+  "n": 512,
+  "acc": 0.34765625,
+  "acc_norm": 0.44140625,
+  "acc_first512": 0.34765625,
+  "acc_norm_first512": 0.44140625
+ },
+ "hellaswag_subset": "first_512",
+ "storage": {
+  "eligible_bytes": 1473970176,
+  "other_fp16_bytes": 467037184,
+  "total_bytes": 1941007360,
+  "fp16_total_bytes": 3087428608,
+  "compression_vs_fp16_total": 1.5906320973455763,
+  "effective_bits_per_eligible_weight": 9.0,
+  "representation": "16-bit sparse: 1 mask bit per eligible weight + FP16 nonzeros (byte-padded per matrix)",
+  "dense_fp16_with_zeros_total_bytes": 3087428608,
+  "csr_int32_total_bytes": 4400205584,
+  "csr_int64_total_bytes": 7023178272,
+  "nm24_format_total_bytes": 1941007360,
+  "nnz": 655097856,
+  "achieved_sparsity_nonzero_based": 0.5,
+  "serialized_file_bytes": 1941232107,
+  "nominal_bits_per_eligible_weight": 16,
+  "executed_as": "dense FP16 GEMM with explicit zeros (no sparse kernel)"
+ },
+ "calibration": {
+  "kl": 1.2058352304298117,
+  "nll_ref": 2.6160565878313813,
+  "nll_cmp": 3.7802483135006897,
+  "top1_agree": 0.4955662915851272,
+  "n_positions": 65408,
+  "drift_last_block": 0.34404587745666504
+ },
+ "timings_s": {
+  "compression_s": 50.68483331099992,
+  "calibration_measure_s": 53.06241511500002,
+  "eval_ppl_s": 30.297123380999892,
+  "eval_hellaswag_s": 18.231958459999987,
+  "latency_s": 42.82127801599995
+ },
+ "compression_peak_allocated_bytes": 3962542592,
+ "latency": {
+  "weights_allocated_bytes": 3096997376,
+  "unit": "ms",
+  "batch": 1,
+  "prefill_logits": "last position only",
+  "prefill_512": 139.8540802001953,
+  "prefill_2048": 881.5086975097656,
+  "decode_64": 2259.60546875
+ },
+ "config_sha256": "66db6920e293e99d8b3e48865bf4aa02c3f6aa6749c9eda32bf080c32b2e800a",
+ "model_revision": "8faed761d45a263340a0528343f099c05c9a4323",
+ "finished": "2026-11-21 21:15:55",
+ "achieved_sparsity": 0.5,
+ "zeros": 655097856
+}

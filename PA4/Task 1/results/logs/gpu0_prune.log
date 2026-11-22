@@ -1,0 +1,150 @@
+[20:47:13] loading Qwen/Qwen2.5-1.5B @ 8faed761d45a263340a0528343f099c05c9a4323
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1795294040.465281     222 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+[20:47:34] model ready: 1,543,714,304 unique params, 1,310,195,712 eligible
+[20:47:34] ########## step env ##########
+[20:47:34] data selection snapshot written to /kaggle/working/ATML/PA4/Task 1/results/data_selection
+[20:47:34] ########## step baseline ##########
+[20:47:34] ===== fp16 =====
+[20:51:49] fp16: wiki 16.107  c4 14.962  dev 12.513  HS acc_norm 0.6940 (n=2000)  KL_cal 0.0000
+[20:51:51] ########## step pruning ##########
+[20:51:51] ===== P1_mag_s25 =====
+[20:54:36] P1_mag_s25: wiki 21.330  c4 17.986  dev 14.571  HS acc_norm 0.5879 (n=512)  KL_cal 0.1754
+[20:54:38] ===== P1_mag_s50 =====
+[20:58:54] P1_mag_s50: wiki 127.797  c4 102.453  dev 87.866  HS acc_norm 0.4000 (n=2000)  KL_cal 1.9137
+[20:58:55] ===== P1_mag_s75 =====
+[21:01:24] P1_mag_s75: wiki 1580951.399  c4 1216475.910  dev 1511734.224  HS acc_norm 0.2793 (n=512)  KL_cal 11.5281
+[21:01:25] ===== P2_wanda_s25 =====
+[21:04:43] P2_wanda_s25: wiki 16.538  c4 15.384  dev 12.774  HS acc_norm 0.5957 (n=512)  KL_cal 0.0243
+[21:04:45] ===== P2_wanda_s50 =====
+[21:09:34] P2_wanda_s50: wiki 25.416  c4 21.111  dev 17.085  HS acc_norm 0.5775 (n=2000)  KL_cal 0.3073
+[21:09:36] ===== P2_wanda_s75 =====
+[21:12:35] P2_wanda_s75: wiki 2810.959  c4 1773.367  dev 1462.495  HS acc_norm 0.2910 (n=512)  KL_cal 4.7630
+[21:12:37] ===== P2_wanda24_s50 =====
+[21:15:55] P2_wanda24_s50: wiki 66.979  c4 51.250  dev 42.737  HS acc_norm 0.4414 (n=512)  KL_cal 1.2058
+[21:15:56] ########## step p3_sensitivity ##########
+[21:17:18] Fisher pass over blocks 0-13 done (128 sequences)
+[21:18:08] Fisher pass over blocks 14-27 done (128 sequences)
+[21:18:49] P3 probes block 0: s=0.5: KL 0.01349, s=0.75: KL 0.5677
+[21:19:28] P3 probes block 1: s=0.5: KL 0.005544, s=0.75: KL 0.04278
+[21:20:06] P3 probes block 2: s=0.5: KL 0.02104, s=0.75: KL 0.07177
+[21:20:44] P3 probes block 3: s=0.5: KL 0.008714, s=0.75: KL 0.05148
+[21:21:20] P3 probes block 4: s=0.5: KL 0.009044, s=0.75: KL 0.0521
+[21:21:56] P3 probes block 5: s=0.5: KL 0.0076, s=0.75: KL 0.0458
+[21:22:30] P3 probes block 6: s=0.5: KL 0.007463, s=0.75: KL 0.03754
+[21:23:04] P3 probes block 7: s=0.5: KL 0.007602, s=0.75: KL 0.03776
+[21:23:37] P3 probes block 8: s=0.5: KL 0.007436, s=0.75: KL 0.03659
+[21:24:08] P3 probes block 9: s=0.5: KL 0.007034, s=0.75: KL 0.03563
+[21:24:39] P3 probes block 10: s=0.5: KL 0.00702, s=0.75: KL 0.03084
+[21:25:09] P3 probes block 11: s=0.5: KL 0.007143, s=0.75: KL 0.03449
+[21:25:38] P3 probes block 12: s=0.5: KL 0.005776, s=0.75: KL 0.02547
+[21:26:06] P3 probes block 13: s=0.5: KL 0.006183, s=0.75: KL 0.02927
+[21:26:33] P3 probes block 14: s=0.5: KL 0.004698, s=0.75: KL 0.02163
+[21:27:00] P3 probes block 15: s=0.5: KL 0.006758, s=0.75: KL 0.02967
+[21:27:25] P3 probes block 16: s=0.5: KL 0.006642, s=0.75: KL 0.02841
+[21:27:50] P3 probes block 17: s=0.5: KL 0.00686, s=0.75: KL 0.03207
+[21:28:13] P3 probes block 18: s=0.5: KL 0.007214, s=0.75: KL 0.03193
+[21:28:36] P3 probes block 19: s=0.5: KL 0.008369, s=0.75: KL 0.04529
+[21:28:58] P3 probes block 20: s=0.5: KL 0.008801, s=0.75: KL 0.04289
+[21:29:18] P3 probes block 21: s=0.5: KL 0.009712, s=0.75: KL 0.04767
+[21:29:38] P3 probes block 22: s=0.5: KL 0.009349, s=0.75: KL 0.0473
+[21:29:57] P3 probes block 23: s=0.5: KL 0.009475, s=0.75: KL 0.04622
+[21:30:15] P3 probes block 24: s=0.5: KL 0.00987, s=0.75: KL 0.0473
+[21:30:32] P3 probes block 25: s=0.5: KL 0.0104, s=0.75: KL 0.0497
+[21:30:48] P3 probes block 26: s=0.5: KL 0.0189, s=0.75: KL 0.07528
+[21:31:04] P3 probes block 27: s=0.5: KL 0.04133, s=0.75: KL 0.2548
+[21:35:45] ########## step p3_select ##########
+[21:36:18] P3 dev uniform|M=None|lam=0.0|S=0.5: ppl 17.085
+[21:36:50] P3 dev uniform|M=None|lam=0.0|S=0.75: ppl 1462.495
+[21:37:23] P3 dev owl_lod|M=5|lam=0.04|S=0.5: ppl 16.834
+[21:37:55] P3 dev owl_lod|M=5|lam=0.04|S=0.75: ppl 686.103
+[21:38:28] P3 dev owl_lod|M=5|lam=0.08|S=0.5: ppl 16.792
+[21:39:01] P3 dev owl_lod|M=5|lam=0.08|S=0.75: ppl 287.903
+[21:39:34] P3 dev owl_lod|M=5|lam=0.12|S=0.5: ppl 16.903
+[21:40:07] P3 dev owl_lod|M=5|lam=0.12|S=0.75: ppl 189.226
+[21:40:40] P3 dev owl_lod|M=7|lam=0.04|S=0.5: ppl 16.767
+[21:41:12] P3 dev owl_lod|M=7|lam=0.04|S=0.75: ppl 563.372
+[21:41:45] P3 dev owl_lod|M=7|lam=0.08|S=0.5: ppl 16.690
+[21:42:17] P3 dev owl_lod|M=7|lam=0.08|S=0.75: ppl 290.157
+[21:42:50] P3 dev owl_lod|M=7|lam=0.12|S=0.5: ppl 16.826
+[21:43:23] P3 dev owl_lod|M=7|lam=0.12|S=0.75: ppl 187.340
+[21:43:56] P3 dev fisher_taylor|M=None|lam=0.04|S=0.5: ppl 16.760
+[21:44:28] P3 dev fisher_taylor|M=None|lam=0.04|S=0.75: ppl 801.296
+[21:45:01] P3 dev fisher_taylor|M=None|lam=0.08|S=0.5: ppl 16.690
+[21:45:33] P3 dev fisher_taylor|M=None|lam=0.08|S=0.75: ppl 490.171
+[21:46:06] P3 dev fisher_taylor|M=None|lam=0.12|S=0.5: ppl 16.747
+[21:46:39] P3 dev fisher_taylor|M=None|lam=0.12|S=0.75: ppl 424.905
+[21:47:12] P3 dev probe_kl|M=None|lam=0.04|S=0.5: ppl 16.790
+[21:47:44] P3 dev probe_kl|M=None|lam=0.04|S=0.75: ppl 552.612
+[21:48:17] P3 dev probe_kl|M=None|lam=0.08|S=0.5: ppl 16.730
+[21:48:50] P3 dev probe_kl|M=None|lam=0.08|S=0.75: ppl 281.792
+[21:49:23] P3 dev probe_kl|M=None|lam=0.12|S=0.5: ppl 16.773
+[21:49:55] P3 dev probe_kl|M=None|lam=0.12|S=0.75: ppl 197.640
+[21:50:28] P3 dev block_influence|M=None|lam=0.04|S=0.5: ppl 16.865
+[21:51:00] P3 dev block_influence|M=None|lam=0.04|S=0.75: ppl 494.028
+[21:51:33] P3 dev block_influence|M=None|lam=0.08|S=0.5: ppl 16.784
+[21:52:06] P3 dev block_influence|M=None|lam=0.08|S=0.75: ppl 242.343
+[21:52:39] P3 dev block_influence|M=None|lam=0.12|S=0.5: ppl 16.787
+[21:53:12] P3 dev block_influence|M=None|lam=0.12|S=0.75: ppl 174.353
+[21:53:13] P3 selection frozen: block_influence -> S=0.5: M=None lam=0.08, S=0.75: M=None lam=0.12
+[21:53:13] ########## step p3 ##########
+[21:53:13] ===== P3_s50 =====
+[21:58:03] P3_s50: wiki 24.840  c4 20.746  dev 16.784  HS acc_norm 0.5745 (n=2000)  KL_cal 0.2938
+[21:58:04] ===== P3_s75 =====
+[22:01:03] P3_s75: wiki 328.116  c4 209.106  dev 174.353  HS acc_norm 0.3594 (n=512)  KL_cal 2.5618
+[22:01:04] ########## step microbench ##########
+/kaggle/working/ATML/PA4/Task 1/src/resources.py:170: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:49.)
+  csr = Wp.to(dt).to_sparse_csr()
+[22:01:09] microbench q done
+[22:01:33] microbench gate done
+[22:02:01] microbench down done
+/kaggle/working/ATML/PA4/Task 1/src/resources.py:122: UserWarning: Memory efficient kernel not used because: (Triggered internally at /pytorch/aten/src/ATen/native/transformers/cuda/sdp_utils.cpp:986.)
+  F.scaled_dot_product_attention(q, k, v, is_causal=True)
+/kaggle/working/ATML/PA4/Task 1/src/resources.py:122: UserWarning: Memory Efficient attention has been runtime disabled. (Triggered internally at /pytorch/aten/src/ATen/native/transformers/sdp_utils_cpp.h:552.)
+  F.scaled_dot_product_attention(q, k, v, is_causal=True)
+/kaggle/working/ATML/PA4/Task 1/src/resources.py:122: UserWarning: Flash attention kernel not used because: (Triggered internally at /pytorch/aten/src/ATen/native/transformers/cuda/sdp_utils.cpp:988.)
+  F.scaled_dot_product_attention(q, k, v, is_causal=True)
+/kaggle/working/ATML/PA4/Task 1/src/resources.py:122: UserWarning: Flash attention only supports gpu architectures in the range [sm80, sm121]. Attempting to run on a sm 7.5 gpu. (Triggered internally at /pytorch/aten/src/ATen/native/transformers/cuda/sdp_utils.cpp:342.)
+  F.scaled_dot_product_attention(q, k, v, is_causal=True)
+/kaggle/working/ATML/PA4/Task 1/src/resources.py:122: UserWarning: cuDNN attention kernel not used because: (Triggered internally at /pytorch/aten/src/ATen/native/transformers/cuda/sdp_utils.cpp:990.)
+  F.scaled_dot_product_attention(q, k, v, is_causal=True)
+/kaggle/working/ATML/PA4/Task 1/src/resources.py:122: UserWarning: cuDNN attention has been runtime disabled. (Triggered internally at /pytorch/aten/src/ATen/native/transformers/cuda/sdp_utils.cpp:706.)
+  F.scaled_dot_product_attention(q, k, v, is_causal=True)
+/kaggle/working/ATML/PA4/Task 1/src/resources.py:122: UserWarning: Flash attention has been runtime disabled. (Triggered internally at /pytorch/aten/src/ATen/native/transformers/sdp_utils_cpp.h:540.)
+  F.scaled_dot_product_attention(q, k, v, is_causal=True)
+/kaggle/working/ATML/PA4/Task 1/src/resources.py:122: UserWarning: cuDNN MHA only supports gpu architectures in the range [sm80, sm121]. Attempting to run on a sm 7.5 gpu. (Triggered internally at /pytorch/aten/src/ATen/native/transformers/cuda/sdp_utils.cpp:647.)
+  F.scaled_dot_product_attention(q, k, v, is_causal=True)
+[22:02:01] ########## step transfer_p3 ##########
+[22:02:57] transfer uniform|M=None|lam=0.0|S=0.5: wiki 25.416 c4 21.111
+[22:03:51] transfer uniform|M=None|lam=0.0|S=0.75: wiki 2810.959 c4 1773.367
+[22:04:47] transfer owl_lod|M=5|lam=0.04|S=0.5: wiki 25.059 c4 20.779
+[22:05:41] transfer owl_lod|M=5|lam=0.04|S=0.75: wiki 2225.695 c4 986.104
+[22:06:36] transfer owl_lod|M=5|lam=0.08|S=0.5: wiki 24.636 c4 20.631
+[22:07:31] transfer owl_lod|M=5|lam=0.08|S=0.75: wiki 704.716 c4 391.344
+[22:08:26] transfer owl_lod|M=5|lam=0.12|S=0.5: wiki 24.525 c4 20.668
+[22:09:20] transfer owl_lod|M=5|lam=0.12|S=0.75: wiki 355.033 c4 229.233
+[22:10:16] transfer owl_lod|M=7|lam=0.04|S=0.5: wiki 24.787 c4 20.723
+[22:11:10] transfer owl_lod|M=7|lam=0.04|S=0.75: wiki 1789.143 c4 749.211
+[22:12:06] transfer owl_lod|M=7|lam=0.08|S=0.5: wiki 24.317 c4 20.510
+[22:13:00] transfer owl_lod|M=7|lam=0.08|S=0.75: wiki 1614.511 c4 413.675
+[22:13:56] transfer owl_lod|M=7|lam=0.12|S=0.5: wiki 24.073 c4 20.498
+[22:14:50] transfer owl_lod|M=7|lam=0.12|S=0.75: wiki 368.242 c4 232.290
+[22:15:46] transfer fisher_taylor|M=None|lam=0.04|S=0.5: wiki 24.712 c4 20.774
+[22:16:40] transfer fisher_taylor|M=None|lam=0.04|S=0.75: wiki 1833.640 c4 1055.978
+[22:17:35] transfer fisher_taylor|M=None|lam=0.08|S=0.5: wiki 24.289 c4 20.657
+[22:18:29] transfer fisher_taylor|M=None|lam=0.08|S=0.75: wiki 1898.083 c4 729.464
+[22:19:25] transfer fisher_taylor|M=None|lam=0.12|S=0.5: wiki 24.205 c4 20.652
+[22:20:19] transfer fisher_taylor|M=None|lam=0.12|S=0.75: wiki 1780.331 c4 536.765
+[22:21:15] transfer probe_kl|M=None|lam=0.04|S=0.5: wiki 24.564 c4 20.775
+[22:22:09] transfer probe_kl|M=None|lam=0.04|S=0.75: wiki 1603.463 c4 706.473
+[22:23:05] transfer probe_kl|M=None|lam=0.08|S=0.5: wiki 24.150 c4 20.572
+[22:23:59] transfer probe_kl|M=None|lam=0.08|S=0.75: wiki 1275.336 c4 373.822
+[22:24:55] transfer probe_kl|M=None|lam=0.12|S=0.5: wiki 23.937 c4 20.574
+[22:25:49] transfer probe_kl|M=None|lam=0.12|S=0.75: wiki 426.075 c4 241.484
+[22:26:45] transfer block_influence|M=None|lam=0.04|S=0.5: wiki 25.042 c4 20.869
+[22:27:39] transfer block_influence|M=None|lam=0.04|S=0.75: wiki 1497.935 c4 678.897
+[22:28:35] transfer block_influence|M=None|lam=0.08|S=0.5: wiki 24.840 c4 20.746
+[22:29:28] transfer block_influence|M=None|lam=0.08|S=0.75: wiki 672.003 c4 341.904
+[22:30:24] transfer block_influence|M=None|lam=0.12|S=0.5: wiki 24.726 c4 20.696
+[22:31:18] transfer block_influence|M=None|lam=0.12|S=0.75: wiki 328.116 c4 209.106
+[22:31:19] all requested steps finished

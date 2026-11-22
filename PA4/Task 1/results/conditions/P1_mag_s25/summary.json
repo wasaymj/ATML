@@ -1,0 +1,80 @@
+{
+ "name": "P1_mag_s25",
+ "family": "P1",
+ "method": "magnitude",
+ "target_sparsity": 0.25,
+ "dev": {
+  "N": 16352,
+  "mean_nll": 2.6790386224399243,
+  "ppl": 14.571078252428105,
+  "n_windows": 32
+ },
+ "wikitext2": {
+  "N": 50000,
+  "mean_nll": 3.0601143053129896,
+  "ppl": 21.3299951544587,
+  "n_windows": 437
+ },
+ "c4val": {
+  "N": 50000,
+  "mean_nll": 2.8896134822717734,
+  "ppl": 17.986356212290524,
+  "n_windows": 177
+ },
+ "hellaswag": {
+  "n": 512,
+  "acc": 0.451171875,
+  "acc_norm": 0.587890625,
+  "acc_first512": 0.451171875,
+  "acc_norm_first512": 0.587890625
+ },
+ "hellaswag_subset": "first_512",
+ "storage": {
+  "eligible_bytes": 2129068032,
+  "other_fp16_bytes": 467037184,
+  "total_bytes": 2596105216,
+  "fp16_total_bytes": 3087428608,
+  "compression_vs_fp16_total": 1.189254036767052,
+  "effective_bits_per_eligible_weight": 13.0,
+  "representation": "16-bit sparse: 1 mask bit per eligible weight + FP16 nonzeros (byte-padded per matrix)",
+  "dense_fp16_with_zeros_total_bytes": 3087428608,
+  "csr_int32_total_bytes": 6365499152,
+  "csr_int64_total_bytes": 10298667552,
+  "nm24_format_total_bytes": 1941007360,
+  "nnz": 982646784,
+  "achieved_sparsity_nonzero_based": 0.25,
+  "serialized_file_bytes": 2596329963,
+  "nominal_bits_per_eligible_weight": 16,
+  "executed_as": "dense FP16 GEMM with explicit zeros (no sparse kernel)"
+ },
+ "calibration": {
+  "kl": 0.17537985645861542,
+  "nll_ref": 2.6160565878313813,
+  "nll_cmp": 2.7778182337662014,
+  "top1_agree": 0.7675972358121331,
+  "n_positions": 65408,
+  "drift_last_block": 0.14568983018398285
+ },
+ "timings_s": {
+  "compression_s": 15.595286708000003,
+  "calibration_measure_s": 54.604398274999994,
+  "eval_ppl_s": 30.592036274000066,
+  "eval_hellaswag_s": 18.457193451999956,
+  "latency_s": 43.52230493000002
+ },
+ "compression_peak_allocated_bytes": 3606212608,
+ "latency": {
+  "weights_allocated_bytes": 3096997376,
+  "unit": "ms",
+  "batch": 1,
+  "prefill_logits": "last position only",
+  "prefill_512": 142.7031021118164,
+  "prefill_2048": 899.5284118652344,
+  "decode_64": 2290.7581787109375
+ },
+ "config_sha256": "66db6920e293e99d8b3e48865bf4aa02c3f6aa6749c9eda32bf080c32b2e800a",
+ "model_revision": "8faed761d45a263340a0528343f099c05c9a4323",
+ "finished": "2026-11-21 20:54:36",
+ "achieved_sparsity": 0.25,
+ "zeros": 327548928
+}

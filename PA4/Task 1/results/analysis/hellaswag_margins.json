@@ -1,0 +1,155 @@
+{
+ "P1_mag_s25": {
+  "mean_margin_change": -0.009203820979984777,
+  "flips_by_confidence_tercile": [
+   31,
+   4,
+   0
+  ],
+  "acc_vs_norm_disagreement": 0.4921875
+ },
+ "P1_mag_s50": {
+  "mean_margin_change": -0.10903281331599572,
+  "flips_by_confidence_tercile": [
+   320,
+   264,
+   106
+  ],
+  "acc_vs_norm_disagreement": 0.602
+ },
+ "P1_mag_s75": {
+  "mean_margin_change": -0.2933148966018697,
+  "flips_by_confidence_tercile": [
+   81,
+   84,
+   96
+  ],
+  "acc_vs_norm_disagreement": 0.70703125
+ },
+ "P2_wanda_s25": {
+  "mean_margin_change": -0.0022105962547672112,
+  "flips_by_confidence_tercile": [
+   17,
+   0,
+   0
+  ],
+  "acc_vs_norm_disagreement": 0.46484375
+ },
+ "P2_wanda_s50": {
+  "mean_margin_change": -0.04059458347640462,
+  "flips_by_confidence_tercile": [
+   239,
+   48,
+   6
+  ],
+  "acc_vs_norm_disagreement": 0.482
+ },
+ "P2_wanda_s75": {
+  "mean_margin_change": -0.1702090609734179,
+  "flips_by_confidence_tercile": [
+   80,
+   76,
+   63
+  ],
+  "acc_vs_norm_disagreement": 0.59765625
+ },
+ "P3_s50": {
+  "mean_margin_change": -0.040673343839683324,
+  "flips_by_confidence_tercile": [
+   242,
+   44,
+   7
+  ],
+  "acc_vs_norm_disagreement": 0.48
+ },
+ "P3_s75": {
+  "mean_margin_change": -0.1301308933729404,
+  "flips_by_confidence_tercile": [
+   70,
+   54,
+   42
+  ],
+  "acc_vs_norm_disagreement": 0.556640625
+ },
+ "P2_wanda24_s50": {
+  "mean_margin_change": -0.0850746664938653,
+  "flips_by_confidence_tercile": [
+   52,
+   34,
+   18
+  ],
+  "acc_vs_norm_disagreement": 0.529296875
+ },
+ "Q1_rtn_b8": {
+  "mean_margin_change": -1.3672877522864107e-05,
+  "flips_by_confidence_tercile": [
+   4,
+   0,
+   0
+  ],
+  "acc_vs_norm_disagreement": 0.4375
+ },
+ "Q1_rtn_b4": {
+  "mean_margin_change": -0.008631204060834147,
+  "flips_by_confidence_tercile": [
+   110,
+   7,
+   0
+  ],
+  "acc_vs_norm_disagreement": 0.445
+ },
+ "Q1_rtn_b3": {
+  "mean_margin_change": -0.04728669820308592,
+  "flips_by_confidence_tercile": [
+   248,
+   89,
+   18
+  ],
+  "acc_vs_norm_disagreement": 0.509
+ },
+ "Q2_awq_b8": {
+  "mean_margin_change": -6.36193824390275e-05,
+  "flips_by_confidence_tercile": [
+   2,
+   0,
+   0
+  ],
+  "acc_vs_norm_disagreement": 0.435546875
+ },
+ "Q2_awq_b4": {
+  "mean_margin_change": -0.0062905572794582755,
+  "flips_by_confidence_tercile": [
+   87,
+   1,
+   1
+  ],
+  "acc_vs_norm_disagreement": 0.437
+ },
+ "Q2_awq_b3": {
+  "mean_margin_change": -0.028184119883138032,
+  "flips_by_confidence_tercile": [
+   191,
+   42,
+   7
+  ],
+  "acc_vs_norm_disagreement": 0.4835
+ },
+ "Q3_mix_b4budget": {
+  "mean_margin_change": -0.006434000622777409,
+  "flips_by_confidence_tercile": [
+   88,
+   1,
+   0
+  ],
+  "acc_vs_norm_disagreement": 0.438
+ },
+ "Q3_mix_b3budget": {
+  "mean_margin_change": -0.028834611423158064,
+  "flips_by_confidence_tercile": [
+   203,
+   42,
+   9
+  ],
+  "acc_vs_norm_disagreement": 0.4795
+ }
+}

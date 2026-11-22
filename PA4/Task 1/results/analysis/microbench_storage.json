@@ -1,0 +1,110 @@
+[
+ {
+  "matrix": "q",
+  "sparsity": 0.5,
+  "dtype": "torch.float16",
+  "csr_bytes": 11808776,
+  "index_dtype": "torch.int64",
+  "dense_fp16_bytes": 4718592,
+  "bitmap_fp16_bytes": 2654208
+ },
+ {
+  "matrix": "q",
+  "sparsity": 0.5,
+  "dtype": "torch.float32",
+  "csr_bytes": 14168072,
+  "index_dtype": "torch.int64",
+  "dense_fp16_bytes": 4718592,
+  "bitmap_fp16_bytes": 2654208
+ },
+ {
+  "matrix": "q",
+  "sparsity": 0.75,
+  "dtype": "torch.float16",
+  "csr_bytes": 5910536,
+  "index_dtype": "torch.int64",
+  "dense_fp16_bytes": 4718592,
+  "bitmap_fp16_bytes": 1474560
+ },
+ {
+  "matrix": "q",
+  "sparsity": 0.75,
+  "dtype": "torch.float32",
+  "csr_bytes": 7090184,
+  "index_dtype": "torch.int64",
+  "dense_fp16_bytes": 4718592,
+  "bitmap_fp16_bytes": 1474560
+ },
+ {
+  "matrix": "gate",
+  "sparsity": 0.5,
+  "dtype": "torch.float16",
+  "csr_bytes": 68884488,
+  "index_dtype": "torch.int64",
+  "dense_fp16_bytes": 27525120,
+  "bitmap_fp16_bytes": 15482880
+ },
+ {
+  "matrix": "gate",
+  "sparsity": 0.5,
+  "dtype": "torch.float32",
+  "csr_bytes": 82647048,
+  "index_dtype": "torch.int64",
+  "dense_fp16_bytes": 27525120,
+  "bitmap_fp16_bytes": 15482880
+ },
+ {
+  "matrix": "gate",
+  "sparsity": 0.75,
+  "dtype": "torch.float16",
+  "csr_bytes": 34478088,
+  "index_dtype": "torch.int64",
+  "dense_fp16_bytes": 27525120,
+  "bitmap_fp16_bytes": 8601600
+ },
+ {
+  "matrix": "gate",
+  "sparsity": 0.75,
+  "dtype": "torch.float32",
+  "csr_bytes": 41359368,
+  "index_dtype": "torch.int64",
+  "dense_fp16_bytes": 27525120,
+  "bitmap_fp16_bytes": 8601600
+ },
+ {
+  "matrix": "down",
+  "sparsity": 0.5,
+  "dtype": "torch.float16",
+  "csr_bytes": 68825096,
+  "index_dtype": "torch.int64",
+  "dense_fp16_bytes": 27525120,
+  "bitmap_fp16_bytes": 15482880
+ },
+ {
+  "matrix": "down",
+  "sparsity": 0.5,
+  "dtype": "torch.float32",
+  "csr_bytes": 82587656,
+  "index_dtype": "torch.int64",
+  "dense_fp16_bytes": 27525120,
+  "bitmap_fp16_bytes": 15482880
+ },
+ {
+  "matrix": "down",
+  "sparsity": 0.75,
+  "dtype": "torch.float16",
+  "csr_bytes": 34418696,
+  "index_dtype": "torch.int64",
+  "dense_fp16_bytes": 27525120,
+  "bitmap_fp16_bytes": 8601600
+ },
+ {
+  "matrix": "down",
+  "sparsity": 0.75,
+  "dtype": "torch.float32",
+  "csr_bytes": 41299976,
+  "index_dtype": "torch.int64",
+  "dense_fp16_bytes": 27525120,
+  "bitmap_fp16_bytes": 8601600
+ }
+]

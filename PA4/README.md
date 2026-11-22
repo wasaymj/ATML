@@ -7,7 +7,7 @@ notebook.
 | Task | Folder | Status | Reproduce |
 |---|---|---|---|
 | 1. Pruning and weight-only quantization of Qwen2.5-1.5B (magnitude, Wanda, nonuniform Wanda, 2:4; RTN, AWQ-style, mixed precision) | [`Task 1/`](Task%201/README.md) | implemented | [`Task 1/README.md`](Task%201/README.md#reproduce) |
-| 2. Exact/tiled/SDPA attention, MQAR with sparse and linear attention, KV-cache compression | `Task 2/` | not started | – |
+| 2. Exact/tiled/SDPA attention; MQAR with dense, window, linear, dilated and delta-rule attention; KV-cache eviction, quantization and hybrid at a matched INT4 budget | [`Task 2/`](Task%202/README.md) | implemented | [`Task 2/README.md`](Task%202/README.md#reproduce) |
 | 3. Exact speculative sampling and draft distillation | `Task 3/` | not started | – |
 
 ## Common conventions
@@ -29,7 +29,8 @@ PA4/
 ├── README.md                this file
 ├── atml-pa4-datasets/       course data repository (scripts, manifests, frozen MQAR/KV/short-form data)
 ├── Task 1/                  see Task 1/README.md
-├── Task 2/, Task 3/         (to come)
+├── Task 2/                  see Task 2/README.md
+├── Task 3/                  (to come)
 ├── Implementation_Notes/    design notes (not committed)
 └── Readings/, ATML_PA4.pdf  papers and manual (not committed)
 ```

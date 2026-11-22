@@ -1,0 +1,16 @@
+| Order | Selection | Gold | FP16 | P1 mag 50% | P2 Wanda 50% | P3 nonuni. 50% | P2 Wanda 75% | Q1 RTN INT3 | Q2 AWQ INT3 | Q3 mixed (INT3 budget) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 0 | fixed | 3 | 3* | 3* | 2 | 2 | 2 | 3* | 2 | 2 |
+| 64 | fixed | 1 | 1* | 3 | 1* | 1* | 2 | 1* | 1* | 1* |
+| 128 | fixed | 0 | 0* | 0* | 0* | 0* | 3 | 0* | 0* | 0* |
+| 192 | fixed | 2 | 2* | 3 | 2* | 2* | 3 | 2* | 2* | 2* |
+| 256 | fixed | 1 | 1* | 1* | 1* | 1* | 2 | 1* | 1* | 1* |
+| 320 | fixed | 0 | 0* | 2 | 0* | 0* | 1 | 0* | 0* | 0* |
+| 384 | fixed | 2 | 2* | 2* | 2* | 2* | 2* | 2* | 2* | 3 |
+| 448 | fixed | 2 | 2* | 2* | 2* | 2* | 3 | 2* | 2* | 2* |
+| 297 | failure rule | 1 | 1* | 3 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 327 | failure rule | 1 | 1* | 0 | 0 | 0 | 2 | 0 | 0 | 0 |
+| 341 | failure rule | 0 | 0* | 2 | 2 | 2 | 3 | 2 | 2 | 2 |
+| 16 | failure rule | 0 | 0* | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
+
+Predicted ending (acc_norm), * = correct. Fixed cases: diagnostic orders 0, 64, ..., 448 (chosen before results). Failure rule: FP16-correct cases wrong under the most compressed configurations, ties broken by the largest FP16 margin. Full candidate scores in analysis/qualitative_cases.json.

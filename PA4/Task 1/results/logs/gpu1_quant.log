@@ -1,0 +1,103 @@
+[20:47:13] loading Qwen/Qwen2.5-1.5B @ 8faed761d45a263340a0528343f099c05c9a4323
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1795294040.640630     223 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+[20:47:35] model ready: 1,543,714,304 unique params, 1,310,195,712 eligible
+[20:47:35] ########## step awq_search ##########
+[20:48:15] AWQ search block 0: qkv:0.35/0.20/0.30/0.40, o:0.35/0.40/0.40/0.40, gateup:0.30/0.30/0.30/0.30, down:0.45/0.45/0.45/0.45
+[20:48:58] AWQ search block 1: qkv:0.40/0.50/0.50/0.50, o:0.60/0.50/0.45/0.45, gateup:0.00/0.15/0.20/0.10, down:0.95/0.90/0.95/0.85
+[20:49:48] AWQ search block 2: qkv:0.50/0.35/0.40/0.40, o:0.30/0.30/0.35/0.30, gateup:0.40/0.30/0.40/0.45, down:0.95/0.85/0.85/0.85
+[20:50:37] AWQ search block 3: qkv:0.60/0.45/0.35/0.40, o:0.35/0.30/0.30/0.30, gateup:0.40/0.30/0.40/0.40, down:0.40/0.45/0.40/0.40
+[20:51:26] AWQ search block 4: qkv:0.50/0.35/0.35/0.40, o:0.35/0.30/0.30/0.30, gateup:0.45/0.35/0.35/0.40, down:0.35/0.40/0.40/0.40
+[20:52:15] AWQ search block 5: qkv:0.05/0.35/0.35/0.50, o:0.35/0.35/0.40/0.40, gateup:0.35/0.30/0.35/0.35, down:0.30/0.30/0.30/0.30
+[20:53:04] AWQ search block 6: qkv:0.25/0.40/0.35/0.45, o:0.35/0.35/0.30/0.35, gateup:0.45/0.35/0.35/0.40, down:0.25/0.20/0.20/0.25
+[20:53:52] AWQ search block 7: qkv:0.55/0.40/0.50/0.50, o:0.40/0.30/0.35/0.30, gateup:0.40/0.35/0.35/0.35, down:0.30/0.30/0.30/0.25
+[20:54:41] AWQ search block 8: qkv:0.65/0.30/0.40/0.40, o:0.35/0.40/0.40/0.35, gateup:0.45/0.35/0.35/0.35, down:0.05/0.05/0.05/0.00
+[20:55:30] AWQ search block 9: qkv:0.65/0.35/0.35/0.30, o:0.35/0.30/0.30/0.30, gateup:0.40/0.40/0.40/0.40, down:0.10/0.20/0.15/0.20
+[20:56:19] AWQ search block 10: qkv:0.60/0.25/0.35/0.35, o:0.35/0.35/0.35/0.35, gateup:0.45/0.40/0.35/0.35, down:0.15/0.10/0.15/0.10
+[20:57:07] AWQ search block 11: qkv:0.70/0.40/0.35/0.35, o:0.30/0.35/0.30/0.35, gateup:0.45/0.35/0.40/0.35, down:0.15/0.20/0.20/0.25
+[20:57:56] AWQ search block 12: qkv:0.35/0.40/0.30/0.35, o:0.40/0.35/0.35/0.35, gateup:0.45/0.40/0.35/0.40, down:0.30/0.25/0.25/0.20
+[20:58:44] AWQ search block 13: qkv:0.25/0.45/0.35/0.45, o:0.35/0.35/0.35/0.35, gateup:0.45/0.40/0.40/0.40, down:0.20/0.20/0.20/0.15
+[20:59:33] AWQ search block 14: qkv:0.25/0.40/0.40/0.40, o:0.35/0.30/0.35/0.35, gateup:0.50/0.35/0.35/0.40, down:0.00/0.00/0.00/0.00
+[21:00:21] AWQ search block 15: qkv:0.45/0.45/0.50/0.35, o:0.35/0.35/0.30/0.25, gateup:0.45/0.35/0.40/0.35, down:0.25/0.30/0.25/0.25
+[21:01:10] AWQ search block 16: qkv:0.70/0.30/0.35/0.40, o:0.40/0.35/0.40/0.40, gateup:0.40/0.40/0.35/0.35, down:0.25/0.25/0.20/0.25
+[21:01:59] AWQ search block 17: qkv:0.55/0.40/0.50/0.45, o:0.35/0.35/0.35/0.35, gateup:0.45/0.40/0.35/0.35, down:0.30/0.30/0.30/0.30
+[21:02:48] AWQ search block 18: qkv:0.50/0.45/0.45/0.40, o:0.40/0.35/0.40/0.40, gateup:0.45/0.35/0.40/0.35, down:0.35/0.35/0.35/0.35
+[21:03:36] AWQ search block 19: qkv:0.70/0.45/0.50/0.40, o:0.40/0.35/0.35/0.35, gateup:0.45/0.40/0.40/0.40, down:0.35/0.30/0.30/0.25
+[21:04:25] AWQ search block 20: qkv:0.25/0.35/0.30/0.35, o:0.35/0.45/0.35/0.45, gateup:0.45/0.35/0.35/0.35, down:0.35/0.35/0.30/0.30
+[21:05:13] AWQ search block 21: qkv:0.25/0.20/0.40/0.40, o:0.50/0.50/0.50/0.50, gateup:0.45/0.40/0.40/0.35, down:0.40/0.35/0.35/0.35
+[21:06:02] AWQ search block 22: qkv:0.35/0.35/0.30/0.15, o:0.40/0.40/0.40/0.45, gateup:0.45/0.40/0.35/0.35, down:0.40/0.35/0.35/0.35
+[21:06:51] AWQ search block 23: qkv:0.80/0.25/0.35/0.30, o:0.55/0.50/0.45/0.40, gateup:0.40/0.35/0.35/0.35, down:0.35/0.30/0.35/0.35
+[21:07:40] AWQ search block 24: qkv:0.05/0.40/0.35/0.20, o:0.55/0.50/0.50/0.45, gateup:0.35/0.35/0.30/0.30, down:0.40/0.35/0.35/0.35
+[21:08:28] AWQ search block 25: qkv:0.20/0.15/0.15/0.15, o:0.60/0.55/0.50/0.55, gateup:0.35/0.35/0.35/0.30, down:0.35/0.35/0.35/0.35
+[21:09:17] AWQ search block 26: qkv:0.15/0.40/0.15/0.15, o:0.55/0.50/0.50/0.50, gateup:0.05/0.50/0.25/0.20, down:0.80/0.75/0.55/0.70
+[21:10:06] AWQ search block 27: qkv:0.15/0.35/0.20/0.20, o:0.50/0.55/0.45/0.45, gateup:0.25/0.25/0.40/0.35, down:0.35/0.35/0.40/0.35
+[21:10:19] AWQ fold checks: b2: max|dlogit| 0.156, b3: max|dlogit| 0.226, b4: max|dlogit| 0.152, b8: max|dlogit| 0.197
+[21:10:19] ########## step quant ##########
+[21:10:19] ===== Q1_rtn_b8 =====
+[21:12:51] Q1_rtn_b8: wiki 16.084  c4 14.968  dev 12.517  HS acc_norm 0.5859 (n=512)  KL_cal 0.0004
+[21:12:53] ===== Q1_rtn_b4 =====
+[21:17:11] Q1_rtn_b4: wiki 18.895  c4 16.729  dev 13.593  HS acc_norm 0.6705 (n=2000)  KL_cal 0.1004
+[21:17:13] ===== Q1_rtn_b3 =====
+[21:21:29] Q1_rtn_b3: wiki 40.537  c4 30.570  dev 24.184  HS acc_norm 0.5615 (n=2000)  KL_cal 0.6954
+[21:21:30] ===== Q2_awq_b8 =====
+[21:24:07] Q2_awq_b8: wiki 16.122  c4 14.966  dev 12.516  HS acc_norm 0.5859 (n=512)  KL_cal 0.0002
+[21:24:09] ===== Q2_awq_b4 =====
+[21:28:34] Q2_awq_b4: wiki 17.440  c4 15.921  dev 13.106  HS acc_norm 0.6775 (n=2000)  KL_cal 0.0541
+[21:28:35] ===== Q2_awq_b3 =====
+[21:32:55] Q2_awq_b3: wiki 25.692  c4 21.245  dev 17.016  HS acc_norm 0.6180 (n=2000)  KL_cal 0.3134
+[21:32:56] ########## step q3_sensitivity ##########
+[21:33:55] Fisher pass over blocks 0-13 done (128 sequences)
+[21:34:45] Fisher pass over blocks 14-27 done (128 sequences)
+[21:40:04] Q3 probes block 0: qkv@2b KL 0.0438, o@2b KL 0.0203, gateup@2b KL 0.00758, down@2b KL 0.0101
+[21:45:02] Q3 probes block 1: qkv@2b KL 0.00282, o@2b KL 0.00351, gateup@2b KL 0.123, down@2b KL 0.0209
+[21:49:54] Q3 probes block 2: qkv@2b KL 0.00567, o@2b KL 0.00205, gateup@2b KL 0.0155, down@2b KL 0.0411
+[21:54:39] Q3 probes block 3: qkv@2b KL 0.0069, o@2b KL 0.00267, gateup@2b KL 0.0188, down@2b KL 0.0119
+[21:59:17] Q3 probes block 4: qkv@2b KL 0.00524, o@2b KL 0.00243, gateup@2b KL 0.0203, down@2b KL 0.0106
+[22:03:47] Q3 probes block 5: qkv@2b KL 0.00593, o@2b KL 0.00333, gateup@2b KL 0.0195, down@2b KL 0.00985
+[22:08:09] Q3 probes block 6: qkv@2b KL 0.004, o@2b KL 0.00214, gateup@2b KL 0.0172, down@2b KL 0.0107
+[22:12:26] Q3 probes block 7: qkv@2b KL 0.00499, o@2b KL 0.00348, gateup@2b KL 0.017, down@2b KL 0.0103
+[22:16:36] Q3 probes block 8: qkv@2b KL 0.0063, o@2b KL 0.00316, gateup@2b KL 0.0159, down@2b KL 0.0102
+[22:20:39] Q3 probes block 9: qkv@2b KL 0.00548, o@2b KL 0.00343, gateup@2b KL 0.0143, down@2b KL 0.00862
+[22:24:35] Q3 probes block 10: qkv@2b KL 0.00596, o@2b KL 0.00607, gateup@2b KL 0.0143, down@2b KL 0.00861
+[22:28:23] Q3 probes block 11: qkv@2b KL 0.00832, o@2b KL 0.00727, gateup@2b KL 0.0132, down@2b KL 0.00859
+[22:32:05] Q3 probes block 12: qkv@2b KL 0.00443, o@2b KL 0.00388, gateup@2b KL 0.0129, down@2b KL 0.00769
+[22:35:38] Q3 probes block 13: qkv@2b KL 0.00628, o@2b KL 0.00572, gateup@2b KL 0.0109, down@2b KL 0.00638
+[22:39:06] Q3 probes block 14: qkv@2b KL 0.00556, o@2b KL 0.00315, gateup@2b KL 0.0117, down@2b KL 0.00704
+[22:42:27] Q3 probes block 15: qkv@2b KL 0.00643, o@2b KL 0.00854, gateup@2b KL 0.0122, down@2b KL 0.00753
+[22:45:41] Q3 probes block 16: qkv@2b KL 0.00683, o@2b KL 0.00667, gateup@2b KL 0.0139, down@2b KL 0.00798
+[22:48:47] Q3 probes block 17: qkv@2b KL 0.00697, o@2b KL 0.00467, gateup@2b KL 0.0146, down@2b KL 0.00866
+[22:51:45] Q3 probes block 18: qkv@2b KL 0.00639, o@2b KL 0.00652, gateup@2b KL 0.0166, down@2b KL 0.00883
+[22:54:37] Q3 probes block 19: qkv@2b KL 0.00873, o@2b KL 0.00542, gateup@2b KL 0.0199, down@2b KL 0.0131
+[22:57:23] Q3 probes block 20: qkv@2b KL 0.00906, o@2b KL 0.00883, gateup@2b KL 0.0181, down@2b KL 0.0114
+[23:00:02] Q3 probes block 21: qkv@2b KL 0.0103, o@2b KL 0.00518, gateup@2b KL 0.0225, down@2b KL 0.014
+[23:02:33] Q3 probes block 22: qkv@2b KL 0.00488, o@2b KL 0.00272, gateup@2b KL 0.0234, down@2b KL 0.0166
+[23:04:57] Q3 probes block 23: qkv@2b KL 0.00789, o@2b KL 0.00189, gateup@2b KL 0.0232, down@2b KL 0.0172
+[23:07:14] Q3 probes block 24: qkv@2b KL 0.00678, o@2b KL 0.00258, gateup@2b KL 0.0257, down@2b KL 0.0142
+[23:09:25] Q3 probes block 25: qkv@2b KL 0.00726, o@2b KL 0.00256, gateup@2b KL 0.0286, down@2b KL 0.0147
+[23:11:28] Q3 probes block 26: qkv@2b KL 0.00683, o@2b KL 0.00278, gateup@2b KL 0.0478, down@2b KL 0.0339
+[23:13:24] Q3 probes block 27: qkv@2b KL 0.00783, o@2b KL 0.00542, gateup@2b KL 0.0985, down@2b KL 0.0499
+[23:16:01] ########## step q3_select ##########
+[23:16:09] Q3 dev uniform|budget=INT4: ppl 13.106  bytes 680,687,616
+[23:16:17] Q3 dev uniform|budget=INT3: ppl 17.016  bytes 515,966,976
+[23:16:26] Q3 dev fisher_taylor|budget=INT4: ppl 13.082  bytes 680,003,072
+[23:16:35] Q3 dev fisher_taylor|budget=INT3: ppl 16.567  bytes 515,948,032
+[23:16:44] Q3 dev probe_kl|budget=INT4: ppl 13.082  bytes 680,003,072
+[23:16:53] Q3 dev probe_kl|budget=INT3: ppl 16.615  bytes 515,954,688
+[23:17:02] Q3 dev local_err|budget=INT4: ppl 13.717  bytes 680,652,288
+[23:17:10] Q3 dev local_err|budget=INT3: ppl 109.846  bytes 515,957,248
+[23:17:11] Q3 selection frozen: fisher_taylor
+[23:17:11] ########## step q3 ##########
+[23:17:11] ===== Q3_mix_b4budget =====
+[23:21:35] Q3_mix_b4budget: wiki 17.427  c4 15.914  dev 13.082  HS acc_norm 0.6785 (n=2000)  KL_cal 0.0535
+[23:21:36] ===== Q3_mix_b3budget =====
+[23:25:58] Q3_mix_b3budget: wiki 24.495  c4 20.880  dev 16.567  HS acc_norm 0.6150 (n=2000)  KL_cal 0.3001
+[23:25:59] ########## step transfer_q3 ##########
+[23:26:30] transfer uniform|budget=INT4: wiki 17.440 c4 15.921
+[23:27:00] transfer uniform|budget=INT3: wiki 25.692 c4 21.245
+[23:27:32] transfer fisher_taylor|budget=INT4: wiki 17.427 c4 15.914
+[23:28:02] transfer fisher_taylor|budget=INT3: wiki 24.495 c4 20.880
+[23:28:33] transfer probe_kl|budget=INT4: wiki 17.427 c4 15.914
+[23:29:04] transfer probe_kl|budget=INT3: wiki 25.089 c4 20.933
+[23:29:34] transfer local_err|budget=INT4: wiki 18.917 c4 16.905
+[23:30:04] transfer local_err|budget=INT3: wiki 297.934 c4 158.661
+[23:30:05] all requested steps finished

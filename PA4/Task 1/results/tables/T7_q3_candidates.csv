@@ -1,0 +1,9 @@
+Budget,Measure,Units per bit width (of 112),Eligible packed bytes,Dev ppl,,Wiki ppl (post-hoc),C4 ppl (post-hoc)
+INT4,uniform,4b:112,"680,687,616",13.106,,17.440,15.921
+INT3,uniform,3b:112,"515,966,976",17.016,,25.692,21.245
+INT4,fisher_taylor,3b:1 4b:109 8b:2,"680,003,072",13.082,SELECTED,17.427,15.914
+INT3,fisher_taylor,2b:4 3b:82 4b:26,"515,948,032",16.567,SELECTED,24.495,20.880
+INT4,probe_kl,3b:1 4b:109 8b:2,"680,003,072",13.082,,17.427,15.914
+INT3,probe_kl,2b:4 3b:89 4b:19,"515,954,688",16.615,,25.089,20.933
+INT4,local_err,3b:34 4b:63 8b:15,"680,652,288",13.717,,18.917,16.905
+INT3,local_err,2b:31 3b:54 4b:17 8b:10,"515,957,248",109.846,,297.934,158.661
