@@ -1,0 +1,75 @@
+# PA4 Task 3 - Policy distillation and exact speculative decoding.
+# (manual) = prescribed by ATML_PA4.pdf Section 3; (design) = our choice where the manual leaves it open;
+# (impl) = engineering only (no prescribed quantity changes). Fixed in git before any result exists.
+
+seed: 6304                                      # (manual) common reference seed
+
+data:
+  repo_dir: ../atml-pa4-datasets                # relative to "PA4/Task 3"
+  lock_file: data/local_source_revisions.json
+  gsm8k_train_ids: data/public_manifests/gsm8k_train_ids.jsonl    # (manual) 500 supplied training IDs
+  gsm8k_test_ids: data/public_manifests/gsm8k_test_ids.jsonl      # (manual) 60 supplied test IDs
+  gsm8k_train_locked: data/public_locked/gsm8k_train_locked.jsonl.gz
+  gsm8k_test_locked: data/public_locked/gsm8k_test_locked.jsonl.gz
+  short_train: data/short_form/short_train.jsonl                  # (manual) 300 supplied training examples
+  short_test: data/short_form/short_test.jsonl                    # (manual) 60 = 30 familiar + 30 shifted templates
+
+models:
+  target: Qwen/Qwen2.5-1.5B-Instruct            # (manual) fixed teacher and speculative target
+  draft: Qwen/Qwen2.5-0.5B-Instruct             # (manual) initial draft / student
+  target_revision: null                         # null -> lock file (model_target)
+  draft_revision: null                          # null -> lock file (model_draft)
+  dtype: float16                                # (manual) FP16 frozen backbones
+  attn_implementation: sdpa                     # (impl)
+  eos_tokens: ["<|im_end|>", "<|endoftext|>"]   # (design) fixed EOS treatment: stop at either; the EOS token is a
+                                                #   response token (sampled, scored, counted as output)
+
+sampling:                                       # (manual) temperature 1, top-p 1 everywhere (no top-k, no repetition
+  temperature: 1.0                              #   penalty: the checkpoints' generation_config sets 1.1 / top-k 20 /
+  top_p: 1.0                                    #   top-p 0.8, which we never apply)
+
+# -------------------------------------------------------------------------------------- distillation
+distill:
+  seeds: [6304, 6305]                           # (manual)
+  methods: [off_policy, on_policy]              # (manual)
+  quota: {math: 30000, short: 10000}            # (manual) teacher-scored response tokens per method per seed
+  caps: {math: 192, short: 32}                  # (manual) response caps
+  tokens_per_update: 256                        # (manual) one update per 256 scored tokens (short final update)
+  lr: 3.0e-4                                    # (manual) AdamW
+  weight_decay: 0.01                            # (manual)
+  betas: [0.9, 0.999]                           # (design) AdamW defaults
+  eps: 1.0e-8                                   # (design)
+  lr_schedule: constant                         # (design) the manual fixes the LR, no schedule
+  clip: 1.0                                     # (manual) global norm, after unscaling
+  grad_scaler: {init_scale: 65536.0, growth_interval: 2000}   # (impl) torch defaults; dynamic FP16 scaling (manual)
+  lora: {r: 8, alpha: 16, dropout: 0.0, targets: [q_proj, k_proj, v_proj, o_proj]}   # (manual)
+  # (design) prompt schedule: per seed, a fixed seeded permutation of each category's prompts, consumed round-robin
+  # (reused after exhaustion); categories interleaved by the share of their token quota already consumed.
+
+# -------------------------------------------------------------------------------------- evaluation
+eval:
+  gammas: [2, 4]                                # (manual)
+  reps: 2                                       # (manual) two paired repetitions per condition
+  speed_cap: 64                                 # (manual) primary EOS-aware speed benchmark
+  quality_caps: {math: 512, short: 32}          # (manual) answer-quality evaluation
+  throughput_prompts: 24                        # (manual) fixed-64-token diagnostic ignoring EOS (math prompts)
+  throughput_tokens: 64
+  microbench_lengths: [64, 256, 512, 1024]      # (design) prompt lengths for isolated draft/target decode cost
+  microbench_reps: 20                           # (design)
+  unmerged_timing: {method: on_policy, seed: 6304, gamma: 4, reps: 1}   # (design) adapter-wrapper overhead
+  bootstrap: {resamples: 10000, seed: 6304}     # (manual) paired bootstrap over prompts
+  qualitative_prompts: [GSM8K-0000, GSM8K-0007, SHORT-familiar-0000, SHORT-shifted-0000]   # (design) fixed a priori
+
+banks:                                          # staff protocol of setup_data.py --prefix-banks, re-implemented
+  bins: [[1, 16, 8], [17, 32, 8], [33, 64, 16], [65, 192, 16]]   # (manual/staff) positions per bin; 65-192 = long bank
+  max_new_tokens: 192
+  seed_teacher: 0                               # staff: generation seed = 6304 + 10007 * j + offset
+  seed_original_draft: 123
+  seed_spec: 456                                # (design) own offsets for the generated banks
+  seed_student: 789
+  spec_gamma: 4                                 # (manual) bank (iii): exact speculative, original student, gamma 4
+
+sampler_tests:
+  n_sequences: 100000                           # (manual) fixed-seed toy sequences of length three
+  alpha: 0.01                                   # (manual) chi-square significance level
+  real_consistency: {prompts: 4, samples: 400, tokens: 3}   # (design) real-model target vs speculative check

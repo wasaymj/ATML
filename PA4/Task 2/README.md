@@ -26,7 +26,6 @@ scripts/compile_task2_report.py   tables + figures + analysis JSON (incl. diagno
 notebooks/task2_kaggle_runner.ipynb   Kaggle driver (GPU 0: Part B; GPU 1: Parts A and C)
 notebooks/task2_diagnostics.ipynb     Kaggle driver of the diagnostic (GPU 0: Part B; GPU 1: Part C), ~45 min
 notebooks/task2_followup.ipynb        Kaggle driver of the mixed-data follow-up (retraining only), ~35 min
-tests/test_units.py       CPU unit tests; tests/smoke_cpu.py: CPU end-to-end run of all parts on tiny settings
 results/                  machine-readable outputs (git-tracked)
 ```
 
@@ -47,8 +46,7 @@ python scripts/run_task2.py --step report
 ```
 Part C reads the Qwen2.5-1.5B-Instruct commit from `../atml-pa4-datasets/data/local_source_revisions.json`.
 MQAR training pools are cached in `_cache/` and final MQAR checkpoints written to `checkpoints/` (both git-ignored;
-the Kaggle notebook zips the checkpoints separately). Local checks: `python tests/test_units.py`,
-`python tests/smoke_cpu.py --work <dir>`.
+the Kaggle notebook zips the checkpoints separately).
 
 ### Mechanism diagnostic (after the main run)
 A supplementary run that changes no main-run condition and reuses the main run's `results/` and the 42 MQAR

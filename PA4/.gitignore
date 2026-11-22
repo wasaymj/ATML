@@ -35,3 +35,8 @@ Task 2/_cache/
 Task 2/checkpoints/
 Task 3/_smoke/
 Task 3/_artifacts/
+
+# local test scripts (kept out of the repository)
+Task 1/tests/
+Task 2/tests/
+Task 3/tests/

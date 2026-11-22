@@ -1,0 +1,9 @@
+# PA4 Task 3. PyTorch: use the CUDA build preinstalled on Kaggle (do not reinstall torch).
+transformers==4.57.1        # manual: pinned for the Qwen cache interfaces
+huggingface_hub==0.36.2     # manual
+peft==0.17.1                # LoRA adapters + merging (checked with transformers 4.57.1 in PA3)
+datasets>=3,<5              # GSM8K rows at the locked revision (same selection code as setup_data.py)
+pyyaml
+numpy
+scipy
+matplotlib

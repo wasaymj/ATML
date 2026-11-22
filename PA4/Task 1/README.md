@@ -38,8 +38,6 @@ scripts/compile_task1_report.py   tables (results/tables) + figures (results/fig
 notebooks/task1_kaggle_runner.ipynb   Kaggle driver (2 x T4, one version)
 scripts/diagnose_task1.py   supplementary mechanism diagnostic (after the main run; changes no condition)
 notebooks/task1_diagnostics.ipynb     Kaggle driver for the diagnostic (1 x T4, ~30 min)
-tests/test_units.py         CPU unit tests (quantizer, packing, masks, allocation, knapsack, AWQ folding)
-tests/smoke_cpu.py          CPU end-to-end run of every step on a tiny random Qwen2 with synthetic data
 results/                    machine-readable outputs (git-tracked)
 ```
 
@@ -66,8 +64,7 @@ CUDA_VISIBLE_DEVICES=1 python scripts/run_task1.py --step family_quant
 python scripts/run_task1.py --step report
 ```
 `--step status` lists finished conditions. Every step skips finished work, so an interrupted run is resumed by
-running the same command again. Local checks without a GPU: `python tests/test_units.py` and
-`python tests/smoke_cpu.py --work <dir>`.
+running the same command again.
 
 Supplementary mechanism diagnostic (after the main run, once its `results/` are committed): import
 `notebooks/task1_diagnostics.ipynb` (one T4), or run `python scripts/diagnose_task1.py` then the report step. It
