@@ -341,12 +341,18 @@ def run_prompt(model, tok, cfg, p, eos_ids, keep_masks=False):
         lp_tf, nll = teacher_forced(model, tf_cache, first, p["gold_ids"], L + S, phys0 + S)
         text = tok.decode(gen, skip_special_tokens=True)
         ans = extract(text)
-        live = extra.get("bytes", full) + KQ.bytes_fp16(S + len(gen), n, Hkv, dh)
+        ctx_bytes = extra.get("bytes", full)
+        appended = cache.get_seq_length() - phys0          # suffix + fed generated tokens (the last one is never fed)
+        if isinstance(cache, KQ.TailQuantCache):            # completed 64-token blocks of the tail were quantized too
+            live = KQ.bytes_quant_split(cache.qend[0], cache.get_seq_length(), cache.bits, n, Hkv, dh)
+        else:
+            live = ctx_bytes + KQ.bytes_fp16(appended, n, Hkv, dh)
         r = {"answer_text": text, "answer": ans, "exact_match": int(ans == p["code"]), "gold_nll": nll,
              "suffix_s": t_suffix, "decode_s": t_dec, "decode_tokens": len(gen), "first_token": gen[0],
              "peak_allocated_policy": gpu_mem().get("max_allocated_bytes"),
-             "shared_suffix_and_generated_fp16_bytes": KQ.bytes_fp16(S + len(gen), n, Hkv, dh),
-             "total_live_cache_bytes_end": live}
+             "shared_suffix_and_generated_fp16_bytes": KQ.bytes_fp16(appended, n, Hkv, dh),
+             "appended_tokens": appended, "total_live_cache_bytes_end": live,
+             "decode_time_cache_bytes_beyond_context": live - ctx_bytes}
         del tf_cache
         return r, torch.log_softmax(first, -1), lp_tf, gen
 
@@ -432,8 +438,11 @@ def validate(model, tok, cfg, prompts, eos_ids) -> dict:
         c3 = KQ.build_cache(kv)
         o3 = run_suffix(model, c3, ids[:, L:], L, L)
         mine = greedy(model, c3, o3.logits[0, -1].float(), L + S, L + S, cfg["part_c"]["max_new_tokens"], eos_ids)
+        # plain greedy: the checkpoint's generation_config may set a repetition penalty / sampling defaults,
+        # which generate() would otherwise apply even with do_sample=False (codes often repeat digits)
         ref = model.generate(input_ids=ids, attention_mask=torch.ones_like(ids), max_new_tokens=cfg["part_c"]["max_new_tokens"],
-                             do_sample=False, pad_token_id=tok.eos_token_id)[0, ids.shape[1]:].tolist()
+                             do_sample=False, repetition_penalty=1.0, temperature=None, top_p=None, top_k=None,
+                             pad_token_id=tok.eos_token_id)[0, ids.shape[1]:].tolist()
         out["retain_all_vs_generate"].append({"id": p["id"], "identical_tokens": mine == ref[:len(mine)],
                                               "mine": tok.decode(mine), "generate": tok.decode(ref)})
         # eviction (shared positions) vs full cache with those positions masked

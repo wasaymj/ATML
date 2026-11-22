@@ -71,6 +71,12 @@ def bytes_quant(L: int, b: int, n: int, H: int, d: int) -> int:
     return 2 * n * H * d * ((L // G) * (G * b // 8 + 4) + 2 * (L % G))
 
 
+def bytes_quant_split(lq: int, L: int, b: int, n: int, H: int, d: int) -> int:
+    """Bytes of a cache whose first lq tokens (lq % 64 == 0) are quantized and the remaining L - lq are FP16."""
+    assert lq % G == 0 and lq <= L
+    return 2 * n * H * d * ((lq // G) * (G * b // 8 + 4) + 2 * (L - lq))
+
+
 def bytes_fp16(L: int, n: int, H: int, d: int) -> int:
     return 4 * n * H * d * L
 

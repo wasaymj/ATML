@@ -88,7 +88,8 @@ part_b:
 part_c:
   model: Qwen/Qwen2.5-1.5B-Instruct           # (manual) FP16
   revision: null                              # null -> lock file (model_target)
-  max_new_tokens: 12                          # (design) 5 digits + end-of-turn with margin; greedy
+  max_new_tokens: 32                          # (design) greedy; stops at end-of-turn, so a compliant 5-digit reply costs
+                                              # ~6 steps, while a wordy reply ("The access code for CASE-... is") still fits
   group: 64                                   # (manual) quantization group size
   bits_ref: 4                                 # (manual) reference budget = uniform INT4 channel-K / token-V
   bits_hybrid_low: 2                          # (manual) hybrid low-precision part

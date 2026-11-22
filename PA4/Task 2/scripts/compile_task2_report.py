@@ -467,10 +467,10 @@ def c_tables(r, plt):
                 f"{np.mean([x['policies'][p]['suffix_s'] for x in rows]) * 1000:.0f}",
                 f"{np.mean([x['policies'][p]['decode_s'] / max(1, x['policies'][p]['decode_tokens']) for x in rows]) * 1000:.1f}",
                 f"{np.mean([x['policies'][p]['bytes'] for x in rows]) / 2**20:.1f}",
-                f"{np.mean([x['policies'][p]['shared_suffix_and_generated_fp16_bytes'] for x in rows]) / 2**20:.2f}",
+                f"{np.mean([x['policies'][p].get('decode_time_cache_bytes_beyond_context', x['policies'][p]['shared_suffix_and_generated_fp16_bytes']) for x in rows]) / 2**20:.2f}",
                 f"{np.mean([x['policies'][p].get('peak_allocated_policy') or 0 for x in rows]) / 2**30:.2f}"] for p in POL]
     write_table(r, "C4_systems", ["Cache", "Context prefill ms", "Question scoring ms", "Compression ms", "Suffix ms",
-                                  "Decode ms / token", "Context cache MiB (serialized)", "Shared suffix+generated FP16 MiB",
+                                  "Decode ms / token", "Context cache MiB (serialized)", "Decode-time cache beyond context MiB",
                                   "Peak allocated GiB"], sysrows,
                 "Means over prompts. Quantized caches are fake-quantized (dequantized FP16 in GPU memory) before ordinary "
                 "SDPA, so allocated memory is not reduced; eviction happens after a full prefill, so the prefill peak is "
