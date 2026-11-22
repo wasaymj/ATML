@@ -943,8 +943,8 @@ def d_followup(r, plt):
         short = {"window_near_sparse_input": "W near\nsparse", "window_mixed_far_removed": "W mixed\nfar removed",
                  "dilated_near_sparse_input": "D near\nsparse", "dilated_mixed_far_removed": "D mixed\nfar removed"}
         prev = ((r.j("diagnostics", "part_b_diagnostic.json") or {}).get("retrain") or {}).get("arms", {})
-        cols = [("D7: W near\nthinned", prev.get("window_near_thinned"), "0.6"),
-                ("D7: W mixed\nreach-63", prev.get("window_mixed_reach63"), "0.6")]
+        cols = [("W near\nthinned", prev.get("window_near_thinned"), "0.6"),
+                ("W mixed\nreach-63", prev.get("window_mixed_reach63"), "0.6")]
         cols += [(short[a], arms[a], "#1f77b4" if a.startswith("window") else "#8c564b") for a in short if a in arms]
         cols = [c for c in cols if c[1]]
         for i, (lab, x, col) in enumerate(cols):
@@ -958,9 +958,8 @@ def d_followup(r, plt):
                 c = np.array(v["loss_curve"])
                 if len(c):
                     ax[1].plot(c[:, 0] / 1000, c[:, 1], label=f"seed {s}")
-            ax[1].axhline(np.log(16), color="0.5", ls=":", lw=0.8)
             ax[1].axvline(arms["window_mixed_long"]["updates"] / 3000, color="0.5", ls="--", lw=0.8)   # main budget
-            ax[1].set(xlabel="Update (thousands)", ylabel="Training loss", title="(b) Window, mixed, 3x budget")
+            ax[1].set(xlabel="Update (thousands)", ylabel="Training loss (all 16 queries)", title="(b) Window, mixed, 3x budget")
             ax[1].legend(fontsize=6)
         save_fig(r, fig, "FD5_mixed_data_followup")
     return "ok"

@@ -1,0 +1,6 @@
+Arm,Updates,Supervised queries / seq,Other queries in the window of a reachable query,Far query tokens / seq,Acc % on d <= 63 per seed,Escape update
+"window, near, 20.7% of queries in input",4500,3.28,1.55,0.0,14.9 / 73.7 / 25.2,never / 4400 / never
+"window, mixed, far query tokens removed",4500,3.27,1.51,0.0,12.3 / 12.2 / 13.1,never / never / never
+"dilated, near, 20.7% of queries in input",4500,3.28,1.55,0.0,25.9 / 99.7 / 56.3,never / 3750 / never
+"dilated, mixed, far query tokens removed",4500,3.27,1.51,0.0,12.6 / 12.5 / 13.2,never / never / never
+"window, mixed (main condition), 13,500 updates",13500,16.00,1.57,12.7,10.4 / 10.2 / 10.8,never / never / never
