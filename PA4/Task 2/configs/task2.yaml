@@ -1,0 +1,108 @@
+# PA4 Task 2 - Efficient attention and context memory.
+# (manual) = prescribed by ATML_PA4.pdf Section 2; (design) = our choice where the manual leaves it open;
+# (impl) = engineering only (no prescribed quantity changes). Fixed in git before any result exists.
+
+seed: 6304                                    # (manual) common reference seed
+
+data:
+  repo_dir: ../atml-pa4-datasets              # relative to "PA4/Task 2"
+  mqar_test: data/mqar/mqar_test.jsonl.gz     # (manual) frozen 9,216 test sequences (1,024 per K x regime)
+  mqar_dev: data/mqar/mqar_development.jsonl.gz   # frozen 2,304 development sequences (256 per K x regime)
+  kv_cases: data/kv_retrieval/kv_retrieval_cases.jsonl.gz   # (manual) 180 frozen retrieval prompts
+  lock_file: data/local_source_revisions.json
+
+# ------------------------------------------------------------------------------------------- Part A
+part_a:
+  B: 2                                        # (manual)
+  H: 4                                        # (manual)
+  dh: 64                                      # (manual)
+  lengths: [256, 512, 1024, 2048, 4096, 8192] # (manual)
+  dtypes: [float16, float32]                  # (manual) "FP16 and FP32 as supported"
+  reps: 10                                    # (manual) ten warmed-up repetitions
+  warmup: 3                                   # (impl)
+  tile_sizes: [32, 64, 128, 256]              # (manual) "verify outputs across tile sizes"
+  bench_tile: 128                             # (design) tile used in the timing benchmark (Br = Bc)
+  tile_sweep_lengths: [1024, 4096]            # (design) lengths for the tile-size check
+  grad_seed: 6304
+  dense_max_len_fp32_backward: 8192           # (impl) attempt; OOM is caught and recorded, never forced
+
+# ------------------------------------------------------------------------------------------- Part B
+part_b:
+  T: 256                                      # (manual)
+  vocab: 256                                  # (manual)
+  d_model: 128                                # (manual)
+  n_layers: 2                                 # (manual)
+  n_heads: 4                                  # (manual) head dim 32
+  mlp_mult: 4                                 # (manual)
+  window: 64                                  # (manual) W
+  dilation: 4                                 # (manual) offsets {0,4,...,252}
+  dilated_positions: 64                       # (manual)
+  optimizer: {lr: 8.0e-4, weight_decay: 0.01, betas: [0.9, 0.999], eps: 1.0e-8}   # (manual) AdamW, peak LR, wd
+  batch: 32                                   # (manual)
+  updates: 4500                               # (manual)
+  warmup: 200                                 # (manual)
+  final_lr_frac: 0.15                         # (manual) linear decay to 15 % of peak
+  clip: 1.0                                   # (manual)
+  eval_at: [500, 1000, 1500, 2000, 3000, 4500]   # (manual)
+  seeds: [6304, 6305, 6306]                   # (manual)
+  log_every: 50                               # (impl) training-loss logging interval
+  value_lo: 128                               # values 128..191 -> 64-way label space (chance 1/64)
+  n_values: 64
+  linear_eps: 1.0e-6                          # (design) epsilon in the linear-attention normaliser
+  distance_bins: [0, 32, 64, 128, 256]        # (manual) [0,32) [32,64) [64,128) [128,256)
+  topk_test: [8, 16, 32, 64]                  # (design) post-hoc content-selected top-k control on dense models
+  # (manual) required trained configurations: (mechanism, train K, train regime)
+  runs:
+    - [dense, 4, mixed]
+    - [dense, 8, mixed]
+    - [dense, 16, mixed]
+    - [dense, 16, near]                       # dense near-only control
+    - [window, 4, near]
+    - [window, 8, near]
+    - [window, 16, near]
+    - [window, 16, mixed]
+    - [linear, 4, mixed]
+    - [linear, 8, mixed]
+    - [linear, 16, mixed]
+    - [dilated, 4, mixed]                     # (design) regime not stated in B2; mixed, like the linear models
+    - [dilated, 16, mixed]
+    - [delta, 16, mixed]                      # B3 intervention (see intervention below)
+  intervention:
+    name: delta                               # (design) selective (delta-rule) updates of the linear state
+    comparator: linear                        # same K = 16, mixed regime
+    prediction: >-
+      Stated before evaluation: at K = 16 (mixed) the delta-rule state will reach clearly higher test accuracy
+      than ELU+1 linear attention in every distance bin, because writing v_t - S^T k_t overwrites the value stored
+      under a key instead of adding interference from all previous pairs; accuracy will stay roughly flat in
+      distance (no receptive-field limit) and remain below dense attention. Development-selection rule: none
+      (one fixed design; the final 4,500-update checkpoint is used, as for every model).
+    feature_dim: 33                           # 32 ELU+1 features + 1 constant feature -> state 33 x 32 per head
+  eval_subsample: null                        # (impl) smoke tests only: first n sequences per cell of dev/test
+  sweep:                                      # forward-only inference sweep (random embeddings)
+    lengths: [256, 1024, 4096, 8192]          # (manual)
+    batch: 4                                  # (design) matched across mechanisms
+    reps: 10
+    warmup: 3
+
+# ------------------------------------------------------------------------------------------- Part C
+part_c:
+  model: Qwen/Qwen2.5-1.5B-Instruct           # (manual) FP16
+  revision: null                              # null -> lock file (model_target)
+  max_new_tokens: 12                          # (design) 5 digits + end-of-turn with margin; greedy
+  group: 64                                   # (manual) quantization group size
+  bits_ref: 4                                 # (manual) reference budget = uniform INT4 channel-K / token-V
+  bits_hybrid_low: 2                          # (manual) hybrid low-precision part
+  sink: 8                                     # (manual)
+  recent: 64                                  # (manual)
+  selection: per_layer_per_kv_head            # (design) independent per (layer, KV head), equal count per head
+  index_bytes: 2                              # (design) int16 position index per separately stored position
+  snapkv_pool_kernel: 7                       # (design) SnapKV 1-D max-pooling of votes (fixed, not tuned)
+  bootstrap: {resamples: 10000, seed: 6304}   # (manual) >= 2,000
+  bench_on_cpu: false                         # (impl) smoke tests only
+  bench:                                      # C5 packed-cache encode/decode benchmark
+    batches: [1, 8]                           # (manual)
+    lengths: [2048, 4096]                     # (manual) both context lengths
+    reps: 10                                  # (manual) >= 10 warmed-up repetitions
+    warmup: 3
+  qualitative_ids: [KV-2048-start-8-00, KV-2048-middle-8-00, KV-2048-end-8-00,
+                    KV-4096-start-8-00, KV-4096-middle-8-00, KV-4096-end-8-00]   # (design) fixed a priori

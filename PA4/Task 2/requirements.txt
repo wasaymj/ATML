@@ -1,0 +1,8 @@
+# PA4 Task 2. PyTorch: use the CUDA build preinstalled on Kaggle (do not reinstall torch).
+transformers==4.57.1        # manual: pinned for the Qwen cache interfaces
+huggingface_hub==0.36.2     # manual
+datasets>=3,<5              # only for the revision resolver in atml-pa4-datasets
+pyyaml
+numpy
+scipy
+matplotlib
