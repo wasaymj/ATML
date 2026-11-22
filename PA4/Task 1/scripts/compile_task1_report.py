@@ -723,7 +723,7 @@ def t_diagnostics(r: R):
     write_table(r, "T20_massive_activations", ["Boundary (input of block)", "max/RMS", "# massive entries",
                                                "share at token 0", "channels", "share of ||h||^2", "||h_0|| / mean ||h_t>0||",
                                                "attn mass on token 0 (block)", "MLP share of block's write (to next)"], rows,
-                f"Dense FP16, first {n} calibration sequences, eager attention. Massive = |h| > {d['meta']['massive_ratio']:.0f} x "
+                f"Dense FP16, first {n} calibration sequences, SDPA (token-0 attention mass in FP32). Massive = |h| > {d['meta']['massive_ratio']:.0f} x "
                 "RMS of the boundary. Attention mass = mean over heads and queries t >= 1 of the weight on key 0 in that "
                 "block. Last column: share of the increment h_(l+1) - h_l at the next boundary's massive entries written "
                 f"by the MLP of block l (rest: attention). Sanity: dense vs dense KL = {d['dense']['dense_vs_dense_kl']:.1e}.")
@@ -753,8 +753,8 @@ def t_diagnostics(r: R):
                      "patch boundary", "KL, token 0 restored", "KL, all but token 0 restored", "massive boundary",
                      "KL, massive entries restored", "KL, random entries restored"], rows,
                     "One unit at 2 bits (AWQ scales of the main run), or one whole block pruned with Wanda (l.p75 = "
-                    "the P3 block probe), everything else FP16. Saved probe KL = the main run's value (128 sequences, "
-                    "SDPA; this run: first 32, eager). Restored = activation patching "
+                    "the P3 block probe), everything else FP16. Saved probe KL = the main run's value (all 128 "
+                    "calibration sequences; this run: the first 32). Restored = activation patching "
                     "at the boundary right after the unit (massive / random: at the first boundary holding massive entries): "
                     "those residual entries are set back to their dense values and the rest of the network runs on. If "
                     "restoring token 0 removes most of the KL, the damage travels through the first token's state; if "

@@ -51,6 +51,33 @@ INPUT_KEY = {"qkv": "q", "o": "o", "gateup": "gate", "down": "down"}     # dense
 PROJ_INPUT = {"q": "q", "k": "q", "v": "q", "o": "o", "gate": "gate", "up": "gate", "down": "down"}
 MASSIVE_RATIO = 50.0          # an entry is "massive" if |h| > 50 x RMS of its boundary (dense model)
 
+# Attention mass on token 0. HF's eager attention forms q.k^T in FP16 before scaling, which overflows on Qwen2.5
+# (inf -> NaN). So the model keeps SDPA, exactly as in the main run, and this wrapper around the SDPA kernel also
+# computes softmax(q k^T * scale) in FP32 and keeps only the mass on key 0 (queries 1..T-1, per head), when asked.
+_REC = {"on": False, "mass": {}}
+
+
+def _install_sdpa_recorder():
+    from transformers.integrations.sdpa_attention import sdpa_attention_forward
+    from transformers.modeling_utils import ALL_ATTENTION_FUNCTIONS
+
+    def sdpa_with_mass(module, query, key, value, attention_mask, dropout=0.0, scaling=None, is_causal=None, **kw):
+        out = sdpa_attention_forward(module, query, key, value, attention_mask, dropout=dropout, scaling=scaling,
+                                     is_causal=is_causal, **kw)
+        if _REC["on"]:
+            with torch.no_grad():
+                B, H, T, d = query.shape
+                rep = H // key.shape[1]
+                k = key.float().repeat_interleave(rep, dim=1)
+                sc = (query.float() @ k.transpose(-1, -2)) * (scaling if scaling is not None else d ** -0.5)
+                causal = torch.ones(T, T, dtype=torch.bool, device=sc.device).triu(1)   # inputs are unpadded
+                p = torch.softmax(sc.masked_fill(causal, float("-inf")), dim=-1)
+                _REC["mass"][module.layer_idx] = p[:, :, 1:, 0].mean(dim=(0, 2))
+                del sc, p, k
+        return out
+
+    ALL_ATTENTION_FUNCTIONS.register("sdpa", sdpa_with_mass)
+
 
 class Diag:
     def __init__(self, a):
@@ -58,7 +85,8 @@ class Diag:
         self.res = Path(a.results) if a.results else RESULTS
         cfg = load_config(a.config)
         cfg = copy.deepcopy(cfg)
-        cfg["model"]["attn_implementation"] = "eager"           # attention weights are needed (sink mass)
+        cfg["model"]["attn_implementation"] = "sdpa"            # as the main run; token-0 mass via the wrapper
+        _install_sdpa_recorder()
         if a.model:
             cfg["model"]["name"] = a.model
         rev = a.revision or cfg["model"]["revision"]
@@ -66,7 +94,7 @@ class Diag:
             rev = lock_revisions(cfg)["revisions"]["model_base"]
         self.cfg, self.rev = cfg, rev
         set_seed(cfg["seed"])
-        log(f"loading {cfg['model']['name']} @ {rev} (eager attention)")
+        log(f"loading {cfg['model']['name']} @ {rev} (SDPA + FP32 token-0 attention mass)")
         self.model, _ = load_model(cfg, a.device, revision=rev)
         self.dev = a.device
         self.layers = get_layers(self.model)
@@ -143,6 +171,8 @@ class Diag:
 
     # ------------------------------------------------------------------------------------------- hooks
     def clear(self):
+        _REC["on"] = False
+        _REC["mass"].clear()
         for h in self.hooks:
             h.remove()
         self.hooks = []
@@ -156,10 +186,9 @@ class Diag:
                     st["h_in"][l] = h
                 self.hooks.append(blk.register_forward_pre_hook(pre, with_kwargs=True))
             if record_attn:
+                _REC["on"] = True
                 def ah(mod, inp, out, l=l):
-                    w = out[1]
-                    if w is not None:                       # (B, H, T, T): mass on key 0 for queries 1..T-1
-                        st["attn0"][l] = w[:, :, 1:, 0].float().mean(dim=(0, 2))
+                    st["attn0"][l] = _REC["mass"].pop(mod.layer_idx)     # (H,): mass on key 0, queries 1..T-1
                 self.hooks.append(blk.self_attn.register_forward_hook(ah))
             if record_sub is not None and l in record_sub:
                 def sa(mod, inp, out, l=l):
@@ -194,7 +223,7 @@ class Diag:
                 st.update(chunk_start=i0, h_in={}, attn0={}, sub={}, down_in={})
                 hN = self.model.model(input_ids=ids, use_cache=False).last_hidden_state   # final norm applied
                 if not torch.isfinite(hN).all():
-                    raise FloatingPointError("non-finite hidden states (FP16 eager attention overflow?)")
+                    raise FloatingPointError("non-finite hidden states")
                 if keep_final:
                     finals.append(hN.cpu())
                 if getattr(self, "dense_final", None) is not None and not keep_final:
@@ -488,7 +517,8 @@ def main():
     out_dir = d.res / "diagnostics"
     out_dir.mkdir(parents=True, exist_ok=True)
     path = out_dir / "mechanism_diagnostic.json"
-    t, rec = {}, {"meta": {"n_seq": d.N, "seq_len": d.T, "revision": d.rev, "attention": "eager", "k": a.k,
+    t, rec = {}, {"meta": {"n_seq": d.N, "seq_len": d.T, "revision": d.rev,
+                           "attention": "sdpa (as the main run); token-0 attention mass recomputed in FP32", "k": a.k,
                            "n_random": a.n_random, "massive_ratio": a.massive_ratio, "bits": 2, "prune_units": "Wanda, dense input norms",
                            "note": "supplementary diagnostic, run after all conditions; selects nothing"}}
     t0 = time.perf_counter()
