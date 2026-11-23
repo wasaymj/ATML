@@ -1,0 +1,41 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1795382503.281965     312 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+[21:23:48] bank student_off_policy_s6304: 20/120
+[21:25:43] bank student_off_policy_s6304: 40/120
+[21:27:29] bank student_off_policy_s6304: 60/120
+[21:27:45] bank student_off_policy_s6304: 80/120
+[21:27:59] bank student_off_policy_s6304: 100/120
+[21:28:06] bank student_off_policy_s6304: 120/120
+[21:28:06] bank student_off_policy_s6304: 3488 positions, 6.3 min
+[21:30:01] bank student_off_policy_s6305: 20/120
+[21:31:54] bank student_off_policy_s6305: 40/120
+[21:33:43] bank student_off_policy_s6305: 60/120
+[21:34:01] bank student_off_policy_s6305: 80/120
+[21:34:12] bank student_off_policy_s6305: 100/120
+[21:34:17] bank student_off_policy_s6305: 120/120
+[21:34:17] bank student_off_policy_s6305: 3432 positions, 6.2 min
+[21:36:13] bank student_on_policy_s6304: 20/120
+[21:38:07] bank student_on_policy_s6304: 40/120
+[21:40:03] bank student_on_policy_s6304: 60/120
+[21:40:19] bank student_on_policy_s6304: 80/120
+[21:40:30] bank student_on_policy_s6304: 100/120
+[21:40:36] bank student_on_policy_s6304: 120/120
+[21:40:36] bank student_on_policy_s6304: 3390 positions, 6.3 min
+[21:42:29] bank student_on_policy_s6305: 20/120
+[21:44:23] bank student_on_policy_s6305: 40/120
+[21:46:11] bank student_on_policy_s6305: 60/120
+[21:46:27] bank student_on_policy_s6305: 80/120
+[21:46:48] bank student_on_policy_s6305: 100/120
+[21:46:54] bank student_on_policy_s6305: 120/120
+[21:46:54] bank student_on_policy_s6305: 3492 positions, 6.3 min
+[21:46:54] step banks_students finished
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1795384025.715024     351 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+[21:47:42] align: bank teacher done (3438 rows so far)
+[21:48:13] align: bank original_draft done (7037 rows so far)
+[21:48:42] align: bank exact_spec_original_gamma4 done (10486 rows so far)
+[21:49:12] align: bank student_off_policy_s6304 done (13974 rows so far)
+[21:49:42] align: bank student_off_policy_s6305 done (17406 rows so far)
+[21:50:12] align: bank student_on_policy_s6304 done (20796 rows so far)
+[21:50:41] align: bank student_on_policy_s6305 done (24288 rows so far)
+[21:50:47] step align finished

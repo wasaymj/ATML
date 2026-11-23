@@ -1,0 +1,28 @@
+| Prompt | Model (standalone) | Response (first 110 chars) | Correct | Termination |
+|---|---|---|---|---|
+| GSM8K-0000 | target (1.5B) | "To determine how much Janet earns from selling her duck eggs at the farmers' market daily, we need to follow t" | True | eos |
+| GSM8K-0000 | original | "To determine how much Janet makes at the farmers' market every day, we need to consider her earnings from eggs" | False | eos |
+| GSM8K-0000 | off-policy s6304 | "To determine how much Janet makes at the farmers' market daily, we need to follow these steps: 1. **Calculate " | False | eos |
+| GSM8K-0000 | off-policy s6305 | "To determine how much Janet makes at the farmers' market daily, we need to follow these steps: 1. **Calculate " | False | eos |
+| GSM8K-0000 | on-policy s6304 | "To determine how much Janet makes at the farmers' market daily, we need to follow these steps: 1. **Calculate " | False | eos |
+| GSM8K-0000 | on-policy s6305 | "To determine how much Janet makes at the farmers' market daily, we need to follow these steps: 1. **Calculate " | False | cap |
+| GSM8K-0007 | target (1.5B) | "Let's denote the number of cars that drove through in the first 15 minutes as \\( x \\). Initially, there are 30" | False | eos |
+| GSM8K-0007 | original | "Let's denote the number of cars driving in the first 15 minutes as \\( x \\). Given that there are 30 cars origi" | False | eos |
+| GSM8K-0007 | off-policy s6304 | "Let's denote the number of cars driving in the first 15 minutes as \\( x \\). Initially, there are 30 cars. The " | False | cap |
+| GSM8K-0007 | off-policy s6305 | "Let's denote the number of cars driving in the first 15 minutes as \\( x \\). In the remaining 15 minutes, 20 mo" | True | cap |
+| GSM8K-0007 | on-policy s6304 | "Let's denote the number of cars driving in the first 15 minutes as \\( x \\). Given that there are 30 cars origi" | False | eos |
+| GSM8K-0007 | on-policy s6305 | "Let's denote the number of cars driving in the first 15 minutes as \\( C_1 \\) and the number of cars driving in" | False | eos |
+| SHORT-familiar-0000 | target (1.5B) | 'May' | True | eos |
+| SHORT-familiar-0000 | original | '05' | False | eos |
+| SHORT-familiar-0000 | off-policy s6304 | 'May' | True | eos |
+| SHORT-familiar-0000 | off-policy s6305 | 'May' | True | eos |
+| SHORT-familiar-0000 | on-policy s6304 | 'May' | True | eos |
+| SHORT-familiar-0000 | on-policy s6305 | 'May' | True | eos |
+| SHORT-shifted-0000 | target (1.5B) | 'October' | True | eos |
+| SHORT-shifted-0000 | original | 'October' | True | eos |
+| SHORT-shifted-0000 | off-policy s6304 | 'October' | True | eos |
+| SHORT-shifted-0000 | off-policy s6305 | 'October' | True | eos |
+| SHORT-shifted-0000 | on-policy s6304 | 'October' | True | eos |
+| SHORT-shifted-0000 | on-policy s6305 | 'October' | True | eos |
+
+Fixed prompts chosen before results; repetition 0, temperature 1.

@@ -1,0 +1,37 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1795387903.510255     373 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+[22:55:14] bench off_policy_s6305: 40 rows (3.3 min)
+[22:57:29] bench off_policy_s6305: 80 rows (5.6 min)
+[22:58:14] bench off_policy_s6305: 120 rows (6.3 min)
+[23:01:33] bench off_policy_s6305: 160 rows (9.6 min)
+[23:03:48] bench off_policy_s6305: 200 rows (11.9 min)
+[23:04:49] bench off_policy_s6305: 240 rows (12.9 min)
+[23:08:20] bench off_policy_s6305: 280 rows (16.4 min)
+[23:10:49] bench off_policy_s6305: 320 rows (18.9 min)
+[23:11:41] bench off_policy_s6305: 360 rows (19.8 min)
+[23:15:10] bench off_policy_s6305: 400 rows (23.3 min)
+[23:17:31] bench off_policy_s6305: 440 rows (25.6 min)
+[23:18:38] bench off_policy_s6305: 480 rows (26.7 min)
+[23:22:01] bench off_policy_s6305: 40 rows (3.3 min)
+[23:25:29] bench off_policy_s6305: 80 rows (6.8 min)
+[23:30:11] bench on_policy_s6304: 40 rows (3.3 min)
+[23:32:25] bench on_policy_s6304: 80 rows (5.5 min)
+[23:33:10] bench on_policy_s6304: 120 rows (6.2 min)
+[23:36:32] bench on_policy_s6304: 160 rows (9.6 min)
+[23:38:47] bench on_policy_s6304: 200 rows (11.9 min)
+[23:39:47] bench on_policy_s6304: 240 rows (12.9 min)
+[23:43:18] bench on_policy_s6304: 280 rows (16.4 min)
+[23:45:42] bench on_policy_s6304: 320 rows (18.8 min)
+[23:46:31] bench on_policy_s6304: 360 rows (19.6 min)
+[23:49:58] bench on_policy_s6304: 400 rows (23.0 min)
+[23:52:17] bench on_policy_s6304: 440 rows (25.4 min)
+[23:53:25] bench on_policy_s6304: 480 rows (26.5 min)
+[23:56:48] bench on_policy_s6304: 40 rows (3.3 min)
+[00:00:15] bench on_policy_s6304: 80 rows (6.7 min)
+[00:01:37] step bench finished
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1795392107.714967     413 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+[00:06:22] bench on_policy_s6304_unmerged: 40 rows (4.4 min)
+[00:09:22] bench on_policy_s6304_unmerged: 80 rows (7.4 min)
+[00:10:24] bench on_policy_s6304_unmerged: 120 rows (8.4 min)
+[00:10:25] step bench_unmerged finished

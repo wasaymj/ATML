@@ -1,0 +1,11 @@
+Draft,gamma,alpha (accepted/examined),c (measured in run),v_gamma (measured in run),Predicted S_hat,Measured S (total time ratio),Break-even alpha
+original,2,0.864,0.806,0.97,1.012,0.991,0.852
+original,4,0.866,0.820,0.97,0.899,0.876,0.919
+off-policy s6304,2,0.874,0.799,0.96,1.033,1.001,0.843
+off-policy s6304,4,0.871,0.818,0.97,0.911,0.894,0.918
+off-policy s6305,2,0.868,0.808,0.97,1.014,0.987,0.855
+off-policy s6305,4,0.871,0.822,0.98,0.907,0.871,0.920
+on-policy s6304,2,0.876,0.803,0.96,1.029,0.996,0.848
+on-policy s6304,4,0.874,0.822,0.97,0.913,0.886,0.920
+on-policy s6305,2,0.861,0.806,0.96,1.011,0.994,0.850
+on-policy s6305,4,0.869,0.819,0.97,0.907,0.886,0.918

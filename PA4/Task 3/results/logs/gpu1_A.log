@@ -1,0 +1,44 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1795374103.252153     209 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+[19:27:02] teacher pool s6304: 862 presentations, 25.2 min
+[19:27:28] off_policy s6304 update 20 tokens 5120/40000 kl 0.1223
+[19:27:50] off_policy s6304 update 40 tokens 10240/40000 kl 0.1213
+[19:28:14] off_policy s6304 update 60 tokens 15360/40000 kl 0.1174
+[19:28:36] off_policy s6304 update 80 tokens 20480/40000 kl 0.0652
+[19:28:58] off_policy s6304 update 100 tokens 25600/40000 kl 0.1177
+[19:29:19] off_policy s6304 update 120 tokens 30720/40000 kl 0.1012
+[19:29:42] off_policy s6304 update 140 tokens 35840/40000 kl 0.1350
+[19:30:00] off_policy s6304 done: 157 updates, 2.9 min, final kl 0.1116
+[19:55:43] teacher pool s6305: 836 presentations, 25.6 min
+[19:56:07] off_policy s6305 update 20 tokens 5120/40000 kl 0.1892
+[19:56:30] off_policy s6305 update 40 tokens 10240/40000 kl 0.1188
+[19:56:52] off_policy s6305 update 60 tokens 15360/40000 kl 0.0962
+[19:57:14] off_policy s6305 update 80 tokens 20480/40000 kl 0.0807
+[19:57:37] off_policy s6305 update 100 tokens 25600/40000 kl 0.0701
+[19:57:58] off_policy s6305 update 120 tokens 30720/40000 kl 0.1093
+[19:58:21] off_policy s6305 update 140 tokens 35840/40000 kl 0.0508
+[19:58:38] off_policy s6305 done: 157 updates, 2.9 min, final kl 0.1812
+[20:03:29] on_policy s6304 update 20 tokens 5120/40000 kl 0.2930
+[20:08:06] on_policy s6304 update 40 tokens 10240/40000 kl 0.2493
+[20:12:48] on_policy s6304 update 60 tokens 15360/40000 kl 0.1486
+[20:17:35] on_policy s6304 update 80 tokens 20480/40000 kl 0.3124
+[20:22:08] on_policy s6304 update 100 tokens 25600/40000 kl 0.1606
+[20:26:49] on_policy s6304 update 120 tokens 30720/40000 kl 0.2325
+[20:31:21] on_policy s6304 update 140 tokens 35840/40000 kl 0.1179
+[20:35:11] on_policy s6304 done: 157 updates, 36.5 min, final kl 0.0845
+[20:39:57] on_policy s6305 update 20 tokens 5120/40000 kl 0.2681
+[20:44:35] on_policy s6305 update 40 tokens 10240/40000 kl 0.0950
+[20:49:09] on_policy s6305 update 60 tokens 15360/40000 kl 0.1560
+[20:53:44] on_policy s6305 update 80 tokens 20480/40000 kl 0.1985
+[20:58:19] on_policy s6305 update 100 tokens 25600/40000 kl 0.1186
+[21:03:02] on_policy s6305 update 120 tokens 30720/40000 kl 0.1072
+[21:07:35] on_policy s6305 update 140 tokens 35840/40000 kl 0.2085
+[21:11:19] on_policy s6305 done: 157 updates, 36.1 min, final kl 0.3797
+[21:11:19] step train finished
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1795381890.392504     289 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+[21:11:36] merged /kaggle/working/t3_artifacts/adapters/off_policy_s6304 in 0.0s
+[21:11:41] merged /kaggle/working/t3_artifacts/adapters/off_policy_s6305 in 0.0s
+[21:11:45] merged /kaggle/working/t3_artifacts/adapters/on_policy_s6304 in 0.0s
+[21:11:49] merged /kaggle/working/t3_artifacts/adapters/on_policy_s6305 in 0.1s
+[21:11:51] step merge finished

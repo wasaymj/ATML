@@ -1,0 +1,6 @@
+| Draft execution | Tok/s spec | Speedup (median) | Accepted / examined |
+|---|---|---|---|
+| unmerged (peft wrapper) | 14.7 | 0.601 | 0.870 |
+| merged FP16 | 21.1 | 0.839 | 0.870 |
+
+on-policy s6304, gamma 4, repetition 0 for both.

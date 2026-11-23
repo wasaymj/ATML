@@ -1,0 +1,10 @@
+{
+ "adapter_dir": "/kaggle/working/t3_artifacts/adapters/on_policy_s6304",
+ "merge_seconds": 0.040721585000028426,
+ "load_merge_and_check_seconds": 1.4692440449998685,
+ "merged_vs_unmerged_max_abs_logit": 0.40625,
+ "merged_vs_unmerged_mean_kl": 5.627934092444775e-05,
+ "merged_vs_unmerged_argmax_agreement": 1.0,
+ "n_check_prompts": 8,
+ "save_seconds": 0.6623364110000693
+}

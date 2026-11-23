@@ -1,0 +1,11 @@
+{
+ "seed": 6305,
+ "presentations": 836,
+ "teacher_generation_seconds": 1538.798857931,
+ "generated_tokens": 40196,
+ "scored_tokens": {
+  "math": 30000,
+  "short": 10000
+ },
+ "peak_allocated_bytes": 3381068288
+}

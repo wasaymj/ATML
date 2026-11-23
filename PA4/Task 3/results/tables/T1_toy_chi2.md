@@ -1,0 +1,8 @@
+| Sampler | gamma | Residual | Pearson chi2 | df | p | Decision (alpha 0.01) | max |joint error| | acceptance | bonus rounds |
+|---|---|---|---|---|---|---|---|---|---|
+| correct_gamma1 | 1 | correct | 17.5 | 26 | 0.893 | not rejected | 0.0014 | 0.772 | 98924 |
+| correct_gamma2 | 2 | correct | 20.9 | 26 | 0.749 | not rejected | 0.0014 | 0.783 | 84868 |
+| correct_gamma4 | 4 | correct | 35.9 | 26 | 0.0937 | not rejected | 0.0018 | 0.783 | 84746 |
+| incorrect_residual_p_gamma2 | 2 | p | 16537.5 | 26 | 0 | rejected | 0.0302 | 0.767 | 81458 |
+
+100,000 fixed-seed length-3 sequences per sampler; 3-symbol second-order Markov target and draft (the draft depends on cached history, so rollback errors would bias the joint); 27 joint categories, minimum expected count 979. 'p' residual = deliberately incorrect sampler.

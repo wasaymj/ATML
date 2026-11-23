@@ -32,6 +32,8 @@ scripts/run_task3.py            CLI: data | validate | banks_base | train | merg
                                 bench_unmerged | quality | report | status
 scripts/compile_task3_report.py tables (results/tables) + figures (results/figures) + analysis JSON
 notebooks/task3_kaggle_runner.ipynb   Kaggle driver (2 x T4)
+notebooks/task3_diagnostics.ipynb     Kaggle driver of the mechanism diagnostic (~75 min)
+scripts/diagnose_task3.py       CLI of the diagnostic; src/diag.py: its three tests
 results/                        machine-readable outputs (git-tracked); adapters / merged checkpoints are not
 ```
 
@@ -85,6 +87,23 @@ background load. Sampler correctness is checked on the GPU by `--step validate` 
 not sample the temperature-1 target law that exact speculative sampling reproduces. `src/banks.py` re-implements the
 same protocol (prompts, chat template, per-prompt seeds 6304 + 10007 j + offset, position RNG and bins, schema) with
 plain temperature-1 / top-p-1 sampling through the same code as the speculative sampler.
+
+### Mechanism diagnostic (after the main run)
+A supplementary run that changes no main-run condition. It reuses the main run's `results/` and the four LoRA
+adapters (on Kaggle: upload `task3_adapters.zip` as a dataset and add it to `notebooks/task3_diagnostics.ipynb`;
+~75 min). Three tests: decode-step time vs layers kept and vs batch size, plus profiler GPU busy share
+(launch-bound draft); greedy GSM8K accuracy and draft entropy (why distillation lowered standalone math); the
+split-prefill check in FP16 vs FP32 with the location of the maximum. Output: `results/diagnostics/`, tables D1–D3,
+figure FD1.
+```bash
+python scripts/diagnose_task3.py --part split
+```
+```bash
+python scripts/diagnose_task3.py --part math --adapters _artifacts/adapters
+```
+```bash
+python scripts/diagnose_task3.py --part launch
+```
 
 ## Outputs
 | Path | Content |

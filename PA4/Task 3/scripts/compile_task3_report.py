@@ -680,25 +680,54 @@ def t_spec(r, plt):
 
 
 # ================================================================================ task and systems analysis
+_MONTHS = ("January|February|March|April|May|June|July|August|September|October|November|December")
+
+
+def answer_extracted(text: str, answer: str, family: int) -> bool:
+    """Lenient correctness: the requested item, extracted from free text, equals the answer (format ignored).
+    Month: the first month name; integer: the last integer; code: the first standalone two-letter capital code."""
+    import re
+    if family == 0:
+        m = re.findall(rf"\b({_MONTHS})\b", text)
+        return bool(m) and m[0] == answer
+    if family == 1:
+        m = re.findall(r"\d[\d,]*", text)
+        return bool(m) and m[-1].replace(",", "") == answer
+    m = re.findall(r"\b[A-Z]{2}\b", text)
+    return bool(m) and m[0] == answer
+
+
 def t_quality(r, plt):
     models = [m for m in ["target"] + DRAFTS if r.j("quality", f"{m}.json.gz")]
     if not models:
         return "no quality"
+    from src.utils import data_repo, read_jsonl
+    short = read_jsonl(data_repo(r.cfg) / r.cfg["data"]["short_test"])      # committed file (no GSM8K download needed)
+    fam = {x["id"]: x["family"] for x in short}
+    ans = {x["id"]: x["answer"] for x in short}
     rows = []
     for m in models:
         q = r.j("quality", f"{m}.json.gz")["rows"]
         mt = [x for x in q if x["workload"] == "math"]
-        row = [DLAB[m], f"{100 * np.mean([x['correct'] for x in mt]):.1f}", f"{100 * np.mean([x['extractable'] for x in mt]):.1f}",
-               f"{100 * np.mean([x['truncated'] for x in mt]):.1f}"]
+        row = [DLAB[m], f"{100 * np.mean([x['correct'] for x in mt]):.1f}",
+               f"{100 * np.mean([x['correct'] for x in mt if x['termination'] == 'eos']):.1f}",
+               f"{100 * np.mean([x['truncated'] for x in mt]):.1f}", f"{np.mean([x['n_tokens'] for x in mt]):.0f}"]
         for w in ("short_familiar", "short_shifted"):
             s = [x for x in q if x["workload"] == w]
-            row += [f"{100 * np.mean([x['correct'] for x in s]):.1f}", f"{100 * np.mean([x['format_compliant'] for x in s]):.1f}"]
+            lenient = [answer_extracted(x["text"], ans[x["prompt_id"]], fam[x["prompt_id"]]) for x in s] if fam and ans else []
+            row += [f"{100 * np.mean(lenient):.1f}" if lenient else "-",
+                    f"{100 * np.mean([x['correct'] for x in s]):.1f}"]
         rows.append(row)
-    write_table(r, "T18_standalone_quality", ["Model", "Math correct %", "Math extractable %", "Math truncated at 512 %",
-                                              "Familiar correct %", "Familiar format-compliant %", "Shifted correct %",
-                                              "Shifted format-compliant %"], rows,
+    write_table(r, "T18_standalone_quality", ["Model", "Math correct %", "Math correct among EOS-ended %",
+                                              "Math truncated at 512 %", "Math mean tokens",
+                                              "Familiar answer correct %", "Familiar exact-format correct %",
+                                              "Shifted answer correct %", "Shifted exact-format correct %"], rows,
                 "Each model alone, temperature 1, caps 512 (math) / 32 (extraction), 2 repetitions x 120 prompts. Measures "
-                "the draft as a model; speculative outputs follow the target and are not used here.")
+                "the draft as a model; speculative outputs follow the target and are not used here. Extraction: 'answer "
+                "correct' = the requested item extracted from the free text (first month name / last integer / first "
+                "two-letter code) equals the gold answer, format ignored; 'exact-format correct' = the whole response is "
+                "exactly the answer (the format-compliance check). Math: last number vs gold; unextractable responses "
+                "count as wrong.")
     # amortisation
     orig = r.bench("original")
     rows = []
@@ -731,7 +760,9 @@ def t_quality(r, plt):
                                               "Saving per request vs target-only (ms)", "Requests to break even (vs target-only)"], rows,
                     "Cost = teacher-pool generation + teacher scoring + student rollouts + updates + merging (one T4). "
                     "Savings are per-request differences on the 120-prompt, 64-token benchmark: per-request time = mean "
-                    "target-only time (pooled over the two benchmarks) / the draft's measured total-time speedup. The OSD column "
+                    "target-only time (pooled over the two benchmarks) / the draft's measured total-time speedup. These are "
+                    "point estimates: where the paired speedup difference in T11b has a 95% CI that includes 0, the saving "
+                    "and its break-even count are not supported by the data. The OSD column "
                     "(Liu et al., 2024) removes the teacher-scoring cost, which an online deployment gets for free from "
                     "the target's verification logits; it is a what-if, not a measured method.")
     # EOS / truncation in the speed benchmark
@@ -770,6 +801,96 @@ def t_quality(r, plt):
                     "Fixed prompts chosen before results; repetition 0, temperature 1.")
 
 
+def t_diag(r, plt):
+    """Mechanism diagnostic (scripts/diagnose_task3.py): D1 launch-bound decode, D2 math degradation, D3 split-prefill."""
+    made = []
+    la = r.j("diagnostics", "launch.json")
+    if la:
+        rows = []
+        for w, lab in (("target", "target 1.5B"), ("draft", "draft 0.5B")):
+            x = la["models"][w]
+            pr = x.get("profile", {})
+            rows.append([lab, x["layers"], f"{x['params_per_layer'] / 1e6:.1f}", f"{x['batch_ms']['1']:.1f}",
+                         f"{x['fit_ms']['per_layer']:.2f}", f"{x['fit_ms']['intercept']:.1f}", f"{x['fit_ms']['r2']:.3f}",
+                         " / ".join(f"{x['batch_ms'][b]:.1f}" for b in x["batch_ms"]),
+                         f3(pr.get("kernels_per_step"), 0), f3(pr.get("kernel_ms_per_step"), 1), f3(pr.get("gpu_busy_share"), 2)])
+        s = la["summary"]
+        write_table(r, "D1_launch_bound_decode", ["Model", "Layers", "Params / layer (M)", "Step ms (batch 1)",
+                                                  "ms per layer (fit)", "Intercept ms", "R^2",
+                                                  f"Step ms at batch {' / '.join(la['models']['target']['batch_ms'])}",
+                                                  "Kernels / step", "GPU kernel ms / step", "GPU busy share"], rows,
+                    f"One cached single-token decode step after {la['context_tokens']} context tokens, FP16, each model "
+                    f"alone on a T4. Layer fit: step time of models truncated to their first k decoder layers. "
+                    f"c (full models) = {s['c_full']:.3f}; layer ratio draft/target = {s['layer_ratio']:.3f}; per-layer slope "
+                    f"ratio draft/target = {s['per_layer_slope_ratio']:.3f} while params per layer ratio = "
+                    f"{s['params_per_layer_ratio']:.3f}. GPU busy share = profiled kernel time / wall time.")
+        made.append("D1")
+    mt = r.j("diagnostics", "math.json")
+    if mt:
+        rows = []
+        cap_share = {}
+        for n in DRAFTS[1:]:
+            f = r.res / "distill" / n / "presentations.jsonl.gz"
+            if f.exists():
+                pr = [json.loads(x) for x in gzip.open(f, "rt")]
+                m_ = [x for x in pr if x["category"] == "math"]
+                cap_share[n] = float(np.mean([x["termination"] == "cap" for x in m_]))
+        for n, x in mt["models"].items():
+            q = r.j("quality", f"{n}.json.gz")
+            t1 = 100 * np.mean([z["correct"] for z in q["rows"] if z["workload"] == "math"]) if q else np.nan
+            tb, ow = x.get("teacher_bank", {}), x.get("own_rollouts", {})
+            rows.append([DLAB.get(n, n), f"{t1:.1f}", f"{100 * x['greedy_accuracy']:.1f}", f"{100 * x['greedy_truncated']:.1f}",
+                         f"{x['greedy_mean_tokens']:.0f}", f3(tb.get("entropy"), 3), f3(tb.get("top_prob"), 3),
+                         f3(ow.get("entropy"), 3), f3(ow.get("top_prob"), 3),
+                         f"{100 * cap_share[n]:.0f}" if n in cap_share else "-"])
+        write_table(r, "D2_math_degradation", ["Model", "Math acc % (temperature 1, T18)", "Math acc % (greedy)",
+                                               "Greedy truncated at 512 %", "Greedy mean tokens",
+                                               "Entropy, teacher-bank math (nats)", "Top-token prob, teacher bank",
+                                               "Entropy, own rollouts (nats)", "Top-token prob, own rollouts",
+                                               "Training math responses cut at 192 %"], rows,
+                    "60 GSM8K test prompts, cap 512, greedy decoding (one run, deterministic). Entropy / top-token "
+                    "probability of each model's next-token distribution at the saved math positions of the teacher bank "
+                    "(same prefixes for every draft) and of its own temperature-1 rollout bank. Last column: share of the "
+                    "math training presentations (teacher pool or student rollouts) that ended at the 192-token cap.")
+        made.append("D2")
+    sp = r.j("diagnostics", "split.json")
+    if sp:
+        rows = []
+        for dt, run in sp["runs"].items():
+            for x in run["rows"]:
+                rows.append([dt, x["model"], x["prompt"], f"{x['max_abs_prob_diff']:.2e}", x["argmax_position"], x["prompt_tokens"],
+                             f"{x['max_in_shared_prefix']:.2e}", f"{x['max_in_rest_of_prompt']:.2e}",
+                             f"{x['max_in_generated']:.2e}" if x["max_in_generated"] is not None else "-",
+                             f"{x['argmax_agreement']:.4f}"])
+        write_table(r, "D3_split_prefill_precision", ["Precision", "Model", "Prompt", "max |dp|", "At position", "Prompt tokens",
+                                                      f"max |dp|, shared prefix (first {sp['shared_prefix_tokens']} tokens)",
+                                                      "max |dp|, rest of prompt", "max |dp|, generated (cached decode)",
+                                                      "argmax agreement"], rows,
+                    "The validate check (one full forward vs prefill + cached token-by-token decode, 24 sampled tokens), "
+                    "with the location of the maximum, in FP16 and FP32.")
+        made.append("D3")
+    if la:
+        fig, ax = plt.subplots(1, 2, figsize=(5.5, 2.2))
+        for w, col, lab in (("target", "#d62728", "target 1.5B"), ("draft", "#1f77b4", "draft 0.5B")):
+            x = la["models"][w]
+            ks = [int(k) for k in x["layers_ms"]]
+            ax[0].plot(ks, list(x["layers_ms"].values()), "o", color=col, label=lab)
+            kk = np.array([0, max(ks)])
+            ax[0].plot(kk, x["fit_ms"]["intercept"] + x["fit_ms"]["per_layer"] * kk, "-", color=col, lw=0.8)
+            bs = [int(b) for b in x["batch_ms"]]
+            ax[1].plot(bs, list(x["batch_ms"].values()), "o-", color=col, label=lab)
+        ax[0].set(xlabel="decoder layers kept", ylabel="ms per decode step", ylim=(0, None))
+        title(ax[0], "(a) step time vs layers (batch 1)")
+        ax[1].set(xlabel="batch size", ylabel="ms per decode step", xscale="log", ylim=(0, None))
+        ax[1].set_xticks(bs)
+        ax[1].set_xticklabels([str(b) for b in bs])
+        title(ax[1], "(b) step time vs batch")
+        ax[0].legend(frameon=False)
+        save_fig(r, fig, "FD1_launch_bound_decode")
+        made.append("FD1")
+    return ", ".join(made) or "no diagnostic"
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--results", default=str(RESULTS))
@@ -778,7 +899,7 @@ def main():
     r = R(Path(a.results), load_config(a.config))
     plt = setup_mpl()
     failed = []
-    for fn in (t_sampler, t_distill, t_align, t_spec, t_quality):
+    for fn in (t_sampler, t_distill, t_align, t_spec, t_quality, t_diag):
         try:
             msg = fn(r, plt)
             print(f"{fn.__name__}: {'ok' if not msg else msg}")

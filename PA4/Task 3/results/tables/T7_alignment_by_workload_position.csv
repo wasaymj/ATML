@@ -1,0 +1,25 @@
+Bank,Workload,Positions,n,1-TV original,1-TV off-policy s6304,1-TV off-policy s6305,1-TV on-policy s6304,1-TV on-policy s6305,target entropy (nats)
+teacher (i),mathematics,1-16,480,0.896,0.902,0.906,0.905,0.899,0.40
+teacher (i),mathematics,17-32,480,0.874,0.866,0.874,0.869,0.863,0.48
+teacher (i),mathematics,33-64,944,0.887,0.883,0.883,0.882,0.879,0.41
+teacher (i),mathematics,65-192,943,0.918,0.914,0.916,0.911,0.908,0.29
+teacher (i),familiar extraction,1-16,175,0.804,0.928,0.918,0.926,0.919,0.55
+teacher (i),familiar extraction,17-32,77,0.801,0.873,0.871,0.862,0.869,0.67
+teacher (i),familiar extraction,33-64,46,0.783,0.824,0.826,0.809,0.818,0.97
+teacher (i),familiar extraction,65-192,16,0.849,0.859,0.885,0.857,0.866,0.58
+teacher (i),shifted extraction,1-16,149,0.842,0.824,0.825,0.822,0.816,0.36
+teacher (i),shifted extraction,17-32,32,0.766,0.780,0.769,0.762,0.760,1.00
+teacher (i),shifted extraction,33-64,48,0.776,0.780,0.768,0.764,0.765,0.92
+teacher (i),shifted extraction,65-192,48,0.816,0.815,0.821,0.815,0.812,0.52
+exact spec. (iii),mathematics,1-16,480,0.900,0.908,0.911,0.911,0.906,0.44
+exact spec. (iii),mathematics,17-32,480,0.884,0.877,0.882,0.879,0.876,0.44
+exact spec. (iii),mathematics,33-64,960,0.898,0.895,0.899,0.893,0.892,0.35
+exact spec. (iii),mathematics,65-192,960,0.928,0.923,0.926,0.921,0.919,0.28
+exact spec. (iii),familiar extraction,1-16,177,0.810,0.929,0.920,0.920,0.919,0.56
+exact spec. (iii),familiar extraction,17-32,69,0.828,0.878,0.878,0.875,0.851,0.60
+exact spec. (iii),familiar extraction,33-64,84,0.759,0.789,0.789,0.768,0.777,0.79
+exact spec. (iii),familiar extraction,65-192,16,0.813,0.866,0.859,0.872,0.874,0.49
+exact spec. (iii),shifted extraction,1-16,134,0.862,0.845,0.850,0.844,0.838,0.34
+exact spec. (iii),shifted extraction,17-32,25,0.878,0.890,0.898,0.888,0.893,0.52
+exact spec. (iii),shifted extraction,33-64,32,0.874,0.882,0.884,0.867,0.876,0.42
+exact spec. (iii),shifted extraction,65-192,32,0.851,0.868,0.858,0.869,0.864,0.47

@@ -1,0 +1,40 @@
+[19:03:18] toy chi2: passed=True correct_gamma1 p=0.893, correct_gamma2 p=0.749, correct_gamma4 p=0.0937, incorrect_residual_p_gamma2 p=0
+[19:03:23] tokenizer agreement: True
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1795374206.435145     208 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+[19:03:46] split-prefill max |dp| = 4.56e-02
+[19:04:17] cache consistency max |dp|: target 5.54e-03, draft 1.12e-02
+[19:05:14] rounds: draft=target acceptance 1.0000, flat-draft zero-acc rounds 192, truncation ok True, EOS ok True
+[19:14:50] real-model consistency p-values: GSM8K-0000 0.11/0.50, GSM8K-0001 0.64/0.74, SHORT-familiar-0000 1.00/1.00, SHORT-familiar-0001 0.18/0.34
+[19:14:50] step validate finished
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1795374901.515700     248 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+[19:17:29] bank teacher: 20/120
+[19:19:40] bank teacher: 40/120
+[19:21:46] bank teacher: 60/120
+[19:22:00] bank teacher: 80/120
+[19:22:21] bank teacher: 100/120
+[19:22:31] bank teacher: 120/120
+[19:22:31] bank teacher: 3438 positions, 7.4 min
+[19:24:34] bank original_draft: 20/120
+[19:26:32] bank original_draft: 40/120
+[19:28:24] bank original_draft: 60/120
+[19:28:57] bank original_draft: 80/120
+[19:29:14] bank original_draft: 100/120
+[19:29:17] bank original_draft: 120/120
+[19:29:17] bank original_draft: 3599 positions, 6.8 min
+[19:31:44] bank exact_spec_original_gamma4: 20/120
+[19:34:10] bank exact_spec_original_gamma4: 40/120
+[19:36:34] bank exact_spec_original_gamma4: 60/120
+[19:36:55] bank exact_spec_original_gamma4: 80/120
+[19:37:12] bank exact_spec_original_gamma4: 100/120
+[19:37:33] bank exact_spec_original_gamma4: 120/120
+[19:37:33] bank exact_spec_original_gamma4: 3449 positions, 8.3 min
+[19:37:33] step banks_base finished
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1795376264.506547     269 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+[19:48:31] quality target: rep 0 done (10.7 min)
+[19:59:04] quality target: rep 1 done (21.2 min)
+[20:09:22] quality original: rep 0 done (10.3 min)
+[20:19:48] quality original: rep 1 done (20.7 min)
+[20:19:49] step quality finished

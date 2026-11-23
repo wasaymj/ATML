@@ -1,0 +1,16 @@
+| Prompt | Position | Target top token (p) | Original top token (q) | TV original | on-policy s6304 top token (q) | TV on-policy s6304 |
+|---|---|---|---|---|---|---|
+| SHORT-familiar-0026 | 8 | ' is' (0.89) | ' "' (0.60) | 0.886 | ' is' (0.88) | 0.064 |
+| SHORT-familiar-0019 | 1 | 'The' (0.59) | 'To' (0.80) | 0.747 | 'The' (0.57) | 0.050 |
+| SHORT-familiar-0022 | 1 | 'The' (0.61) | 'To' (0.81) | 0.740 | 'The' (0.59) | 0.044 |
+| SHORT-familiar-0025 | 1 | 'The' (0.59) | 'To' (0.80) | 0.726 | 'The' (0.56) | 0.047 |
+| SHORT-familiar-0007 | 1 | 'The' (0.53) | 'To' (0.81) | 0.730 | 'The' (0.56) | 0.069 |
+| SHORT-familiar-0005 | 6 | ' shipping' (0.81) | ' label' (0.52) | 0.744 | ' shipping' (0.73) | 0.084 |
+| GSM8K-0038 | 160 | ' slices' (0.98) | ' slices' (0.61) | 0.365 | ' days' (0.70) | 0.675 |
+| GSM8K-0033 | 73 | '.\n\n' (0.62) | '.\n\n' (0.59) | 0.076 | '.' (0.41) | 0.443 |
+| SHORT-shifted-0008 | 5 | ' for' (0.92) | ' for' (0.75) | 0.205 | ' extracted' (0.50) | 0.605 |
+| SHORT-shifted-0020 | 5 | ' for' (0.86) | ' for' (0.65) | 0.269 | ' extracted' (0.63) | 0.675 |
+| SHORT-shifted-0014 | 5 | ' for' (0.94) | ' for' (0.80) | 0.169 | ' extracted' (0.49) | 0.605 |
+| GSM8K-0042 | 159 | '6' (1.00) | '6' (0.76) | 0.239 | '7' (0.63) | 0.688 |
+
+Teacher-bank prefixes with the largest TV improvement (first 6) and degradation (last 6) of on-policy s6304 relative to the original draft.

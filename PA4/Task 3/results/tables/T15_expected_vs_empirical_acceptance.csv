@@ -1,0 +1,11 @@
+Draft,gamma,"Expected 1-TV, teacher bank",Expected 1-TV along own trajectories,Empirical acceptance,"Empirical, 1st proposal","Empirical, last proposal"
+original,2,0.881,0.862,0.864,0.853,0.876
+original,4,0.881,0.863,0.866,0.835,0.876
+off-policy s6304,2,0.887,0.874,0.874,0.869,0.880
+off-policy s6304,4,0.887,0.869,0.871,0.859,0.889
+off-policy s6305,2,0.889,0.874,0.868,0.867,0.869
+off-policy s6305,4,0.889,0.869,0.871,0.858,0.892
+on-policy s6304,2,0.886,0.871,0.876,0.870,0.882
+on-policy s6304,4,0.886,0.871,0.874,0.858,0.883
+on-policy s6305,2,0.882,0.863,0.861,0.854,0.869
+on-policy s6305,4,0.882,0.863,0.869,0.857,0.869

@@ -1,0 +1,11 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1795382503.391584     313 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+[21:32:31] quality off_policy_s6304: rep 0 done (10.8 min)
+[21:42:58] quality off_policy_s6304: rep 1 done (21.2 min)
+[21:53:30] quality off_policy_s6305: rep 0 done (10.5 min)
+[22:03:45] quality off_policy_s6305: rep 1 done (20.8 min)
+[22:14:20] quality on_policy_s6304: rep 0 done (10.6 min)
+[22:25:40] quality on_policy_s6304: rep 1 done (21.9 min)
+[22:36:12] quality on_policy_s6305: rep 0 done (10.5 min)
+[22:47:07] quality on_policy_s6305: rep 1 done (21.4 min)
+[22:47:07] step quality finished

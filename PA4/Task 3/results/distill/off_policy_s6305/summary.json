@@ -1,0 +1,44 @@
+{
+ "method": "off_policy",
+ "seed": 6305,
+ "updates": 157,
+ "skipped_updates": 2,
+ "scored_tokens": {
+  "math": 30000,
+  "short": 10000
+ },
+ "presentations": 836,
+ "truncated_by_quota": 2,
+ "response_length_mean": {
+  "math": 181.74698795180723,
+  "short": 14.964179104477612
+ },
+ "eos_fraction": {
+  "math": 0.20481927710843373,
+  "short": 0.7597014925373134
+ },
+ "final_kl": 0.18115709973062621,
+ "train_wall_seconds": 173.69048738200036,
+ "timings_s": {
+  "teacher_scoring_s": 38.62229423800545,
+  "student_rollout_s": 0.0,
+  "student_update_s": 134.05874716700419
+ },
+ "teacher_pool": {
+  "seed": 6305,
+  "presentations": 836,
+  "teacher_generation_seconds": 1538.798857931,
+  "generated_tokens": 40196,
+  "scored_tokens": {
+   "math": 30000,
+   "short": 10000
+  },
+  "peak_allocated_bytes": 3381068288
+ },
+ "params": {
+  "total_unique": 495114112,
+  "trainable": 1081344
+ },
+ "peak_allocated_bytes": 5268556800,
+ "adapter_dir": "/kaggle/working/t3_artifacts/adapters/off_policy_s6305"
+}

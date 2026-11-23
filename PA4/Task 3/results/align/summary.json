@@ -1,0 +1,20 @@
+{
+ "rows": 24288,
+ "seconds": 214.68324806700002,
+ "banks": [
+  "teacher",
+  "original_draft",
+  "exact_spec_original_gamma4",
+  "student_off_policy_s6304",
+  "student_off_policy_s6305",
+  "student_on_policy_s6304",
+  "student_on_policy_s6305"
+ ],
+ "drafts": [
+  "original",
+  "off_policy_s6304",
+  "off_policy_s6305",
+  "on_policy_s6304",
+  "on_policy_s6305"
+ ]
+}

@@ -1,0 +1,16 @@
+| Comparison (a - b) | gamma | Prompts | Acceptance difference (pp) [95% CI] | Mean speedup difference [95% CI] | Target passes / token difference [95% CI] |
+|---|---|---|---|---|---|
+| off-policy s6304 - original | 2 | 120 | +1.0 [-0.3, +2.4] | +0.014 [-0.052, +0.078] | -0.0046 [-0.0104, +0.0011] |
+| off-policy s6305 - original | 2 | 120 | +0.4 [-0.9, +1.8] | -0.010 [-0.066, +0.050] | -0.0030 [-0.0091, +0.0028] |
+| on-policy s6304 - original | 2 | 120 | +1.2 [-0.1, +2.5] | -0.028 [-0.077, +0.020] | -0.0056 [-0.0115, -0.0001] |
+| on-policy s6305 - original | 2 | 120 | -0.3 [-1.7, +1.2] | +0.023 [-0.044, +0.095] | +0.0005 [-0.0060, +0.0065] |
+| on-policy s6304 - off-policy s6304 | 2 | 120 | +0.1 [-0.9, +1.1] | -0.042 [-0.112, +0.024] | -0.0010 [-0.0055, +0.0033] |
+| on-policy s6305 - off-policy s6305 | 2 | 120 | -0.7 [-1.8, +0.4] | +0.033 [-0.024, +0.094] | +0.0035 [-0.0012, +0.0083] |
+| off-policy s6304 - original | 4 | 120 | +0.5 [-0.6, +1.7] | +0.019 [-0.043, +0.085] | -0.0032 [-0.0096, +0.0029] |
+| off-policy s6305 - original | 4 | 120 | +0.6 [-0.5, +1.6] | -0.010 [-0.067, +0.052] | -0.0040 [-0.0099, +0.0018] |
+| on-policy s6304 - original | 4 | 120 | +0.8 [-0.4, +2.1] | -0.040 [-0.109, +0.028] | -0.0058 [-0.0129, +0.0010] |
+| on-policy s6305 - original | 4 | 120 | +0.3 [-0.9, +1.6] | -0.027 [-0.099, +0.049] | -0.0040 [-0.0107, +0.0026] |
+| on-policy s6304 - off-policy s6304 | 4 | 120 | +0.3 [-0.7, +1.2] | -0.059 [-0.121, -0.005] | -0.0025 [-0.0083, +0.0033] |
+| on-policy s6305 - off-policy s6305 | 4 | 120 | -0.2 [-1.2, +0.8] | -0.017 [-0.067, +0.038] | +0.0000 [-0.0054, +0.0053] |
+
+Paired over the same prompts, repetitions and sampling seeds; 95% CIs from 10,000 bootstrap resamples of prompts. Speedups are each draft's own adjacent-target ratios, so the comparison is not affected by load differences between benchmark runs. Training seeds are reported separately.
