@@ -10,4 +10,4 @@
 | Hybrid FP16 + INT2 - Evict: question-aware | -0.6 [-1.7, +0.0] | +0.017 [+0.006, +0.031] | 1 | 0 |
 | Hybrid FP16 + INT2 - INT4 channel-K/token-V | -0.6 [-1.7, +0.0] | +0.013 [+0.003, +0.027] | 1 | 0 |
 
-Paired bootstrap over the 180 prompts, 10000 resamples, seed 6304.
+Paired bootstrap over the 180 prompts, 10000 resamples, seed 6304. Each row is B - A: A = the cache after the minus sign, B = the cache before it. 'A only correct' / 'B only correct' count prompts that exactly one of the two caches answers correctly.

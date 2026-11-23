@@ -1,4 +1,4 @@
-| Sparsity | Proj | rho(|W|, Wanda) | Mask overlap | Wanda-score mass removed (Wanda) | ... removed (magnitude) | Diag. pred. err mag/Wanda | Layer err P1 | Layer err P2 | P1/P2 err | max/median ||X_j|| |
+| Sparsity | Proj | rho(\|W\|, Wanda) | Mask overlap | Wanda-score mass removed (Wanda) | ... removed (magnitude) | Diag. pred. err mag/Wanda | Layer err P1 | Layer err P2 | P1/P2 err | max/median \|\|X_j\|\| |
 |---|---|---|---|---|---|---|---|---|---|---|
 | 25% | q | 0.911 | 0.863 | 0.0414 | 0.0562 | 3.99 | 2.72e-03 | 6.37e-04 | 4.27 | 24.8 |
 | 25% | k | 0.915 | 0.875 | 0.0383 | 0.0500 | 3.53 | 2.27e-03 | 6.10e-04 | 3.73 | 24.8 |

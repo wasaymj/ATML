@@ -25,6 +25,16 @@ PLAB = {"fp16": "FP16 full cache", "sink_recent": "Evict: sink+recent", "questio
 MECH = {"dense": "Dense", "window": "Window W=64", "linear": "Linear (ELU+1)", "dilated": "Local/dilated",
         "delta": "Delta-rule (B3)"}
 BINS = [(0, 32), (32, 64), (64, 128), (128, 256)]
+# readable labels / fixed colours for the Part A implementations and the Part B inference sweep
+ILAB = {"dense": "dense (explicit softmax)", "tiled_autograd": "tiled, autograd backward",
+        "tiled_recompute": "tiled, recompute backward", "sdpa_auto": "SDPA, auto dispatch", "sdpa_math": "SDPA, math",
+        "sdpa_efficient": "SDPA, memory-efficient"}
+ICOL = {"dense": "#1f77b4", "tiled_autograd": "#ff7f0e", "tiled_recompute": "#2ca02c", "sdpa_auto": "#d62728",
+        "sdpa_math": "#9467bd", "sdpa_efficient": "#8c564b"}
+SWLAB = {"dense_explicit_mask": "dense, explicit mask", "dense_sdpa_causal": "dense, SDPA causal",
+         "window_explicit_mask": "window W=64, explicit mask", "dilated_explicit_mask": "local/dilated, explicit mask",
+         "linear_parallel_TxT": "linear, parallel (T x T)", "linear_recurrent_prefix": "linear, recurrent prefix sums",
+         "delta_recurrent_loop": "delta rule, Python time loop"}
 
 
 class R:
@@ -44,8 +54,9 @@ def write_table(r, name, header, rows, note=""):
         w = csv.writer(f)
         w.writerow(header)
         w.writerows(rows)
-    lines = ["| " + " | ".join(header) + " |", "|" + "---|" * len(header)] + \
-            ["| " + " | ".join(str(x) for x in row) + " |" for row in rows]
+    esc = lambda x: str(x).replace("|", "\\|")              # a literal '|' inside a cell would split the Markdown column
+    lines = ["| " + " | ".join(esc(h) for h in header) + " |", "|" + "---|" * len(header)] + \
+            ["| " + " | ".join(esc(x) for x in row) + " |" for row in rows]
     (r.tab / f"{name}.md").write_text("\n".join(lines + (["", note] if note else [])) + "\n", encoding="utf-8")
 
 
@@ -97,30 +108,58 @@ def a_tables(r, plt):
                 "Reference: dense FP32 attention and its autograd gradients on identical Q, K, V and upstream gradient "
                 "(B=2, H=4, d=64). FP32 reference itself vs FP64 in A1b.")
     write_table(r, "A1b_fp32_reference_vs_fp64", ["L", "Out rel L2", "dQ rel L2", "dK rel L2", "dV rel L2"],
-                [[x["L"]] + [f"{x[n]['rel_l2']:.2e}" for n in ("out", "dq", "dk", "dv")] for x in c["reference_vs_fp64"]])
+                [[x["L"]] + [f"{x[n]['rel_l2']:.2e}" for n in ("out", "dq", "dk", "dv")] for x in c["reference_vs_fp64"]],
+                "Accuracy of the reference itself: dense FP32 attention (output and autograd gradients) against the same "
+                "computation in FP64 on identical inputs. All errors ~1e-7, so the FP32 reference used in A1 is exact to "
+                "FP32 rounding.")
     write_table(r, "A1c_tile_sizes", ["L", "dtype", "Tile", "Impl", "Out rel L2", "dQ rel L2", "dK rel L2", "dV rel L2"],
                 [[x["L"], x["dtype"], x["tile"], x["impl"]] + [f"{x[n]['rel_l2']:.2e}" for n in ("out", "dq", "dk", "dv")]
-                 for x in c["tile_sweep"]])
+                 for x in c["tile_sweep"]],
+                "Relative L2 error vs the dense FP32 reference for several tile sizes (query and key tiles of equal size). "
+                "In FP16 the forward error and the tiled_recompute gradient errors are identical for every tile size (FP16 "
+                "rounding of the output dominates), while tiled_autograd gradient errors grow as tiles get smaller (more "
+                "FP16 partial results are stored and summed). In FP32 all differences between tile sizes are at the "
+                "1e-7 level.")
     write_table(r, "A1d_causality", ["dtype", "Impl", "Max |diff| outputs <= t0 after perturbing keys/values > t0",
                                      "Later outputs changed", "max |dL/dK_future|", "max |dL/dV_future|"],
                 [[x["dtype"], x["impl"], f"{x['max_diff_prefix_outputs']:.1e}", x["suffix_outputs_changed"],
-                  f"{x['grad_future_keys_absmax']:.1e}", f"{x['grad_future_values_absmax']:.1e}"] for x in c["causality"]])
-    write_table(r, "A1e_edge_cases", ["Case", "Result"], [[k, json.dumps(v)[:160]] for k, v in c["edge_cases"].items()])
-    # figure: error vs L
-    fig, ax = plt.subplots(1, 2, figsize=(11, 3.4))
-    for dt, mk in (("float16", "o"), ("float32", "s")):
-        for impl in ("dense", "tiled_autograd", "tiled_recompute", "sdpa_auto"):
-            pts = [(x["L"], x["out"]["rel_l2"], x["dq"]["rel_l2"]) for x in c["vs_fp32_dense"]
-                   if x.get("impl") == impl and x.get("dtype") == dt and "out" in x]
-            if pts:
-                L, o, g = zip(*pts)
-                ax[0].plot(L, o, marker=mk, label=f"{impl} {dt}")
-                ax[1].plot(L, g, marker=mk, label=f"{impl} {dt}")
-    for a, t in zip(ax, ["Output", "dQ"]):
-        a.set(xscale="log", yscale="log", xlabel="Sequence length L", ylabel="Relative L2 error vs dense FP32",
-              title=f"{t} error vs dense FP32 reference")
-    ax[0].legend(ncol=2, fontsize=7.5)
-    save_fig(r, fig, "FA1_error_vs_length")
+                  f"{x['grad_future_keys_absmax']:.1e}", f"{x['grad_future_values_absmax']:.1e}"] for x in c["causality"]],
+                "Causal-mask test: keys/values after position t0 are perturbed; outputs at positions <= t0 must not change "
+                "(exactly 0) while later outputs must (True), and a loss on outputs <= t0 must give zero gradient to the "
+                "future keys/values.")
+    ed = []
+    for k, v in c["edge_cases"].items():
+        if "rel_l2" in v:
+            fmt = lambda z: z if isinstance(z, str) else f"{z:.2e}"
+            ed.append([k.replace("extreme_scores_x30_", "scores x30, ").replace("_", " "), fmt(v["max_abs"]),
+                       fmt(v["rel_l2"]), v["nonfinite"]])
+        else:
+            ed.append([k.replace("_", " "), "; ".join(f"{a}={b}" for a, b in v.items()), "-", "-"])
+    write_table(r, "A1e_edge_cases", ["Case", "Max abs error (or result)", "Rel L2", "Non-finite outputs"], ed,
+                "Numerical edge cases. 'scores x30': queries scaled so logits reach ~30x their usual range; errors vs the "
+                "dense FP32 max-subtracted softmax (so its own FP32 row is 0). The naive softmax without max subtraction "
+                "overflows (nan) - the deliberate negative control; every stable implementation stays finite. "
+                "all masked row: a query row with every key masked must give a finite all-zero output.")
+    # figure: error vs L (PA3 style: colour = implementation, line style = dtype)
+    from matplotlib.lines import Line2D
+    with _pa3(plt):
+        fig, ax = plt.subplots(1, 2, figsize=(5.5, 2.5), sharey=True)
+        for dt, ls, mk in (("float16", "-", "o"), ("float32", "--", "s")):
+            for impl in ("dense", "tiled_autograd", "tiled_recompute", "sdpa_auto"):
+                pts = [(x["L"], x["out"]["rel_l2"], x["dq"]["rel_l2"]) for x in c["vs_fp32_dense"]
+                       if x.get("impl") == impl and x.get("dtype") == dt and "out" in x]
+                if pts:
+                    L, o, g = zip(*pts)
+                    ax[0].plot(L, o, ls=ls, marker=mk, ms=3, color=ICOL[impl])
+                    ax[1].plot(L, g, ls=ls, marker=mk, ms=3, color=ICOL[impl])
+        for a, t in zip(ax, ["(a) output", "(b) gradient dQ"]):
+            a.set(xscale="log", yscale="log", xlabel="sequence length L (tokens)", title=t)
+        ax[0].set_ylabel("relative L2 error vs dense FP32")
+        h = [Line2D([], [], color=ICOL[i], label=ILAB[i]) for i in ("dense", "tiled_autograd", "tiled_recompute", "sdpa_auto")]
+        h += [Line2D([], [], color="0.3", ls=ls, marker=mk, ms=3, label=dt.replace("float", "FP"))
+              for dt, ls, mk in (("float16", "-", "o"), ("float32", "--", "s"))]
+        fig.legend(handles=h, loc="outside lower center", ncol=3)
+        save_fig(r, fig, "FA1_error_vs_length")
 
 
 def a_bench(r, plt):
@@ -141,28 +180,39 @@ def a_bench(r, plt):
              ",".join(x.get("backward", {}).get("backends", []))] for x in b["dispatch"]]
     write_table(r, "A3_sdpa_dispatch", ["dtype", "L", "Unforced SDPA forward ran", "Unforced SDPA backward ran"], disp,
                 "Detected from the profiler's ATen op names, not assumed.")
-    sup = defaultdict(set)
+    sup = defaultdict(lambda: {"L": set(), "mode": set(), "err": set()})
     for x in b["rows"]:
         if x.get("error"):
-            sup[(x["impl"], x["dtype"])].add(f"L={x['L']} {x['mode']}: {x['error'][:60]}")
-    write_table(r, "A4_unsupported_or_oom", ["Impl", "dtype", "Conditions"],
-                [[i, d, "; ".join(sorted(v))[:400]] for (i, d), v in sorted(sup.items())])
-    for metric, ylab, fname in (("median_ms", "Median latency (ms)", "FA2_latency_vs_length"),
-                                ("peak_allocated_bytes", "Peak allocated above inputs (MiB)", "FA3_memory_vs_length")):
-        fig, ax = plt.subplots(2, 2, figsize=(12, 7), sharex=True)
-        for i, dt in enumerate(("float16", "float32")):
-            for j, mode in enumerate(("forward", "forward_backward")):
-                a = ax[i, j]
-                for impl in ("dense", "tiled_autograd", "tiled_recompute", "sdpa_auto", "sdpa_math", "sdpa_efficient"):
-                    pts = [(x["L"], x[metric] / (2**20 if metric != "median_ms" else 1)) for x in b["rows"]
-                           if x["impl"] == impl and x["dtype"] == dt and x["mode"] == mode and metric in x]
-                    if pts:
-                        a.plot(*zip(*pts), marker="o", label=impl)
-                a.set(xscale="log", yscale="log", title=f"{dt}, {mode.replace('_', '+')}", ylabel=ylab)
-                if i == 1:
-                    a.set_xlabel("Sequence length L")
-        ax[0, 0].legend(fontsize=7.5)
-        save_fig(r, fig, fname)
+            e = sup[(x["impl"], x["dtype"])]
+            e["L"].add(x["L"]), e["mode"].add(x["mode"])
+            e["err"].add(x["error"].replace("unsupported/failed: ", "").replace("RuntimeError('", "RuntimeError: ").rstrip("')"))
+    write_table(r, "A4_unsupported_or_oom", ["Impl", "dtype", "Sequence lengths", "Modes", "Error"],
+                [[i, d, ", ".join(str(L) for L in sorted(e["L"])), ", ".join(m.replace("_", " + ") for m in sorted(e["mode"])), " | ".join(sorted(e["err"]))]
+                 for (i, d), e in sorted(sup.items())],
+                "Forced SDPA backends that could not run on the T4 (compute capability 7.5): PyTorch's FlashAttention and "
+                "cuDNN attention kernels require newer GPUs, so these conditions are reported as unsupported, not timed. "
+                "No out-of-memory failures occurred.")
+    for metric, ylab, fname in (("median_ms", "median latency (ms)", "FA2_latency_vs_length"),
+                                ("peak_allocated_bytes", "peak allocated above inputs (MiB)", "FA3_memory_vs_length")):
+        with _pa3(plt):
+            fig, ax = plt.subplots(2, 2, figsize=(5.5, 4.0), sharex=True)
+            for i, dt in enumerate(("float16", "float32")):
+                for j, mode in enumerate(("forward", "forward_backward")):
+                    a = ax[i, j]
+                    for impl in ("dense", "tiled_autograd", "tiled_recompute", "sdpa_math", "sdpa_efficient", "sdpa_auto"):
+                        pts = [(x["L"], x[metric] / (2**20 if metric != "median_ms" else 1)) for x in b["rows"]
+                               if x["impl"] == impl and x["dtype"] == dt and x["mode"] == mode and metric in x]
+                        if pts:
+                            a.plot(*zip(*pts), marker="o", ms=2.5, color=ICOL[impl], label=ILAB[impl],
+                                   ls=":" if impl == "sdpa_auto" else "-")
+                    a.set(xscale="log", yscale="log",
+                          title=f"({'abcd'[2 * i + j]}) {dt.replace('float', 'FP')}, {mode.replace('_', ' + ')}")
+                    if j == 0:
+                        a.set_ylabel(ylab)
+                    if i == 1:
+                        a.set_xlabel("sequence length L (tokens)")
+            fig.legend(*ax[0, 0].get_legend_handles_labels(), loc="outside lower center", ncol=3)
+            save_fig(r, fig, fname)
 
 
 # ============================================================================================ Part B
@@ -207,15 +257,25 @@ def b_tables(r, plt):
             for rg in ("near", "far", "mixed"):
                 v = accs[(k, rg)]
                 row.append(f"{100 * np.mean(v):.1f}±{100 * np.std(v):.1f}")
-        fail = [n for n, s in lst if s["test_acc_all"] < 2 / 64 or s.get("diverged_at")]
-        row.append(", ".join(fail) if fail else "")
+        # failure: accuracy on the model's OWN training split (train K, train regime) below 2x the 1/K chance of
+        # guessing among the example's K values, or a diverged run
+        own = (qt["K"] == K) & (qt["regime"] == reg)
+        fail = []
+        for name, s in lst:
+            c = np.load(r.res / "part_b" / "runs" / name / "test_predictions.npz")["correct"].astype(bool)
+            a = float(c[own].mean())
+            if a < 2 / K or s.get("diverged_at"):
+                fail.append(f"s{name.rsplit('_s', 1)[-1]} ({100 * a:.1f}%)" + (" diverged" if s.get("diverged_at") else ""))
+        row.append(", ".join(fail) if fail else "none")
         rows.append(row)
         anal[f"{mech}_K{K}_{reg}"] = {f"K{k}.{rg}": [float(x) for x in v] for (k, rg), v in accs.items()}
-    hdr = ["Mechanism", "Train K", "Train regime", "Seeds", "Params"] + [f"K{k} {rg}" for k in (4, 8, 16) for rg in ("near", "far", "mixed")] + ["Failed to learn (<2x chance) / diverged"]
+    hdr = ["Mechanism", "Train K", "Train regime", "Seeds", "Params"] + [f"K{k} {rg}" for k in (4, 8, 16) for rg in ("near", "far", "mixed")] + ["Failed to learn (own split < 2/K) / diverged"]
     write_table(r, "B1_test_accuracy", hdr, rows,
                 "Test accuracy (%) mean±SD over seeds 6304-6306 on the frozen 1,024 sequences per (K, regime), pooled over "
                 "the supervised query positions. Chance: label space 1/64 = 1.6 %; random choice among the K values of "
-                "the example: 25 % (K=4), 12.5 % (K=8), 6.25 % (K=16).")
+                "the example: 25 % (K=4), 12.5 % (K=8), 6.25 % (K=16). Last column: seeds whose accuracy on their own "
+                "training split (train K, train regime) is below 2/K (twice the among-K chance), with that accuracy; a "
+                "large ±SD with no failed seed listed means the seeds differ but all learned something.")
     save_json(r.ana / "b_accuracy_per_seed.json", anal)
     # distance bins x K, per model (mean over seeds)
     rows2 = []
@@ -248,23 +308,30 @@ def _b_heatmap(r, plt, heat):
     n = len(keys)
     cols = 5
     rows = -(-n // cols)
-    fig, ax = plt.subplots(rows, cols, figsize=(2.9 * cols, 2.4 * rows), squeeze=False)
-    for a in ax.flat:
-        a.axis("off")
-    for a, k in zip(ax.flat, keys):
-        mech, K, reg = k.split("|")
-        a.axis("on")
-        im = a.imshow(np.array(heat[k]) * 100, vmin=0, vmax=100, cmap="viridis", aspect="auto")
-        for i in range(3):
-            for j in range(len(BINS)):
-                v = heat[k][i][j]
-                a.text(j, i, "-" if np.isnan(v) else f"{100 * v:.0f}", ha="center", va="center", fontsize=8,
-                       color="white" if (np.isnan(v) or v < 0.6) else "black")
-        a.set(xticks=range(len(BINS)), xticklabels=["0-31", "32-63", "64-127", "128+"], yticks=range(3),
-              yticklabels=["K=4", "K=8", "K=16"], title=f"{MECH[mech]}\ntrained K={K}, {reg}")
-        a.grid(False)
-    fig.colorbar(im, ax=ax, shrink=0.6, label="Test accuracy (%)")
-    save_fig(r, fig, "FB2_distance_by_load_heatmaps")
+    with _pa3(plt):
+        fig, ax = plt.subplots(rows, cols, figsize=(5.5, 1.45 * rows + 0.5), squeeze=False)
+        for a in ax.flat:
+            a.axis("off")
+        for idx, (a, k) in enumerate(zip(ax.flat, keys)):
+            mech, K, reg = k.split("|")
+            a.axis("on")
+            im = a.imshow(np.array(heat[k]) * 100, vmin=0, vmax=100, cmap="viridis", aspect="auto")
+            for i in range(3):
+                for j in range(len(BINS)):
+                    v = heat[k][i][j]
+                    a.text(j, i, "-" if np.isnan(v) else f"{100 * v:.0f}", ha="center", va="center", fontsize=5,
+                           color="white" if (np.isnan(v) or v < 0.6) else "black")
+            first_col, last_row = idx % cols == 0, idx + cols >= n
+            a.set_xticks(range(len(BINS)))
+            a.set_xticklabels(["0-31", "32-63", "64-127", "128+"] if last_row else [], fontsize=5, rotation=45)
+            a.set_yticks(range(3))
+            a.set_yticklabels(["K=4", "K=8", "K=16"] if first_col else [], fontsize=5.5)
+            a.set_title(f"{MECH[mech].replace(' (B3)', '').replace('Linear (ELU+1)', 'Linear')}\nK={K}, {reg}", fontsize=6)
+            a.tick_params(length=1.5)
+        fig.supxlabel("source-query distance (tokens)", fontsize=7)
+        fig.supylabel("evaluation K (pairs per sequence)", fontsize=7)
+        fig.colorbar(im, ax=ax, shrink=0.6, label="test accuracy (%)")
+        save_fig(r, fig, "FB2_distance_by_load_heatmaps")
 
 
 def _b_controls(r, runs, qt):
@@ -340,24 +407,30 @@ def b_figs(r, plt):
         return
     g = _group(runs)
     keys = sorted(g, key=lambda k: (list(MECH).index(k[0]), k[1], k[2]))
-    fig, ax = plt.subplots(1, 2, figsize=(13, 4.2))
-    for key in keys:
-        lst = g[key]
-        lab = f"{MECH[key[0]]} K={key[1]} {key[2]}"
-        u = [x["update"] for x in lst[0][1]["train_curve"]]
-        L = np.array([[x["loss"] for x in s["train_curve"]][:len(u)] for _, s in lst if len(s["train_curve"]) >= len(u)])
-        if len(L):
-            line, = ax[0].plot(u, L.mean(0), label=lab)
-            ax[0].fill_between(u, L.min(0), L.max(0), alpha=0.15, color=line.get_color())
-        du = [x["update"] for x in lst[0][1]["dev_curve"]]
-        D = np.array([[x["dev_acc"] for x in s["dev_curve"]][:len(du)] for _, s in lst if len(s["dev_curve"]) >= len(du)])
-        if len(D):
-            ax[1].plot(du, 100 * D.mean(0), marker="o", label=lab)
-    ax[0].set(xlabel="Optimizer update", ylabel="Training loss (64-way CE)", title="Training loss (mean, min-max over seeds)", yscale="log")
-    ax[1].set(xlabel="Optimizer update", ylabel="Development accuracy (%)", title="Development accuracy at the checkpoints")
-    ax[1].axhline(100 / 64, color="k", ls=":", lw=1)
-    ax[1].legend(fontsize=7, ncol=2, loc="upper left", bbox_to_anchor=(1.01, 1))
-    save_fig(r, fig, "FB1_learning_curves")
+    # colour = mechanism, line style = training K, marker = training regime (14 configurations, 5 colours)
+    LS = {4: ":", 8: "--", 16: "-"}
+    with _pa3(plt):
+        fig, ax = plt.subplots(1, 2, figsize=(5.5, 3.3))
+        for key in keys:
+            lst = g[key]
+            col = {"dense": "#1f77b4", "window": "#2ca02c", "dilated": "#8c564b", "linear": "#d62728", "delta": "#9467bd"}[key[0]]
+            lab = f"{MECH[key[0]].replace(' (B3)', '')}, K={key[1]}, {key[2]}"
+            mk = "o" if key[2] == "mixed" else "^"
+            u = [x["update"] for x in lst[0][1]["train_curve"]]
+            L = np.array([[x["loss"] for x in s["train_curve"]][:len(u)] for _, s in lst if len(s["train_curve"]) >= len(u)])
+            if len(L):
+                ax[0].plot(u, L.mean(0), color=col, ls=LS[key[1]], lw=0.9)
+                ax[0].fill_between(u, L.min(0), L.max(0), alpha=0.10, color=col, lw=0)
+            du = [x["update"] for x in lst[0][1]["dev_curve"]]
+            D = np.array([[x["dev_acc"] for x in s["dev_curve"]][:len(du)] for _, s in lst if len(s["dev_curve"]) >= len(du)])
+            if len(D):
+                ax[1].plot(du, 100 * D.mean(0), color=col, ls=LS[key[1]], marker=mk, ms=2.5, lw=0.9, label=lab)
+        ax[0].set(xlabel="optimizer update", ylabel="training loss (nats, 64-way CE)", yscale="log",
+                  title="(a) training loss (mean; band = seed range)")
+        ax[1].set(xlabel="optimizer update", ylabel="development accuracy (%)", title="(b) development accuracy (seed mean)")
+        ax[1].axhline(100 / 64, color="k", ls=":", lw=0.6)
+        fig.legend(*ax[1].get_legend_handles_labels(), loc="outside lower center", ncol=3, fontsize=5.5)
+        save_fig(r, fig, "FB1_learning_curves")
 
 
 def b_resources(r, plt):
@@ -388,21 +461,27 @@ def b_resources(r, plt):
     if sw:
         rows = [[x["impl"], x["T"], f3(x.get("median_ms"), 2), f"{x['peak_allocated_bytes'] / 2**20:.0f}" if "peak_allocated_bytes" in x else "-",
                  x["materialises"], x.get("error", "")] for x in sw["rows"]]
-        write_table(r, "B7_inference_sweep", ["Implementation", "T", "Median ms", "Peak alloc MiB", "Materialises", "Error"], rows, sw["note"])
-        fig, ax = plt.subplots(1, 2, figsize=(11, 3.4))
-        for impl in sorted({x["impl"] for x in sw["rows"]}):
-            pts = [(x["T"], x["median_ms"], x.get("peak_allocated_bytes", np.nan) / 2**20) for x in sw["rows"]
-                   if x["impl"] == impl and "median_ms" in x]
-            if pts:
-                T, t, m = zip(*pts)
-                ax[0].plot(T, t, marker="o", label=impl)
-                ax[1].plot(T, m, marker="o", label=impl)
-        ax[0].set(xscale="log", yscale="log", xlabel="T", ylabel="Forward ms (median)", title="Forward-only inference sweep")
-        has_mem = any(np.isfinite(l.get_ydata()).any() for l in ax[1].get_lines())
-        ax[1].set(xscale="log", yscale="log" if has_mem else "linear", xlabel="T", ylabel="Peak allocated (MiB)",
-                  title="Memory" if has_mem else "Memory (not measured on CPU)")
-        ax[0].legend(fontsize=7.5)
-        save_fig(r, fig, "FB3_inference_sweep")
+        write_table(r, "B7_inference_sweep", ["Implementation", "T", "Median ms", "Peak alloc MiB", "Materialises", "Error"], rows,
+                    sw["note"] + ". The delta-rule loop and dense SDPA have identical peak memory: neither stores a T x T "
+                    "tensor, so both are set by the per-token activations (linear in T); in FB3(b) the dotted delta line "
+                    "lies on the SDPA line.")
+        with _pa3(plt):
+            fig, ax = plt.subplots(1, 2, figsize=(5.5, 2.6))
+            for impl in sorted({x["impl"] for x in sw["rows"]}):
+                pts = [(x["T"], x["median_ms"], x.get("peak_allocated_bytes", np.nan) / 2**20) for x in sw["rows"]
+                       if x["impl"] == impl and "median_ms" in x]
+                if pts:
+                    T, t, m = zip(*pts)
+                    ls = "--" if "explicit" in impl else (":" if "delta" in impl else "-")
+                    ax[0].plot(T, t, marker="o", ms=2.5, ls=ls, label=SWLAB.get(impl, impl))
+                    ax[1].plot(T, m, marker="o", ms=2.5, ls=ls, label=SWLAB.get(impl, impl))
+            ax[0].set(xscale="log", yscale="log", xlabel="sequence length T (tokens)", ylabel="forward time (ms, median)",
+                      title="(a) forward-only latency")
+            has_mem = any(np.isfinite(l.get_ydata()).any() for l in ax[1].get_lines())
+            ax[1].set(xscale="log", yscale="log" if has_mem else "linear", xlabel="sequence length T (tokens)",
+                      ylabel="peak allocated (MiB)", title="(b) memory" if has_mem else "(b) memory (not measured on CPU)")
+            fig.legend(*ax[0].get_legend_handles_labels(), loc="outside lower center", ncol=3, fontsize=6)
+            save_fig(r, fig, "FB3_inference_sweep")
 
 
 # ============================================================================================ Part C
@@ -429,7 +508,8 @@ def c_tables(r, plt):
                     f3(np.mean([y.get("post_prefill_kl", 0) for y in v]), 4), f3(np.mean([y.get("teacher_forced_kl", 0) for y in v]), 4),
                     f3(np.mean([y.get("evidence_retained_mean", y.get("evidence_fp16_mean", np.nan)) for y in v]), 3),
                     f"{np.mean([y['frac_fp16_bytes'] for y in v]):.4f} (max {np.max([y['frac_fp16_bytes'] for y in v]):.4f})",
-                    str(all(y.get("within_budget", True) for y in v))])
+                    "n/a (reference)" if p == "fp16" else
+                    (str(all(y["within_budget"] for y in v)) if all("within_budget" in y for y in v) else "not recorded")])
     write_table(r, "C1_matched_budget", ["Cache", "n", "Exact match %", "EM % given FP16 correct", "Gold-answer NLL",
                                          "Post-prefill KL vs FP16", "Teacher-forced KL", "Evidence retained (FP16)",
                                          "Bytes / FP16 context", "All within budget"], out,
@@ -460,7 +540,9 @@ def c_tables(r, plt):
                    f"{dn:+.3f} [{cin[0]:+.3f}, {cin[1]:+.3f}]", sum(1 for x, y in zip(ea, eb) if x > y), sum(1 for x, y in zip(ea, eb) if y > x)])
         anal[f"{b}-{a}"] = {"em_diff": d, "em_ci": ci, "nll_diff": dn, "nll_ci": cin}
     write_table(r, "C3_paired_bootstrap", ["Difference", "Exact match pp [95% CI]", "Gold NLL [95% CI]", "A only correct", "B only correct"],
-                bt, f"Paired bootstrap over the {len(rows)} prompts, {B['resamples']} resamples, seed {B['seed']}.")
+                bt, f"Paired bootstrap over the {len(rows)} prompts, {B['resamples']} resamples, seed {B['seed']}. Each row is "
+                    f"B - A: A = the cache after the minus sign, B = the cache before it. 'A only correct' / 'B only "
+                    f"correct' count prompts that exactly one of the two caches answers correctly.")
     save_json(r.ana / "c_paired_bootstrap.json", anal)
     # systems
     sysrows = [[PLAB[p], f"{np.mean([x['prefill_s'] for x in rows]) * 1000:.0f}",
@@ -476,7 +558,11 @@ def c_tables(r, plt):
                                   "Peak allocated GiB"], sysrows,
                 "Means over prompts. Quantized caches are fake-quantized (dequantized FP16 in GPU memory) before ordinary "
                 "SDPA, so allocated memory is not reduced; eviction happens after a full prefill, so the prefill peak is "
-                "unchanged (see prefill_peak_allocated in per_prompt.jsonl.gz).")
+                "unchanged (see prefill_peak_allocated in per_prompt.jsonl.gz). Decode-time cache beyond context = live cache "
+                "bytes at the end of generation minus the context cache (shared suffix + generated tokens): FP16 for the "
+                "FP16, eviction and hybrid caches; the two INT4 caches also quantize every completed 64-token block of "
+                "these appended tokens, so their component is smaller (token-wise INT4 generates more tokens, hence 0.51 "
+                "vs 0.37 MiB).")
     # reconstruction errors
     rec = []
     for p in ("int4_channelK_tokenV", "int4_tokenwise", "hybrid"):
@@ -491,11 +577,20 @@ def c_tables(r, plt):
         cell = defaultdict(list)
         for x in rows:
             cell[(x["target_tokens"], x["position"], x["distractors"])].append(x["policies"]["fp16"]["exact_match"])
+        VLAB = {"split_max_abs_logit_diff": "split prefill (context, then suffix) vs one full forward: max |logit diff|",
+                "all_finite": "all logits finite",
+                "retain_all_identical_fraction": "eviction path keeping every token vs HF generate(): share of prompts with identical greedy tokens",
+                "evict_vs_mask_max_abs_logit_diff": "physical eviction vs attention-mask eviction: max |logit diff|"}
         write_table(r, "C6_validation_and_reference", ["Check / cell", "Value"],
-                    [[k, v] for k, v in val["summary"].items()] +
-                    [[f"FP16 accuracy {k}", f"{100 * np.mean(v):.0f}% (n={len(v)})"] for k, v in sorted(cell.items(), key=str)] +
-                    [["encoded context length (2,048 / 4,096 targets)",
-                      " / ".join(f"{np.mean([x['L'] for x in rows if x['target_tokens'] == t]):.0f}" for t in (2048, 4096))]])
+                    [[VLAB.get(k, k), v] for k, v in val["summary"].items()] +
+                    [[f"FP16 accuracy (target tokens {k[0]}, evidence {k[1]}, {k[2]} distractors)", f"{100 * np.mean(v):.0f}% (n={len(v)})"]
+                     for k, v in sorted(cell.items(), key=str)] +
+                    [["mean encoded context length, 2,048 / 4,096-token targets",
+                      " / ".join(f"{np.mean([x['L'] for x in rows if x['target_tokens'] == t]):.0f}" for t in (2048, 4096))]],
+                    "Cache-implementation checks (FP16 Qwen2.5-1.5B-Instruct; logit differences are FP16 rounding between "
+                    "different kernel shapes) and the FP16 reference accuracy in every (length, evidence position, "
+                    "distractors) cell: the full cache answers every prompt, so every compressed-cache loss is attributable "
+                    "to the cache.")
     _c_bench(r)
     _c_figs(r, plt, rows)
 
@@ -519,8 +614,13 @@ def _c_bench(r):
 
 
 def _c_figs(r, plt, rows):
+    with _pa3(plt):
+        _c_figs_body(r, plt, rows)
+
+
+def _c_figs_body(r, plt, rows):
     pos, dis = ["start", "middle", "end"], sorted({x["distractors"] for x in rows})
-    fig, ax = plt.subplots(2, len(POL), figsize=(2.4 * len(POL), 4.6), squeeze=False)
+    fig, ax = plt.subplots(2, len(POL), figsize=(5.5, 2.3), squeeze=False)
     for i, t in enumerate((2048, 4096)):
         for j, p in enumerate(POL):
             M = np.full((3, len(dis)), np.nan)
@@ -529,32 +629,38 @@ def _c_figs(r, plt, rows):
                     sub = [x["policies"][p]["exact_match"] for x in rows if x["target_tokens"] == t and x["position"] == ps and x["distractors"] == dd]
                     if sub:
                         M[a, b] = np.mean(sub)
-            im = ax[i, j].imshow(100 * M, vmin=0, vmax=100, cmap="viridis")
+            im = ax[i, j].imshow(100 * M, vmin=0, vmax=100, cmap="viridis", aspect="auto")
             for a in range(3):
                 for b in range(len(dis)):
                     if np.isfinite(M[a, b]):
-                        ax[i, j].text(b, a, f"{100 * M[a, b]:.0f}", ha="center", va="center", fontsize=8,
+                        ax[i, j].text(b, a, f"{100 * M[a, b]:.0f}", ha="center", va="center", fontsize=5,
                                       color="white" if M[a, b] < 0.6 else "black")
-            ax[i, j].set(xticks=range(len(dis)), xticklabels=dis, yticks=range(3), yticklabels=pos if j == 0 else [],
-                         title=f"{PLAB[p]}\n~{t} tokens" if i == 0 else f"~{t} tokens")
-            ax[i, j].grid(False)
-            if i == 1:
-                ax[i, j].set_xlabel("Distractors")
-    fig.colorbar(im, ax=ax, shrink=0.6, label="Exact match (%)")
+            ax[i, j].set_xticks(range(len(dis)))
+            ax[i, j].set_xticklabels(dis if i == 1 else [], fontsize=6)
+            ax[i, j].set_yticks(range(3))
+            ax[i, j].set_yticklabels([f"{ps}, ~{t}" for ps in pos] if j == 0 else [], fontsize=5.5)
+            if i == 0:
+                ax[i, j].set_title({"fp16": "FP16\nfull cache", "sink_recent": "evict:\nsink+recent",
+                                    "question_aware": "evict:\nquestion-aware", "int4_channelK_tokenV": "INT4\nchannel-K/token-V",
+                                    "int4_tokenwise": "INT4\ntoken-wise K/V", "hybrid": "hybrid\nFP16 + INT2"}[p], fontsize=5.5)
+            ax[i, j].tick_params(length=1.5)
+    fig.supxlabel("distractors in the context", fontsize=7)
+    fig.supylabel("evidence position, context length", fontsize=7)
+    fig.colorbar(im, ax=ax, shrink=0.7, label="exact match (%)")
     save_fig(r, fig, "FC1_accuracy_by_cell")
-    fig, ax = plt.subplots(figsize=(5.5, 3.8))
+    fig, ax = plt.subplots(figsize=(3.3, 2.4))
     for p, mk in (("sink_recent", "o"), ("question_aware", "s"), ("hybrid", "^")):
         ev = [x["policies"][p].get("evidence_retained_mean", x["policies"][p].get("evidence_fp16_mean")) for x in rows]
         em = [x["policies"][p]["exact_match"] for x in rows]
         jit = np.random.default_rng(0).uniform(-0.04, 0.04, len(em))
-        ax.scatter(ev, np.array(em) + jit, marker=mk, alpha=0.5, label=PLAB[p], s=14)
-    ax.set(xlabel="Share of evidence tokens kept in FP16", ylabel="Exact match (jittered)", title="Evidence retention vs answer")
-    ax.legend()
+        ax.scatter(ev, 100 * (np.array(em) + jit), marker=mk, alpha=0.5, label=PLAB[p], s=8)
+    ax.set(xlabel="share of gold-evidence tokens kept (in FP16)", ylabel="exact match (%, jittered)")
+    ax.legend(loc="center left")
     save_fig(r, fig, "FC2_evidence_vs_accuracy")
     q = r.res / "part_c" / "qualitative"
     files = sorted(q.glob("*.npz")) if q.exists() else []
     if files:
-        fig, ax = plt.subplots(len(files), 1, figsize=(11, 1.5 * len(files)), squeeze=False)
+        fig, ax = plt.subplots(len(files), 1, figsize=(5.5, 1.05 * len(files)), squeeze=False, sharey=True)
         for a, f in zip(ax[:, 0], files):
             z = np.load(f)
             L = int(z["evidence"].max()) + 1 if len(z["evidence"]) else 1
@@ -567,12 +673,15 @@ def _c_figs(r, plt, rows):
                     np.put_along_axis(full, m.astype(int), True, 2)
                     m = full
                 frac = m.mean((0, 1))
-                a.plot(np.arange(len(frac)), frac * 0.9 + i, lw=0.6)
+                a.plot(np.arange(len(frac)), frac * 0.9 + i, lw=0.5)
             for e in z["evidence"]:
                 a.axvline(e, color="r", lw=0.3, alpha=0.5)
-            a.set(yticks=[0.45, 1.45, 2.45], yticklabels=["sink+recent", "question-aware", "hybrid FP16"], title=f.stem,
-                  xlabel="Context position (red = gold evidence tokens)")
-            a.grid(False)
+            tl, ps, nd = f.stem.split("-")[1:4]
+            a.set_yticks([0.45, 1.45, 2.45])
+            a.set_yticklabels(["sink+recent", "question-aware", "hybrid (FP16 part)"], fontsize=6)
+            a.set_title(f"({'abcdefgh'[list(files).index(f)]}) ~{tl} tokens, evidence at {ps}, {nd} distractors", fontsize=7)
+        ax[-1, 0].set_xlabel("context position (tokens); red = gold-evidence tokens")
+        fig.supylabel("share of layers x KV heads keeping the token\n(each trace scaled to [0, 0.9], offset by cache)", fontsize=6)
         save_fig(r, fig, "FC3_selection_masks")
     meta = r.j("part_c", "prompts_meta.json")
     qual = {}
@@ -871,7 +980,8 @@ def d_figs(r, plt):
                         ax[0].scatter([i + 0.2] * len(v), v, s=10, marker="x", color="0.4", zorder=3)
                 ax[0].set_xticks(range(len(labs)))
                 ax[0].set_xticklabels(labs, rotation=25, ha="right", fontsize=6)
-                ax[0].set(ylabel="Test accuracy (%)", title="(a) Retraining arms (x = main run)", ylim=(-3, 105))
+                ax[0].set(ylabel="accuracy (%)", ylim=(-3, 105),
+                          title="(a) Retraining arms (x = main run;\nwindow/dilated: queries with d ≤ 63)")
             if g.get("delta"):
                 modes = ["none", "fillers_as_pairs", "uniform", "one", "pairs_as_fillers"]
                 ml = ["learned", "fillers\nlike pairs", "uniform", "beta = 1", "pairs\nlike fillers"]

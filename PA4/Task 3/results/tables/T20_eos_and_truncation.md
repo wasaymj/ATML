@@ -16,4 +16,4 @@
 | on-policy s6305 | familiar extraction | 120 | 0.89 | 0.11 | 0.10 | 19.4 |
 | on-policy s6305 | shifted extraction | 120 | 0.97 | 0.03 | 0.10 | 10.6 |
 
-Mathematical outputs truncated at 64 tokens are speed-test outputs, never completed solutions.
+Primary EOS-aware benchmark; runs pooled over gamma 2 and 4 and the 2 repetitions (math: 60 prompts x 2 x 2 = 240). Mathematical outputs truncated at 64 tokens are speed-test outputs, never completed solutions.

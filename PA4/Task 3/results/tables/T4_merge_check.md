@@ -1,4 +1,4 @@
-| Run | max |logit merged - unmerged| | mean KL | argmax agreement | merge s |
+| Run | max \|logit merged - unmerged\| | mean KL | argmax agreement | merge s |
 |---|---|---|---|---|
 | off-policy s6304 | 3.281e-01 | 9.05e-05 | 0.9973 | 0.04 |
 | off-policy s6305 | 1.543e-01 | 3.49e-05 | 1.0000 | 0.04 |

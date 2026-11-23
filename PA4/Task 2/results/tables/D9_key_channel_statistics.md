@@ -1,4 +1,4 @@
-| Layer | max |channel mean| / median channel SD | Token-wise INT4 step / median channel SD | Ordinary channels with SD < step/2 % | Top-8 mean |K| / median | Top-8 channel overlap with prompt 1 (Jaccard) |
+| Layer | max \|channel mean\| / median channel SD | Token-wise INT4 step / median channel SD | Ordinary channels with SD < step/2 % | Top-8 mean \|K\| / median | Top-8 channel overlap with prompt 1 (Jaccard) |
 |---|---|---|---|---|---|
 | 0 | 253.4 | 29.37 | 100.0 | 173.0 | 1.00 |
 | 1 | 72.7 | 3.22 | 44.0 | 25.9 | 0.94 |

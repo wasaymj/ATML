@@ -1,4 +1,4 @@
-| Unit (2 bits; l.p75 = block pruned 75%) | KL | saved probe KL | weight rel. err | act-weighted rel. err | own sublayer rel. err | own err share at token 0 | drift entering last block | ... excl. massive | max |d attn to token 0| | patch boundary | KL, token 0 restored | KL, all but token 0 restored | massive boundary | KL, massive entries restored | KL, random entries restored |
+| Unit (2 bits; l.p75 = block pruned 75%) | KL | saved probe KL | weight rel. err | act-weighted rel. err | own sublayer rel. err | own err share at token 0 | drift entering last block | ... excl. massive | max \|d attn to token 0\| | patch boundary | KL, token 0 restored | KL, all but token 0 restored | massive boundary | KL, massive entries restored | KL, random entries restored |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 0.qkv | 0.0422 | 0.0438 | 0.366 | 0.075 | 0.211 | 0.00 | 0.0107 | 0.0107 | 0.020 | 1 | 0.0417 | 0.000514 | 2 | 0.0431 | 0.0422 |
 | 0.gateup | 0.00733 | 0.0076 | 0.291 | 0.210 | 0.111 | 0.00 | 0.00174 | 0.00174 | 0.004 | 1 | 0.00718 | 0.000186 | 2 | 0.00804 | 0.00733 |

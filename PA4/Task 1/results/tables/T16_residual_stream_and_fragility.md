@@ -1,4 +1,4 @@
-| Block | RMS(h_in) | max|h_in| | max|h_out| | max/RMS in | Block infl. | attention out MS | MLP out MS | KL@2b qkv | KL@2b o | KL@2b gateup | KL@2b down | P3 probe KL 50% | P3 probe KL 75% |
+| Block | RMS(h_in) | max\|h_in\| | max\|h_out\| | max/RMS in | Block infl. | attention out MS | MLP out MS | KL@2b qkv | KL@2b o | KL@2b gateup | KL@2b down | P3 probe KL 50% | P3 probe KL 75% |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 0 | 0.02 | 0.301 | 14.8 | 12 | 0.965 | 0.0956 | 0.112 | 0.0438 | 0.0203 | 0.00758 | 0.0101 | 0.0135 | 0.568 |
 | 1 | 0.49 | 14.8 | 3.7e+03 | 30 | 0.130 | 0.0436 | 36.2 | 0.00282 | 0.00351 | 0.123 | 0.0209 | 0.00554 | 0.0428 |

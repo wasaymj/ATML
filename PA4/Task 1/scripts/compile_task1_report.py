@@ -23,6 +23,9 @@ from src.utils import RESULTS, load_config, load_json, save_json  # noqa: E402
 COND = ["fp16", "P1_mag_s25", "P1_mag_s50", "P1_mag_s75", "P2_wanda_s25", "P2_wanda_s50", "P2_wanda_s75",
         "P3_s50", "P3_s75", "P2_wanda24_s50", "Q1_rtn_b8", "Q1_rtn_b4", "Q1_rtn_b3", "Q2_awq_b8", "Q2_awq_b4",
         "Q2_awq_b3", "Q3_mix_b4budget", "Q3_mix_b3budget"]
+T8LAB = {"calib_kl": "calibration KL vs FP16", "calib_dnll": "calibration dNLL", "dev_dnll": "dev-set dNLL",
+         "drift_last_block": "hidden-state drift, last block", "wiki_dnll": "WikiText-2 dNLL", "c4_dnll": "C4 dNLL",
+         "hs512_d_acc_norm": "HellaSwag d acc_norm (first 512 IDs)"}
 LABEL = {"fp16": "FP16", "P1_mag_s25": "P1 mag 25%", "P1_mag_s50": "P1 mag 50%", "P1_mag_s75": "P1 mag 75%",
          "P2_wanda_s25": "P2 Wanda 25%", "P2_wanda_s50": "P2 Wanda 50%", "P2_wanda_s75": "P2 Wanda 75%",
          "P3_s50": "P3 nonuni. 50%", "P3_s75": "P3 nonuni. 75%", "P2_wanda24_s50": "Wanda 2:4",
@@ -81,8 +84,9 @@ def write_table(r: R, name, header, rows, note=""):
         w = csv.writer(f)
         w.writerow(header)
         w.writerows(rows)
-    lines = ["| " + " | ".join(header) + " |", "|" + "---|" * len(header)]
-    lines += ["| " + " | ".join(str(x) for x in row) + " |" for row in rows]
+    esc = lambda x: str(x).replace("|", "\\|")              # a literal '|' inside a cell would split the Markdown column
+    lines = ["| " + " | ".join(esc(h) for h in header) + " |", "|" + "---|" * len(header)]
+    lines += ["| " + " | ".join(esc(x) for x in row) + " |" for row in rows]
     if note:
         lines += ["", note]
     (r.tab / f"{name}.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
@@ -220,7 +224,9 @@ def t_pairs(r: R):
                                                  "d acc_norm pp [CI]", "acc_norm A-only/B-only"], rows,
                     "Paired 95% bootstrap intervals: perplexity resamples whole evaluation windows and recomputes the pooled "
                     "token NLL before exponentiating; HellaSwag resamples examples (common subset: 2,000 if both "
-                    "conditions have it, else the first 512).")
+                    "conditions have it, else the first 512). Each row is B - A, with A = the condition after the minus sign; "
+                    "'A-only/B-only' = HellaSwag examples that only A / only B gets right under acc_norm (their difference "
+                    "/ n gives the acc_norm change).")
         save_json(r.ana / "paired_differences.json", anal)
 
 
@@ -240,7 +246,11 @@ def t_budget(r: R):
                          bb - ba, "OK" if bb <= ba else "OVER BUDGET"])
     if rows:
         write_table(r, "T3_matched_budget_checks", ["Comparison", "Quantity", "Method", "Reference", "Difference",
-                                                    "Check"], rows)
+                                                    "Check"], rows,
+                    "Budget matching of every compared pair. Pruning: identical counts of zeroed eligible weights (exact "
+                    "equality required). Quantization: total serialized bytes incl. codes, zero-points, FP16 group scales "
+                    "and the uncompressed FP16 rest; the method must not exceed the reference (negative difference = the "
+                    "mixed-precision knapsack leaves part of the budget unused).")
 
 
 def t_resources(r: R):
@@ -293,7 +303,10 @@ def t_microbench(r: R):
     save_json(r.ana / "microbench_storage.json", mb.get("storage", []))
     sb = r.j("resources", "sdpa_backends.json")
     if sb:
-        write_table(r, "T5b_sdpa_backends", ["Backend", "Status"], [[k, str(v)] for k, v in sb.items()])
+        write_table(r, "T5b_sdpa_backends", ["Backend", "Status"], [[k, str(v)] for k, v in sb.items()],
+                    "Attention backend of the Qwen model on the T4: availability of each SDPA backend when forced. "
+                    "FlashAttention and cuDNN attention need a newer GPU than the T4 (compute capability 7.5), so "
+                    "unforced calls use the memory-efficient kernel.")
 
 
 def t_p3(r: R):
@@ -365,17 +378,20 @@ def t_calib_vs_heldout(r: R):
         for yk, yv in y.items():
             sp = spearman(xv, yv)
             anal[f"{xk}~{yk}"] = sp
-            rows.append([xk, yk, sp["n"], f3(sp["rho"]), f"{sp['p']:.2g}" if sp["p"] is not None else "-", f3(sp.get("pearson_r"))])
+            rows.append([T8LAB[xk], T8LAB[yk], sp["n"], f3(sp["rho"]), f"{sp['p']:.2g}" if sp["p"] is not None else "-", f3(sp.get("pearson_r"))])
     for fam, members in [("pruning", [c for c in names if c.startswith(("P", "Q")) is False or c.startswith("P")]),
                          ("quant", [c for c in names if c.startswith("Q")])]:
         idx = [names.index(c) for c in members]
         if len(idx) >= 4:
             sp = spearman([x["calib_kl"][i] for i in idx], [y["wiki_dnll"][i] for i in idx])
             anal[f"{fam}:calib_kl~wiki_dnll"] = sp
-            rows.append([f"calib_kl ({fam} only)", "wiki_dnll", sp["n"], f3(sp["rho"]), f"{sp['p']:.2g}", f3(sp.get("pearson_r"))])
+            rows.append([f"{T8LAB['calib_kl']} ({'pruning' if fam == 'pruning' else 'quantization'} only)", T8LAB["wiki_dnll"],
+                         sp["n"], f3(sp["rho"]), f"{sp['p']:.2g}", f3(sp.get("pearson_r"))])
     write_table(r, "T8_calibration_vs_heldout", ["Calibration / dev criterion", "Held-out outcome", "n conditions",
                                                  "Spearman rho", "p", "Pearson r"], rows,
-                "Across all compressed conditions (n small: descriptive). dNLL = condition minus FP16 mean NLL.")
+                "Across all compressed conditions (n small: descriptive). dNLL = condition minus FP16 mean NLL. The "
+                "conditions span orders of magnitude of damage, so the rank correlations mainly show that calibration "
+                "measures order the conditions correctly; p = 0 means below floating-point resolution (perfect ranking).")
     save_json(r.ana / "calibration_vs_heldout.json", {"conditions": names, "x": x, "y": y, "correlations": anal})
 
 
@@ -639,7 +655,13 @@ def t_mech_residual(r: R):
     corr["p3_kl50~block_influence"] = spearman([x["block_influence"] for x in out], [x["p3_kl50"] for x in out])
     corr["p3_kl50~max_over_rms_in"] = spearman([x["max_over_rms_in"] for x in out], [x["p3_kl50"] for x in out])
     save_json(r.ana / "mechanism_residual_stream.json", {"per_block": out, "per_unit": rows_u, "spearman": corr})
-    crow = [[k.split("~")[1], v["n"], f3(v["rho"]), f"{v['p']:.2g}" if v["p"] is not None else "-"] for k, v in corr.items()]
+    T17LAB = {"loss2": "output MSE at 2 bits (absolute)", "rel_out_err2": "output MSE at 2 bits / output mean square",
+              "local_err2": "output MSE at 2 bits / residual mean square (Q3 local_err)",
+              "fisher2": "Fisher-Taylor damage at 2 bits", "ref_ms": "mean square of the group's dense output",
+              "act_max_over_median": "input-channel norm, max / median", "act_kurtosis": "input-channel norm, kurtosis",
+              "block_influence": "Block Influence (P3 measure)", "max_over_rms_in": "residual max / RMS entering the block"}
+    crow = [[T17LAB.get(k.split("~")[1], k.split("~")[1]), v["n"], f3(v["rho"]), f"{v['p']:.2g}" if v["p"] is not None else "-"]
+            for k, v in corr.items()]
     write_table(r, "T17_fragility_correlates", ["Candidate explanation of probe KL", "n", "Spearman rho", "p"], crow,
                 "Rows 1-7: over the 112 Q3 units, against the isolated 2-bit probe KL. loss2 = absolute MSE of the "
                 "group's output at 2 bits (AWQ search); rel_out_err2 = loss2 / output mean square; local_err2 = loss2 / "
@@ -725,7 +747,9 @@ def t_diagnostics(r: R):
                 f"Dense FP16, first {n} calibration sequences, SDPA (token-0 attention mass in FP32). Massive = |h| > {d['meta']['massive_ratio']:.0f} x "
                 "RMS of the boundary. Attention mass = mean over heads and queries t >= 1 of the weight on key 0 in that "
                 "block. Last column: share of the increment h_(l+1) - h_l at the next boundary's massive entries written "
-                f"by the MLP of block l (rest: attention). Sanity: dense vs dense KL = {d['dense']['dense_vs_dense_kl']:.1e}.")
+                f"by the MLP of block l (rest: attention); it is a signed share, so it leaves [0, 1] when the two "
+                f"sublayers write in opposite directions (e.g. -0.30: attention adds more than the total, the MLP "
+                f"removes part of it). Sanity: dense vs dense KL = {d['dense']['dense_vs_dense_kl']:.1e}.")
     wd = d["weight_difficulty"]
     tr, pt = d.get("trace", {}), d.get("patch", {})
     rows = []
@@ -1186,7 +1210,8 @@ def f_additivity(r: R, plt):
         ax.plot([x], [y], marks.get(c, "o"), ms=4.5, color=COLORS[c[:2]], label=SHORT[c])
     lim = [min(min(p[1], p[2]) for p in pts) * 0.5, max(max(p[1], p[2]) for p in pts) * 2]
     ax.plot(lim, lim, color="0.4", ls="--", lw=0.8, label="additive (y = x)")
-    ax.set(xscale="log", yscale="log", xlabel="sum of isolated probe KLs", ylabel="measured calibration KL")
+    ax.set(xscale="log", yscale="log", xlabel="sum of isolated probe KLs (nats/token)",
+           ylabel="measured calibration KL (nats/token)")
     ax.legend(frameon=False, fontsize=6, loc="upper left")
     save_fig(r, fig, "F11_additivity")
     save_json(r.ana / "additivity.json", [{"condition": LABEL[c], "sum_isolated_kl": x, "measured_kl": y} for c, x, y in pts])
@@ -1202,7 +1227,7 @@ def f_mech(r: R, plt):
     ax[0].plot(x, np.maximum([b["resid_max_in"] for b in B], 1e-2), marker=".", ms=3, color="k", label="max |h|")
     ax[0].plot(x, np.maximum([b["resid_rms_in"] for b in B], 1e-2), color="0.55", label="RMS(h)")
     logy(ax[0])
-    ax[0].set(ylabel="magnitude entering block")
+    ax[0].set(ylabel="|h| entering block")
     title(ax[0], "(a) residual stream of the FP16 model")
     ax[0].legend(frameon=False, fontsize=6.5, loc="center right")
     ax[1].plot(x, [b["ref_ms_qkv"] for b in B], color=GCOL["qkv"], label="attention output")
@@ -1252,7 +1277,7 @@ def f_diagnostics(r: R, plt):
     w = 0.8 / len(bars)
     for i, (lab, f, col) in enumerate(bars):
         ax[1].bar(np.arange(len(units)) - 0.4 + w * (i + 0.5), [f(u) for u in units], w, color=col, label=lab)
-    ax[1].set(xticks=range(len(units)), xticklabels=[UNIT_TICK.get(u, u) for u in units])
+    ax[1].set(xticks=range(len(units)), xticklabels=[UNIT_TICK.get(u, u) for u in units], ylabel="final KL vs FP16")
     ax[1].tick_params(axis="x", labelsize=6)
     logy(ax[1])
     ax[1].grid(axis="x", visible=False)
@@ -1265,9 +1290,11 @@ def f_diagnostics(r: R, plt):
     for u in keep:
         t = tr[u]
         xs = range(len(t["drift"]))
-        ax[0].plot(xs, [v if v > 0 else np.nan for v in t["drift_excl_massive"]], color=cols[u], marker=".", ms=2.5, label=u)
-        ax[1].plot(xs, [np.nan if (v is None or v <= 0) else v for v in t["massive_rel_change"]], color=cols[u], label=u)
-        ax[2].plot(xs, t["attn0_change"], color=cols[u], label=u)
+        blk, grp = u.split(".")
+        lab = f"block {blk} pruned 75%" if grp == "p75" else f"block {blk} {GLAB.get(grp, grp)} @2b"
+        ax[0].plot(xs, [v if v > 0 else np.nan for v in t["drift_excl_massive"]], color=cols[u], marker=".", ms=2.5, label=lab)
+        ax[1].plot(xs, [np.nan if (v is None or v <= 0) else v for v in t["massive_rel_change"]], color=cols[u], label=lab)
+        ax[2].plot(xs, t["attn0_change"], color=cols[u], label=lab)
     logy(ax[0])
     logy(ax[1])
     ax[0].set(xlabel="block (input)", ylabel="relative drift")
@@ -1276,7 +1303,7 @@ def f_diagnostics(r: R, plt):
     title(ax[1], "(b) massive entries")
     ax[2].set(xlabel="block", ylabel="change in mass")
     title(ax[2], "(c) attention to token 0")
-    fig.legend(*ax[0].get_legend_handles_labels(), loc="outside lower center", ncol=5, frameon=False)
+    fig.legend(*ax[0].get_legend_handles_labels(), loc="outside lower center", ncol=3, frameon=False)
     save_fig(r, fig, "FA13_propagation_traces")
 
 

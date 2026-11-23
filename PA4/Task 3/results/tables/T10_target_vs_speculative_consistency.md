@@ -19,4 +19,4 @@
 | EOS-terminated share | - | 0.608 | 0.617 | +0.008 |
 | target entropy at saved positions | - | 0.420 | 0.387 |  |
 
-Both banks sample the target-prefix law (different seeds), so differences should be within sampling uncertainty; a systematic gap would indicate an implementation or evaluation problem.
+Both banks sample the target-prefix law (different seeds), so differences should be within sampling uncertainty; a systematic gap would indicate an implementation or evaluation problem. Metric rows are prompt-weighted means (a prompt's value = mean over its saved positions), so they differ slightly from the token-weighted T5; the banks hold different prefixes, hence an unpaired bootstrap (4,000 resamples).

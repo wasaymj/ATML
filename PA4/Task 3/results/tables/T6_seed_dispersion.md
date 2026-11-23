@@ -6,3 +6,5 @@
 | exact spec. (iii) | on-policy | 0.8957 | 0.0013 | 0.8970 / 0.8944 |
 | original draft (ii) | off-policy | 0.8758 | 0.0008 | 0.8750 / 0.8765 |
 | original draft (ii) | on-policy | 0.8734 | 0.0012 | 0.8747 / 0.8722 |
+
+Training-seed variation: token-weighted 1 - TV (as in T5) of the two independently trained drafts per method; half range = (max - min) / 2 over the two seeds.

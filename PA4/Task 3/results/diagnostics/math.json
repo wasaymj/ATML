@@ -1,0 +1,2628 @@
+{
+ "models": {
+  "target": {
+   "greedy_accuracy": 0.7333333333333333,
+   "greedy_accuracy_eos_ended": 0.7413793103448276,
+   "greedy_truncated": 0.03333333333333333,
+   "greedy_mean_tokens": 280.8333333333333,
+   "rows": [
+    {
+     "prompt_id": "GSM8K-0000",
+     "n_tokens": 375,
+     "termination": "eos",
+     "pred": "18",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0001",
+     "n_tokens": 512,
+     "termination": "cap",
+     "pred": "6",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0002",
+     "n_tokens": 512,
+     "termination": "cap",
+     "pred": "24",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0003",
+     "n_tokens": 273,
+     "termination": "eos",
+     "pred": "20",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0004",
+     "n_tokens": 254,
+     "termination": "eos",
+     "pred": "300",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0005",
+     "n_tokens": 180,
+     "termination": "eos",
+     "pred": "60",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0006",
+     "n_tokens": 365,
+     "termination": "eos",
+     "pred": "40",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0007",
+     "n_tokens": 368,
+     "termination": "eos",
+     "pred": "5",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0008",
+     "n_tokens": 258,
+     "termination": "eos",
+     "pred": "28.00",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0009",
+     "n_tokens": 243,
+     "termination": "eos",
+     "pred": "160",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0010",
+     "n_tokens": 361,
+     "termination": "eos",
+     "pred": "24",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0011",
+     "n_tokens": 226,
+     "termination": "eos",
+     "pred": "100",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0012",
+     "n_tokens": 272,
+     "termination": "eos",
+     "pred": "5",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0013",
+     "n_tokens": 286,
+     "termination": "eos",
+     "pred": "280",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0014",
+     "n_tokens": 196,
+     "termination": "eos",
+     "pred": "21",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0015",
+     "n_tokens": 316,
+     "termination": "eos",
+     "pred": "68",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0016",
+     "n_tokens": 230,
+     "termination": "eos",
+     "pred": "24.5",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0017",
+     "n_tokens": 390,
+     "termination": "eos",
+     "pred": "39",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0018",
+     "n_tokens": 232,
+     "termination": "eos",
+     "pred": "35",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0019",
+     "n_tokens": 355,
+     "termination": "eos",
+     "pred": "30",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0020",
+     "n_tokens": 343,
+     "termination": "eos",
+     "pred": "80",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0021",
+     "n_tokens": 160,
+     "termination": "eos",
+     "pred": "45",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0022",
+     "n_tokens": 284,
+     "termination": "eos",
+     "pred": "37.00",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0023",
+     "n_tokens": 286,
+     "termination": "eos",
+     "pred": "237",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0024",
+     "n_tokens": 317,
+     "termination": "eos",
+     "pred": "770",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0025",
+     "n_tokens": 263,
+     "termination": "eos",
+     "pred": "495",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0026",
+     "n_tokens": 355,
+     "termination": "eos",
+     "pred": "215",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0027",
+     "n_tokens": 278,
+     "termination": "eos",
+     "pred": "1",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0028",
+     "n_tokens": 337,
+     "termination": "eos",
+     "pred": "20",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0029",
+     "n_tokens": 237,
+     "termination": "eos",
+     "pred": "1170",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0030",
+     "n_tokens": 494,
+     "termination": "eos",
+     "pred": "21",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0031",
+     "n_tokens": 288,
+     "termination": "eos",
+     "pred": "40",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0032",
+     "n_tokens": 111,
+     "termination": "eos",
+     "pred": "3",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0033",
+     "n_tokens": 159,
+     "termination": "eos",
+     "pred": "500",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0034",
+     "n_tokens": 213,
+     "termination": "eos",
+     "pred": "74",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0035",
+     "n_tokens": 217,
+     "termination": "eos",
+     "pred": "250",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0036",
+     "n_tokens": 189,
+     "termination": "eos",
+     "pred": "14",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0037",
+     "n_tokens": 219,
+     "termination": "eos",
+     "pred": "23",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0038",
+     "n_tokens": 248,
+     "termination": "eos",
+     "pred": "4",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0039",
+     "n_tokens": 298,
+     "termination": "eos",
+     "pred": "2000",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0040",
+     "n_tokens": 408,
+     "termination": "eos",
+     "pred": "12",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0041",
+     "n_tokens": 306,
+     "termination": "eos",
+     "pred": "842",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0042",
+     "n_tokens": 192,
+     "termination": "eos",
+     "pred": "225",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0043",
+     "n_tokens": 282,
+     "termination": "eos",
+     "pred": "12",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0044",
+     "n_tokens": 231,
+     "termination": "eos",
+     "pred": "100",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0045",
+     "n_tokens": 330,
+     "termination": "eos",
+     "pred": "8",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0046",
+     "n_tokens": 420,
+     "termination": "eos",
+     "pred": "360",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0047",
+     "n_tokens": 162,
+     "termination": "eos",
+     "pred": "22",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0048",
+     "n_tokens": 282,
+     "termination": "eos",
+     "pred": "300",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0049",
+     "n_tokens": 303,
+     "termination": "eos",
+     "pred": "4",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0050",
+     "n_tokens": 266,
+     "termination": "eos",
+     "pred": "480",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0051",
+     "n_tokens": 400,
+     "termination": "eos",
+     "pred": "3.75",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0052",
+     "n_tokens": 201,
+     "termination": "eos",
+     "pred": "90",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0053",
+     "n_tokens": 328,
+     "termination": "eos",
+     "pred": "27",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0054",
+     "n_tokens": 295,
+     "termination": "eos",
+     "pred": "12",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0055",
+     "n_tokens": 169,
+     "termination": "eos",
+     "pred": "120",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0056",
+     "n_tokens": 162,
+     "termination": "eos",
+     "pred": "17",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0057",
+     "n_tokens": 202,
+     "termination": "eos",
+     "pred": "5",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0058",
+     "n_tokens": 159,
+     "termination": "eos",
+     "pred": "38",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0059",
+     "n_tokens": 252,
+     "termination": "eos",
+     "pred": "140000",
+     "correct": true
+    }
+   ],
+   "seconds": 632.131363622
+  },
+  "original": {
+   "greedy_accuracy": 0.5166666666666667,
+   "greedy_accuracy_eos_ended": 0.5535714285714286,
+   "greedy_truncated": 0.06666666666666667,
+   "greedy_mean_tokens": 290.7,
+   "rows": [
+    {
+     "prompt_id": "GSM8K-0000",
+     "n_tokens": 281,
+     "termination": "eos",
+     "pred": "18",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0001",
+     "n_tokens": 263,
+     "termination": "eos",
+     "pred": "4",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0002",
+     "n_tokens": 512,
+     "termination": "cap",
+     "pred": "9",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0003",
+     "n_tokens": 217,
+     "termination": "eos",
+     "pred": "18",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0004",
+     "n_tokens": 355,
+     "termination": "eos",
+     "pred": "104",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0005",
+     "n_tokens": 204,
+     "termination": "eos",
+     "pred": "60",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0006",
+     "n_tokens": 318,
+     "termination": "eos",
+     "pred": "40",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0007",
+     "n_tokens": 232,
+     "termination": "eos",
+     "pred": "25",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0008",
+     "n_tokens": 254,
+     "termination": "eos",
+     "pred": "28.00",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0009",
+     "n_tokens": 265,
+     "termination": "eos",
+     "pred": "5",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0010",
+     "n_tokens": 339,
+     "termination": "eos",
+     "pred": "36",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0011",
+     "n_tokens": 235,
+     "termination": "eos",
+     "pred": "100",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0012",
+     "n_tokens": 284,
+     "termination": "eos",
+     "pred": "5",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0013",
+     "n_tokens": 309,
+     "termination": "eos",
+     "pred": "280",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0014",
+     "n_tokens": 140,
+     "termination": "eos",
+     "pred": "18",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0015",
+     "n_tokens": 328,
+     "termination": "eos",
+     "pred": "68",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0016",
+     "n_tokens": 284,
+     "termination": "eos",
+     "pred": "23.67",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0017",
+     "n_tokens": 506,
+     "termination": "eos",
+     "pred": "135",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0018",
+     "n_tokens": 271,
+     "termination": "eos",
+     "pred": "35",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0019",
+     "n_tokens": 305,
+     "termination": "eos",
+     "pred": "30",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0020",
+     "n_tokens": 383,
+     "termination": "eos",
+     "pred": "0",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0021",
+     "n_tokens": 191,
+     "termination": "eos",
+     "pred": "45",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0022",
+     "n_tokens": 284,
+     "termination": "eos",
+     "pred": "670.00",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0023",
+     "n_tokens": 478,
+     "termination": "eos",
+     "pred": "237",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0024",
+     "n_tokens": 290,
+     "termination": "eos",
+     "pred": "320",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0025",
+     "n_tokens": 373,
+     "termination": "eos",
+     "pred": "495",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0026",
+     "n_tokens": 288,
+     "termination": "eos",
+     "pred": "320",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0027",
+     "n_tokens": 197,
+     "termination": "eos",
+     "pred": "3",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0028",
+     "n_tokens": 512,
+     "termination": "cap",
+     "pred": "2",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0029",
+     "n_tokens": 275,
+     "termination": "eos",
+     "pred": "1080",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0030",
+     "n_tokens": 335,
+     "termination": "eos",
+     "pred": "96",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0031",
+     "n_tokens": 314,
+     "termination": "eos",
+     "pred": "40",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0032",
+     "n_tokens": 274,
+     "termination": "eos",
+     "pred": "21",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0033",
+     "n_tokens": 177,
+     "termination": "eos",
+     "pred": "500",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0034",
+     "n_tokens": 263,
+     "termination": "eos",
+     "pred": "74",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0035",
+     "n_tokens": 281,
+     "termination": "eos",
+     "pred": "250",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0036",
+     "n_tokens": 291,
+     "termination": "eos",
+     "pred": "14",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0037",
+     "n_tokens": 250,
+     "termination": "eos",
+     "pred": "23",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0038",
+     "n_tokens": 257,
+     "termination": "eos",
+     "pred": "4",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0039",
+     "n_tokens": 348,
+     "termination": "eos",
+     "pred": "2000",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0040",
+     "n_tokens": 340,
+     "termination": "eos",
+     "pred": "12",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0041",
+     "n_tokens": 263,
+     "termination": "eos",
+     "pred": "842",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0042",
+     "n_tokens": 512,
+     "termination": "cap",
+     "pred": "15",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0043",
+     "n_tokens": 293,
+     "termination": "eos",
+     "pred": "227",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0044",
+     "n_tokens": 222,
+     "termination": "eos",
+     "pred": "300",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0045",
+     "n_tokens": 205,
+     "termination": "eos",
+     "pred": "8",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0046",
+     "n_tokens": 306,
+     "termination": "eos",
+     "pred": "7500",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0047",
+     "n_tokens": 166,
+     "termination": "eos",
+     "pred": "22",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0048",
+     "n_tokens": 280,
+     "termination": "eos",
+     "pred": "300",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0049",
+     "n_tokens": 202,
+     "termination": "eos",
+     "pred": "20",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0050",
+     "n_tokens": 282,
+     "termination": "eos",
+     "pred": "480",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0051",
+     "n_tokens": 229,
+     "termination": "eos",
+     "pred": "20.42",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0052",
+     "n_tokens": 512,
+     "termination": "cap",
+     "pred": "6",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0053",
+     "n_tokens": 335,
+     "termination": "eos",
+     "pred": "6",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0054",
+     "n_tokens": 253,
+     "termination": "eos",
+     "pred": "12",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0055",
+     "n_tokens": 164,
+     "termination": "eos",
+     "pred": "120",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0056",
+     "n_tokens": 208,
+     "termination": "eos",
+     "pred": "17",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0057",
+     "n_tokens": 205,
+     "termination": "eos",
+     "pred": "5",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0058",
+     "n_tokens": 253,
+     "termination": "eos",
+     "pred": "26",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0059",
+     "n_tokens": 249,
+     "termination": "eos",
+     "pred": "140000",
+     "correct": true
+    }
+   ],
+   "seconds": 557.2888360910001,
+   "teacher_bank": {
+    "positions": 2847,
+    "entropy": 0.42714698668202566,
+    "top_prob": 0.867600208961591
+   },
+   "own_rollouts": {
+    "positions": 2879,
+    "entropy": 0.4592711943643609,
+    "top_prob": 0.8582243468352347
+   }
+  },
+  "off_policy_s6304": {
+   "greedy_accuracy": 0.5166666666666667,
+   "greedy_accuracy_eos_ended": 0.5254237288135594,
+   "greedy_truncated": 0.016666666666666666,
+   "greedy_mean_tokens": 278.0833333333333,
+   "rows": [
+    {
+     "prompt_id": "GSM8K-0000",
+     "n_tokens": 295,
+     "termination": "eos",
+     "pred": "20",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0001",
+     "n_tokens": 259,
+     "termination": "eos",
+     "pred": "2",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0002",
+     "n_tokens": 384,
+     "termination": "eos",
+     "pred": "3",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0003",
+     "n_tokens": 291,
+     "termination": "eos",
+     "pred": "17",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0004",
+     "n_tokens": 321,
+     "termination": "eos",
+     "pred": "300",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0005",
+     "n_tokens": 177,
+     "termination": "eos",
+     "pred": "60",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0006",
+     "n_tokens": 320,
+     "termination": "eos",
+     "pred": "40",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0007",
+     "n_tokens": 201,
+     "termination": "eos",
+     "pred": "25",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0008",
+     "n_tokens": 347,
+     "termination": "eos",
+     "pred": "28.00",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0009",
+     "n_tokens": 296,
+     "termination": "eos",
+     "pred": "5",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0010",
+     "n_tokens": 341,
+     "termination": "eos",
+     "pred": "6",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0011",
+     "n_tokens": 227,
+     "termination": "eos",
+     "pred": "100",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0012",
+     "n_tokens": 341,
+     "termination": "eos",
+     "pred": "5",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0013",
+     "n_tokens": 416,
+     "termination": "eos",
+     "pred": "0",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0014",
+     "n_tokens": 170,
+     "termination": "eos",
+     "pred": "21",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0015",
+     "n_tokens": 512,
+     "termination": "cap",
+     "pred": "16",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0016",
+     "n_tokens": 246,
+     "termination": "eos",
+     "pred": "29.67",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0017",
+     "n_tokens": 467,
+     "termination": "eos",
+     "pred": "50",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0018",
+     "n_tokens": 230,
+     "termination": "eos",
+     "pred": "35",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0019",
+     "n_tokens": 291,
+     "termination": "eos",
+     "pred": "30",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0020",
+     "n_tokens": 311,
+     "termination": "eos",
+     "pred": "0",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0021",
+     "n_tokens": 192,
+     "termination": "eos",
+     "pred": "45",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0022",
+     "n_tokens": 237,
+     "termination": "eos",
+     "pred": "40.00",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0023",
+     "n_tokens": 474,
+     "termination": "eos",
+     "pred": "251",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0024",
+     "n_tokens": 367,
+     "termination": "eos",
+     "pred": "770",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0025",
+     "n_tokens": 337,
+     "termination": "eos",
+     "pred": "75",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0026",
+     "n_tokens": 291,
+     "termination": "eos",
+     "pred": "360",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0027",
+     "n_tokens": 176,
+     "termination": "eos",
+     "pred": "3",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0028",
+     "n_tokens": 258,
+     "termination": "eos",
+     "pred": "0",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0029",
+     "n_tokens": 328,
+     "termination": "eos",
+     "pred": "1170",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0030",
+     "n_tokens": 302,
+     "termination": "eos",
+     "pred": "24",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0031",
+     "n_tokens": 235,
+     "termination": "eos",
+     "pred": "9",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0032",
+     "n_tokens": 301,
+     "termination": "eos",
+     "pred": "3",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0033",
+     "n_tokens": 149,
+     "termination": "eos",
+     "pred": "500",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0034",
+     "n_tokens": 249,
+     "termination": "eos",
+     "pred": "74",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0035",
+     "n_tokens": 231,
+     "termination": "eos",
+     "pred": "250",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0036",
+     "n_tokens": 269,
+     "termination": "eos",
+     "pred": "14",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0037",
+     "n_tokens": 212,
+     "termination": "eos",
+     "pred": "23",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0038",
+     "n_tokens": 263,
+     "termination": "eos",
+     "pred": "4",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0039",
+     "n_tokens": 347,
+     "termination": "eos",
+     "pred": "7000",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0040",
+     "n_tokens": 289,
+     "termination": "eos",
+     "pred": "12",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0041",
+     "n_tokens": 264,
+     "termination": "eos",
+     "pred": "842",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0042",
+     "n_tokens": 267,
+     "termination": "eos",
+     "pred": "295",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0043",
+     "n_tokens": 299,
+     "termination": "eos",
+     "pred": "227",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0044",
+     "n_tokens": 213,
+     "termination": "eos",
+     "pred": "50",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0045",
+     "n_tokens": 208,
+     "termination": "eos",
+     "pred": "8",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0046",
+     "n_tokens": 225,
+     "termination": "eos",
+     "pred": "1080",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0047",
+     "n_tokens": 159,
+     "termination": "eos",
+     "pred": "22",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0048",
+     "n_tokens": 274,
+     "termination": "eos",
+     "pred": "300",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0049",
+     "n_tokens": 252,
+     "termination": "eos",
+     "pred": "4",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0050",
+     "n_tokens": 286,
+     "termination": "eos",
+     "pred": "480",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0051",
+     "n_tokens": 302,
+     "termination": "eos",
+     "pred": "20.42",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0052",
+     "n_tokens": 386,
+     "termination": "eos",
+     "pred": "90",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0053",
+     "n_tokens": 247,
+     "termination": "eos",
+     "pred": "54",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0054",
+     "n_tokens": 226,
+     "termination": "eos",
+     "pred": "12",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0055",
+     "n_tokens": 173,
+     "termination": "eos",
+     "pred": "120",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0056",
+     "n_tokens": 226,
+     "termination": "eos",
+     "pred": "17",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0057",
+     "n_tokens": 287,
+     "termination": "eos",
+     "pred": "5",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0058",
+     "n_tokens": 211,
+     "termination": "eos",
+     "pred": "46",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0059",
+     "n_tokens": 230,
+     "termination": "eos",
+     "pred": "140000",
+     "correct": true
+    }
+   ],
+   "seconds": 526.679320238,
+   "teacher_bank": {
+    "positions": 2847,
+    "entropy": 0.5206237735365055,
+    "top_prob": 0.8439371489906964
+   },
+   "own_rollouts": {
+    "positions": 2870,
+    "entropy": 0.7364641760313283,
+    "top_prob": 0.7907599719598214
+   }
+  },
+  "off_policy_s6305": {
+   "greedy_accuracy": 0.4666666666666667,
+   "greedy_accuracy_eos_ended": 0.49122807017543857,
+   "greedy_truncated": 0.05,
+   "greedy_mean_tokens": 291.35,
+   "rows": [
+    {
+     "prompt_id": "GSM8K-0000",
+     "n_tokens": 259,
+     "termination": "eos",
+     "pred": "6",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0001",
+     "n_tokens": 277,
+     "termination": "eos",
+     "pred": "48",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0002",
+     "n_tokens": 478,
+     "termination": "eos",
+     "pred": "3",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0003",
+     "n_tokens": 283,
+     "termination": "eos",
+     "pred": "18",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0004",
+     "n_tokens": 326,
+     "termination": "eos",
+     "pred": "104",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0005",
+     "n_tokens": 191,
+     "termination": "eos",
+     "pred": "60",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0006",
+     "n_tokens": 320,
+     "termination": "eos",
+     "pred": "40",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0007",
+     "n_tokens": 224,
+     "termination": "eos",
+     "pred": "25",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0008",
+     "n_tokens": 238,
+     "termination": "eos",
+     "pred": "32.00",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0009",
+     "n_tokens": 408,
+     "termination": "eos",
+     "pred": "5",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0010",
+     "n_tokens": 300,
+     "termination": "eos",
+     "pred": "18",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0011",
+     "n_tokens": 202,
+     "termination": "eos",
+     "pred": "100",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0012",
+     "n_tokens": 261,
+     "termination": "eos",
+     "pred": "5",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0013",
+     "n_tokens": 404,
+     "termination": "eos",
+     "pred": "280",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0014",
+     "n_tokens": 183,
+     "termination": "eos",
+     "pred": "21",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0015",
+     "n_tokens": 512,
+     "termination": "cap",
+     "pred": "8",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0016",
+     "n_tokens": 263,
+     "termination": "eos",
+     "pred": "20",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0017",
+     "n_tokens": 466,
+     "termination": "eos",
+     "pred": "55",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0018",
+     "n_tokens": 270,
+     "termination": "eos",
+     "pred": "35",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0019",
+     "n_tokens": 318,
+     "termination": "eos",
+     "pred": "30",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0020",
+     "n_tokens": 332,
+     "termination": "eos",
+     "pred": "80",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0021",
+     "n_tokens": 185,
+     "termination": "eos",
+     "pred": "45",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0022",
+     "n_tokens": 385,
+     "termination": "eos",
+     "pred": "180.00",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0023",
+     "n_tokens": 512,
+     "termination": "cap",
+     "pred": "12",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0024",
+     "n_tokens": 352,
+     "termination": "eos",
+     "pred": "770",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0025",
+     "n_tokens": 359,
+     "termination": "eos",
+     "pred": "75",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0026",
+     "n_tokens": 328,
+     "termination": "eos",
+     "pred": "470",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0027",
+     "n_tokens": 200,
+     "termination": "eos",
+     "pred": "3",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0028",
+     "n_tokens": 252,
+     "termination": "eos",
+     "pred": "3",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0029",
+     "n_tokens": 247,
+     "termination": "eos",
+     "pred": "1170",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0030",
+     "n_tokens": 419,
+     "termination": "eos",
+     "pred": "131.55",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0031",
+     "n_tokens": 288,
+     "termination": "eos",
+     "pred": "40",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0032",
+     "n_tokens": 281,
+     "termination": "eos",
+     "pred": "7",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0033",
+     "n_tokens": 176,
+     "termination": "eos",
+     "pred": "500",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0034",
+     "n_tokens": 240,
+     "termination": "eos",
+     "pred": "74",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0035",
+     "n_tokens": 359,
+     "termination": "eos",
+     "pred": "500",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0036",
+     "n_tokens": 255,
+     "termination": "eos",
+     "pred": "14",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0037",
+     "n_tokens": 218,
+     "termination": "eos",
+     "pred": "23",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0038",
+     "n_tokens": 244,
+     "termination": "eos",
+     "pred": "4",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0039",
+     "n_tokens": 320,
+     "termination": "eos",
+     "pred": "0",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0040",
+     "n_tokens": 512,
+     "termination": "cap",
+     "pred": "24",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0041",
+     "n_tokens": 231,
+     "termination": "eos",
+     "pred": "900",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0042",
+     "n_tokens": 176,
+     "termination": "eos",
+     "pred": "225",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0043",
+     "n_tokens": 288,
+     "termination": "eos",
+     "pred": "227",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0044",
+     "n_tokens": 259,
+     "termination": "eos",
+     "pred": "100",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0045",
+     "n_tokens": 276,
+     "termination": "eos",
+     "pred": "1",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0046",
+     "n_tokens": 372,
+     "termination": "eos",
+     "pred": "21000",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0047",
+     "n_tokens": 166,
+     "termination": "eos",
+     "pred": "22",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0048",
+     "n_tokens": 244,
+     "termination": "eos",
+     "pred": "300",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0049",
+     "n_tokens": 204,
+     "termination": "eos",
+     "pred": "4",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0050",
+     "n_tokens": 270,
+     "termination": "eos",
+     "pred": "480",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0051",
+     "n_tokens": 351,
+     "termination": "eos",
+     "pred": "13.75",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0052",
+     "n_tokens": 345,
+     "termination": "eos",
+     "pred": "30",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0053",
+     "n_tokens": 302,
+     "termination": "eos",
+     "pred": "6",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0054",
+     "n_tokens": 237,
+     "termination": "eos",
+     "pred": "12",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0055",
+     "n_tokens": 168,
+     "termination": "eos",
+     "pred": "120",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0056",
+     "n_tokens": 237,
+     "termination": "eos",
+     "pred": "17",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0057",
+     "n_tokens": 277,
+     "termination": "eos",
+     "pred": "5",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0058",
+     "n_tokens": 186,
+     "termination": "eos",
+     "pred": "30",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0059",
+     "n_tokens": 245,
+     "termination": "eos",
+     "pred": "140000",
+     "correct": true
+    }
+   ],
+   "seconds": 557.4150321939999,
+   "teacher_bank": {
+    "positions": 2847,
+    "entropy": 0.49848591440402656,
+    "top_prob": 0.8497675023907564
+   },
+   "own_rollouts": {
+    "positions": 2870,
+    "entropy": 0.6304682682092033,
+    "top_prob": 0.8192388038627985
+   }
+  },
+  "on_policy_s6304": {
+   "greedy_accuracy": 0.5,
+   "greedy_accuracy_eos_ended": 0.5172413793103449,
+   "greedy_truncated": 0.03333333333333333,
+   "greedy_mean_tokens": 284.3833333333333,
+   "rows": [
+    {
+     "prompt_id": "GSM8K-0000",
+     "n_tokens": 258,
+     "termination": "eos",
+     "pred": "18",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0001",
+     "n_tokens": 353,
+     "termination": "eos",
+     "pred": "4",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0002",
+     "n_tokens": 443,
+     "termination": "eos",
+     "pred": "16",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0003",
+     "n_tokens": 267,
+     "termination": "eos",
+     "pred": "10",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0004",
+     "n_tokens": 323,
+     "termination": "eos",
+     "pred": "103.24",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0005",
+     "n_tokens": 206,
+     "termination": "eos",
+     "pred": "60",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0006",
+     "n_tokens": 512,
+     "termination": "cap",
+     "pred": "66.67",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0007",
+     "n_tokens": 248,
+     "termination": "eos",
+     "pred": "45",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0008",
+     "n_tokens": 226,
+     "termination": "eos",
+     "pred": "28.00",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0009",
+     "n_tokens": 412,
+     "termination": "eos",
+     "pred": "160",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0010",
+     "n_tokens": 299,
+     "termination": "eos",
+     "pred": "18",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0011",
+     "n_tokens": 229,
+     "termination": "eos",
+     "pred": "100",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0012",
+     "n_tokens": 282,
+     "termination": "eos",
+     "pred": "5",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0013",
+     "n_tokens": 310,
+     "termination": "eos",
+     "pred": "280",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0014",
+     "n_tokens": 235,
+     "termination": "eos",
+     "pred": "21",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0015",
+     "n_tokens": 345,
+     "termination": "eos",
+     "pred": "1.2",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0016",
+     "n_tokens": 263,
+     "termination": "eos",
+     "pred": "23.67",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0017",
+     "n_tokens": 394,
+     "termination": "eos",
+     "pred": "60",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0018",
+     "n_tokens": 256,
+     "termination": "eos",
+     "pred": "35",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0019",
+     "n_tokens": 372,
+     "termination": "eos",
+     "pred": "30",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0020",
+     "n_tokens": 264,
+     "termination": "eos",
+     "pred": "80",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0021",
+     "n_tokens": 202,
+     "termination": "eos",
+     "pred": "45",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0022",
+     "n_tokens": 353,
+     "termination": "eos",
+     "pred": "0",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0023",
+     "n_tokens": 503,
+     "termination": "eos",
+     "pred": "237",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0024",
+     "n_tokens": 384,
+     "termination": "eos",
+     "pred": "770",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0025",
+     "n_tokens": 257,
+     "termination": "eos",
+     "pred": "75",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0026",
+     "n_tokens": 216,
+     "termination": "eos",
+     "pred": "360",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0027",
+     "n_tokens": 168,
+     "termination": "eos",
+     "pred": "3",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0028",
+     "n_tokens": 393,
+     "termination": "eos",
+     "pred": "14",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0029",
+     "n_tokens": 238,
+     "termination": "eos",
+     "pred": "1080",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0030",
+     "n_tokens": 303,
+     "termination": "eos",
+     "pred": "9.40",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0031",
+     "n_tokens": 350,
+     "termination": "eos",
+     "pred": "13.33464",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0032",
+     "n_tokens": 179,
+     "termination": "eos",
+     "pred": "6",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0033",
+     "n_tokens": 159,
+     "termination": "eos",
+     "pred": "500",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0034",
+     "n_tokens": 253,
+     "termination": "eos",
+     "pred": "74",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0035",
+     "n_tokens": 284,
+     "termination": "eos",
+     "pred": "250",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0036",
+     "n_tokens": 289,
+     "termination": "eos",
+     "pred": "14",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0037",
+     "n_tokens": 225,
+     "termination": "eos",
+     "pred": "23",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0038",
+     "n_tokens": 251,
+     "termination": "eos",
+     "pred": "4",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0039",
+     "n_tokens": 371,
+     "termination": "eos",
+     "pred": "0",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0040",
+     "n_tokens": 288,
+     "termination": "eos",
+     "pred": "12",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0041",
+     "n_tokens": 282,
+     "termination": "eos",
+     "pred": "842",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0042",
+     "n_tokens": 165,
+     "termination": "eos",
+     "pred": "225",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0043",
+     "n_tokens": 280,
+     "termination": "eos",
+     "pred": "227",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0044",
+     "n_tokens": 234,
+     "termination": "eos",
+     "pred": "25",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0045",
+     "n_tokens": 212,
+     "termination": "eos",
+     "pred": "8",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0046",
+     "n_tokens": 285,
+     "termination": "eos",
+     "pred": "1080",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0047",
+     "n_tokens": 166,
+     "termination": "eos",
+     "pred": "22",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0048",
+     "n_tokens": 301,
+     "termination": "eos",
+     "pred": "300",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0049",
+     "n_tokens": 235,
+     "termination": "eos",
+     "pred": "4",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0050",
+     "n_tokens": 283,
+     "termination": "eos",
+     "pred": "480",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0051",
+     "n_tokens": 344,
+     "termination": "eos",
+     "pred": "20.42",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0052",
+     "n_tokens": 512,
+     "termination": "cap",
+     "pred": "9",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0053",
+     "n_tokens": 294,
+     "termination": "eos",
+     "pred": "6",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0054",
+     "n_tokens": 203,
+     "termination": "eos",
+     "pred": "12",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0055",
+     "n_tokens": 91,
+     "termination": "eos",
+     "pred": "120",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0056",
+     "n_tokens": 243,
+     "termination": "eos",
+     "pred": "17",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0057",
+     "n_tokens": 280,
+     "termination": "eos",
+     "pred": "5",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0058",
+     "n_tokens": 259,
+     "termination": "eos",
+     "pred": "46",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0059",
+     "n_tokens": 231,
+     "termination": "eos",
+     "pred": "140000",
+     "correct": true
+    }
+   ],
+   "seconds": 541.2809977759998,
+   "teacher_bank": {
+    "positions": 2847,
+    "entropy": 0.5328549795062592,
+    "top_prob": 0.8419991674436198
+   },
+   "own_rollouts": {
+    "positions": 2860,
+    "entropy": 0.8988010033649607,
+    "top_prob": 0.763994887006189
+   }
+  },
+  "on_policy_s6305": {
+   "greedy_accuracy": 0.55,
+   "greedy_accuracy_eos_ended": 0.5892857142857143,
+   "greedy_truncated": 0.06666666666666667,
+   "greedy_mean_tokens": 285.3333333333333,
+   "rows": [
+    {
+     "prompt_id": "GSM8K-0000",
+     "n_tokens": 367,
+     "termination": "eos",
+     "pred": "14",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0001",
+     "n_tokens": 378,
+     "termination": "eos",
+     "pred": "4",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0002",
+     "n_tokens": 512,
+     "termination": "cap",
+     "pred": "47",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0003",
+     "n_tokens": 279,
+     "termination": "eos",
+     "pred": "17",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0004",
+     "n_tokens": 395,
+     "termination": "eos",
+     "pred": "106.34",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0005",
+     "n_tokens": 176,
+     "termination": "eos",
+     "pred": "60",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0006",
+     "n_tokens": 318,
+     "termination": "eos",
+     "pred": "40",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0007",
+     "n_tokens": 324,
+     "termination": "eos",
+     "pred": "0",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0008",
+     "n_tokens": 214,
+     "termination": "eos",
+     "pred": "1.00",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0009",
+     "n_tokens": 288,
+     "termination": "eos",
+     "pred": "5",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0010",
+     "n_tokens": 312,
+     "termination": "eos",
+     "pred": "18",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0011",
+     "n_tokens": 235,
+     "termination": "eos",
+     "pred": "100",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0012",
+     "n_tokens": 253,
+     "termination": "eos",
+     "pred": "5",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0013",
+     "n_tokens": 326,
+     "termination": "eos",
+     "pred": "280",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0014",
+     "n_tokens": 214,
+     "termination": "eos",
+     "pred": "21",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0015",
+     "n_tokens": 512,
+     "termination": "cap",
+     "pred": "8",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0016",
+     "n_tokens": 233,
+     "termination": "eos",
+     "pred": "23.67",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0017",
+     "n_tokens": 512,
+     "termination": "cap",
+     "pred": "65",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0018",
+     "n_tokens": 259,
+     "termination": "eos",
+     "pred": "35",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0019",
+     "n_tokens": 363,
+     "termination": "eos",
+     "pred": "30",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0020",
+     "n_tokens": 321,
+     "termination": "eos",
+     "pred": "80",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0021",
+     "n_tokens": 202,
+     "termination": "eos",
+     "pred": "45",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0022",
+     "n_tokens": 378,
+     "termination": "eos",
+     "pred": "33.00",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0023",
+     "n_tokens": 512,
+     "termination": "cap",
+     "pred": "7",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0024",
+     "n_tokens": 148,
+     "termination": "eos",
+     "pred": "770",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0025",
+     "n_tokens": 261,
+     "termination": "eos",
+     "pred": "525",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0026",
+     "n_tokens": 244,
+     "termination": "eos",
+     "pred": "105",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0027",
+     "n_tokens": 270,
+     "termination": "eos",
+     "pred": "3",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0028",
+     "n_tokens": 263,
+     "termination": "eos",
+     "pred": "5",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0029",
+     "n_tokens": 233,
+     "termination": "eos",
+     "pred": "1170",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0030",
+     "n_tokens": 284,
+     "termination": "eos",
+     "pred": "9.40",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0031",
+     "n_tokens": 260,
+     "termination": "eos",
+     "pred": "0.48",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0032",
+     "n_tokens": 260,
+     "termination": "eos",
+     "pred": "3",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0033",
+     "n_tokens": 176,
+     "termination": "eos",
+     "pred": "500",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0034",
+     "n_tokens": 285,
+     "termination": "eos",
+     "pred": "74",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0035",
+     "n_tokens": 328,
+     "termination": "eos",
+     "pred": "250",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0036",
+     "n_tokens": 238,
+     "termination": "eos",
+     "pred": "14",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0037",
+     "n_tokens": 224,
+     "termination": "eos",
+     "pred": "23",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0038",
+     "n_tokens": 239,
+     "termination": "eos",
+     "pred": "4",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0039",
+     "n_tokens": 364,
+     "termination": "eos",
+     "pred": "0",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0040",
+     "n_tokens": 241,
+     "termination": "eos",
+     "pred": "600",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0041",
+     "n_tokens": 282,
+     "termination": "eos",
+     "pred": "842",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0042",
+     "n_tokens": 160,
+     "termination": "eos",
+     "pred": "225",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0043",
+     "n_tokens": 284,
+     "termination": "eos",
+     "pred": "227",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0044",
+     "n_tokens": 212,
+     "termination": "eos",
+     "pred": "75",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0045",
+     "n_tokens": 153,
+     "termination": "eos",
+     "pred": "8",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0046",
+     "n_tokens": 504,
+     "termination": "eos",
+     "pred": "11375",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0047",
+     "n_tokens": 168,
+     "termination": "eos",
+     "pred": "22",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0048",
+     "n_tokens": 261,
+     "termination": "eos",
+     "pred": "300",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0049",
+     "n_tokens": 218,
+     "termination": "eos",
+     "pred": "4",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0050",
+     "n_tokens": 282,
+     "termination": "eos",
+     "pred": "480",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0051",
+     "n_tokens": 440,
+     "termination": "eos",
+     "pred": "5",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0052",
+     "n_tokens": 381,
+     "termination": "eos",
+     "pred": "90",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0053",
+     "n_tokens": 354,
+     "termination": "eos",
+     "pred": "54",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0054",
+     "n_tokens": 253,
+     "termination": "eos",
+     "pred": "12",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0055",
+     "n_tokens": 86,
+     "termination": "eos",
+     "pred": "120",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0056",
+     "n_tokens": 233,
+     "termination": "eos",
+     "pred": "17",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0057",
+     "n_tokens": 243,
+     "termination": "eos",
+     "pred": "5",
+     "correct": true
+    },
+    {
+     "prompt_id": "GSM8K-0058",
+     "n_tokens": 176,
+     "termination": "eos",
+     "pred": "30",
+     "correct": false
+    },
+    {
+     "prompt_id": "GSM8K-0059",
+     "n_tokens": 229,
+     "termination": "eos",
+     "pred": "140000",
+     "correct": true
+    }
+   ],
+   "seconds": 543.5394893119997,
+   "teacher_bank": {
+    "positions": 2847,
+    "entropy": 0.5631485507434042,
+    "top_prob": 0.8351193871368724
+   },
+   "own_rollouts": {
+    "positions": 2871,
+    "entropy": 0.8673888826189932,
+    "top_prob": 0.7689408700204724
+   }
+  }
+ }
+}

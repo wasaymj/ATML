@@ -7,4 +7,4 @@
 | INT4 token-wise K/V | 2512 | 0 | 74 | 50 | 45.7 | 30.7 | 0.51 | 3.30 |
 | Hybrid FP16 + INT2 | 2512 | 72 | 136 | 42 | 39.2 | 29.8 | 1.06 | 3.29 |
 
-Means over prompts. Quantized caches are fake-quantized (dequantized FP16 in GPU memory) before ordinary SDPA, so allocated memory is not reduced; eviction happens after a full prefill, so the prefill peak is unchanged (see prefill_peak_allocated in per_prompt.jsonl.gz).
+Means over prompts. Quantized caches are fake-quantized (dequantized FP16 in GPU memory) before ordinary SDPA, so allocated memory is not reduced; eviction happens after a full prefill, so the prefill peak is unchanged (see prefill_peak_allocated in per_prompt.jsonl.gz). Decode-time cache beyond context = live cache bytes at the end of generation minus the context cache (shared suffix + generated tokens): FP16 for the FP16, eviction and hybrid caches; the two INT4 caches also quantize every completed 64-token block of these appended tokens, so their component is smaller (token-wise INT4 generates more tokens, hence 0.51 vs 0.37 MiB).

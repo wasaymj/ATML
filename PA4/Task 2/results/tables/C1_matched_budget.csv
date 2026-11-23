@@ -1,5 +1,5 @@
 Cache,n,Exact match %,EM % given FP16 correct,Gold-answer NLL,Post-prefill KL vs FP16,Teacher-forced KL,Evidence retained (FP16),Bytes / FP16 context,All within budget
-FP16 full cache,180,100.0,100.0,0.005,0.0000,0.0000,-,1.0000 (max 1.0000),True
+FP16 full cache,180,100.0,100.0,0.005,0.0000,0.0000,-,1.0000 (max 1.0000),n/a (reference)
 Evict: sink+recent,180,33.3,33.3,9.164,2.0981,1.8300,0.333,0.2869 (max 0.2977),True
 Evict: question-aware,180,100.0,100.0,0.005,0.0016,0.0003,0.955,0.2868 (max 0.2976),True
 INT4 channel-K/token-V,180,100.0,100.0,0.009,0.0031,0.0006,-,0.2869 (max 0.2977),True

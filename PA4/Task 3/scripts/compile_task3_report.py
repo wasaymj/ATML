@@ -65,8 +65,9 @@ def write_table(r, name, header, rows, note=""):
         w = csv.writer(f)
         w.writerow(header)
         w.writerows(rows)
-    lines = ["| " + " | ".join(header) + " |", "|" + "---|" * len(header)] + \
-            ["| " + " | ".join(str(x) for x in row) + " |" for row in rows]
+    esc = lambda x: str(x).replace("|", "\\|")              # a literal '|' inside a cell would split the Markdown column
+    lines = ["| " + " | ".join(esc(h) for h in header) + " |", "|" + "---|" * len(header)] + \
+            ["| " + " | ".join(esc(x) for x in row) + " |" for row in rows]
     (r.tab / f"{name}.md").write_text("\n".join(lines + (["", note] if note else [])) + "\n", encoding="utf-8")
 
 
@@ -172,14 +173,15 @@ def t_sampler(r, plt):
     keys = list(toy["exact_joint"])
     ex = np.array([toy["exact_joint"][k] for k in keys])
     fig, ax = plt.subplots(2, 1, figsize=(5.5, 3.0), sharex=True)
-    for a, run, lab in [(ax[0], "correct_gamma4", "(a) correct sampler, gamma = 4"),
-                        (ax[1], "incorrect_residual_p_gamma2", "(b) incorrect sampler (residual replaced by p)")]:
+    for a, run, lab in [(ax[0], "correct_gamma4", "(a) correct sampler, γ = 4"),
+                        (ax[1], "incorrect_residual_p_gamma2", "(b) incorrect sampler (residual replaced by p), γ = 2")]:
         em = np.array([toy["runs"][run]["empirical_joint"][k] for k in keys])
         x = np.arange(len(keys))
         a.bar(x - 0.2, ex, 0.4, color="0.6", label="exact target joint")
         a.bar(x + 0.2, em, 0.4, color="#1f77b4" if run.startswith("correct") else "#d62728", label="empirical")
         a.set_ylabel("probability")
-        title(a, f"{lab}: p = {toy['runs'][run]['p_value']:.2g}")
+        pv, c2 = toy["runs"][run]["p_value"], toy["runs"][run]["chi2"]
+        title(a, f"{lab}: χ² = {c2:,.0f}, " + (f"p = {pv:.2g}" if pv > 0 else "p < 1e-300"))
         a.grid(axis="x", visible=False)
     ax[1].set_xticks(range(len(keys)))
     ax[1].set_xticklabels(keys, rotation=90, fontsize=6)
@@ -251,9 +253,9 @@ def t_distill(r, plt):
                     a.plot(x[k - 1:], np.convolve(y, np.ones(k) / k, "valid"), color=col, label=meth.replace("_", "-"))
                 else:
                     a.plot(x, y, color=col, marker=".", label=meth.replace("_", "-"))
-        a.set(xlabel="teacher-scored tokens (thousands)", yscale="log")
+        a.set(xlabel="teacher-scored tokens (thousands)", ylim=(0, None))
         title(a, f"({'ab'[seed - 6304]}) seed {seed}")
-    ax[0].set_ylabel("forward KL per token (training)")
+    ax[0].set_ylabel("training forward KL (nats / token)")
     ax[0].legend(frameon=False)
     save_fig(r, fig, "F2_distillation_curves")
 
@@ -329,7 +331,9 @@ def t_align(r, plt):
                 rows.append([BLAB[b], meth.replace("_", "-"), f"{np.mean(v):.4f}", f"{(max(v) - min(v)) / 2:.4f}",
                              " / ".join(f"{x:.4f}" for x in v)])
     if rows:
-        write_table(r, "T6_seed_dispersion", ["Bank", "Method", "Mean 1 - TV over seeds", "Half range", "Seeds 6304 / 6305"], rows)
+        write_table(r, "T6_seed_dispersion", ["Bank", "Method", "Mean 1 - TV over seeds", "Half range", "Seeds 6304 / 6305"], rows,
+                    "Training-seed variation: token-weighted 1 - TV (as in T5) of the two independently trained drafts per "
+                    "method; half range = (max - min) / 2 over the two seeds.")
     # workload x position (teacher bank + own banks)
     rows = []
     for b in ("teacher", "exact_spec_original_gamma4"):
@@ -402,7 +406,9 @@ def t_align(r, plt):
         write_table(r, "T10_target_vs_speculative_consistency", ["Statistic", "Draft", "Teacher bank (i)", "Speculative bank (iii)",
                                                                   "(iii) - (i) [unpaired 95% CI over prompts]"], rows,
                     "Both banks sample the target-prefix law (different seeds), so differences should be within sampling "
-                    "uncertainty; a systematic gap would indicate an implementation or evaluation problem.")
+                    "uncertainty; a systematic gap would indicate an implementation or evaluation problem. Metric rows are "
+                    "prompt-weighted means (a prompt's value = mean over its saved positions), so they differ slightly from "
+                    "the token-weighted T5; the banks hold different prefixes, hence an unpaired bootstrap (4,000 resamples).")
     # figures: 1-TV by position and workload; draft x bank heat map
     if "teacher" in by_bank:
         fig, ax = plt.subplots(1, 3, figsize=(5.5, 2.1), sharey=True)
@@ -426,6 +432,7 @@ def t_align(r, plt):
                         color="white" if M[i, j] < np.nanmean(M) else "black")
         ax.set(xticks=range(len(banks)), yticks=range(len(drafts)), yticklabels=[DLAB[d] for d in drafts])
         ax.set_xticklabels([BLAB[b] for b in banks], rotation=25, ha="right", fontsize=6.5)
+        ax.set(xlabel="prefix bank (same saved prefixes for every draft)", ylabel="draft evaluated")
         ax.grid(False)
         cb = fig.colorbar(im, ax=ax, pad=0.01)
         cb.set_label("mean 1 - TV")
@@ -577,7 +584,10 @@ def t_spec(r, plt):
                     rows.append([DLAB[d], g, f"output {lo}-{hi} tokens", len(sub), f"{s['acc_exam']:.3f}",
                                  f"{s['passes_per_tok']:.3f}", f"{s['speedup_median']:.3f}", f"{s['eos_spec']:.2f}"])
     write_table(r, "T14_speculative_by_workload_and_length", ["Draft", "gamma", "Subset", "Runs", "Accepted / examined",
-                                                              "Target passes / token", "Speedup (median)", "EOS share"], rows)
+                                                              "Target passes / token", "Speedup (median)", "EOS share"], rows,
+                "Primary EOS-aware benchmark (T11) split by workload (60 / 30 / 30 prompts x 2 repetitions) and by the "
+                "actual number of output tokens of the speculative run. Runs = prompt x repetition pairs; speedup = median "
+                "per-run ratio of adjacent target-only to speculative time. Output-length bins with < 20 runs are noisy.")
     # expected (bank) vs empirical (trajectory) acceptance
     A = r.align()
     rows, calib = [], {}
@@ -638,11 +648,11 @@ def t_spec(r, plt):
         fig, ax = plt.subplots(1, 2, figsize=(5.5, 2.3))
         for k, v in cm.items():
             d, g = k.split("|")
-            ax[0].plot(v["S_hat"], v["S_measured"], "o" if g == "2" else "s", color=DCOL[d], label=f"{DLAB[d]}, gamma {g}")
+            ax[0].plot(v["S_hat"], v["S_measured"], "o" if g == "2" else "s", color=DCOL[d])
         lim = [min(min(v["S_hat"], v["S_measured"]) for v in cm.values()) * 0.9, max(max(v["S_hat"], v["S_measured"]) for v in cm.values()) * 1.1]
         ax[0].plot(lim, lim, "k--", lw=0.8)
         ax[0].axhline(1, color="0.5", lw=0.6, ls=":")
-        ax[0].set(xlabel="predicted speedup S_hat", ylabel="measured speedup S")
+        ax[0].set(xlabel="predicted speedup $\\hat{S}$ (cost model)", ylabel="measured speedup S")
         title(ax[0], "(a) cost model vs measurement")
         for k, v in calib.items():
             d, g = k.split("|")
@@ -653,9 +663,13 @@ def t_spec(r, plt):
             ax[1].plot(xs, ys, marker="o", color=DCOL[d], label=DLAB[d])
         ax[1].plot([0, 1], [0, 1], "k--", lw=0.8)
         ax[1].set(xlabel="predicted acceptance 1 - TV(p, q)", ylabel="empirical acceptance", xlim=(0, 1), ylim=(0, 1))
-        title(ax[1], f"(b) calibration, gamma {max(r.cfg['eval']['gammas'])}")
-        h, l = ax[0].get_legend_handles_labels()
-        fig.legend(h, l, loc="outside lower center", ncol=3, frameon=False, fontsize=6)
+        title(ax[1], f"(b) calibration, γ = {max(r.cfg['eval']['gammas'])}")
+        from matplotlib.lines import Line2D
+        ds = list(dict.fromkeys(k.split("|")[0] for k in cm))
+        h = [Line2D([], [], color=DCOL[d], marker="o", ls="-", label=DLAB[d]) for d in ds]
+        h += [Line2D([], [], color="0.3", marker=mk, ls="none", label=f"γ = {g} (panel a)")
+              for mk, g in (("o", 2), ("s", 4))]
+        fig.legend(handles=h, loc="outside lower center", ncol=4, frameon=False, fontsize=6)
         save_fig(r, fig, "F5_speedup_and_calibration")
         fig, ax = plt.subplots(figsize=(5.5, 2.2))
         keys = list(stats)
@@ -728,6 +742,22 @@ def t_quality(r, plt):
                 "two-letter code) equals the gold answer, format ignored; 'exact-format correct' = the whole response is "
                 "exactly the answer (the format-compliance check). Math: last number vs gold; unextractable responses "
                 "count as wrong.")
+    # format compliance by template family: shows whether exact-format scores reflect the model or the template
+    if fam:
+        FNAME = ("month", "integer", "two-letter code")
+        rows = []
+        for m in models:
+            q = r.j("quality", f"{m}.json.gz")["rows"]
+            row = [DLAB[m]]
+            for w in ("short_familiar", "short_shifted"):
+                for f_ in range(3):
+                    s = [x for x in q if x["workload"] == w and fam.get(x["prompt_id"]) == f_]
+                    row.append(f"{sum(bool(x['correct']) for x in s)} / {len(s)}" if s else "-")
+            rows.append(row)
+        write_table(r, "T18b_format_by_family", ["Model"] + [f"{w} {n}" for w in ("Familiar", "Shifted") for n in FNAME], rows,
+                    "Exact-format correct responses (whole response = the answer) per answer family, 10 prompts x 2 "
+                    "repetitions each, same runs as T18. A column where every model, the target included, scores alike "
+                    "measures the prompt template, not the draft.")
     # amortisation
     orig = r.bench("original")
     rows = []
@@ -778,7 +808,9 @@ def t_quality(r, plt):
     if rows:
         write_table(r, "T20_eos_and_truncation", ["Draft", "Workload", "Runs", "EOS share (spec)", "64-cap share (spec)",
                                                   "64-cap share (target-only)", "Mean output tokens (spec)"], rows,
-                    "Mathematical outputs truncated at 64 tokens are speed-test outputs, never completed solutions.")
+                    "Primary EOS-aware benchmark; runs pooled over gamma 2 and 4 and the 2 repetitions (math: 60 prompts x "
+                    "2 x 2 = 240). Mathematical outputs truncated at 64 tokens are speed-test outputs, never completed "
+                    "solutions.")
     # qualitative continuations
     qual = r.cfg["eval"]["qualitative_prompts"]
     tok = None
@@ -823,7 +855,10 @@ def t_diag(r, plt):
                     f"alone on a T4. Layer fit: step time of models truncated to their first k decoder layers. "
                     f"c (full models) = {s['c_full']:.3f}; layer ratio draft/target = {s['layer_ratio']:.3f}; per-layer slope "
                     f"ratio draft/target = {s['per_layer_slope_ratio']:.3f} while params per layer ratio = "
-                    f"{s['params_per_layer_ratio']:.3f}. GPU busy share = profiled kernel time / wall time.")
+                    f"{s['params_per_layer_ratio']:.3f}. GPU busy share = profiled kernel time / wall time. Step ms (batch 1) is "
+                    f"from the batch sweep; the layer sweep (FD1a) times the full models separately, so its full-model "
+                    f"points differ by ~1-2 ms (run-to-run variation of launch-bound timing). This is a separate Kaggle "
+                    f"session from the main benchmark (T13: c = 0.80-0.89).")
         made.append("D1")
     mt = r.j("diagnostics", "math.json")
     if mt:

@@ -1,4 +1,4 @@
-| Sampler | gamma | Residual | Pearson chi2 | df | p | Decision (alpha 0.01) | max |joint error| | acceptance | bonus rounds |
+| Sampler | gamma | Residual | Pearson chi2 | df | p | Decision (alpha 0.01) | max \|joint error\| | acceptance | bonus rounds |
 |---|---|---|---|---|---|---|---|---|---|
 | correct_gamma1 | 1 | correct | 17.5 | 26 | 0.893 | not rejected | 0.0014 | 0.772 | 98924 |
 | correct_gamma2 | 2 | correct | 20.9 | 26 | 0.749 | not rejected | 0.0014 | 0.783 | 84868 |

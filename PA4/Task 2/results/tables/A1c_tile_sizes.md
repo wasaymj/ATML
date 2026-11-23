@@ -32,3 +32,5 @@
 | 4096 | float32 | 128 | tiled_recompute | 4.66e-07 | 5.96e-07 | 1.53e-06 | 1.51e-06 |
 | 4096 | float32 | 256 | tiled_autograd | 4.81e-07 | 6.38e-07 | 1.53e-06 | 1.48e-06 |
 | 4096 | float32 | 256 | tiled_recompute | 4.81e-07 | 5.93e-07 | 1.51e-06 | 1.50e-06 |
+
+Relative L2 error vs the dense FP32 reference for several tile sizes (query and key tiles of equal size). In FP16 the forward error and the tiled_recompute gradient errors are identical for every tile size (FP16 rounding of the output dominates), while tiled_autograd gradient errors grow as tiles get smaller (more FP16 partial results are stored and summed). In FP32 all differences between tile sizes are at the 1e-7 level.

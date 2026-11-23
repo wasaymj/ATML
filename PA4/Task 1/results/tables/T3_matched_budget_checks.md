@@ -8,3 +8,5 @@
 | Q3 mixed (INT3 budget) vs Q2 AWQ INT3 | total packed bytes incl. metadata + FP16 rest | 982,985,216 | 983,004,160 | -18944 | OK |
 | Q2 AWQ INT4 vs Q1 RTN INT4 | total packed bytes incl. metadata + FP16 rest | 1,147,724,800 | 1,147,724,800 | 0 | OK |
 | Q2 AWQ INT3 vs Q1 RTN INT3 | total packed bytes incl. metadata + FP16 rest | 983,004,160 | 983,004,160 | 0 | OK |
+
+Budget matching of every compared pair. Pruning: identical counts of zeroed eligible weights (exact equality required). Quantization: total serialized bytes incl. codes, zero-points, FP16 group scales and the uncompressed FP16 rest; the method must not exceed the reference (negative difference = the mixed-precision knapsack leaves part of the budget unused).

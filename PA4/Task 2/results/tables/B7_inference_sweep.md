@@ -29,4 +29,4 @@
 | linear_recurrent_prefix | 8192 | 51.91 | 1616 | (T, d_k, d_v) prefix states per head |  |
 | delta_recurrent_loop | 8192 | 2945.19 | 176 | running state only (Python time loop) |  |
 
-2-block models with random weights and random input embeddings; forward only; reduced reps for the Python delta loop at T > 1024
+2-block models with random weights and random input embeddings; forward only; reduced reps for the Python delta loop at T > 1024. The delta-rule loop and dense SDPA have identical peak memory: neither stores a T x T tensor, so both are set by the per-token activations (linear in T); in FB3(b) the dotted delta line lies on the SDPA line.

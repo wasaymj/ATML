@@ -12,4 +12,4 @@
 | Q2 AWQ INT4 - Q1 RTN INT4 | extra | -1.456 [-1.714, -1.236] | -0.0802 [-0.0904, -0.0706] | -0.808 [-0.959, -0.676] | -0.0495 [-0.0572, -0.0428] | 2000 | +0.55 [-0.35, +1.45] | +0.70 [-0.40, +1.80] | 56/70 |
 | Q2 AWQ INT3 - Q1 RTN INT3 | extra | -14.844 [-16.318, -13.576] | -0.4560 [-0.4729, -0.4399] | -9.325 [-10.555, -8.276] | -0.3639 [-0.3866, -0.3446] | 2000 | +3.50 [+2.15, +4.85] | +5.65 [+3.95, +7.25] | 88/201 |
 
-Paired 95% bootstrap intervals: perplexity resamples whole evaluation windows and recomputes the pooled token NLL before exponentiating; HellaSwag resamples examples (common subset: 2,000 if both conditions have it, else the first 512).
+Paired 95% bootstrap intervals: perplexity resamples whole evaluation windows and recomputes the pooled token NLL before exponentiating; HellaSwag resamples examples (common subset: 2,000 if both conditions have it, else the first 512). Each row is B - A, with A = the condition after the minus sign; 'A-only/B-only' = HellaSwag examples that only A / only B gets right under acc_norm (their difference / n gives the acc_norm change).

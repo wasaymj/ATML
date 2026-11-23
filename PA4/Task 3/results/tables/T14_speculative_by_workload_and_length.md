@@ -60,3 +60,5 @@
 | on-policy s6305 | 4 | output 1-16 tokens | 83 | 0.897 | 0.337 | 0.640 | 1.00 |
 | on-policy s6305 | 4 | output 17-32 tokens | 18 | 0.833 | 0.311 | 0.888 | 1.00 |
 | on-policy s6305 | 4 | output 33-64 tokens | 139 | 0.869 | 0.267 | 0.890 | 0.09 |
+
+Primary EOS-aware benchmark (T11) split by workload (60 / 30 / 30 prompts x 2 repetitions) and by the actual number of output tokens of the speculative run. Runs = prompt x repetition pairs; speedup = median per-run ratio of adjacent target-only to speculative time. Output-length bins with < 20 runs are noisy.

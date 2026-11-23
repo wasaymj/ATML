@@ -1,4 +1,4 @@
-| Condition | n | Mean d margin | Mean |d margin| | Flips low-conf. | Flips mid | Flips high-conf. | pred != pred_norm | rho(margin, d margin) |
+| Condition | n | Mean d margin | Mean \|d margin\| | Flips low-conf. | Flips mid | Flips high-conf. | pred != pred_norm | rho(margin, d margin) |
 |---|---|---|---|---|---|---|---|---|
 | P1 mag 25% | 512 | -0.0092 | 0.0438 | 31 | 4 | 0 | 0.492 | -0.200 |
 | P1 mag 50% | 2000 | -0.1090 | 0.1313 | 320 | 264 | 106 | 0.602 | -0.155 |

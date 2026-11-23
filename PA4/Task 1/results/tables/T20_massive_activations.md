@@ -1,4 +1,4 @@
-| Boundary (input of block) | max/RMS | # massive entries | share at token 0 | channels | share of ||h||^2 | ||h_0|| / mean ||h_t>0|| | attn mass on token 0 (block) | MLP share of block's write (to next) |
+| Boundary (input of block) | max/RMS | # massive entries | share at token 0 | channels | share of \|\|h\|\|^2 | \|\|h_0\|\| / mean \|\|h_t>0\|\| | attn mass on token 0 (block) | MLP share of block's write (to next) |
 |---|---|---|---|---|---|---|---|---|
 | 0 | 12 | 0 | - | - | 0.000 | 1.0 | 0.004 | - |
 | 1 | 30 | 0 | - | - | 0.000 | 1.4 | 0.012 | 1.00 |
@@ -29,4 +29,4 @@
 | 26 | 517 | 397 | 1.00 | 147,286,408,520 | 0.803 | 48.2 | 0.462 | - |
 | 27 | 35 | 0 | - | - | 0.000 | 0.9 | 0.003 | - |
 
-Dense FP16, first 32 calibration sequences, SDPA (token-0 attention mass in FP32). Massive = |h| > 50 x RMS of the boundary. Attention mass = mean over heads and queries t >= 1 of the weight on key 0 in that block. Last column: share of the increment h_(l+1) - h_l at the next boundary's massive entries written by the MLP of block l (rest: attention). Sanity: dense vs dense KL = 0.0e+00.
+Dense FP16, first 32 calibration sequences, SDPA (token-0 attention mass in FP32). Massive = |h| > 50 x RMS of the boundary. Attention mass = mean over heads and queries t >= 1 of the weight on key 0 in that block. Last column: share of the increment h_(l+1) - h_l at the next boundary's massive entries written by the MLP of block l (rest: attention); it is a signed share, so it leaves [0, 1] when the two sublayers write in opposite directions (e.g. -0.30: attention adds more than the total, the MLP removes part of it). Sanity: dense vs dense KL = 0.0e+00.
